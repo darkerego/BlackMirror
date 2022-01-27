@@ -2,7 +2,7 @@ import argparse
 
 
 def get_args():
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(usage='SUPPORT MY WORK! USE MY REFERRAL: https://ftx.com/referrals#a=darkerego')
     gen_opts = parser.add_argument_group('General Opts')
     gen_opts.description = ('General Options')
     gen_opts.add_argument('-m', '--monitor', dest='monitor', action='store_true', default=False,
