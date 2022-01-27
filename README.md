@@ -1,5 +1,7 @@
 # SemiAuto
 
+## Support my work:
+And use my [FTX referal code](https://ftx.com/referrals#a=darkerego)
 
 # Rational For Existance
 
