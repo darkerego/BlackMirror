@@ -1,13 +1,10 @@
 import random
 from colored import fg, attr, bg
-
+from color_mappings import ColorMaps
 
 class NewColorPrint:
     def __init__(self):
         self.i = 0
-        self.bright_colors = [1, 3, 5, 8, 32, 44,
-                              45, 46, 55, 73, 77, 80, 82, 88, 107, 125,
-                              155, 160, 167, 169, 186, 197, 203, 222, 226]
 
     def purple(self, data):
         print(f'{fg(207)}{data}{attr(0)}')
@@ -64,11 +61,11 @@ class NewColorPrint:
         if self.i == 256:
             self.i = 0
 
-    def random_color(self, data, static_set=None):
+    def random_color(self, data, static_set=[]):
         if static_set is None:
-            color = random.randint(0, 255)
+            color = ColorMaps.default
         elif static_set == 'bright':
-            color = random.choice(self.bright_colors)
+            color = random.choice(ColorMaps.bright)
         else:
             color = random.choice(static_set)
         print(f'{fg(color)}{data}{attr(0)}')
@@ -77,7 +74,7 @@ class NewColorPrint:
         if static_set is None:
             color = random.randint(0, 255)
         elif static_set == 'bright':
-            color = random.choice(self.bright_colors)
+            color = random.choice(ColorMaps.bright)
         else:
             color = random.choice(static_set)
         print(f'{bg(0)}{fg(color)}{data}{attr(0)}')
@@ -87,3 +84,11 @@ class NewColorPrint:
 
     def pulse(self, data):
         print(f'{fg(82)}{bg(0)}{attr(21)}{attr(1)}{data}{attr(0)}')
+
+    def combine(self, data, col_set=ColorMaps.default):
+        ret = ''
+        for x in str(data):
+            col = random.choice(ColorMaps.default)
+            ret += f'{bg(0)}{fg(col)}{x}{attr(0)}'
+        ret += '\n'
+        return ret
