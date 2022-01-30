@@ -1,11 +1,46 @@
 import logging
+import threading
 import time
-
-#from autotrader import debug
-debug = True
+import sys
 from utils.colorprint import NewColorPrint
-
 from trade_engine.stdev_aggravator import FtxAggratavor
+
+
+try:
+    import thread
+except ImportError:
+    import _thread as thread
+
+debug = True
+
+
+
+
+def cdquit(fn_name):
+    # print to stderr, unbuffered in Python 2.
+    print('{0} took too long'.format(fn_name), file=sys.stderr)
+    sys.stderr.flush()  # Python 3 stderr is likely buffered.
+    thread.interrupt_main()  # raises KeyboardInterrupt
+
+def exit_after(s):
+    '''
+    use as decorator to exit process if
+    function takes longer than s seconds
+    '''
+
+    def outer(fn):
+        def inner(*args, **kwargs):
+            timer = threading.Timer(s, cdquit, args=[fn.__name__])
+            timer.start()
+            try:
+                result = fn(*args, **kwargs)
+            finally:
+                timer.cancel()
+            return result
+
+        return inner
+
+    return outer
 
 
 class AutoTrader:
@@ -522,11 +557,15 @@ class AutoTrader:
                     self.stop_loss_order(market=future_instrument, side=side, size=size * -1)
                 self.accumulated_pnl -= pnl
 
+    @exit_after(5)
     def position_parser(self, positions, account_info):
         for pos in positions:
             if float(pos['collateralUsed'] != 0.0) or float(pos['longOrderSize']) > 0 or float(
                     pos['shortOrderSize']) < 0:
                 self.parse(pos, account_info)
+
+    def handler(self, signum, frame):
+        raise Exception("SocketTimeOutError")
 
     def start_process(self):
         self.cp.purple('[i] Starting AutoTrader, performing sanity check. ...')

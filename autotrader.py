@@ -24,7 +24,7 @@
 
 import logging
 import time
-
+import signal
 from exchanges.ftx_lib.rest import client
 from exchanges.ftx_lib.websocket_api import client as ws_client
 from lib.pos_monitor import Monitor

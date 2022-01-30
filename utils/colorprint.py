@@ -82,6 +82,9 @@ class NewColorPrint:
     def debug(self, data):
         print(f'[debug] {fg(255)}{bg(0)}{data}{attr(0)}')
 
+    def blink_pulse(self, data):
+        print(f'{fg(82)}{bg(0)}{attr(21)}{attr(1)}{attr(5)}{data}{attr(0)}')
+
     def pulse(self, data):
         print(f'{fg(82)}{bg(0)}{attr(21)}{attr(1)}{data}{attr(0)}')
 

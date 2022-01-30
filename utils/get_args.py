@@ -29,6 +29,16 @@ def get_args():
         'Options for interacting with the exchange. For creating orders, the syntax is -b/-s <order type> <quantity> <price>')
     api_opts.add_argument('-p', '--portfolio', dest='show_portfolio', action='store_true', default=False,
                           help='Get current balances')
+    api_opts.add_argument('-oc', '--chase', dest='limit_order_chase', nargs=2, help='Limit Order Chasing. '
+                                                                                                'Keeps your limit '
+                                                                                                'order at '
+                                                                                                'the top of the books.'
+                                                                                                'Specify order ID following'
+                                                                                    'an integer representing the max '
+                                                                                    'number of '
+                                                                                                'order modifications '
+                                                                                                'before giving up and '
+                                                                                                'executing as market. ')
     api_opts.add_argument('-b', '--buy', dest='buy', type=str, nargs='+',
                           help='Execute a buy order: --buy <limit> <ETH-PERP> <0.5> 2898.89 ')
     api_opts.add_argument('-s', '--sell', dest='sell', type=str, nargs='+',
