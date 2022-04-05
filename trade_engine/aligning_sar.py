@@ -12,13 +12,13 @@ cp = colorprint.NewColorPrint()
 import ssl
 import trio
 from python_socks.async_.trio import Proxy
-from conf import proxyrack
+#from conf import proxyrack
 proxy = Proxy.from_url('socks5://user:password@127.0.0.1:1080')
 
 # `connect` returns trio socket
 # so we can pass it to trio.SocketStrea
-def sockify():
-    sock = await proxy.connect(dest_host='check-host.net', dest_port=443)
+async def sockify():
+    sock = proxy.connect(dest_host='check-host.net', dest_port=443)
 
     stream = trio.SocketStream(sock)
 
@@ -26,7 +26,7 @@ def sockify():
         stream, ssl.create_default_context(),
         server_hostname='check-host.net'
     )
-    await stream.do_handshake()
+    stream.do_handshake()
 
     request = (
         b'GET /ip HTTP/1.1\r\n'
@@ -54,6 +54,7 @@ class TheSARsAreAllAligning:
         :return: last price
         """
         ret = requests.get(f'https://ftx.com/api/markets/{market}').json()
+        print(ret)
         return ret['result']['price']
 
     def future_ticker(self, market):
@@ -63,6 +64,7 @@ class TheSARsAreAllAligning:
         :return: mark price
         """
         ret = requests.get(f'https://ftx.com/api/futures/{market}').json()
+        print(ret)
         return ret['result']['mark']
 
     def generate_sar(self, high_array, low_array, acceleration=0.05, maximum=0.2):
@@ -116,6 +118,7 @@ class TheSARsAreAllAligning:
         low_array = []
 
         if period is not None:
+            print(f'Getting {period} {symbol}')
             _candles = requests.get(f'https://ftx.com/api/markets/{symbol}/candles?resolution={period}')
             for c in _candles.json()['result']:
                 close_array.append(c['close'])

@@ -24,7 +24,6 @@
 
 import logging
 import time
-import signal
 from exchanges.ftx_lib.rest import client
 from exchanges.ftx_lib.websocket_api import client as ws_client
 from lib.pos_monitor import Monitor
@@ -42,7 +41,6 @@ try:
 except ImportError:
     import _thread as thread
 
-
 logo.start()
 use_custom_ts = False
 debug = True
@@ -51,6 +49,7 @@ ws_signals = WebSocketSignals()
 
 
 class Bot:
+    restarts = 0
 
     def api_connection(self, key, secret, subaccount):
         global ws
@@ -64,18 +63,9 @@ class Bot:
         rest = api[0]
         ws = api[1]
 
-        return Monitor(rest=rest, ws=ws, subaccount=subaccount_name, sl=args.stop_loss_pct, tp=args.take_profit_pct,
-                       offset=args.ts_offset, auto=args.auto_trader, ts=args.use_trailing_stop,
-                       max_open_orders=args.num_open_orders, reopen=args.reopen_method, no_sl=args.disable_stop_loss,
-                       show_tickers=args.show_tickers, monitor_only=args.monitor_only, close_method=args.close_method,
-                       balance_arbitrage=args.balance_arbitrage, ot=args.order_type, use_strategy=args.use_strategy,
-                       strategy=args.strategy, symbol=args.symbol, contract_size=args.contract_size,
-                       enable_ws=args.enable_ws, ws_uri=args.ws_uri,
-                       reenter=args.reenter, data_source=args.data_source, exclude_markets=args.exclude_markets)
+        return Monitor(rest=rest, ws=ws, subaccount=subaccount_name, conf=args)
 
-    def monitor(self, key, secret, subaccount_name=None, args=None):
-        restarts = 0
-
+    def monitor(self, key, secret, subaccount_name=None, args={}):
         while True:
             with self.con(key=key, secret=secret, subaccount_name=subaccount_name, args=args) as ftx:
                 try:
@@ -84,60 +74,39 @@ class Bot:
                     cp.red('Done...')
                 except KeyboardInterrupt:
                     ftx.__exit__()
-                    print('Exiting...')
+                    print('\bCaught SIGINT - Terminate. \n')
                     cp.red(1)
                     exit(0)
                 except FtxDisconnectError as err:
                     ftx.__exit__()
-                    restarts += 1
-                    cp.red(f'Disconnected: {restarts}  {err}')
-                except Exception as err:
-                    ftx.__exit__()
-                    cp.red(f'Unknown Error: {err}, restarting ... ')
-                    print(repr(err))
-                    restarts += 1
-                    cp.red(f'Disconnected: {restarts}')
+                    self.restarts += 1
+                    cp.red(f'[!] Websocket Disconnected: Restarts #: {self.restarts}, Error Message: {err}')
 
 
-def main():
-    global exclude_markets
-    global cp
-    global ARE_YOU_CERTAIN
+def parse_and_exec(args):
+    limit_price = 0
     key, secret, subaccount = config_loader.load_config('conf.json')
     bot = Bot()
-    cp = NewColorPrint()
-    args = get_args()
-    limit_price = 0
-    exclude_markets = args.exclude_markets
-    if args.confirm:
-        ARE_YOU_CERTAIN = True
-        args.monitor_only = False
-        for _ in range(0, 3):
-            cp.random_color(f'[ATTENTION!] You have specified `--confirm` which means that *THIS BOT WILL DO THINGS '
-                            f'AUTOMATICALLY* which will either MAKE or COST you money! You have been WARNED!',
-                            static_set='bright')
-            time.sleep(0.125)
-    else:
-        ARE_YOU_CERTAIN = False
-        args.monitor_only = True
 
     if args.balance_arbitrage:
-        cp.navy('Loading balance arbitrage engine...')
+        cp.navy('WARNING: EXPERIMENTAL !! -- Loading balance arbitrage engine...')
         bot.monitor(key=key, secret=secret, subaccount_name=args.subaccount, args=args)
     if args.use_strategy:
-        cp.navy(f'Loading TA Strategy Trader ... Strategy: {args.strategy}')
+        cp.navy(f'WARNING: EXPERIMENTAL !! -- Loading TA Strategy Trader ... Strategy: {args.strategy}')
         bot.monitor(key=key, secret=secret, subaccount_name=args.subaccount, args=args)
 
     if args.enable_ws:
         cp.yellow('Enabling ws signal client')
         bot.monitor(key=key, secret=secret, subaccount_name=args.subaccount, args=args)
+    if args.monitor_only:
+        cp.navy('[🌡] Monitoring only mode.')
+        bot.monitor(key=key, secret=secret, subaccount_name=args.subaccount, args=args)
 
-    if args.auto_trader or args.monitor:
+    if args.monitor or args.auto_trader:
         logo.post()
         cp.yellow('[📊] Loading auto trader ... ')
-        if not args.confirm:
-            cp.purple(f'[~] Monitor only mode. Run with --really to actually trade.')
-        else:
+
+        if args.confirm:
             cp.red(f'[!] WARN: Autotrader is enabled! This cam make or cost you money.')
         if args.show_tickers:
             cp.green('[~] Tickers Enabled!')
@@ -154,7 +123,7 @@ def main():
             print(balances)
         if args.open_orders:
             cp.yellow('Querying API for open orders...')
-            orders = api.get_orders()
+            orders = api.ws_get_orders()
             print(orders)
 
         if args.buy:
@@ -182,6 +151,13 @@ def main():
                     ret = api.buy_limit(market=o_market, qty=o_size, price=limit_price, reduce=False, cid=None)
                     if ret:
                         cp.purple(f'[~] Status: {ret}')
+                    if args.limit_chase > 0:
+                        cp.yellow(f'[-] Chasing limit order up the books ... Max Chase: {args.limit_chase} '
+                                  f'Revert to market: {args.chase_failsafe}')
+                        ret = api.chase_limit_order(market=o_market, oid=ret['id'], max_chase=args.limit_chase,
+                                              failsafe_market=args.chase_failsafe)
+                        cp.purple(f'[~] {ret}')
+
 
         if args.sell:
             if len(args.sell) < 3:
@@ -213,6 +189,24 @@ def main():
             ret = api.cancel_order(oid=oid)
             if ret:
                 cp.purple(f'[~] Status: {ret}')
+
+
+def main():
+    global cp
+    cp = NewColorPrint()
+    args = get_args()
+
+    if args.confirm:
+        args.monitor_only = False
+        for _ in range(0, 3):
+            cp.random_color(f'[⚡! TOASTERTUB DISCLAIMER: You have specified `--confirm` which means that THIS BOT WILL '
+                            f'interact with the FTX api, performing whatever actions were requested by *you*.]',  static_set='bright')
+            time.sleep(0.125)
+    else:
+        args.monitor_only = True
+
+    parse_and_exec(args)
+
 
 if __name__ == '__main__':
     main()

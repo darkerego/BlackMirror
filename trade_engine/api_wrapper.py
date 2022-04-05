@@ -1,8 +1,10 @@
 import pandas as pd
 import time
 from utils.colorprint import NewColorPrint as cp
+import logging
 
 cp = cp()
+
 
 class FtxApi:
     """
@@ -13,18 +15,19 @@ class FtxApi:
         self.rest = rest
         self.ws = ws
         self.sa = sa
+        self.logger = logging.getLogger(__name__)
 
-    def chase_limit_order(self, market, oid, max_chase=3):
-        print(f'Chasing order {market}, {oid}')
+    def chase_limit_order(self, market, oid, max_chase=3, failsafe_market=False):
+        self.logger.info(f'Chasing order {market}, {oid}')
         time.sleep(1)
         last_price = 0
         count = 0
         while True:
-            orders = self.get_open_orders(market=market)
-            print(orders)
-            ask, bid, last = self.get_ticker(market=market)
-            if len(orders):
-                for o in orders:
+            for _ in range(3):
+                o = self.ws.ws_get_order_by_id(oid)
+                if o:
+                    print(o)
+                    ask, bid, last = self.ws.get_ticker(market=market)
                     if o['id'] == oid:
                         if o['status'] == 'filled' or o['status'] == 'closed':
                             cp.red(f'[*] Order {oid}: Status: {o["status"]}')
@@ -34,34 +37,47 @@ class FtxApi:
                                 current_price = bid
                                 if current_price > last_price:
                                     last_price = current_price
-                                    ret = self.modify_order(oid=oid, price=current_price, size=o['remainingSize'])
+                                    ret = self.rest.modify_order(oid=oid, price=current_price,
+                                                            size=o['remainingSize'])
                                     if ret:
-                                        print('Success: ', ret.__str__)
+                                        self.logger.info('Success: ', ret.__str__)
                                         count += 1
                                     else:
-                                        print('Fail: ', ret.__str__)
+                                        self.logger.info('Fail: ', ret.__str__)
                                     time.sleep(0.125)
                             else:
                                 current_price = ask
                                 if current_price < last_price:
                                     last_price = current_price
-                                    ret = self.modify_order(oid=oid, price=current_price, size=o['remainingSize'])
+                                    ret = self.rest.modify_order(oid=oid, price=current_price,
+                                                            size=o['remainingSize'])
                                     if ret:
-                                        print('Success: ', ret.__str__)
+                                        self.logger.info('Success: ', ret.__str__)
                                         count += 1
                                     else:
-                                        print('Fail: ', ret.__str__)
+                                        self.logger.info('Fail: ', ret.__str__)
                                     time.sleep(0.125)
 
                             if count >= max_chase:
-                                cp.red('[m] Give up, market order...')
-                                r = self.cancel_order(oid=oid)
-                                if r:
-                                    self.rest.place_order(market=market, side=o['side'], price=None, size=o['remainingSize'],
-                                                  _type='market',
-                                                  reduce=o['reduce'], ioc=o['ioc'])
-            else:
-                return
+                                self.logger.info('Give up.')
+                                if failsafe_market:
+                                    cp.red('[m] Give up, market order...')
+                                    r = self.rest.cancel_order(oid=oid)
+                                    if r:
+                                        ret = self.rest.place_order(market=market, side=o['side'], price=None,
+                                                                    size=o['remainingSize'],
+                                                                    _type='market',
+                                                                    reduce=o['reduce'], ioc=o['ioc'])
+                                        if ret:
+                                            return ret
+                                        else:
+                                            cp.red(f'[!] FAILED TO PLACE MARKET ORDER!')
+                                            return False
+                    else:
+                        return
+                else:
+                    print('No orders ..')
+                    return False
 
     def parse_balances(self):
         bals = []
@@ -109,15 +125,15 @@ class FtxApi:
     def balances(self):
         return self.rest.get_balances()
 
-    def get_open_orders(self, market=None):
+    def rest_get_open_orders(self, market=None):
         return self.rest.get_open_orders(market=market)
 
     def cancel_order(self, oid):
         return self.rest.cancel_order(order_id=oid)
 
-    def cancel_orders(self, market, conditional_orders=False, lmit_orders=False):
+    def cancel_orders(self, market, conditional_orders=False, limit_orders=False):
         return self.rest.cancel_orders(market_name=market, conditional_orders=conditional_orders,
-                                       lmit_orders=lmit_orders)
+                                       limit_orders=limit_orders)
 
     def modify_order(self, oid, price, size, cid=None):
         return self.rest.modify_order(existing_order_id=oid, price=price, size=size, client_order_id=cid)
@@ -162,14 +178,27 @@ class FtxApi:
                 time.sleep(0.25)
             return None
 
-    def get_orders(self):
+    def ws_get_orders(self):
         for i in range(10):
-            orders = self.ws.get_orders()
+            orders = self.ws.ws_get_orders()
             if orders.items():
                 return orders
             else:
                 time.sleep(0.25)
             return None
+
+    def ws_get_order_by_id(self, oid):
+        for i in range(10):
+            orders = self.ws_get_orders()
+            if len(orders):
+                for o in orders:
+                    if o['id'] == oid:
+                        return o
+            return
+
+
+
+
 
     def get_trades(self, market):
         for i in range(10):
@@ -189,6 +218,7 @@ class FtxApi:
                 time.sleep(0.25)
             return None
 
+
 def debug_api(subacct=None, config_path='utils/conf.json'):
     """
     Load keys and return functional api object
@@ -203,5 +233,3 @@ def debug_api(subacct=None, config_path='utils/conf.json'):
     rest = client.FtxClient(api_key=k, api_secret=s, subaccount_name=a)
     ws = ws.FtxWebsocketClient(api_key=k, api_secret=s, subaccount_name=a)
     return FtxApi(rest, ws, a)
-
-

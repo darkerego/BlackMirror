@@ -1,10 +1,12 @@
 import logging
+import re
 import threading
 import time
 import sys
 from utils.colorprint import NewColorPrint
 from trade_engine.stdev_aggravator import FtxAggratavor
-
+from lib.exceptions import *
+from utils import profit_tracker
 
 try:
     import thread
@@ -14,13 +16,13 @@ except ImportError:
 debug = True
 
 
-
-
 def cdquit(fn_name):
     # print to stderr, unbuffered in Python 2.
     print('{0} took too long'.format(fn_name), file=sys.stderr)
     sys.stderr.flush()  # Python 3 stderr is likely buffered.
-    thread.interrupt_main()  # raises KeyboardInterrupt
+    raise RestartError
+    # thread.interrupt_main()  # raises KeyboardInterrupt
+
 
 def exit_after(s):
     '''
@@ -51,7 +53,8 @@ class AutoTrader:
 
     def __init__(self, api, stop_loss, _take_profit, use_ts=True, ts_pct=0.05, reopen=False, period=300, ot='limit',
                  max_open_orders=None, position_step_size=0.02, disable_stop_loss=False, show_tickers=True,
-                 monitor_only=False, close_method='market'):
+                 monitor_only=False, close_method='market', relist_iterations=100, hedge_mode=False, hedge_ratio=0.5,
+                 max_collateral=0.5, position_close_pct=1, chase_close=0, chase_reopen=0):
         self.cp = NewColorPrint()
         self.up_markets = {}
         self.down_markets = {}
@@ -67,6 +70,11 @@ class AutoTrader:
         self.wins = 0
         self.losses = 0
         self.accumulated_pnl = 0
+        self.pnl_trackers = []
+        self.position_close_pct = position_close_pct
+        self.chase_close = chase_close
+        self.chase_reopen = chase_reopen
+
         self.total_contacts_trade = 0
         self.reopen = reopen
         self.close_method = close_method
@@ -81,12 +89,35 @@ class AutoTrader:
         self.max_open_orders = max_open_orders
         self.position_step_size = position_step_size
         self.disable_stop_loss = disable_stop_loss
+        self.relist_iterations = relist_iterations
+        self.hedge_mode = hedge_mode
+        self.hedge_ratio = hedge_ratio
+        self.max_collateral = max_collateral
+        self.delta_weight = None
+        self.relist_iter = 0
         if self.reopen:
             self.cp.yellow('Reopen enabled')
         if self.stop_loss > 0.0:
             self.stop_loss = self.stop_loss * -1
+
+        if self.hedge_mode:
+            if self.hedge_ratio < 0:
+                self.delta_weight = 'short'
+            else:
+                self.delta_weight = 'long'
+            self.cp.green(f'[~] Hedged Trading Mode Enabled.')
+            self.cp.yellow(f'[/] Hedge Ratio: {self.hedge_ratio}, Delta: {self.delta_weight}')
         if self.monitor_only:
             self.cp.red('[!] Monitor Only enabled. Will NOT trade.')
+
+    def sanity_check(self, positions):
+        print(f'[~] Performing sanity check ...')
+        for pos in positions:
+            if float(pos['collateralUsed'] != 0.0) or float(pos['longOrderSize']) > 0 or float(
+                    pos['shortOrderSize']) < 0:
+                instrument = pos['future']
+                self.api.cancel_orders(market=instrument, limit_orders=True)
+
 
     def trailing_stop(self, market, qty, entry, side, offset=.25, ts_o_type='market'):
         """
@@ -107,6 +138,9 @@ class AutoTrader:
             # offset_price = (float(current_price) - float(entry_price)) * (1-offset)
             offset_price = current_price - (current_price - entry) * offset
             text = f'Trailing sell stop for long position, type {ts_o_type}'
+            #self.cp.yellow(f'[~] Taking {self.position_close_pct}% of profit ..')
+
+            # qty = qty * (self.take_profit_pct / 100)
             # qty = qty * -1
             opp_side = 'sell'
             self.cp.green(
@@ -120,7 +154,7 @@ class AutoTrader:
             # offset_price = (float(current_price) + float(offset))
             offset_price = current_price + (entry - current_price) * offset
             text = f'Trailing buy stop for short position, type {ts_o_type}'
-            # qty = qty * -1
+
             opp_side = 'buy'
             self.cp.red(
                 f'Trailing Stop for short position of entry price: {entry_price} triggered: offset price {offset_price}'
@@ -142,7 +176,7 @@ class AutoTrader:
                         chaser.start()
                     "else:"""
                     self.cp.purple("Buy triggered: %s | Price: %.8f | Stop loss: %.8f" % (ts_o_type, sell_price,
-                                                                                     offset_price))
+                                                                                          offset_price))
                     ret = self.api.buy_market(market=market, qty=float(qty),
                                               ioc=False, reduce=True, cid=None)
                     self.logger.debug(ret)
@@ -167,7 +201,7 @@ class AutoTrader:
                         chaser.start()
                     else:"""
                     self.cp.purple("Sell triggered: %s | Price: %.8f | Stop loss: %.8f" % (ts_o_type, current_price,
-                                                                                      offset_price))
+                                                                                           offset_price))
                     # ret = self.api.new_order(market=market, side=opp_side, size=qty, _type='market')
                     ret = self.api.sell_market(market=market, qty=float(qty),
                                                ioc=False, reduce=True, cid=None)
@@ -247,17 +281,32 @@ class AutoTrader:
         return ret
 
     def take_profit_wrap(self, market: str, side: str, entry: float, size: float, order_type: str = 'limit'):
+
+        open_orders = self.api.rest_get_open_orders(market=market)
+        print(f'[~] {len(open_orders)} orders on market: {market} open currently ... ')
+        for o in open_orders:
+            print(f'DEBUG: {o}')
+        if len(open_orders) and self.relist_iter == self.relist_iterations:
+            self.api.cancel_orders(market=market, limit_orders=True)
+        if len(open_orders) and self.relist_iter < self.relist_iterations:
+            self.relist_iter += 1
+            leftover_iterations = self.relist_iterations - self.relist_iter
+            self.cp.blue(f'[!] We have open orders, relisting in {leftover_iterations} iterations.  ... ')
+            return
+        if self.relist_iter == self.relist_iterations:
+            self.relist_iter = 0
         if side == 'buy':
             opp_side = 'sell'
         else:
             opp_side = 'buy'
         if self.close_method == 'increment':
+
             return self.increment_orders(market=market, side=opp_side, qty=size, period=self.period, reduce=True)
         else:
             return self.take_profit(market=market, side=side, entry=entry, size=size, order_type=order_type)
 
     def re_open_limit(self, market, side, qty):
-        for _ in range(0, 9):
+        for _ in range(9):
             bid, ask, last = self.api.get_ticker(market=market)
             if side == 'buy':  # market, qty, price=None, post=False, reduce=False, cid=None):
                 ret = self.api.buy_limit(market=market, qty=qty, price=bid, post=False, reduce=False)
@@ -269,7 +318,7 @@ class AutoTrader:
                     return ret
 
     def re_open_market(self, market, side, qty):
-        for i in range(0, 9):
+        for i in range(9):
             if side == 'buy':  # market, qty, price=None, post=False, reduce=False, cid=None):
                 ret = self.api.buy_market(market=market, qty=qty, reduce=False, ioc=False, cid=None)
                 if ret['id']:
@@ -281,14 +330,24 @@ class AutoTrader:
 
     def increment_orders(self, market, side, qty, period, reduce=False):
         current_size = 0
-        open_order_count = self.api.get_open_orders(market=market)
+        open_buy_order_count = 0
+        open_sell_order_count = 0
+        current_buy_orders_qty = 0
+        current_sell_orders_qty = 0
+        open_order_count = self.api.rest_get_open_orders(market=market)
 
         for o in open_order_count:
-            current_size += o.get('size')
+            o_side = o.get('side')
+            if o_side == 'buy':
+                open_buy_order_count += 1
+                current_buy_orders_qty += o.get('size')
+            else:
+                open_sell_order_count +=1
+                current_sell_orders_qty += o.get('size')
         self.cp.yellow(f'[i] Open Orders: {len(open_order_count)}, Qty Given: {qty}, Current open Qty: {current_size}')
 
-        if len(open_order_count) >= self.max_open_orders * 4:
-            self.api.cancel_orders(market=market)
+        #if len(open_order_count) > self.max_open_orders * 2:
+        #    self.api.cancel_orders(market=market)
 
         buy_orders = []
         sell_orders = []
@@ -296,47 +355,135 @@ class AutoTrader:
         stdev = self.agg.get_stdev(symbol=market, period=period)
         self.cp.yellow(f'Stdev: {stdev}')
 
-        o_qty = qty / max_orders
+        #o_qty = qty / max_orders
+        o_qty = qty
+
         # self.cp.red(f'[!] Killing {open_order_count} currently open orders...')
         # while qty > (qty * 0.95):
+        buy_order_que = []
+        sell_order_que = []
         if side == 'buy':
+            if open_buy_order_count == self.max_open_orders:
+                print('Not doing anything as max orders ..')
+                return
+            min_qty = self.future_stats[market]['min_order_size']
             bid, ask, last = self.api.get_ticker(market=market)
             # last_order_price = bid - (deviation * self.position_step_size)
-            for i in range(1, max_orders + 1):
-                next_order_price = bid - (stdev * self.position_step_size) * i
-                buy_orders.append(['buy', o_qty, next_order_price, market, 'limit'])
-
-                self.cp.yellow(f'[o] Placing new {side} order on market {market} at price {next_order_price}')
-                for x in range(1, 10):  # market, qty, price=None, post=False, reduce=False, cid=None):
-                    status = self.api.buy_limit(market=market, price=next_order_price, qty=o_qty,
-                                                reduce=reduce, cid=None)
-                    if status:
-                        self.cp.red(f"[฿]: {status.get('id')}")
-                        break
+            for i in range(max_orders):
+                qty -= qty / 2
+                if qty < min_qty:
+                    if i == 0:
+                        self.cp.red(f'[!] Order size {qty} is too small for {market}, min size: {min_qty}')
+                        return False
                     else:
-                        time.sleep(0.25)
+                        buy_orders[-1] += qty
+                        break
+                else:
+                    buy_orders.append(qty)
+
+            buy_orders = [x for x in buy_orders.__reversed__()]
+            print(buy_orders)
+            c = 1
+            for i in buy_orders:
+                next_order_price = bid - (stdev * self.position_step_size) * c
+                buy_order_que.append(['buy', i, next_order_price, market, 'limit'])
+                c += 1
+                self.cp.yellow(f'[o] Placing new {side} order of size {i} on market {market} at price {next_order_price}')
+                for x in range(10):  # market, qty, price=None, post=False, reduce=False, cid=None):
+                    try:
+                        status = self.api.buy_limit(market=market, price=next_order_price, qty=i,
+                                                    reduce=reduce, cid=None)
+                    except Exception:
+                        print('OOF')
+                    else:
+                        if status:
+                            self.cp.red(f"[฿]: {status.get('id')}")
+                            break
+                        else:
+                            time.sleep(0.25)
             self.cp.debug(f'Debug: : Buy Orders{buy_orders}')
             return True
 
 
         else:
+            if open_sell_order_count == self.max_open_orders:
+                print('Not doing anything as max open sell orders')
+                return
+            min_qty = self.future_stats[market]['min_order_size']
             bid, ask, last = self.api.get_ticker(market=market)
-            # last_order_price = ask + (deviation * self.position_step_size)
-            for i in range(1, max_orders + 1):
-                next_order_price = ask + (stdev * self.position_step_size) * i
-                sell_orders.append(['sell', o_qty, next_order_price, market, 'limit'])
-                for i in range(1, 10):
-                    status = self.api.sell_limit(market=market, price=next_order_price, qty=o_qty,
-                                                 reduce=reduce, cid=None)
-                    if status:
-                        self.cp.purple(f"[฿]: ({status['id']}")
-                        break
+            # last_order_price = bid - (deviation * self.position_step_size)
+            for i in range(max_orders):
+                qty -= qty / 2
+                if qty < min_qty:
+                    if i == 0:
+                        self.cp.red(f'[!] Order size {qty} is too small for {market}, min size: {min_qty}')
+                        return False
                     else:
-                        time.sleep(0.25)
+                        sell_orders[-1] += qty
+                        break
+                else:
+                    sell_orders.append(qty)
+
+            sell_orders = [x for x in sell_orders.__reversed__()]
+            print(sell_orders)
+            c = 1
+            for i in sell_orders:
+                next_order_price = ask + (stdev * self.position_step_size) * c
+                sell_order_que.append(['sell', i, next_order_price, market, 'limit'])
+                c += 1
+                self.cp.yellow(f'[o] Placing new {side} order of size {i} on market {market} at price {next_order_price}')
+                for x in range(10):  # market, qty, price=None, post=False, reduce=False, cid=None):
+                    try:
+                        status = self.api.sell_limit(market=market, price=next_order_price, qty=i,
+                                                    reduce=reduce, cid=None)
+                    except Exception as fuck:
+                        print('OOF', fuck)
+                    else:
+                        if status:
+                            self.cp.purple(f"[฿]: ({status['id']}")
+                            break
+                        else:
+                            time.sleep(0.25)
             self.cp.debug(f'Debug: : Sell Orders{sell_orders}')
             return True
 
-    def reopen_pos(self, market, side, qty, period=None):
+    def reopen_pos(self, market, side, qty, period=None, info=None):
+        coll = info["collateral"]
+        free_coll = info["freeCollateral"]
+        new_qty = 0
+        self.cp.yellow(f'[~] Taking {self.position_close_pct}% of profit ..')
+        # qty = (qty * self.position_close_pct)
+        if self.hedge_mode:
+            self.cp.blue(f'[⌖] Hedge Mode Enabled ... ')
+            if self.hedge_ratio > 0:
+                # delta long
+                max_allocate_short = (coll * (1 - float(self.hedge_ratio)) * self.max_collateral)
+                max_allocate_long = (coll * (float(self.hedge_ratio)) * self.max_collateral)
+                if qty > max_allocate_long:
+                    new_qty = (free_coll * (float(self.hedge_ratio)) * self.max_collateral)
+                    self.cp.red(f'[~] Δ+ Notice: recalculated position size from {qty} to {new_qty}  ... ')
+                elif qty > max_allocate_short:
+                    new_qty = (free_coll * (1 - float(self.hedge_ratio)) * self.max_collateral)
+                    self.cp.red(f'[~] Δ+ Notice: recalculated position size from {qty} to {new_qty}  ... ')
+            elif self.hedge_ratio < 0:
+                # delta short
+                max_allocate_short = (coll * (1 - float(self.hedge_ratio) * -1) * self.max_collateral)
+                max_allocate_long = (coll * (float(self.hedge_ratio) * -1) * self.max_collateral)
+
+                if qty > max_allocate_long:
+                    new_qty = (free_coll * (float(self.hedge_ratio) * -1) * self.max_collateral) # invert if negative
+                    self.cp.red(f'[~] Δ- Notice: recalculated position size from {qty} to {new_qty} from  ... ')
+                elif qty > max_allocate_short:
+                    new_qty = (free_coll * (1 - float(self.hedge_ratio)) * self.max_collateral)
+                    self.cp.red(f'[~] Δ- Notice: recalculated position size from {qty} to {new_qty}  ... ')
+
+            else:
+                max_allocate = (coll * 0.5 * self.max_collateral)
+                if qty > max_allocate:
+                    new_qty = (free_coll * 0.5 * self.max_collateral)
+                    self.cp.red(f'[~] Δ Notice: recalculated position size from {qty} to {new_qty}  ... ')
+        if new_qty:
+            qty = new_qty
         if self.order_type == 'limit' and self.reopen != 'increment':
             return self.re_open_limit(market, side, qty)
         if self.order_type == 'market' and self.reopen != 'increment':
@@ -369,6 +516,8 @@ class AutoTrader:
         """
 
         future_instrument = pos['future']
+        #if self.pnl_trackers.__contains__()
+        pnl_track = profit_tracker.SessionProfits(instrument=future_instrument)
         size = 0
         if debug:
             self.cp.white_black(f'[d]: Processsing {future_instrument}')
@@ -456,6 +605,9 @@ class AutoTrader:
         takerFee = info['takerFee']
         makerFee = info['makerFee']
         side = pos['side']
+        tpnl = 0
+        tsl = 0
+
         # For future implantation
         # Are we a long or a short?
         if side == 'buy':
@@ -519,34 +671,50 @@ class AutoTrader:
             if float(size) < 0.0:
                 size = size * -1
             self.accumulated_pnl += pnl
+
             self.cp.alert('----------------------------------------------')
             self.cp.alert(f'Total Session PROFITS: {self.accumulated_pnl}')
             self.cp.alert('----------------------------------------------')
             self.cp.green(f'Reached target pnl of {pnl_pct} on {future_instrument}, taking profit... PNL: {pnl}')
             o_size = size
             self.total_contacts_trade += (o_size * last)
-
+            new_qty = size * self.position_close_pct
             self.cp.purple(f'Sending {pos_side} order of size {o_size} , price {current_price}')
             if self.monitor_only:
                 self.cp.red('[!] Not actually trading... ')
+
             else:
-                ret = self.take_profit_wrap(entry=entry_price, side=side, size=o_size, order_type='market',
+
+                ret = self.take_profit_wrap(entry=entry_price, side=side, size=new_qty, order_type='market',
                                             market=future_instrument)
                 if ret:
                     print('Success')
 
                 if ret and self.reopen:
                     # self.accumulated_pnl += pnl
-                    self.cp.yellow('Reopening .... ')
-                    ret = self.reopen_pos(market=future_instrument, side=side, qty=o_size, period=self.period)
+                    self.cp.yellow(f'Reopening .... {side} {o_size}')
+                    try:
+                        ret = self.reopen_pos(market=future_instrument, side=side, qty=new_qty, period=self.period, info=info)
+                    except Exception as err:
+                        print(err)
+                        if re.match(r'^(.*)margin for order(.*)$', 'Exception: Account does not have enough margin for order.'):
+                            self.cp.red('[~] Not enough! ')
                     self.total_contacts_trade += (o_size * last)
                     if ret:
                         print('[🃑] Success')
 
 
         else:
-            tpnl = (self._take_profit/ pnl_pct) * pnl
-            tsl = (self.stop_loss/ pnl_pct) * pnl
+            try:
+                tpnl = (self._take_profit / pnl_pct) * pnl
+            except ZeroDivisionError:
+                print(f'Zero Div Error what??')
+
+            try:
+                tsl = (self.stop_loss / pnl_pct) * pnl
+            except ZeroDivisionError:
+                print(f'Zero Div Error what??')
+
             self.cp.yellow(
                 f'[$]PNL %: {pnl_pct}/Target %: {self._take_profit}/Target Stop: {self.stop_loss}, PNL USD: {pnl}, '
                 f'Target PNL USD: ${tpnl}, Target STOP USD: ${tsl}')
@@ -557,19 +725,41 @@ class AutoTrader:
                     self.stop_loss_order(market=future_instrument, side=side, size=size * -1)
                 self.accumulated_pnl -= pnl
 
-    @exit_after(5)
+    @exit_after(30)
     def position_parser(self, positions, account_info):
         for pos in positions:
             if float(pos['collateralUsed'] != 0.0) or float(pos['longOrderSize']) > 0 or float(
                     pos['shortOrderSize']) < 0:
                 self.parse(pos, account_info)
 
-    def handler(self, signum, frame):
-        raise Exception("SocketTimeOutError")
+    #def handler(self, signum, frame):
+    #    raise Exception("SocketTimeOutError")
+
+    def wrap_parse_pos(self, pos, info):
+        """"
+        Sometimes the parse function freezes up, so we use the @exit_after decorator and redo
+        if that happens
+        """
+        self.position_parser(positions=pos, account_info=info)
+        """while True:
+            try:
+                
+            except Exception as err:
+                print('err',err)
+            except RestartError:
+                self.cp.red('[!] Timeout, redo ... ')
+            else:
+                break"""
 
     def start_process(self):
         self.cp.purple('[i] Starting AutoTrader, performing sanity check. ...')
-
+        try:
+            info = self.api.info()
+            pos = self.api.positions()
+        except Exception as fuck:
+            self.logger.error(fuck)
+            print(repr(f'Err {fuck}'))
+        self.sanity_check(positions=pos)
         iter = 0
         while True:
             iter += 1
@@ -586,19 +776,17 @@ class AutoTrader:
                 pos = self.api.positions()
             except Exception as fuck:
                 self.logger.error(fuck)
-                print(repr(fuck))
+                print(repr(f'Err {fuck}'))
+            except KeyboardInterrupt:
+                print('[~] Caught Sigal...')
+                exit(0)
 
             else:
                 self.cp.pulse(f'[$] Account Value: {info["totalAccountValue"]} Collateral: {info["collateral"]} '
-                         f'Free Collateral: {info["freeCollateral"]}, Contracts Traded: {self.total_contacts_trade}')
+                              f'Free Collateral: {info["freeCollateral"]}, Contracts Traded: {self.total_contacts_trade}')
                 if self.wins != 0 or self.losses != 0:
                     self.cp.white_black(f'[🃑] Wins: {self.wins} [🃏] Losses: {self.losses}')
                 else:
                     self.cp.white_black(f'[🃑] Wins: - [🃏] Losses: -')
 
-                try:
-                    self.position_parser(positions=pos, account_info=info)
-                except Exception as err:
-                    print(err)
-                except KeyboardInterrupt:
-                    exit(0)
+                self.wrap_parse_pos(pos, info)
