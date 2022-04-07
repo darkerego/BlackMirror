@@ -48,8 +48,7 @@ consider supporting me by using my [FTX Referral](https://ftx.com/profile#a=blac
 # Documentation
 
 ### Demo of Bot Taking Profit
-<script id="asciicast-464756" src="https://asciinema.org/a/464756.js" async></script>
-https://asciinema.org/a/464734
+[![asciicast](https://asciinema.org/a/464756.svg)](https://asciinema.org/a/464756)https://asciinema.org/a/464734
 
 ### AutoTrader Features:
 
