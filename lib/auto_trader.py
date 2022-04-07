@@ -235,7 +235,7 @@ class AutoTrader:
         if side == 'buy':
             opp_side = 'sell'
             trail_value = (ask - entry) * self.trailing_stop_pct
-            if self.use_ts:
+            if self.use_ts and order_type == 'market':
                 self.cp.white_black(f'[฿] Sending a trailing stop: {trail_value}')
                 # executor = ThreadPoolExecutor(max_workers=5)
                 # ret = executor.submit(self.trailing_stop, market=market, side=opp_side, qty=float(o_size),
@@ -246,8 +246,9 @@ class AutoTrader:
                     self.wins += 1
                     return True
             else:
-                self.cp.yellow(f'[฿] Sending a market order, side: {opp_side}, price: {price}')
+
                 if order_type == 'market':  # market, qty, reduce, ioc, cid):
+                    self.cp.yellow(f'[฿] Sending a market order, side: {opp_side}, price: {price}')
                     ret = self.api.sell_market(market=market, qty=size, ioc=False, reduce=True)
                 else:  # market, qty, price=None, post=False, reduce=False, cid=None):
                     self.cp.purple(f'[฿] Sending a limit order, side: {opp_side}, price: {price}')
@@ -257,7 +258,7 @@ class AutoTrader:
         else:  # side == sell
             opp_side = 'buy'
             trail_value = (entry - bid) * self.trailing_stop_pct * -1
-            if self.use_ts:
+            if self.use_ts and order_type == 'market':
                 self.cp.green(f'[฿] Sending a trailing stop: {trail_value}')
                 # executor = ThreadPoolExecutor(max_workers=5)
                 # ret = executor.submit(self.trailing_stop, market=market, side=opp_side, qty=float(o_size),
@@ -265,8 +266,9 @@ class AutoTrader:
                 ret = self.trailing_stop(market=market, side=side, qty=size, offset=self.trailing_stop_pct, entry=entry)
 
             else:
-                self.cp.purple(f'[฿] Sending a market order, side: {opp_side}, price: {price}')
+
                 if order_type == 'market':
+                    self.cp.purple(f'[฿] Sending a market order, side: {opp_side}, price: {price}')
                     ret = self.api.buy_market(market=market, side=opp_side, size=size,
                                               _type='market', ioc=False, reduce=True)
                     self.wins += 1
@@ -283,6 +285,14 @@ class AutoTrader:
     def take_profit_wrap(self, market: str, side: str, entry: float, size: float, order_type: str = 'limit'):
 
         open_orders = self.api.rest_get_open_orders(market=market)
+        b=False
+        s=False
+        for o in open_orders:
+            side = o['side']
+            if side == 'buy':
+                b=True
+            if side == 'sell':
+                b=True
         print(f'[~] {len(open_orders)} orders on market: {market} open currently ... ')
         for o in open_orders:
             print(f'DEBUG: {o}')
@@ -302,7 +312,7 @@ class AutoTrader:
         if self.close_method == 'increment':
 
             return self.increment_orders(market=market, side=opp_side, qty=size, period=self.period, reduce=True)
-        else:
+        elif self.close_method == 'market' or self.close_method == 'limit':
             return self.take_profit(market=market, side=side, entry=entry, size=size, order_type=order_type)
 
     def re_open_limit(self, market, side, qty):
@@ -353,7 +363,8 @@ class AutoTrader:
         sell_orders = []
         max_orders = self.max_open_orders
         stdev = self.agg.get_stdev(symbol=market, period=period)
-        self.cp.yellow(f'Stdev: {stdev}')
+        self.cp.yellow(f'Standard deviation: {stdev}')
+        stdev_each_side = stdev / 2
 
         #o_qty = qty / max_orders
         o_qty = qty
@@ -368,6 +379,7 @@ class AutoTrader:
                 return
             min_qty = self.future_stats[market]['min_order_size']
             bid, ask, last = self.api.get_ticker(market=market)
+            print(bid, ask, last)
             # last_order_price = bid - (deviation * self.position_step_size)
             for i in range(max_orders):
                 qty -= qty / 2
@@ -385,8 +397,12 @@ class AutoTrader:
             print(buy_orders)
             c = 1
             for i in buy_orders:
-                next_order_price = bid - (stdev * self.position_step_size) * c
-                buy_order_que.append(['buy', i, next_order_price, market, 'limit'])
+                if c == 1:
+                    next_order_price = bid
+                    buy_order_que.append(['buy', i, next_order_price, market, 'limit'])
+                else:
+                    next_order_price = bid - ((stdev_each_side / self.max_open_orders) * c)
+                    buy_order_que.append(['buy', i, next_order_price, market, 'limit'])
                 c += 1
                 self.cp.yellow(f'[o] Placing new {side} order of size {i} on market {market} at price {next_order_price}')
                 for x in range(10):  # market, qty, price=None, post=False, reduce=False, cid=None):
@@ -411,6 +427,7 @@ class AutoTrader:
                 return
             min_qty = self.future_stats[market]['min_order_size']
             bid, ask, last = self.api.get_ticker(market=market)
+            print(bid, ask, last)
             # last_order_price = bid - (deviation * self.position_step_size)
             for i in range(max_orders):
                 qty -= qty / 2
@@ -428,8 +445,12 @@ class AutoTrader:
             print(sell_orders)
             c = 1
             for i in sell_orders:
-                next_order_price = ask + (stdev * self.position_step_size) * c
-                sell_order_que.append(['sell', i, next_order_price, market, 'limit'])
+                if i == 1:
+                    next_order_price = ask
+                    sell_order_que.append(['sell', i, next_order_price, market, 'limit'])
+                else:
+                    next_order_price = ask + ((stdev_each_side / self.max_open_orders) * c)
+                    sell_order_que.append(['sell', i, next_order_price, market, 'limit'])
                 c += 1
                 self.cp.yellow(f'[o] Placing new {side} order of size {i} on market {market} at price {next_order_price}')
                 for x in range(10):  # market, qty, price=None, post=False, reduce=False, cid=None):
@@ -725,7 +746,7 @@ class AutoTrader:
                     self.stop_loss_order(market=future_instrument, side=side, size=size * -1)
                 self.accumulated_pnl -= pnl
 
-    @exit_after(30)
+    @exit_after(100)
     def position_parser(self, positions, account_info):
         for pos in positions:
             if float(pos['collateralUsed'] != 0.0) or float(pos['longOrderSize']) > 0 or float(

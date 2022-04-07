@@ -1,5 +1,7 @@
 # FTXTool or "BlackMirror" version 2
 
+### NOTICE - this readme is out of date. See README.md in the root directory of this repository.
+
 <pre>
   ____ ______ _   _     ___  __ __ ______   ___      ______ ____   ___  ____    ____ ____ 
  ||    | || | \ //    // \ || || | || |  // \     | || | || \ // \ || \  ||    || \
@@ -114,13 +116,15 @@ This section can be ignored for now, as it is nowhere near complete.
 `-c, --cancel` - Cancel this order (by order id) --cancel 124435345
 
 
+
+
 ### Trade Strategy Options:
 
 Introducing a new feature - a technical analysis framework, built to be modular such that we can author our 
-own indicators and have a plug and play system to use with the trade engine. Currently I have only written one 
+own indicators and have a plug and play system to use with the trade engine. Currently, I have only written one 
 indicator, which is multi timeframe slightly modified version of the parabolic sar indicator, which is included 
 in this codebase. The idea is to start the program with no current open positions. The TA engine will enter trades 
-when opportune, and the trade engine will take over from there. So, if you are going to use the experiemental 
+when opportune, and the trade engine will take over from there. So, if you are going to use the experimental 
 sar algo, then you may want to run it with `-ds` and without `--reopen`, because we do not want to reopen the 
 position unless we are getting a valid trade signal. Rather we want positions to be opened by the TA engine, 
 and then we want the trade engine to take profit when the `-tp` specified level is achieved. A trailing stop 
@@ -141,34 +145,44 @@ trade, enter with a size of .1 etherum.
 
 ### Auto Stop Loss Options:
 
-Autotrader is the "backbone" of the program. It assumes multiple functions, from guilded semi automatic 
-trading (doing thing like taking profit and setting stops). It also has the ability to reopen a position after 
-taking profit. This can be done either incrementally, or all at once. Most of these options are the same 
-as in the last release, with the notable exception is `--close_method`. This is a lot like `-reopen`. Essentially 
-you can choose to take profit in increments, potentially maximizing your gains. It is the same idea as incrementally 
-building your position. The only different is you are closing it. 
+Autotrader is the "backbone" of the program. This is my signature feature, and the one I am most proud of 
+and find the most useful. Personally I think it is one the coolest things I have written. It assumes multiple functions, 
+from guilded semi-automatic  trading (doing thing like taking profit and setting stops). 
+It also has the ability to reopen a position after taking profit. This can be done either incrementally, or all at once. 
+Most of these options are the same as in the last release, with the notable exception is `--close_method`. 
+This is a lot like `-reopen`. Essentially you can choose to take profit in increments, potentially maximizing your gains.
+It is the same idea as "pyramiding" your orders. But now, it happens automatically. 
 
 `-a, --auto`            Enable auto trader
+
 `  -mo, --monitor_only`   Do not trade. Monitor only. Sort of like a paper trading mode.
+
 `  -ds, --disable_sl`     Do not use stop losses.
+
 `  -sl` STOP_LOSS_PCT --stop_loss STOP_LOSS_PCT
                         Stop Loss Percentage represented as a floating point. -0.1 would be -10 percent PNL
 `  -tp` TAKE_PROFIT_PCT --take_profit TAKE_PROFIT_PCT
+
                         Percentage to take profit at, representedas sa floating point number.0.2 wouild be 20 pcercent
- ` -tpo`, --trailing_stop_on
-                        Use Trailing Stops. Not sure why you would not to, but the option is here!
+ ` -tpo`, --trailing_stop_off
+                       Do not Use Trailing Stops. Not sure why you would not to, but the option is here!
   `-ts` TS_OFFSET, --trailing_stop_offset TS_OFFSET
+
                         Trailing stop offset, represented as a floating point number, percentage of pnl.
   `-ot` {limit,market}, --order_type {limit,market}
                         Take profit order type.
-  `-ro` {increment,market,None}, --reopen {increment,market,None}
+
+  `-ro` {increment,market,None}, --reopen {increment,market,limit, None}
                         Method to use to reopen positions. Market just sends a limit or market order. Increment splits size into several smaller orders according to standard deviation
   `-cm. --close_method`  {increment,market,False}, --close_method {increment,market,False}
+
                         Method to use to close positions. Market just sends a limit or market order. Increment splits size into several smaller orders according to standard deviation
   `-ip, --increment_period` {15,60,300,900,3600,14400,86400}, --increment_period {15,60,300,900,3600,14400,86400}
                         Period (in seconds) to spread limit order over when rebuilding position using increment mode
+
   `-no` NUM_OPEN_ORDERS, --num_orders NUM_OPEN_ORDERS
                         Number of open orders to reopen position in increments
+
   `-ps` POSITION_STEP_SIZE, --position_step_size POSITION_STEP_SIZE
                         Percentage to spread limit orders apart represented as floating point number.
 

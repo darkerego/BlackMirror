@@ -73,6 +73,8 @@ def get_args():
     receiver_opts = parser.add_argument_group('Websocket Trade Signal Options')
     receiver_opts.add_argument('-ws', '--ws_signals', action='store_true', dest='enable_ws', default=False,
                                help='Enable websocket client for signals')
+    receiver_opts.add_argument('-mq', '--mqtt_signals', action='store_true', dest='enable_mqtt', default='localhost:1883',
+                               help='Enable mqtt receiver for automatic trading of signals.')
     receiver_opts.add_argument('-uri', '--ws_uri', dest='ws_uri', type=str, default='ws://localhost:8000',
                                help='Websocket uri, wss://host:port')
     # receiver_opts.add_argument('-pf', '--portfolio_pct', dest='portfolio_pct', type=float,
@@ -121,7 +123,7 @@ def get_args():
                                 default=None,
                                 help='Method to use to reopen positions. Market just sends a limit or market order. Increment '
                                      'splits size into several smaller orders according to standard deviation')
-    auto_stop_opts.add_argument('-cm', '--close_method', dest='close_method', choices=['increment', 'market', False],
+    auto_stop_opts.add_argument('-cm', '--close_method', dest='close_method', choices=['increment', 'market', 'limit', False],
                                 default='market', help='Method to use to close positions. Market just sends a limit '
                                                        'or market order. Increment '
                                                        'splits size into several smaller orders according to standard deviation')
@@ -135,7 +137,7 @@ def get_args():
     #auto_stop_opts.add_argument('-')
     auto_stop_opts.add_argument('-no', '--num_orders', dest='num_open_orders', default=4, type=int,
                                 help='Number of open orders to reopen position in increments')
-    auto_stop_opts.add_argument('-ps', '--position_step_size', dest='position_step_size', default=0.2, type=float,
+    auto_stop_opts.add_argument('-ps', '--position_step_size', dest='position_step_size', default=0.02, type=float,
                                 help='Percentage to spread limit orders apart represented as  floating point number'
                                      'Default: 0.2.')
     auto_stop_opts.add_argument('-rl', '--relist', dest='relist_iterations', default=100, type=int,
@@ -154,7 +156,7 @@ def get_args():
     auto_stop_opts.add_argument('-mc', '--max_collateral', dest='max_collateral', type=float, default=0.5,
                                 help='Max amount of collateral to use. 1 == 100 percent, .5 == 50 percent.')
     auto_stop_opts.add_argument('-pc', '--position_close_pct', type=float, default=1.0,
-                                help='Float point percentage (.5 is 50%) of position to close at at time'
+                                help='Float point percentage (.5 is 50 percent) of position to close at at time'
                                      'when taking profit.')
     #wallet_opts = parser.add_argument_group('Wallet & Subacct Options')
     #wallet_opts.add_argument('')

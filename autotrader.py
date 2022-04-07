@@ -20,6 +20,9 @@
              global market trend analysis - custom strategy support - automatic position building -
              auto hedge management - api navigator - and much more
 
+             Use this FTX Referral for a discount on fees and to support my work!!! :
+                                  https://ftx.com/referrals#a=blackmirror
+
     """
 
 import logging
@@ -88,26 +91,30 @@ def parse_and_exec(args):
     key, secret, subaccount = config_loader.load_config('conf.json')
     bot = Bot()
 
-    if args.balance_arbitrage:
-        cp.navy('WARNING: EXPERIMENTAL !! -- Loading balance arbitrage engine...')
-        bot.monitor(key=key, secret=secret, subaccount_name=args.subaccount, args=args)
-    if args.use_strategy:
-        cp.navy(f'WARNING: EXPERIMENTAL !! -- Loading TA Strategy Trader ... Strategy: {args.strategy}')
-        bot.monitor(key=key, secret=secret, subaccount_name=args.subaccount, args=args)
 
-    if args.enable_ws:
-        cp.yellow('Enabling ws signal client')
-        bot.monitor(key=key, secret=secret, subaccount_name=args.subaccount, args=args)
+
     if args.monitor_only:
         cp.navy('[🌡] Monitoring only mode.')
-        bot.monitor(key=key, secret=secret, subaccount_name=args.subaccount, args=args)
+        #bot.monitor(key=key, secret=secret, subaccount_name=args.subaccount, args=args)
 
-    if args.monitor or args.auto_trader:
+    if args.monitor or args.auto_trader or args.monitor_only:
         logo.post()
-        cp.yellow('[📊] Loading auto trader ... ')
+        if args.balance_arbitrage:
+            cp.navy('WARNING: EXPERIMENTAL !! -- Loading balance arbitrage engine...')
+            # bot.monitor(key=key, secret=secret, subaccount_name=args.subaccount, args=args)
+        if args.use_strategy:
+            cp.navy(f'WARNING: EXPERIMENTAL !! -- Loading TA Strategy Trader ... Strategy: {args.strategy}')
+            # bot.monitor(key=key, secret=secret, subaccount_name=args.subaccount, args=args)
 
-        if args.confirm:
+        if args.enable_ws:
+            cp.yellow('Enabling ws signal client')
+            # bot.monitor(key=key, secret=secret, subaccount_name=args.subaccount, args=args)
+        if args.enable_mqtt:
+            cp.yellow('Enabling mqtt signal client')
+
+        if args.confirm and not args.monitor_only:
             cp.red(f'[!] WARN: Autotrader is enabled! This cam make or cost you money.')
+            cp.yellow('[📊] Loading auto trader ... ')
         if args.show_tickers:
             cp.green('[~] Tickers Enabled!')
         bot.monitor(key=key, secret=secret, subaccount_name=args.subaccount, args=args)
