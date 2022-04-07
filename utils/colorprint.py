@@ -1,6 +1,6 @@
 import random
 from colored import fg, attr, bg
-from color_mappings import ColorMaps
+from utils.color_mappings import ColorMaps
 
 class NewColorPrint:
     def __init__(self):
