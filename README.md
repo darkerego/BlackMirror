@@ -33,7 +33,7 @@ again ...
 <p>
 <b>The Case for Open Sourcing This Project </b>
 
-I open sourced this project for three reasons ... First of all, I think this is some of my better work, and figured it 
+I open sourced this project for three reasons ... First, I think this is some of my better work, and figured it 
 would look good on my resume (I am available for hire - xelectron at protonmail dot com). Next, and more importantly - 
 I had hoped that by giving this software away, people that found it useful may support my work by using my 
 [FTX Referral](https://ftx.com/profile#a=blackmirror) link. So far, that hasn't happened, but you never know. Finally, 
@@ -48,6 +48,7 @@ consider supporting me by using my [FTX Referral](https://ftx.com/profile#a=blac
 # Documentation
 
 ### Demo of Bot Taking Profit
+<script id="asciicast-464756" src="https://asciinema.org/a/464756.js" async></script>
 https://asciinema.org/a/464734
 
 ### AutoTrader Features:
@@ -155,7 +156,7 @@ TODO: update this section and finish the receivers.
 
 
 ### Experimental Built in Strategy
-<p><b> WARNING -- 
+<p><b> WARNING -- </b>
 
 **The oscillation arbitrage engine and experimental sar strategy are broken right now, do not use them. 
 You WILL lose money if you do.**</b>
@@ -222,15 +223,15 @@ API Commands:
 
   -p, --portfolio       Get current balances
   -oc LIMIT_ORDER_CHASE LIMIT_ORDER_CHASE, --chase LIMIT_ORDER_CHASE LIMIT_ORDER_CHASE
-                        Limit Order Chasing. Keeps your limit order at the top of the books.Specify order ID followingan integer representing the max number of order modifications before giving up and executing as market.
+                        Limit Order Chasing. Keeps your limit order at the top of the books.Specify order ID following integer representing the max number of order modifications before giving up and executing as market.
   -b BUY [BUY ...], --buy BUY [BUY ...]
-                        Execute a buy order: --buy <limit> <ETH-PERP> <0.5> 2898.89
+                        Execute a buy order: --buy <limit> ETH-PERP <0.5> 2898.89
   -s SELL [SELL ...], --sell SELL [SELL ...]
-                        Execute a sell order --sell <market> <BTC-USD> <0.1>
+                        Execute a sell order --sell <market> BTC-USD <0.1>
   -lc LIMIT_CHASE, --limit_chase LIMIT_CHASE
                         Chase this limit order this many times before .
   -cf, --chase_failsafe
-                        Revert to marketif order chasefails.
+                        Revert to market if order chase fails.
   -o, --orders          Return list of open orders.
   -c CANCEL, --cancel CANCEL
                         Cancel this order id.
@@ -254,19 +255,19 @@ Websocket Trade Signal Options:
                         Websocket uri, wss://host:port
   -re, --reenter        Re enter position before it closes if price hits entry again.
   -src {binance}, --data_source {binance}
-                        Exchange where thesignals were aggravated.
+                        Exchange where the signals were aggravated.
   -exc [EXCLUDE_MARKETS [EXCLUDE_MARKETS ...]], --exclude_markets [EXCLUDE_MARKETS [EXCLUDE_MARKETS ...]]
                         Do not trade these markets
 
 Auto Stop Loss Options:
   -a, --auto            Use AutoTrader
   -mo, --monitor_only   Do not trade. Monitor only.
-  --trade, --really     This is a FAILSAFE options toprevent accidental losses! Will nottrade automatically without enabling.
+  --trade, --really     This is a FAILSAFE options to prevent accidental losses! Will not-trade automatically without enabling.
   -ds, --disable_sl     Do not use stop losses.
   -sl STOP_LOSS_PCT, --stop_loss STOP_LOSS_PCT
                         Stop Loss Percentage represented as a floating point. -0.1 would be -10 percent PNL
   -tp TAKE_PROFIT_PCT, --take_profit TAKE_PROFIT_PCT
-                        Percentage to take profit at, representedas sa floating point number.0.2 wouild be 20 pcercent
+                        Percentage to take profit at, represented sa floating point number.0.2 wouild be 20 pcercent
   -tpo, --trailing_stop_off
                         Do not use Trailing Stops. Not sure why you would not to, but the option is here!
   -ts TS_OFFSET, --trailing_stop_offset TS_OFFSET
@@ -291,6 +292,6 @@ Auto Stop Loss Options:
   -mc MAX_COLLATERAL, --max_collateral MAX_COLLATERAL
                         Max amount of collateral to use. 1 == 100 percent, .5 == 50 percent.
   -pc POSITION_CLOSE_PCT, --position_close_pct POSITION_CLOSE_PCT
-                        Float point percentage (.5 is 50 percent) of position to close at at timewhen taking profit.
+                        Float point percentage (.5 is 50 percent) of position to close at a time when taking profit.
 
 </pre>
