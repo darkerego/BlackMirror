@@ -86,6 +86,7 @@ class Bot:
                     cp.red(f'[!] Websocket Disconnected: Restarts #: {self.restarts}, Error Message: {err}')
 
 
+
 def parse_and_exec(args):
     limit_price = 0
     key, secret, subaccount = config_loader.load_config('conf.json')
@@ -110,7 +111,10 @@ def parse_and_exec(args):
             cp.yellow('Enabling ws signal client')
             # bot.monitor(key=key, secret=secret, subaccount_name=args.subaccount, args=args)
         if args.enable_mqtt:
-            cp.yellow('Enabling mqtt signal client')
+            cp.yellow('[m] Enabling mqtt signal client')
+            cp.blue(f'[i] Receiver options: Min Score:{args.min_score}, Portfolio Pct: {args.portfolio_pct} '
+                    f'Re-enter: {args.reenter} Data Source: '
+                    f'{args.data_source}, Exclude Markets: {args.exclude_markets}, URI: {args.ws_uri}')
 
         if args.confirm and not args.monitor_only:
             cp.red(f'[!] WARN: Autotrader is enabled! This cam make or cost you money.')

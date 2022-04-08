@@ -1,5 +1,6 @@
 import json
 import ssl
+import threading
 import time
 from utils import config_loader
 from utils.colorprint import NewColorPrint
@@ -130,12 +131,12 @@ class WsReceiver:
 
 
 class MqReceiver:
-    def __init__(self, server_uri, rest, _ws, sa, contract_size, reenter,
+    def __init__(self, server_uri, rest, _ws, sa, collateral_pct, reenter,
                  data_source, exclude_markets, debug=True, min_score=10):
         self.debug = debug
         self.api = FtxApi(rest, _ws)
         self.sa = sa
-        self.contract_size = contract_size
+        self.collateral_pct = collateral_pct
         self.reenter = reenter
         self.data_source = data_source
         self.exclude_markets = exclude_markets
@@ -151,37 +152,37 @@ class MqReceiver:
         self.min_score = min_score
 
     def position_close(self, symbol, side, size, min_score=10):
-        if min_score >= 10 or min_score <= -10:
-            if side == 'long':
-                self.cp.red('Closing Long!')
-                self.api.sell_market(market=symbol, qty=size, reduce=True, ioc=False, cid=None)
-                return True
-            else:
-                self.cp.red('Closing Short!')
-                self.api.buy_market(market=symbol, qty=size, reduce=True, ioc=False, cid=None)
+        #if min_score >= 10 or min_score <= -10:
+        if side == 'LONG':
+            self.cp.red('Closing Long!')
+            self.api.sell_market(market=symbol, qty=size, reduce=True, ioc=False, cid=None)
+            return True
+        else:
+            self.cp.red('Closing Short!')
+            self.api.buy_market(market=symbol, qty=size, reduce=True, ioc=False, cid=None)
 
     def handle_message(self, message):
         self.cp.purple(f'Got Signal {message}!')
         message = json.loads(message)
-        if message.get('Exit'):
+        if message.get('Status') == 'closed':
             """TODO: Incomplete logic here
             """
             print('Got Exit Signal')
-            side = message.get('Exit')
+            side = message.get('Signal')
             side = side.lower()
             symbol = message.get('Instrument')
-            score = message.get('Confidence Score')
+            score = message.get('Score')
             ok, size = self.check_position_exists_diff(future=symbol, s=None)
             self.position_close(symbol=symbol, side=side, size=size)
-        if message.get('Enter'):
+        if message.get('Status') == 'open':
             print('Got Enter Signal')
-            side = message.get('Enter')
+            side = message.get('Signal')
             # side = side.lower()
             # symbol = message.get('Instrument')
-            score = message.get('Confidence Score')
-            score = score.strip('%')
-            print(message.get("Enter"))
-            print(message.get("Confidence Score"))
+            score = message.get('Score')
+            # score = score.strip('%')
+            # print(message.get("Enter"))
+            print(message.get("Score"))
             print(message.get('Instrument'))
             score = float(score)
             if float(score) < 0:
@@ -189,12 +190,12 @@ class MqReceiver:
             print(score)
 
             self.sig_.update(message)
-            print(self.sig_)
-            _type = self.sig_.get('Enter')
+            #print(self.sig_)
+            _type = self.sig_.get('Signal')
             # _type = _type.lower()
             _instrument = self.sig_.get('Instrument')
             _symbol = str(_instrument[:-4] + '-PERP')
-            print(_symbol)
+            print(f'Instrument: {_instrument}, Signal: {_type}, Score: {score}')
             # _entry = self.sig_['Enter']
             # print(_type, _instrument, _entry)
             for i in range(1, 10):
@@ -211,7 +212,7 @@ class MqReceiver:
             balance = info["freeCollateral"]
             leverage = info['leverage']
 
-            qty = (float(balance) * leverage) / float(l) * 0.25
+            qty = (float(balance) * leverage) / float(l) * self.collateral_pct
             print(balance, leverage, qty)
 
             if _type == 'LONG':
@@ -239,6 +240,7 @@ class MqReceiver:
 
     def run(self):
         while True:
+            #print('Debug')
             message = mqtt_que.__mq__signal__()
             if message:
                 try:
@@ -247,6 +249,10 @@ class MqReceiver:
                     print(err)
             else:
                 time.sleep(0.25)
+
+    def start_process(self):
+        t = threading.Thread(target=self.run())
+        t.start()
 
     def check_position_exists_diff(self, future, s=None):
         for pos in self.api.positions():

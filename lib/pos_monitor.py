@@ -6,7 +6,7 @@ import time
 from concurrent.futures import ThreadPoolExecutor
 
 from lib.auto_trader import AutoTrader
-from lib.receivers import WsReceiver
+from lib.receivers import WsReceiver, MqReceiver
 from lib.strategy import TradeStrategy
 from trade_engine.api_wrapper import FtxApi
 from trade_engine.osc_engine import OscillationArbitrage
@@ -34,7 +34,7 @@ class Monitor:
         self.a_restarts = 0
         self.lagging = False
         self.files = []
-        self.executor = ThreadPoolExecutor(max_workers=15)
+        self.executor = ThreadPoolExecutor(max_workers=25)
         self.logger = logging.getLogger(__name__)
         self.api = FtxApi(rest=rest, ws=ws, sa=subaccount)
 
@@ -50,8 +50,11 @@ class Monitor:
         self.symbol = conf.symbol
         self.symbol_monitor = conf.symbol_monitor
         self.enable_ws = conf.enable_ws
+        self.enable_mqtt = conf.enable_mqtt
+        self.mqtt_uri = conf.ws_uri
+        self.min_score = conf.min_score
         self.ws_uri = conf.ws_uri
-        self.portfolio_pct = conf.contract_size
+        self.portfolio_pct = conf.portfolio_pct
         self.reenter = conf.reenter
         self.data_source = conf.data_source
         self.exclude_markets = conf.exclude_markets
@@ -99,6 +102,16 @@ class Monitor:
 
             t = threading.Thread(target=ws_server.connect)
             t.start()
+
+        if self.enable_mqtt:
+            self.cp.purple(f'[mq] Starting mqtt receiver ... ')
+            mq_server = MqReceiver(server_uri=self.mqtt_uri, rest=self.rest, _ws=self.ws, sa=self.subaccount,
+                                   collateral_pct=self.portfolio_pct, reenter=self.reenter, data_source=self.data_source,
+                                   exclude_markets=self.exclude_markets, debug=False, min_score=self.min_score)
+            #t = threading.Thread(target=mq_server.run())
+            #t.setDaemon(True)
+            #t.start()
+            self.executor.submit(mq_server.start_process)
 
         if self.auto:
             self.cp.navy(data='Starting auto trader')

@@ -401,7 +401,7 @@ class AutoTrader:
                     next_order_price = bid
                     buy_order_que.append(['buy', i, next_order_price, market, 'limit'])
                 else:
-                    next_order_price = bid - ((stdev_each_side / self.max_open_orders) * c)
+                    next_order_price = bid - (stdev * self.position_step_size) * c
                     buy_order_que.append(['buy', i, next_order_price, market, 'limit'])
                 c += 1
                 self.cp.yellow(f'[o] Placing new {side} order of size {i} on market {market} at price {next_order_price}')
@@ -449,7 +449,7 @@ class AutoTrader:
                     next_order_price = ask
                     sell_order_que.append(['sell', i, next_order_price, market, 'limit'])
                 else:
-                    next_order_price = ask + ((stdev_each_side / self.max_open_orders) * c)
+                    next_order_price = ask + (stdev * self.position_step_size) * c
                     sell_order_que.append(['sell', i, next_order_price, market, 'limit'])
                 c += 1
                 self.cp.yellow(f'[o] Placing new {side} order of size {i} on market {market} at price {next_order_price}')

@@ -73,14 +73,14 @@ def get_args():
     receiver_opts = parser.add_argument_group('Websocket Trade Signal Options')
     receiver_opts.add_argument('-ws', '--ws_signals', action='store_true', dest='enable_ws', default=False,
                                help='Enable websocket client for signals')
-    receiver_opts.add_argument('-mq', '--mqtt_signals', action='store_true', dest='enable_mqtt', default='localhost:1883',
+    receiver_opts.add_argument('-mq', '--mqtt_signals', action='store_true', dest='enable_mqtt',
                                help='Enable mqtt receiver for automatic trading of signals.')
     receiver_opts.add_argument('-uri', '--ws_uri', dest='ws_uri', type=str, default='ws://localhost:8000',
-                               help='Websocket uri, wss://host:port')
-    # receiver_opts.add_argument('-pf', '--portfolio_pct', dest='portfolio_pct', type=float,
-    #                           help='Float representing % of'
-    #                                'holdings to use on incoming'
-    #                               'trade.')
+                               help='Websocket/Mqtt uri, wss://host:port | localhost:1883')
+    receiver_opts.add_argument('-pf', '--portfolio_pct', dest='portfolio_pct', type=float, default=.1,
+                               help='Float representing pct of'
+                                    'holdings to use on incoming'
+                                   'trade.')
     receiver_opts.add_argument('-re', '--reenter', dest='reenter', default=False, action='store_true',
                                help='Re enter position before it closes if price hits entry again.')
     receiver_opts.add_argument('-src', '--data_source', dest='data_source', type=str, choices=['binance'],
@@ -90,6 +90,10 @@ def get_args():
     receiver_opts.add_argument('-exc', '--exclude_markets', dest='exclude_markets', type=str, default=[],
                                help='Do not trade these markets',
                                nargs='*')
+    receiver_opts.add_argument('-ms', '--min_score', dest='min_score', type=float, default=25, help='Minimum score to '
+                                                                                                    'execute a trade '
+                                                                                                    'from a received '
+                                                                                                    'signal.')
 
     auto_stop_opts = parser.add_argument_group('Auto Stop Loss Options')
     auto_stop_opts.add_argument('-a', '--auto', dest='auto_trader', action='store_true', help='Use AutoTrader')

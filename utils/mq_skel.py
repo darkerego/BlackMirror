@@ -26,7 +26,7 @@ class MqSkel:
         self.debug = False
         self.CLIENTS = {}
         # SUBSCRIPTIONS = [("/incoming/" + v, 0)  for v in PAIRS]
-        self.SUBSCRIPTIONS = [('/signals', 0)]
+        self.SUBSCRIPTIONS = [('/signals', 0), ('/echo', 0)]
         self.mqStart(streamId=self.streamid)
 
     def mqConnect(self, client, userdata, flags, rc):
@@ -81,9 +81,10 @@ class MqSkel:
 
 
         if "/echo" in message.topic:
-            if self.debug:
-                print(message.payload)
+            #if self.debug:
+            print(message.payload)
         elif '/signals' in message.topic:
+            print(message.payload.decode())
             mqtt_que.append(message.payload.decode())
 
 
