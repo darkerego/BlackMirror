@@ -196,10 +196,6 @@ class FtxApi:
                         return o
             return
 
-
-
-
-
     def get_trades(self, market):
         for i in range(10):
             trades = self.ws.get_trades(market=market)
@@ -218,8 +214,17 @@ class FtxApi:
                 time.sleep(0.25)
             return None
 
+    def get_subaccounts(self):
+        return self.rest.get_subaccounts()
 
-def debug_api(subacct=None, config_path='utils/conf.json'):
+    def new_subaccount(self, nickname):
+        return self.rest.create_subaccount(nickname=nickname)
+
+    def get_subaccount_balances(self, nickname: str):
+        return self.rest.get_subaccount_balances(nickname=nickname)
+
+
+def debug_api(subacct=None, config_path='conf.json'):
     """
     Load keys and return functional api object
     :return:

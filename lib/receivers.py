@@ -152,7 +152,7 @@ class MqReceiver:
         self.min_score = min_score
 
     def position_close(self, symbol, side, size, min_score=10):
-        #if min_score >= 10 or min_score <= -10:
+        self.api.cancel_orders(market=symbol)
         if side == 'LONG':
             self.cp.red('Closing Long!')
             self.api.sell_market(market=symbol, qty=size, reduce=True, ioc=False, cid=None)
@@ -175,39 +175,21 @@ class MqReceiver:
             ok, size = self.check_position_exists_diff(future=symbol, s=None)
             self.position_close(symbol=symbol, side=side, size=size)
         if message.get('Status') == 'open':
-            print('Got Enter Signal')
-            side = message.get('Signal')
-            # side = side.lower()
-            # symbol = message.get('Instrument')
-            score = message.get('Score')
-            # score = score.strip('%')
-            # print(message.get("Enter"))
-            print(message.get("Score"))
-            print(message.get('Instrument'))
-            score = float(score)
-            if float(score) < 0:
-                score = float(score) * -1
-            print(score)
-
             self.sig_.update(message)
-            #print(self.sig_)
+            score = message.get('Score')
             _type = self.sig_.get('Signal')
-            # _type = _type.lower()
             _instrument = self.sig_.get('Instrument')
             _symbol = str(_instrument[:-4] + '-PERP')
-            print(f'Instrument: {_instrument}, Signal: {_type}, Score: {score}')
-            # _entry = self.sig_['Enter']
-            # print(_type, _instrument, _entry)
+            if float(score) < 0:
+                score = float(score) * -1
+            print(f'Received {_type} Enter Signal for instrument {_instrument} of Score {score} %')
             for i in range(1, 10):
                 b, a, l = self.api.get_ticker(market=_symbol)
                 if l == 0:
                     pass
-                else:
-                    print(l)
                     break
 
             info = self.api.info()
-            # print(info)
             positions = info['positions']
             balance = info["freeCollateral"]
             leverage = info['leverage']
@@ -240,7 +222,6 @@ class MqReceiver:
 
     def run(self):
         while True:
-            #print('Debug')
             message = mqtt_que.__mq__signal__()
             if message:
                 try:
