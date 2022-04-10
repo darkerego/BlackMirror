@@ -2,7 +2,7 @@ import pandas as pd
 import time
 from utils.colorprint import NewColorPrint as cp
 import logging
-
+from lib.func_timer import exit_after, cdquit
 cp = cp()
 
 
@@ -122,6 +122,7 @@ class FtxApi:
         return self.rest.place_order(market=market, side='sell', size=qty, type='market', reduce_only=reduce,
                                      post_only=False, client_id=cid, ioc=ioc, price=None)
 
+    @exit_after(5)
     def positions(self):
         return self.rest.get_positions()
 
@@ -154,6 +155,7 @@ class FtxApi:
     def stop_loss(self, market, side, triggerPrice):
         return self.rest.set_private_create_trigger_order(market=market, side=side, triggerPrice=triggerPrice)
 
+    @exit_after(5)
     def info(self):
         return self.rest.get_account_info()
 
