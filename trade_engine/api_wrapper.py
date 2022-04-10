@@ -24,7 +24,7 @@ class FtxApi:
         count = 0
         while True:
             for _ in range(3):
-                o = self.ws.ws_get_order_by_id(oid)
+                o = self.ws_get_order_by_id(oid)
                 if o:
                     print(o)
                     ask, bid, last = self.ws.get_ticker(market=market)
@@ -180,7 +180,7 @@ class FtxApi:
 
     def ws_get_orders(self):
         for i in range(10):
-            orders = self.ws.ws_get_orders()
+            orders = self.ws.get_orders()
             if orders.items():
                 return orders
             else:
@@ -190,7 +190,7 @@ class FtxApi:
     def ws_get_order_by_id(self, oid):
         for i in range(10):
             orders = self.ws_get_orders()
-            if len(orders):
+            if orders:
                 for o in orders:
                     if o['id'] == oid:
                         return o

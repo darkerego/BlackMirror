@@ -207,14 +207,15 @@ def main():
     cp = NewColorPrint()
     args = get_args()
 
-    if args.confirm:
+    if args.confirm and args.auto_trader:
         args.monitor_only = False
         for _ in range(0, 3):
             cp.random_color(f'[⚡! TOASTERTUB DISCLAIMER: You have specified `--confirm` which means that THIS BOT WILL '
                             f'interact with the FTX api, performing whatever actions were requested by *you*.]',  static_set='bright')
             time.sleep(0.125)
     else:
-        args.monitor_only = True
+        if args.auto_trader:
+            args.monitor_only = True
 
     parse_and_exec(args)
 
