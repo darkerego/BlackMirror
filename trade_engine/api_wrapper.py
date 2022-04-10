@@ -19,16 +19,19 @@ class FtxApi:
 
     def chase_limit_order(self, market, oid, max_chase=3, failsafe_market=False):
         self.logger.info(f'Chasing order {market}, {oid}')
-        time.sleep(1)
+        time.sleep(1.5)
         last_price = 0
         count = 0
         time.sleep(1)
         while True:
             for _ in range(3):
-                o = self.ws_get_order_by_id(oid=oid)
+                o = self.rest_get_open_orders(market=market, oid=oid)
+
+
                 if o:
                     print('order:', o)
                     ask, bid, last = self.get_ticker(market=market)
+                    last_price = o['price']
 
                     if o['id'] == oid:
                         size = o['size']
@@ -40,8 +43,10 @@ class FtxApi:
                                 current_price = bid
                                 print(current_price)
                                 if current_price > last_price:
-                                    last_price = current_price
+
+                                    print(f'Modify order from {last_price} to {current_price}')
                                     ret = self.modify_order(oid=oid, price=current_price)
+                                    last_price = current_price
                                     if ret:
                                         self.logger.info('Success: ', ret.__str__)
                                         count += 1
@@ -52,7 +57,7 @@ class FtxApi:
                                 current_price = ask
                                 if current_price < last_price:
                                     last_price = current_price
-                                    ret = self.rest.modify_order(oid=oid, price=current_price,
+                                    ret = self.modify_order(oid=oid, price=current_price,
                                                             size=o['remainingSize'])
                                     if ret:
                                         self.logger.info('Success: ', ret.__str__)
@@ -192,7 +197,9 @@ class FtxApi:
     def ws_get_orders(self):
         for i in range(10):
             orders = self.ws.get_orders()
+            print('orders', orders)
             if orders.items():
+                print(orders)
                 return orders
             else:
                 time.sleep(0.25)
@@ -202,7 +209,10 @@ class FtxApi:
         for i in range(10):
             orders = self.ws_get_orders()
             if orders:
+                print(orders.get('id'))
+
                 for o in orders:
+                    print(o)
                     if o['id'] == oid:
                         return o
         return
@@ -233,6 +243,9 @@ class FtxApi:
 
     def get_subaccount_balances(self, nickname: str):
         return self.rest.get_subaccount_balances(nickname=nickname)
+
+    def transfer(self, coin, size, source, destination):
+        return self.rest.tranfer(coin, size, source, destination)
 
 
 def debug_api(subacct=None, config_path='conf.json'):

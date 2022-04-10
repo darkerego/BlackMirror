@@ -37,6 +37,7 @@ class Monitor:
         self.executor = ThreadPoolExecutor(max_workers=25)
         self.logger = logging.getLogger(__name__)
         self.api = FtxApi(rest=rest, ws=ws, sa=subaccount)
+        self.update_db = conf.update_db
 
         self.auto = conf.auto_trader
         self.sl = conf.stop_loss_pct
@@ -113,7 +114,7 @@ class Monitor:
             #t.start()
             self.executor.submit(mq_server.start_process)
 
-        if self.auto:
+        if self.auto or self.monitor_only or self.update_db:
             self.cp.navy(data='Starting auto trader')
             self.auto_trade = AutoTrader(self.api,
                                          stop_loss=self.sl,
@@ -135,7 +136,8 @@ class Monitor:
                                          max_collateral=self.max_collateral,
                                          position_close_pct=self.position_close_pct,
                                          chase_close=self.chase_close,
-                                         chase_reopen=self.chase_reopen)
+                                         chase_reopen=self.chase_reopen,
+                                         update_db=self.update_db)
 
     def __enter__(self):
         return self
@@ -156,7 +158,7 @@ class Monitor:
         current_time = 0
         running = self.running = True
         time.sleep(0.25)
-        if self.auto:
+        if self.auto or self.update_db or self.monitor_only:
             self.auto_trade.start_process()
         while running:
             try:

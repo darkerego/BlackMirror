@@ -98,8 +98,13 @@ def parse_and_exec(args):
         cp.navy('[🌡] Monitoring only mode.')
         #bot.monitor(key=key, secret=secret, subaccount_name=args.subaccount, args=args)
 
-    if args.monitor or args.auto_trader or args.monitor_only:
+    if args.monitor or args.auto_trader or args.monitor_only or args.update_db:
         logo.post()
+        if args.update_db:
+            cp.red('[I] Updating the market database, please stand by ... ')
+            bot.monitor(key=key, secret=secret, subaccount_name=args.subaccount, args=args)
+            exit()
+
         if args.balance_arbitrage:
             cp.navy('WARNING: EXPERIMENTAL !! -- Loading balance arbitrage engine...')
             # bot.monitor(key=key, secret=secret, subaccount_name=args.subaccount, args=args)
@@ -123,11 +128,17 @@ def parse_and_exec(args):
             cp.green('[~] Tickers Enabled!')
         bot.monitor(key=key, secret=secret, subaccount_name=args.subaccount, args=args)
 
-    if args.show_portfolio or args.buy or args.sell or args.cancel or args.open_orders:
+    if args.show_portfolio or args.buy or args.sell or args.cancel or args.open_orders or args.configure_anti_liq:
         api = bot.api_connection(key=key, secret=secret, subaccount=subaccount)
         rest = api[0]
         ws = api[1]
         api = FtxApi(rest=rest, ws=ws, sa=subaccount)
+        if args.configure_anti_liq:
+            pass
+
+
+
+
         if args.show_portfolio:
             balances = api.parse_balances()
             cp.yellow('Account Balances:')
@@ -203,6 +214,12 @@ def parse_and_exec(args):
                     if args.limit_chase > 0 or o_type == 'post':
                         post = True
                     ret = api.sell_limit(market=o_market, qty=o_size, price=limit_price, post=post, reduce=False, cid=None)
+                    if args.limit_chase > 0:
+                        cp.yellow(f'[-] Chasing limit order up the books ... Max Chase: {args.limit_chase} '
+                                  f'Revert to market: {args.chase_failsafe}')
+                        ret = api.chase_limit_order(market=o_market, oid=ret['id'], max_chase=args.limit_chase,
+                                              failsafe_market=args.chase_failsafe)
+                        cp.purple(f'[~] {ret}')
                     if ret:
                         cp.purple(f'[~] Status: {ret}')
         if args.cancel:

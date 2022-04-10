@@ -8,12 +8,19 @@ def get_args():
     gen_opts.add_argument('-m', '--monitor', dest='monitor', action='store_true', default=False,
                           help='Start the account monitor. See '
                                'current status.')
+    gen_opts.add_argument('--configure', dest='configure_anti_liq', action='store_true',
+                          help='Configure AntiLiquidation feature -- highly recommended!')
     gen_opts.add_argument('-sa', '--subaccount', dest='subaccount', default=None, type=str, help='Subaccount to connect'
                                                                                                  'to. None for main '
                                                                                                  'account.')
     gen_opts.add_argument('-v', '--verbose', dest='verbose', action='store_true', default=False, help='Verbose mode.')
     gen_opts.add_argument('-st', '--show_tickers', dest='show_tickers', action='store_true', default=False,
                           help='Do not show tickers.')
+    exchange_stats_opts = parser.add_argument_group('Exchange Statistical Options')
+    exchange_stats_opts.add_argument('-u', '--update_db', action='store_true',
+                                     dest='update_db', help='Initialize/Update the market stat'
+                                                                                    'database.')
+
     arb_opts = parser.add_argument_group('OscillationArbitrage Engine Options')
     arb_opts.add_argument('-O', '--osc_arb', dest='balance_arbitrage', action='store_true',
                           help='Run experimental balance arbitrage engine.')

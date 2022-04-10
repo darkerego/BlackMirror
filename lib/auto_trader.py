@@ -8,6 +8,7 @@ from trade_engine.stdev_aggravator import FtxAggratavor
 from lib.exceptions import *
 from utils import profit_tracker
 from lib.func_timer import exit_after, cdquit
+from lib import sql_lib
 
 try:
     import thread
@@ -29,7 +30,7 @@ class AutoTrader:
     def __init__(self, api, stop_loss, _take_profit, use_ts=True, ts_pct=0.05, reopen=False, period=300, ot='limit',
                  max_open_orders=None, position_step_size=0.02, disable_stop_loss=False, show_tickers=True,
                  monitor_only=False, close_method='market', relist_iterations=100, hedge_mode=False, hedge_ratio=0.5,
-                 max_collateral=0.5, position_close_pct=1, chase_close=0, chase_reopen=0):
+                 max_collateral=0.5, position_close_pct=1, chase_close=0, chase_reopen=0, update_db=False):
         self.cp = NewColorPrint()
         self.up_markets = {}
         self.down_markets = {}
@@ -69,7 +70,9 @@ class AutoTrader:
         self.hedge_ratio = hedge_ratio
         self.max_collateral = max_collateral
         self.delta_weight = None
+        self.sql = sql_lib.SQLLiteConnection()
         self.relist_iter = 0
+        self.update_db = update_db
         if self.reopen:
             self.cp.yellow('Reopen enabled')
         if self.stop_loss > 0.0:
@@ -543,6 +546,9 @@ class AutoTrader:
             self.future_stats[name]['change1h'] = change1h
             self.future_stats[name]['change24h'] = change24h
             self.future_stats[name]['min_order_size'] = min_order_size
+            if self.update_db:
+                entry = {'instrument': {'name': self.future_stats['name'], 'min_order_size': self.future_stats['min_order_size']}}
+                self.sql.append(entry, table='futures')
             # if not self.ticker_stats.__contains__(name):
             #    name = FutureStat(name=name, price=mark_price, volume=volumeUsd24h)
             #    self.ticker_stats.append(name)
