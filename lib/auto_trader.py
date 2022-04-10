@@ -643,8 +643,8 @@ class AutoTrader:
             current_price_inverse = ask
             try:
                 pnl = self.pnl_calc(qty=size, sell=ask, buy=avg_open_price, fee=takerFee)
-            except:
-                pass
+            except Exception as err:
+                print('DEBUG Error calculating PNL line 647: ', err)
 
             try:
                 if pnl <= 0.0:
@@ -652,12 +652,12 @@ class AutoTrader:
                 else:
                     self.cp.green(f'[🔺] Positive PNL {pnl} on position {future_instrument}')
             except Exception as err:
-                pass
+                print('Error calculating PNL: ', err)
             try:
                 pnl_pct = (float(pnl) / float(cost)) * 100
             except Exception as fuck:
-
-                return
+                print('DEBUG Error calculating PNL line 659: ', err)
+                pass
         else:
             # short position
             side = 'sell'
@@ -674,12 +674,13 @@ class AutoTrader:
                 else:
                     self.cp.green(f'[🔺] Positive PNL {pnl} on position {future_instrument}')
             except Exception as err:
+                print('DEBUG Error calculating PNL line 677: ', err)
                 pass
 
             try:
                 pnl_pct = (float(pnl) / float(cost * -1)) * 100
             except Exception as fuck:
-                return
+                print('DEBUG Error calculating PNL line 683: ', err)
 
         self.cp.random_pulse(
             f'[▶] Instrument: {future_instrument}, Side: {side}, Size: {size} Cost: {cost}, Entry: {entry_price},'
