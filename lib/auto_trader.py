@@ -240,7 +240,8 @@ class AutoTrader:
                 # executor = ThreadPoolExecutor(max_workers=5)
                 # ret = executor.submit(self.trailing_stop, market=market, side=opp_side, qty=float(o_size),
                 #                      entry=float(entry), offset=float(self.trailing_stop_pct))
-                ret = self.trailing_stop(market=market, side=side, qty=size, offset=self.trailing_stop_pct, entry=entry)
+                ret = self.trailing_stop(market=market, side=side, qty=size, offset=self.trailing_stop_pct, entry=entry,
+                                         ts_o_type=self.order_type)
                 if ret:
                     print('Success at take profit')
                     self.wins += 1
@@ -263,7 +264,8 @@ class AutoTrader:
                 # executor = ThreadPoolExecutor(max_workers=5)
                 # ret = executor.submit(self.trailing_stop, market=market, side=opp_side, qty=float(o_size),
                 #                      entry=float(entry), offset=float(self.trailing_stop_pct))
-                ret = self.trailing_stop(market=market, side=side, qty=size, offset=self.trailing_stop_pct, entry=entry)
+                ret = self.trailing_stop(market=market, side=side, qty=size, offset=self.trailing_stop_pct, entry=entry,
+                                         ts_o_type=self.order_type)
 
             else:
 
@@ -706,7 +708,7 @@ class AutoTrader:
 
             else:
 
-                ret = self.take_profit_wrap(entry=entry_price, side=side, size=new_qty, order_type='market',
+                ret = self.take_profit_wrap(entry=entry_price, side=side, size=new_qty, order_type=self.order_type,
                                             market=future_instrument)
                 if ret:
                     print('Success')
