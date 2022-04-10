@@ -25,10 +25,11 @@ class FtxApi:
         time.sleep(1)
         while True:
             for _ in range(3):
-                o = self.rest_get_open_orders(market=market, oid=oid)
+                o = self.ws_get_order_by_id(oid=oid)
                 if o:
                     print('order:', o)
                     ask, bid, last = self.get_ticker(market=market)
+
                     if o['id'] == oid:
                         size = o['size']
                         if o['status'] == 'filled' or o['status'] == 'closed':
@@ -174,8 +175,8 @@ class FtxApi:
             if ticker.items():
                 return ticker['bid'], ticker['ask'], ticker['last']
             else:
-                time.sleep(0.25)
-            return 0, 0, 0
+                time.sleep(0.125)
+        return 0, 0, 0
 
     def get_fills(self):
         for i in range(10):
@@ -193,7 +194,7 @@ class FtxApi:
                 return orders
             else:
                 time.sleep(0.25)
-            return None
+        return None
 
     def ws_get_order_by_id(self, oid):
         for i in range(10):
@@ -202,7 +203,7 @@ class FtxApi:
                 for o in orders:
                     if o['id'] == oid:
                         return o
-            return
+        return
 
     def get_trades(self, market):
         for i in range(10):
@@ -211,7 +212,7 @@ class FtxApi:
                 return trades
             else:
                 time.sleep(0.25)
-            return None
+        return None
 
     def get_orderbook(self, market):
         for i in range(10):
@@ -220,7 +221,7 @@ class FtxApi:
                 return orderbook
             else:
                 time.sleep(0.25)
-            return None
+        return None
 
     def get_subaccounts(self):
         return self.rest.get_subaccounts()

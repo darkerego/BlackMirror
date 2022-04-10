@@ -196,6 +196,7 @@ def parse_and_exec(args):
                 if o_type == 'limit' or o_type == 'post':
                     if limit_price == 0:
                         bid, ask, last = api.get_ticker(market=o_market)
+                        print(ask, bid, last)
                         limit_price = ask
                         cp.yellow(f'[!] No price given, using current ask: {ask}')
                     cp.red(f'[~] Executing a limit sell order on {o_market} of quantity {o_size}!')
