@@ -259,7 +259,7 @@ class AutoTrader:
         else:  # side == sell
             opp_side = 'buy'
             trail_value = (entry - bid) * self.trailing_stop_pct * -1
-            if self.use_ts and order_type == 'market':
+            if self.use_ts:
                 self.cp.green(f'[฿] Sending a trailing stop: {trail_value}')
                 # executor = ThreadPoolExecutor(max_workers=5)
                 # ret = executor.submit(self.trailing_stop, market=market, side=opp_side, qty=float(o_size),
