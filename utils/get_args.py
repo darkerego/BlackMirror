@@ -46,7 +46,8 @@ def get_args():
                                                                                     'before giving up and '
                                                                                     'executing as market. ')
     api_opts.add_argument('-b', '--buy', dest='buy', type=str, nargs='+',
-                          help='Execute a buy order: --buy <limit> <ETH-PERP> <0.5> 2898.89 ')
+                          help='Execute a buy order: --buy <limit> <ETH-PERP> <0.5> 2898.89 , '
+                               '[order types: limit, post, market]')
     api_opts.add_argument('-s', '--sell', dest='sell', type=str, nargs='+',
                           help='Execute a sell order --sell <market> <BTC-USD> <0.1>')
     api_opts.add_argument('-lc', '--limit_chase', dest='limit_chase', type=int, default=0, help=f'Chase this limit order this '

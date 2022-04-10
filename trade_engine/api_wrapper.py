@@ -22,23 +22,25 @@ class FtxApi:
         time.sleep(1)
         last_price = 0
         count = 0
+        time.sleep(1)
         while True:
             for _ in range(3):
-                o = self.ws_get_order_by_id(oid)
+                o = self.rest_get_open_orders(market=market, oid=oid)
                 if o:
-                    print(o)
-                    ask, bid, last = self.ws.get_ticker(market=market)
+                    print('order:', o)
+                    ask, bid, last = self.get_ticker(market=market)
                     if o['id'] == oid:
+                        size = o['size']
                         if o['status'] == 'filled' or o['status'] == 'closed':
                             cp.red(f'[*] Order {oid}: Status: {o["status"]}')
                             return
                         else:
                             if o['side'] == 'buy':
                                 current_price = bid
+                                print(current_price)
                                 if current_price > last_price:
                                     last_price = current_price
-                                    ret = self.rest.modify_order(oid=oid, price=current_price,
-                                                            size=o['remainingSize'])
+                                    ret = self.modify_order(oid=oid, price=current_price)
                                     if ret:
                                         self.logger.info('Success: ', ret.__str__)
                                         count += 1
@@ -125,8 +127,14 @@ class FtxApi:
     def balances(self):
         return self.rest.get_balances()
 
-    def rest_get_open_orders(self, market=None):
-        return self.rest.get_open_orders(market=market)
+    def rest_get_open_orders(self, market=None, oid=None):
+        orders = self.rest.get_open_orders(market=market)
+        if oid:
+            for _ in orders:
+                if _['id'] == oid:
+                    return _
+        else:
+            return orders
 
     def cancel_order(self, oid):
         return self.rest.cancel_order(order_id=oid)
@@ -135,7 +143,7 @@ class FtxApi:
         return self.rest.cancel_orders(market_name=market, conditional_orders=conditional_orders,
                                        limit_orders=limit_orders)
 
-    def modify_order(self, oid, price, size, cid=None):
+    def modify_order(self, oid, price=None, size=None, cid=None):
         return self.rest.modify_order(existing_order_id=oid, price=price, size=size, client_order_id=cid)
 
     def trailing_stop(self, market, side, size, trail_value, reduce_only):

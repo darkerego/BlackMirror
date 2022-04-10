@@ -134,14 +134,16 @@ def parse_and_exec(args):
             print(balances)
         if args.open_orders:
             cp.yellow('Querying API for open orders...')
-            orders = api.ws_get_orders()
-            print(orders)
+            orders = api.rest_get_open_orders()
+            for o in orders:
+                print(o)
 
         if args.buy:
             if len(args.buy) < 3:
                 cp.red('[⛔] Required parameters: <order type> <market> <qty> Optional Parameters: <price>')
                 return False
             else:
+                post = False
                 o_type = args.buy[0]
                 o_market = args.buy[1]
                 o_size = args.buy[2]
@@ -152,14 +154,19 @@ def parse_and_exec(args):
                     ret = api.buy_market(market=o_market, qty=o_size, reduce=False, ioc=False, cid=None)
                     if ret:
                         cp.purple(f'[~] Status: {ret}')
-                if o_type == 'limit':
+                if o_type == 'limit' or o_type == 'post':
+
                     if limit_price == 0:
                         bid, ask, last = api.get_ticker(market=o_market)
                         limit_price = bid
                         cp.red(f'[!] No price given, using current bid: {bid}')
 
                     cp.red(f'[~] Executing a limit sell order on {o_market} of quantity {o_size}!')
-                    ret = api.buy_limit(market=o_market, qty=o_size, price=limit_price, reduce=False, cid=None)
+                    if args.limit_chase > 0 or o_type == 'post':
+                        post = True
+
+                    ret = api.buy_limit(market=o_market, qty=o_size, price=limit_price, post=post, reduce=False,
+                                        cid=None)
                     if ret:
                         cp.purple(f'[~] Status: {ret}')
                     if args.limit_chase > 0:
@@ -175,6 +182,7 @@ def parse_and_exec(args):
                 cp.red('[⛔] Required parameters: <order type> <market> <qty> Optional Parameters: <price>')
                 return False
             else:
+                post = False
                 o_type = args.sell[0]
                 o_market = args.sell[1]
                 o_size = args.sell[2]
@@ -185,13 +193,15 @@ def parse_and_exec(args):
                     ret = api.sell_market(market=o_market, qty=o_size, reduce=False, ioc=False, cid=None)
                     if ret:
                         cp.purple(f'[~] Status: {ret}')
-                if o_type == 'limit':
+                if o_type == 'limit' or o_type == 'post':
                     if limit_price == 0:
                         bid, ask, last = api.get_ticker(market=o_market)
                         limit_price = ask
                         cp.yellow(f'[!] No price given, using current ask: {ask}')
                     cp.red(f'[~] Executing a limit sell order on {o_market} of quantity {o_size}!')
-                    ret = api.sell_limit(market=o_market, qty=o_size, price=limit_price, reduce=False, cid=None)
+                    if args.limit_chase > 0 or o_type == 'post':
+                        post = True
+                    ret = api.sell_limit(market=o_market, qty=o_size, price=limit_price, post=post, reduce=False, cid=None)
                     if ret:
                         cp.purple(f'[~] Status: {ret}')
         if args.cancel:
