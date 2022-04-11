@@ -9,6 +9,7 @@ from lib.exceptions import *
 from utils import profit_tracker
 from lib.func_timer import exit_after, cdquit
 from lib import sql_lib
+from concurrent.futures import ThreadPoolExecutor
 
 try:
     import thread
@@ -16,6 +17,19 @@ except ImportError:
     import _thread as thread
 
 debug = True
+
+import threading
+
+
+class ThreadWithReturnValue(threading.Thread):
+    def __init__(self, *init_args, **init_kwargs):
+        threading.Thread.__init__(self, *init_args, **init_kwargs)
+        self._return = None
+    def run(self):
+        self._return = self._target(*self._args, **self._kwargs)
+    def join(self):
+        threading.Thread.join(self)
+        return self._return
 
 
 
@@ -259,12 +273,20 @@ class AutoTrader:
                 # executor = ThreadPoolExecutor(max_workers=5)
                 # ret = executor.submit(self.trailing_stop, market=market, side=opp_side, qty=float(o_size),
                 #                      entry=float(entry), offset=float(self.trailing_stop_pct))
-                ret = self.trailing_stop(market=market, side=side, qty=size, offset=self.trailing_stop_pct, entry=entry,
+                th = ThreadWithReturnValue(target=self.trailing_stop, args=(market, side, size, self.trailing_stop_pct,
+                                                                            entry, self.order_type))
+                th.start()
+                ret = th.join()
+                if ret:
+                    self.cp.purple(f'[~] Success at taking profit.')
+                    self.wins += 1
+                    return True
+                """ret = self.trailing_stop(market=market, side=side, qty=size, offset=self.trailing_stop_pct, entry=entry,
                                          ts_o_type=self.order_type)
                 if ret:
                     print('Success at take profit')
                     self.wins += 1
-                    return True
+                    return True"""
             else:
 
                 if order_type == 'market':  # market, qty, reduce, ioc, cid):
@@ -283,8 +305,16 @@ class AutoTrader:
                 # executor = ThreadPoolExecutor(max_workers=5)
                 # ret = executor.submit(self.trailing_stop, market=market, side=opp_side, qty=float(o_size),
                 #                      entry=float(entry), offset=float(self.trailing_stop_pct))
-                ret = self.trailing_stop(market=market, side=side, qty=size, offset=self.trailing_stop_pct, entry=entry,
-                                         ts_o_type=self.order_type)
+                """ret = self.trailing_stop(market=market, side=side, qty=size, offset=self.trailing_stop_pct, entry=entry,
+                                         ts_o_type=self.order_type)"""
+                th = ThreadWithReturnValue(target=self.trailing_stop, args=(market, side, size, self.trailing_stop_pct,
+                                                                            entry, self.order_type))
+                th.start()
+                ret = th.join()
+                if ret:
+                    self.cp.purple(f'[~] Success at taking profit.')
+                    self.wins += 1
+                    return True
 
             else:
 
