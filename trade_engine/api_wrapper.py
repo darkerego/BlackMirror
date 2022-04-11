@@ -139,7 +139,6 @@ class FtxApi:
                                                  reduce_only=reduce, trail_value=offset)
 
 
-    @exit_after(5)
     def positions(self):
         return self.rest.get_positions()
 
@@ -172,7 +171,7 @@ class FtxApi:
     def stop_loss(self, market, side, triggerPrice):
         return self.rest.set_private_create_trigger_order(market=market, side=side, triggerPrice=triggerPrice)
 
-    @exit_after(5)
+
     def info(self):
         return self.rest.get_account_info()
 

@@ -62,7 +62,7 @@ def get_args():
     api_opts.add_argument('-tsb', '--trailing_stop_buy', dest='trailing_stop_buy', type=str, nargs='+', help='API Trailing Stop \
     <market> <0.1> <.5>')
 
-    api_opts.add_argument('-tss', '--trailing_stop_sell', dest='trailing_stop_buy', type=str, nargs='+', help='API Trailing Stop \
+    api_opts.add_argument('-tss', '--trailing_stop_sell', dest='trailing_stop_sell', type=str, nargs='+', help='API Trailing Stop \
         <market> <0.1> <.5>')
 
     api_opts.add_argument('-cf', '--chase_failsafe', action='store_true', dest='chase_failsafe', help='Revert to market'
