@@ -786,16 +786,16 @@ class AutoTrader:
         Sometimes the parse function freezes up, so we use the @exit_after decorator and redo
         if that happens
         """
-        self.position_parser(positions=pos, account_info=info)
-        """while True:
+
+        while True:
             try:
-                
+                self.position_parser(positions=pos, account_info=info)
             except Exception as err:
                 print('err',err)
             except RestartError:
                 self.cp.red('[!] Timeout, redo ... ')
             else:
-                break"""
+                break
 
     def start_process(self):
         self.cp.purple('[i] Starting AutoTrader, performing sanity check. ...')
