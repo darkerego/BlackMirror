@@ -1,5 +1,5 @@
-class RestartError:
+class RestartError(Exception):
     pass
 
-class WsLagError:
+class WsLagError(Exception):
     pass
