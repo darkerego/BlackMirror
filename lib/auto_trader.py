@@ -96,6 +96,47 @@ class AutoTrader:
                 instrument = pos['future']
                 self.api.cancel_orders(market=instrument, limit_orders=True)
 
+    def api_trailing_stop(self, market, qty, entry, side, offset=.25, ts_o_type='market'):
+        entry_price = entry
+        qty = qty
+        print('Trailing stop triggered')
+        if side == 'buy':
+            current_price = self.api.get_ticker(market=market)[1]
+            trail_value = (current_price - entry) * self.trailing_stop_pct * -1
+            # offset_price = (float(current_price) - float(entry_price)) * (1-offset)
+            offset_price = current_price - (current_price - entry) * offset
+            text = f'Trailing sell stop for long position, type {ts_o_type}'
+            # self.cp.yellow(f'[~] Taking {self.position_close_pct}% of profit ..')
+
+            # qty = qty * (self.take_profit_pct / 100)
+            # qty = qty * -1
+            opp_side = 'sell'
+            self.cp.green(
+                f'Trailing Stop for long position of entry price: {entry_price} triggered: offset price {offset_price}'
+                f' current price: {current_price}')
+
+            ret = self.api.trailing_stop(market=market, side=opp_side, offset=offset_price, qty=qty, reduce=True)
+            self.logger.debug(ret)
+            return ret
+
+        else:
+            # short position, so this will be a buy stop
+            # side = 'buy'
+            current_price = self.api.get_ticker(market=market)[0]
+            trail_value = (entry - current_price) * self.trailing_stop_pct
+            # offset_price = (float(current_price) + float(offset))
+            offset_price = current_price + (entry - current_price) * offset
+            text = f'Trailing buy stop for short position, type {ts_o_type}'
+
+            opp_side = 'buy'
+            self.cp.red(
+                f'Trailing Stop for short position of entry price: {entry_price} triggered: offset price {offset_price}'
+                f' current price: {current_price}')
+
+            ret = self.api.trailing_stop(market=market, side=opp_side, offset=offset_price, qty=qty, reduce=True)
+            self.logger.debug(ret)
+            return ret
+
 
     def trailing_stop(self, market, qty, entry, side, offset=.25, ts_o_type='market'):
         """
@@ -218,7 +259,7 @@ class AutoTrader:
                 # executor = ThreadPoolExecutor(max_workers=5)
                 # ret = executor.submit(self.trailing_stop, market=market, side=opp_side, qty=float(o_size),
                 #                      entry=float(entry), offset=float(self.trailing_stop_pct))
-                ret = self.trailing_stop(market=market, side=side, qty=size, offset=self.trailing_stop_pct, entry=entry,
+                ret = self.api_trailing_stop(market=market, side=side, qty=size, offset=self.trailing_stop_pct, entry=entry,
                                          ts_o_type=self.order_type)
                 if ret:
                     print('Success at take profit')
@@ -242,7 +283,7 @@ class AutoTrader:
                 # executor = ThreadPoolExecutor(max_workers=5)
                 # ret = executor.submit(self.trailing_stop, market=market, side=opp_side, qty=float(o_size),
                 #                      entry=float(entry), offset=float(self.trailing_stop_pct))
-                ret = self.trailing_stop(market=market, side=side, qty=size, offset=self.trailing_stop_pct, entry=entry,
+                ret = self.api_trailing_stop(market=market, side=side, qty=size, offset=self.trailing_stop_pct, entry=entry,
                                          ts_o_type=self.order_type)
 
             else:
