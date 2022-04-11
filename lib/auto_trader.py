@@ -816,8 +816,10 @@ class AutoTrader:
     @exit_after(100)
     def position_parser(self, positions, account_info):
         for pos in positions:
+
             if float(pos['collateralUsed'] != 0.0) or float(pos['longOrderSize']) > 0 or float(
                     pos['shortOrderSize']) < 0:
+                print(pos)
                 self.parse(pos, account_info)
 
     def start_process(self):
@@ -856,6 +858,7 @@ class AutoTrader:
                     self.cp.white_black(f'[🃑] Wins: - [🃏] Losses: -')
 
             try:
+                # print(info)
                 self.position_parser(positions=pos, account_info=info)
             except RestartError:
                 self.cp.red('[!] Timeout, redo ... ')
