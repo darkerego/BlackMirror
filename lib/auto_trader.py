@@ -682,7 +682,7 @@ class AutoTrader:
         makerFee = info['makerFee']
         side = pos['side']
         pnl = 0
-        pnl_pct
+        pnl_pct = 0
         tpnl = 0
         tsl = 0
 
