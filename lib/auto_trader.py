@@ -681,6 +681,8 @@ class AutoTrader:
         takerFee = info['takerFee']
         makerFee = info['makerFee']
         side = pos['side']
+        pnl = 0
+        pnl_pct
         tpnl = 0
         tsl = 0
 
