@@ -129,7 +129,7 @@ def parse_and_exec(args):
         bot.monitor(key=key, secret=secret, subaccount_name=args.subaccount, args=args)
 
     if args.show_portfolio or args.buy or args.sell or args.cancel or args.open_orders or args.configure_anti_liq:
-        api = bot.api_connection(key=key, secret=secret, subaccount=subaccount)
+        api = bot.api_connection(key=key, secret=secret, subaccount=args.subaccount)
         rest = api[0]
         ws = api[1]
         api = FtxApi(rest=rest, ws=ws, sa=subaccount)

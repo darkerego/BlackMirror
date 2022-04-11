@@ -162,18 +162,16 @@ class MqReceiver:
             self.api.buy_market(market=symbol, qty=size, reduce=True, ioc=False, cid=None)
 
     def handle_message(self, message):
-        self.cp.purple(f'Got Signal {message}!')
+        self.cp.purple(f'Received Trade Signal {message}!')
         message = json.loads(message)
         if message.get('Status') == 'closed':
-            """TODO: Incomplete logic here
-            """
-            print('Got Exit Signal')
-            side = message.get('Signal')
-            side = side.lower()
+            _type = message.get('Signal')
+            _type = _type.lower()
             symbol = message.get('Instrument')
             score = message.get('Score')
+            self.cp.blue(f'[X] Received {_type} EXIT Signal for {symbol}')
             ok, size = self.check_position_exists_diff(future=symbol, s=None)
-            self.position_close(symbol=symbol, side=side, size=size)
+            self.position_close(symbol=symbol, side=_type, size=size)
         if message.get('Status') == 'open':
             self.sig_.update(message)
             score = message.get('Score')
@@ -182,11 +180,10 @@ class MqReceiver:
             _symbol = str(_instrument[:-4] + '-PERP')
             if float(score) < 0:
                 score = float(score) * -1
-            print(f'Received {_type} Enter Signal for instrument {_instrument} of Score {score} %')
+            self.cp.blue(f'[E] Received {_type} Enter Signal for instrument {_instrument} of Score {score} %')
             for i in range(1, 10):
                 b, a, l = self.api.get_ticker(market=_symbol)
                 if l == 0:
-                    pass
                     break
 
             info = self.api.info()
@@ -203,22 +200,24 @@ class MqReceiver:
                     check, size = self.check_position_exists_diff(future=_symbol)
                     if check:
                         ret = self.api.buy_market(market=_symbol, qty=qty, reduce=False, ioc=False, cid=None)
-                        print(ret)
+                        self.cp.purple(ret)
+                        time.sleep(2)
                     else:
                         self.cp.red('Cannot enter, position already open!')
                 else:
-                    print('Score too low')
+                    self.cp.yellow('[-] Score too low')
             elif _type == 'SHORT':
                 if float(score) > float(self.min_score):
                     self.cp.alert('[SHORT SIGNAL] ENTERING!')
                     check, size = self.check_position_exists_diff(future=_symbol)
                     if check:
                         ret = self.api.sell_market(_symbol, qty=qty, reduce=False, ioc=False, cid=None)
-                        print(ret)
+                        self.cp.purple(ret)
+                        time.sleep(2)
                     else:
                         self.cp.red('Cannot enter, position already open!')
                 else:
-                    print('Score too low')
+                    self.cp.yellow('[-] Score too low')
 
     def run(self):
         while True:

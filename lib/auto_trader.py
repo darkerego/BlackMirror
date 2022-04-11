@@ -617,6 +617,7 @@ class AutoTrader:
             self.future_stats[name]['change1h'] = change1h
             self.future_stats[name]['change24h'] = change24h
             self.future_stats[name]['min_order_size'] = min_order_size
+            err = None
             if self.update_db:
                 entry = {'instrument': {'name': self.future_stats['name'], 'min_order_size': self.future_stats['min_order_size']}}
                 self.sql.append(entry, table='futures')
@@ -761,10 +762,20 @@ class AutoTrader:
 
             else:
 
-                ret = self.take_profit_wrap(entry=entry_price, side=side, size=new_qty, order_type=self.order_type,
+                try:
+
+                    ret = self.take_profit_wrap(entry=entry_price, side=side, size=new_qty, order_type=self.order_type,
                                             market=future_instrument)
-                if ret:
-                    print('Success')
+                except Exception as err:
+                    if re.match(r'^(.*)margin for order(.*)$',
+                                'Exception: Account does not have enough margin for order.'):
+                        self.cp.red('[~] Order size is too small!')
+
+
+                else:
+                    self.total_contacts_trade += (o_size * last)
+                    if ret:
+                        print('[🃑] Success')
 
                 if ret and self.reopen:
                     # self.accumulated_pnl += pnl
@@ -774,10 +785,11 @@ class AutoTrader:
                     except Exception as err:
                         print(err)
                         if re.match(r'^(.*)margin for order(.*)$', 'Exception: Account does not have enough margin for order.'):
-                            self.cp.red('[~] Not enough! ')
-                    self.total_contacts_trade += (o_size * last)
-                    if ret:
-                        print('[🃑] Success')
+                            self.cp.red('[~] Order size is too small!')
+                    else:
+                        self.total_contacts_trade += (o_size * last)
+                        if ret:
+                            print('[🃑] Success')
 
 
         else:
@@ -808,37 +820,11 @@ class AutoTrader:
                     pos['shortOrderSize']) < 0:
                 self.parse(pos, account_info)
 
-    #def handler(self, signum, frame):
-    #    raise Exception("SocketTimeOutError")
-
-    def wrap_parse_pos(self, pos, info):
-        """"
-        Sometimes the parse function freezes up, so we use the @exit_after decorator and redo
-        if that happens
-        """
-
-        while True:
-            try:
-                self.position_parser(positions=pos, account_info=info)
-            except Exception as err:
-                print('err',err)
-            except RestartError:
-                self.cp.red('[!] Timeout, redo ... ')
-            else:
-                break
-
     def start_process(self):
-        self.cp.purple('[i] Starting AutoTrader, performing sanity check. ...')
-        try:
-            info = self.api.info()
-            pos = self.api.positions()
-        except Exception as fuck:
-            self.logger.error(fuck)
-            print(repr(f'Err {fuck}'))
-        self.sanity_check(positions=pos)
-        iter = 0
+
+        _iter = 0
         while True:
-            iter += 1
+            _iter += 1
             """{'username': 'xxxxxxxx@gmail.com', 'collateral': 4541.2686261529458, 'freeCollateral': 
                         13.534738011297414, 'totalAccountValue': 4545.7817261529458, 'totalPositionSize': 9535.4797, 
                         'initialMarginRequirement': 0.05, 'maintenanceMarginRequirement': 0.03, 'marginFraction': 
@@ -850,14 +836,18 @@ class AutoTrader:
             try:
                 info = self.api.info()
                 pos = self.api.positions()
-            except Exception as fuck:
+            except RestartError as fuck:
                 self.logger.error(fuck)
-                print(repr(f'Err {fuck}'))
+                print(repr(f'Restart: {fuck} {_iter}'))
+                exit(1)
             except KeyboardInterrupt:
                 print('[~] Caught Sigal...')
                 exit(0)
 
             else:
+                if _iter == 1:
+                    self.cp.purple('[i] Starting AutoTrader, performing sanity check. ...')
+                    self.sanity_check(positions=pos)
                 self.cp.pulse(f'[$] Account Value: {info["totalAccountValue"]} Collateral: {info["collateral"]} '
                               f'Free Collateral: {info["freeCollateral"]}, Contracts Traded: {self.total_contacts_trade}')
                 if self.wins != 0 or self.losses != 0:
@@ -865,4 +855,8 @@ class AutoTrader:
                 else:
                     self.cp.white_black(f'[🃑] Wins: - [🃏] Losses: -')
 
-                self.wrap_parse_pos(pos, info)
+            try:
+                self.position_parser(positions=pos, account_info=info)
+            except RestartError:
+                self.cp.red('[!] Timeout, redo ... ')
+

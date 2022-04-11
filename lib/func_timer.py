@@ -9,7 +9,7 @@ def cdquit(fn_name):
     print('{0} took too long'.format(fn_name), file=sys.stderr)
     sys.stderr.flush()  # Python 3 stderr is likely buffered.
     raise RestartError('Took too long')
-    # thread.interrupt_main()  # raises KeyboardInterrupt
+    #thread.interrupt_main()  # raises KeyboardInterrupt
 
 
 def exit_after(s):
