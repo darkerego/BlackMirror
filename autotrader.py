@@ -38,6 +38,7 @@ from utils import logo
 from utils.colorprint import NewColorPrint
 from utils.ftx_exceptions import FtxDisconnectError
 from utils.get_args import get_args
+from lib import pnl_calc
 
 try:
     import thread
@@ -128,7 +129,8 @@ def parse_and_exec(args):
             cp.green('[~] Tickers Enabled!')
         bot.monitor(key=key, secret=secret, subaccount_name=args.subaccount, args=args)
 
-    if args.show_portfolio or args.buy or args.sell or args.cancel or args.open_orders or args.configure_anti_liq:
+    if args.show_portfolio or args.buy or args.sell or args.cancel or args.open_orders or args.configure_anti_liq \
+            or args.trailing_stop_buy or args.trailing_stop_sell:
         api = bot.api_connection(key=key, secret=secret, subaccount=args.subaccount)
         rest = api[0]
         ws = api[1]
@@ -148,6 +150,47 @@ def parse_and_exec(args):
             orders = api.rest_get_open_orders()
             for o in orders:
                 print(o)
+
+        if args.trailing_stop_buy:
+            """{'future': 'AXS-PERP', 'size': 1.1, 'side': 'buy', 'netSize': 1.1, 'longOrderSize': 0.0,
+             'shortOrderSize': 0.0, 'cost': 49.7475, 'entryPrice': 45.225, 'unrealizedPnl': 0.0, 're
+                 alizedPnl': 28.41865541, 'initialMarginRequirement': 0.05, 'maintenanceMarginRequirement
+             ': 0.03, 'openSize': 1.1, 'collateralUsed': 2.487375, 'estimatedLiquidationPrice': 18.72
+                 990329657341, 'recentAverageOpenPrice': 45.207, 'recentPnl': 0.0198, 'recentBreakEvenPrice': 45.207,
+             'cumulativeBuySize': 1.1, 'cumulativeSellSize': 0.0}"""
+            if len(args.buy) < 3:
+                cp.red('[⛔] <market> <qty> <offset_percent>')
+                market = args.trailing_stop_buy[0]
+                qty = args.trailing_stop_buy[1]
+                offset = args.trailing_stop_buy[2]
+                pos = api.positions()
+                for p in pos:
+                    if float(pos['collateralUsed'] != 0.0) or float(pos['longOrderSize']) > 0 or float(
+                            pos['shortOrderSize']) < 0:
+                        if pos['future'] == market:
+                            entry = pos['entryPrice']
+                            size = pos['size']
+                            cost = pos['cost']
+                            pnl = pnl_calc.pnl_calc()
+                            pnl_pct = (float(pnl) / float(cost)) * 100
+                            current_price = api.get_ticker(market=market)[1]
+                            trail_value = (current_price - entry) * offset * -1
+                            # offset_price = (float(current_price) - float(entry_price)) * (1-offset)
+                            offset_price = current_price - (current_price - entry) * offset
+
+                            if pnl_pct > 0.0:
+                                print(f'[t] Trailing sell stop for long triggered: PNL: {pnl_pct}, offset: {offset}, '
+                                      f'Trail: {trail_value}')
+                                ret = api.trailing_stop(market=market, side='sell', offset=offset_price, qty=qty,
+                                                             reduce=True)
+
+
+        if args.trailing_stop_sell:
+            if len(args.buy) < 3:
+                cp.red('[⛔] <market> <qty> <offset_percent>')
+                market = args.trailing_stop_sell[0]
+                qty = args.trailing_stop_sell[1]
+                offset = args.trailing_stop_sell[2]
 
         if args.buy:
             if len(args.buy) < 3:

@@ -59,6 +59,12 @@ def get_args():
                           help='Execute a sell order --sell <market> <BTC-USD> <0.1>')
     api_opts.add_argument('-lc', '--limit_chase', dest='limit_chase', type=int, default=0, help=f'Chase this limit order this '
                                                                                           f'many times before .')
+    api_opts.add_argument('-tsb', '--trailing_stop_buy', dest='trailing_stop_buy', type=str, nargs='+', help='API Trailing Stop \
+    <market> <0.1> <.5>')
+
+    api_opts.add_argument('-tss', '--trailing_stop_sell', dest='trailing_stop_buy', type=str, nargs='+', help='API Trailing Stop \
+        <market> <0.1> <.5>')
+
     api_opts.add_argument('-cf', '--chase_failsafe', action='store_true', dest='chase_failsafe', help='Revert to market'
                                                                                                       'if order chase'
                                                                                                       'fails.')
