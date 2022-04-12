@@ -575,19 +575,40 @@ class AutoTrader:
         if self.reopen == 'increment':
             return self.increment_orders(market, side, qty, period)
 
-    def pnl_calc(self, qty, sell, buy, fee=0.00019):
+    def pnl_calc(self, qty, sell, buy, side, cost, future_instrument, fee=0.00019):
         """
         Profit and Loss Calculator - assume paying
          two market fees (one for take profit, one for re-opening). This way we can
          set tp to 0 and run as market maker and make something with limit orders.
         """
         if fee <= 0:
-            self.pnl = float(qty * (sell - buy) * (1 - fee))
+            pnl = float(qty * (sell - buy) * (1 - fee))
         else:
-            self.pnl = float(qty * (sell - buy) * (1 - (fee * 2)))
-        if self.pnl is not None:  # pythonic double negative nonsense
-            return self.pnl
-        return 0.0
+            pnl = float(qty * (sell - buy) * (1 - (fee * 2)))
+        if pnl is not None:  # pythonic double negative nonsense
+            if side == 'buy':
+                try:
+                    if pnl <= 0.0:
+                        self.cp.red(f'[🔻] Negative PNL {pnl} on position {future_instrument}')
+                    else:
+                        self.cp.green(f'[🔺] Positive PNL {pnl} on position {future_instrument}')
+                except Exception as err:
+                    print('Error calculating PNL: ', err)
+                else:
+                    try:
+                        pnl_pct = (float(pnl) / float(cost)) * 100
+                    except Exception as err:
+                        print('Error calculating PNL%: ', err)
+                    else:
+                        return pnl, pnl_pct
+            else:
+                try:
+                    pnl_pct = (float(pnl) / float(cost * -1)) * 100
+                except Exception as err:
+                    print('DEBUG Error calculating PNL line 683: ', err)
+                else:
+                    return pnl, pnl_pct
+            return 0.0, 0.0
 
     def parse(self, pos, info):
         """
@@ -697,8 +718,6 @@ class AutoTrader:
         pnl_pct = 0
         tpnl = 0
         tsl = 0
-
-
         # For future implantation
         # Are we a long or a short?
         if side == 'buy':
@@ -710,22 +729,12 @@ class AutoTrader:
             current_price = bid
             current_price_inverse = ask
             try:
-                pnl = self.pnl_calc(qty=size, sell=ask, buy=avg_open_price, fee=takerFee)
+                pnl, pnl_pct = self.pnl_calc(qty=(size * -1), sell=avg_open_price, buy=bid, side=side,
+                                             cost=cost, future_instrument=future_instrument, fee=takerFee)
             except Exception as err:
                 print('DEBUG Error calculating PNL line 647: ', err)
 
-            try:
-                if pnl <= 0.0:
-                    self.cp.red(f'[🔻] Negative PNL {pnl} on position {future_instrument}')
-                else:
-                    self.cp.green(f'[🔺] Positive PNL {pnl} on position {future_instrument}')
-            except Exception as err:
-                print('Error calculating PNL: ', err)
-            try:
-                pnl_pct = (float(pnl) / float(cost)) * 100
-            except Exception as err:
-                print('DEBUG Error calculating PNL line 659: ', err)
-                pass
+
         else:
             # short position
             side = 'sell'
@@ -735,7 +744,8 @@ class AutoTrader:
                 return
             current_price = ask
             current_price_inverse = bid
-            pnl = self.pnl_calc(qty=(size * -1), sell=avg_open_price, buy=bid, fee=takerFee)
+            pnl, pnl_pct = self.pnl_calc(qty=(size * -1), sell=avg_open_price, buy=bid, side=side,
+                                         cost=cost, future_instrument=future_instrument, fee=takerFee)
             try:
                 if pnl <= 0.0:
                     self.cp.red(f'[🔻] Negative PNL {pnl} on position {future_instrument}')
@@ -744,11 +754,6 @@ class AutoTrader:
             except Exception as err:
                 print('DEBUG Error calculating PNL line 677: ', err)
                 pass
-
-            try:
-                pnl_pct = (float(pnl) / float(cost * -1)) * 100
-            except Exception as err:
-                print('DEBUG Error calculating PNL line 683: ', err)
 
         self.cp.random_pulse(
             f'[▶] Instrument: {future_instrument}, Side: {side}, Size: {size} Cost: {cost}, Entry: {entry_price},'
@@ -789,10 +794,6 @@ class AutoTrader:
                         self.cp.red('[!] Size too small! Fail ...')
                     else:
                         self.cp.red(f'[!] Error with order: {err}')
-
-
-
-
                 else:
                     self.accumulated_pnl += pnl
 
@@ -818,18 +819,16 @@ class AutoTrader:
                             self.total_contacts_trade += (new_qty * last)
                             if ret:
                                 print('[🃑] Success')
-
-
         else:
             try:
                 tpnl = (self._take_profit / pnl_pct) * pnl
             except ZeroDivisionError:
-                print(f'Zero Div Error what??')
+                pass
 
             try:
                 tsl = (self.stop_loss / pnl_pct) * pnl
             except ZeroDivisionError:
-                print(f'Zero Div Error what??')
+                pass
 
             self.cp.yellow(
                 f'[$]PNL %: {pnl_pct}/Target %: {self._take_profit}/Target Stop: {self.stop_loss}, PNL USD: {pnl}, '
@@ -847,7 +846,6 @@ class AutoTrader:
 
             if float(pos['collateralUsed'] != 0.0) or float(pos['longOrderSize']) > 0 or float(
                     pos['shortOrderSize']) < 0:
-                #print(pos)
                 self.parse(pos, account_info)
 
     def start_process(self):

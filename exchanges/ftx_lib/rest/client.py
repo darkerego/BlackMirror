@@ -6,6 +6,9 @@ from requests import Request, Session, Response
 import hmac
 from ciso8601 import parse_datetime
 
+from lib.exceptions import RestartError
+from lib.func_timer import exit_after, cdquit
+
 
 class FtxClient:
     _ENDPOINT = 'https://ftx.com/api/'
@@ -16,11 +19,25 @@ class FtxClient:
         self._api_secret = api_secret
         self._subaccount_name = subaccount_name
 
-    def _get(self, path: str, params: Optional[Dict[str, Any]] = None) -> Any:
+    def __get(self, path: str, params: Optional[Dict[str, Any]] = None) -> Any:
         return self._request('GET', path, params=params)
 
-    def _post(self, path: str, params: Optional[Dict[str, Any]] = None) -> Any:
+    def __post(self, path: str, params: Optional[Dict[str, Any]] = None) -> Any:
         return self._request('POST', path, json=params)
+
+    @exit_after(5)
+    def _get(self, path: str, params: Optional[Dict[str, Any]] = None) -> Any:
+        try:
+            return self.__get(path, params)
+        except RestartError:
+            return 'Timeout Error'
+
+    @exit_after(5)
+    def _post(self, path: str, params: Optional[Dict[str, Any]] = None) -> Any:
+        try:
+            return self.__post(path, params)
+        except RestartError:
+            return 'Timeout Error'
 
     def _delete(self, path: str, params: Optional[Dict[str, Any]] = None) -> Any:
         return self._request('DELETE', path, json=params)
@@ -44,6 +61,7 @@ class FtxClient:
         if self._subaccount_name:
             request.headers['FTX-SUBACCOUNT'] = urllib.parse.quote(self._subaccount_name)
 
+
     def _process_response(self, response: Response) -> Any:
         try:
             data = response.json()
@@ -53,8 +71,8 @@ class FtxClient:
         else:
             if not data['success']:
                 raise Exception(data['error'])
-                #print(f'Error: {data["error"]}', )
-                #return data['error']
+                # print(f'Error: {data["error"]}', )
+                # return data['error']
             return data['result']
 
     def list_futures(self) -> List[dict]:
@@ -92,7 +110,8 @@ class FtxClient:
     def get_trades(self, market: str) -> dict:
         return self._get(f'markets/{market}/trades')
 
-    def get_public_k_line(self, market: str, resolution=14400, limit=20, start_time: float= None, end_time: float= None):
+    def get_public_k_line(self, market: str, resolution=14400, limit=20, start_time: float = None,
+                          end_time: float = None):
         """
         https://docs.ftx.com/#get-historical-prices
 
@@ -264,7 +283,6 @@ class FtxClient:
                                                      'size': size,
                                                      'source': source,
                                                      'destination': destination})
-
 
     def get_deposit_history(self) -> List[dict]:
         return self._get('wallet/deposits')
