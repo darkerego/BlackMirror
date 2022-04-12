@@ -129,14 +129,14 @@ class FtxApi:
 
 
 
-    def trailing_stop(self, market, side, offset, qty, reduce=True):
-        """
+    """def trailing_stop(self, market, side, offset, qty, reduce=True):
+       '''
         self, market: str, side: str, size: float, type: str = 'stop',
             limit_price: float = None, reduce_only: bool = False, cancel: bool = True,
             trigger_price: float = None, trail_value: float = None
-        """
+        '''
         return self.rest.place_conditional_order(market=market, side=side, size=qty, type='trailing_stop',
-                                                 reduce_only=reduce, trail_value=offset)
+                                                 reduce_only=reduce, trail_value=offset)"""
 
 
     def positions(self):
