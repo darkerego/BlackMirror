@@ -835,7 +835,7 @@ class AutoTrader:
 
             if float(pos['collateralUsed'] != 0.0) or float(pos['longOrderSize']) > 0 or float(
                     pos['shortOrderSize']) < 0:
-                print(pos)
+                #print(pos)
                 self.parse(pos, account_info)
 
     def start_process(self):
