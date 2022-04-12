@@ -771,7 +771,7 @@ class AutoTrader:
             o_size = size
             self.total_contacts_trade += (o_size * last)
             new_qty = size * self.position_close_pct
-            self.cp.purple(f'Sending {pos_side} order of size {o_size} , price {current_price}')
+            self.cp.purple(f'Sending {pos_side} order of size {new_qty} , price {current_price}')
             if self.monitor_only:
                 self.cp.red('[!] Not actually trading... ')
 
