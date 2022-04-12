@@ -52,8 +52,9 @@ class FtxClient:
             raise
         else:
             if not data['success']:
-                #raise Exception(data['error'])
-                print(f'Error: {data["error"]}', )
+                raise Exception(data['error'])
+                #print(f'Error: {data["error"]}', )
+                #return data['error']
             return data['result']
 
     def list_futures(self) -> List[dict]:
@@ -183,7 +184,7 @@ class FtxClient:
         To send a Take Profit Market order, set type='trailing_stop' and supply a trigger_price
         To send a Trailing Stop order, set type='trailing_stop' and supply a trail_value
         """
-        print(market, side, size, type, limit_price, reduce_only, cancel, trigger_price, trail_value)
+        # print(market, side, size, type, limit_price, reduce_only, cancel, trigger_price, trail_value)
         assert type in ('stop', 'takeProfit', 'trailingStop')
         assert type not in ('stop', 'takeProfit') or trigger_price is not None, \
             'Need trigger prices for stop losses and take profits'
@@ -194,9 +195,6 @@ class FtxClient:
                           {'market': market, 'side': side, 'triggerPrice': trigger_price,
                            'size': size, 'reduceOnly': reduce_only, 'type': type,
                            'cancelLimitOnTrigger': cancel, 'orderPrice': limit_price, 'trailValue': trail_value})
-
-
-
 
     def cancel_order(self, order_id: str) -> dict:
         return self._delete(f'orders/{order_id}')

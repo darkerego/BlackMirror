@@ -723,7 +723,7 @@ class AutoTrader:
                 print('Error calculating PNL: ', err)
             try:
                 pnl_pct = (float(pnl) / float(cost)) * 100
-            except Exception as fuck:
+            except Exception as err:
                 print('DEBUG Error calculating PNL line 659: ', err)
                 pass
         else:
@@ -747,7 +747,7 @@ class AutoTrader:
 
             try:
                 pnl_pct = (float(pnl) / float(cost * -1)) * 100
-            except Exception as fuck:
+            except Exception as err:
                 print('DEBUG Error calculating PNL line 683: ', err)
 
         self.cp.random_pulse(
@@ -762,15 +762,12 @@ class AutoTrader:
             print(f'Target profit level of {self._take_profit} reached! Calculating pnl')
             if float(size) < 0.0:
                 size = size * -1
-            self.accumulated_pnl += pnl
 
-            self.cp.alert('----------------------------------------------')
-            self.cp.alert(f'Total Session PROFITS: {self.accumulated_pnl}')
-            self.cp.alert('----------------------------------------------')
-            self.cp.green(f'Reached target pnl of {pnl_pct} on {future_instrument}, taking profit... PNL: {pnl}')
             o_size = size
             self.total_contacts_trade += (o_size * last)
             new_qty = size * self.position_close_pct
+            if float(new_qty) < float(self.future_stats[name]['min_order_size']):
+                new_qty = size
             self.cp.purple(f'Sending {pos_side} order of size {new_qty} , price {current_price}')
             if self.monitor_only:
                 self.cp.red('[!] Not actually trading... ')
@@ -782,27 +779,35 @@ class AutoTrader:
                     ret = self.take_profit_wrap(entry=entry_price, side=side, size=new_qty, order_type=self.order_type,
                                             market=future_instrument)
                 except Exception as err:
-                    print(err)
+                    print('ERROR', err)
                     if re.match(r'^(.*)margin for order(.*)$',
                                 err.__str__()):
-                        self.cp.red('[~] Not enough margain!')
+                        self.cp.red('[!] Not enough margin!')
                         ret = False
                     elif re.match(r'^(.*)Size too small(.*)$', err.__str__()):
                         qty = size
-                        ret = self.take_profit_wrap(entry=entry_price, side=side, size=qty,
-                                                    order_type=self.order_type,
-                                                    market=future_instrument)
+                        self.cp.red('[!] Size too small! Fail ...')
+                    else:
+                        self.cp.red(f'[!] Error with order: {err}')
+
 
 
 
                 else:
-                    self.total_contacts_trade += (o_size * last)
+                    self.accumulated_pnl += pnl
+
+                    self.cp.alert('----------------------------------------------')
+                    self.cp.alert(f'Total Session PROFITS: {self.accumulated_pnl}')
+                    self.cp.alert('----------------------------------------------')
+                    self.cp.green(
+                        f'Reached target pnl of {pnl_pct} on {future_instrument}, taking profit... PNL: {pnl}')
+                    self.total_contacts_trade += (new_qty * last)
                     if ret:
                         print('[🃑] Success')
 
                     if ret and self.reopen:
                         # self.accumulated_pnl += pnl
-                        self.cp.yellow(f'Reopening .... {side} {o_size}')
+                        self.cp.yellow(f'Reopening .... {side} {new_qty}')
                         try:
                             ret = self.reopen_pos(market=future_instrument, side=side, qty=new_qty, period=self.period, info=info)
                         except Exception as err:
@@ -810,7 +815,7 @@ class AutoTrader:
                             #if re.match(r'^(.*)margin for order(.*)$', err.__str__()):
                             self.cp.red(f'[~] Error with order: {err.__str__()}')
                         else:
-                            self.total_contacts_trade += (o_size * last)
+                            self.total_contacts_trade += (new_qty * last)
                             if ret:
                                 print('[🃑] Success')
 
