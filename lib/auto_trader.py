@@ -697,7 +697,7 @@ class AutoTrader:
         pnl_pct = 0
         tpnl = 0
         tsl = 0
-        ret = ''
+
 
         # For future implantation
         # Are we a long or a short?
@@ -782,10 +782,17 @@ class AutoTrader:
                     ret = self.take_profit_wrap(entry=entry_price, side=side, size=new_qty, order_type=self.order_type,
                                             market=future_instrument)
                 except Exception as err:
+                    print(err)
                     if re.match(r'^(.*)margin for order(.*)$',
-                                'Exception: Account does not have enough margin for order.'):
-                        self.cp.red('[~] Order size is too small!')
+                                err.__str__()):
+                        self.cp.red('[~] Not enough margain!')
                         ret = False
+                    elif re.match(r'^(.*)Size too small(.*)$', err.__str__()):
+                        qty = size
+                        ret = self.take_profit_wrap(entry=entry_price, side=side, size=qty,
+                                                    order_type=self.order_type,
+                                                    market=future_instrument)
+
 
 
                 else:
@@ -793,19 +800,19 @@ class AutoTrader:
                     if ret:
                         print('[🃑] Success')
 
-                if ret and self.reopen:
-                    # self.accumulated_pnl += pnl
-                    self.cp.yellow(f'Reopening .... {side} {o_size}')
-                    try:
-                        ret = self.reopen_pos(market=future_instrument, side=side, qty=new_qty, period=self.period, info=info)
-                    except Exception as err:
-                        print(err)
-                        if re.match(r'^(.*)margin for order(.*)$', 'Exception: Account does not have enough margin for order.'):
-                            self.cp.red('[~] Order size is too small!')
-                    else:
-                        self.total_contacts_trade += (o_size * last)
-                        if ret:
-                            print('[🃑] Success')
+                    if ret and self.reopen:
+                        # self.accumulated_pnl += pnl
+                        self.cp.yellow(f'Reopening .... {side} {o_size}')
+                        try:
+                            ret = self.reopen_pos(market=future_instrument, side=side, qty=new_qty, period=self.period, info=info)
+                        except Exception as err:
+                            print(err)
+                            #if re.match(r'^(.*)margin for order(.*)$', err.__str__()):
+                            self.cp.red(f'[~] Error with order: {err.__str__()}')
+                        else:
+                            self.total_contacts_trade += (o_size * last)
+                            if ret:
+                                print('[🃑] Success')
 
 
         else:
@@ -873,9 +880,10 @@ class AutoTrader:
                 else:
                     self.cp.white_black(f'[🃑] Wins: - [🃏] Losses: -')
 
-            try:
+            self.position_parser(positions=pos, account_info=info)
+            #try:
                 # print(info)
-                self.position_parser(positions=pos, account_info=info)
-            except RestartError:
-                self.cp.red('[!] Timeout, redo ... ')
+
+            #except RestartError:
+            #    self.cp.red('[!] Timeout, redo ... ')
 

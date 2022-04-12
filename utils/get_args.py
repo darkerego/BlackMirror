@@ -133,7 +133,7 @@ def get_args():
                                      '0.2 wouild be 20 pcercent')
     auto_stop_opts.add_argument('-tpo', '--trailing_stop_off', dest='no_use_trailing_stop', action='store_true',
                                 help='Do not use Trailing Stops. Not sure why you would not to, but the option is here!')
-    auto_stop_opts.add_argument('-ts', '--trailing_stop_offset', dest='ts_offset', type=float, default=0.1,
+    auto_stop_opts.add_argument('-ts', '--trailing_stop_offset', dest='ts_offset', type=float, default=0.2,
                                 help='Trailing stop offset, represented as a floating point number, percentage of pnl.')
     auto_stop_opts.add_argument('-ot', '--order_type', choices=['limit', 'market'], default='market',
                                 type=str, help='Take profit order type.')

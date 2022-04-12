@@ -29,6 +29,7 @@ import logging
 import time
 from exchanges.ftx_lib.rest import client
 from exchanges.ftx_lib.websocket_api import client as ws_client
+from lib.exceptions import RestartError
 from lib.pos_monitor import Monitor
 from lib.receivers import WebSocketSignals
 from trade_engine.api_wrapper import FtxApi
@@ -81,6 +82,10 @@ class Bot:
                     print('\bCaught SIGINT - Terminate. \n')
                     cp.red(1)
                     exit(0)
+                except RestartError:
+                    ftx.__exit__()
+                    self.restarts += 1
+                    print('[!] Timeout error, restart!')
                 except FtxDisconnectError as err:
                     ftx.__exit__()
                     self.restarts += 1
