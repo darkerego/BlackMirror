@@ -140,7 +140,7 @@ class AutoTrader:
                 f' current price: {current_price}, qty: {qty}')
 
             ret = self.api.trailing_stop(market=market, side=opp_side, offset=offset_price, qty=float(qty), reduce=True)
-            self.logger.debug(ret)
+            print(ret)
             return ret
 
         else:
@@ -158,7 +158,7 @@ class AutoTrader:
                 f' current price: {current_price}, qty: {qty}')
 
             ret = self.api.trailing_stop(market=market, side=opp_side, offset=offset_price, qty=float(qty), reduce=True)
-            self.logger.debug(ret)
+            print(ret)
             return ret
 
 
