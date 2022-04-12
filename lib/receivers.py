@@ -167,7 +167,8 @@ class MqReceiver:
         if message.get('Status') == 'closed':
             _type = message.get('Signal')
             _type = _type.lower()
-            symbol = message.get('Instrument')
+            _instrument = self.sig_.get('Instrument')
+            symbol = str(_instrument[:-4] + '-PERP')
             score = message.get('Score')
             self.cp.blue(f'[X] Received {_type} EXIT Signal for {symbol}')
             ok, size = self.check_position_exists_diff(future=symbol, s=None)
