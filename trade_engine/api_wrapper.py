@@ -165,6 +165,7 @@ class FtxApi:
         return self.rest.modify_order(existing_order_id=oid, price=price, size=size, client_order_id=cid)
 
     def trailing_stop(self, market, side, size, trail_value, reduce_only):
+        #print(market, side, size, trail_value, reduce_only)
         ret = self.rest.place_conditional_order(market=market, side=side, size=size, trail_value=trail_value,
                                                   type='trailingStop', reduce_only=reduce_only)
         #print(ret)
