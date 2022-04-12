@@ -136,7 +136,7 @@ class AutoTrader:
             # qty = qty * -1
             opp_side = 'sell'
             self.cp.green(
-                f'Trailing Stop for long position of entry price: {entry_price} triggered: offset price {offset_price}'
+                f'Trailing Stop for long position of entry price: {entry_price} triggered: offset: {offset_price}'
                 f' current price: {current_price}, qty: {qty}')
 
             ret = self.api.trailing_stop(market=market, side=opp_side, offset=offset_price, qty=float(qty), reduce=True)
@@ -279,7 +279,7 @@ class AutoTrader:
 
         if side == 'buy':
             opp_side = 'sell'
-            trail_value = (ask - entry) * self.trailing_stop_pct
+            trail_value = ((ask - entry) * self.trailing_stop_pct) * -1
             if self.use_ts:
                 self.cp.white_black(f'[฿] Sending a trailing stop: {trail_value}')
                 # executor = ThreadPoolExecutor(max_workers=5)
@@ -311,7 +311,7 @@ class AutoTrader:
                     return ret
         else:  # side == sell
             opp_side = 'buy'
-            trail_value = (entry - bid) * self.trailing_stop_pct * -1
+            trail_value = (entry - bid) * self.trailing_stop_pct
             if self.use_ts:
                 self.cp.green(f'[฿] Sending a trailing stop: {trail_value}')
                 # executor = ThreadPoolExecutor(max_workers=5)
