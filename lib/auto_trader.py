@@ -111,6 +111,16 @@ class AutoTrader:
                 self.api.cancel_orders(market=instrument, limit_orders=True)
 
     def api_trailing_stop(self, market, qty, entry, side, offset=.25, ts_o_type='market'):
+        """
+        {
+              "market": "XRP-PERP",
+              "side": "sell",
+              "trailValue": -0.05,
+              "size": 31431.0,
+              "type": "trailingStop",
+              "reduceOnly": false,
+            }
+        """
         entry_price = entry
         qty = qty
         print('Trailing stop triggered')
@@ -158,6 +168,8 @@ class AutoTrader:
          Stop direction determined by current position, so there is no need to pass a negative offset, but
          if the user does then we correct it by `offset * -1`
         :param offset: integer representing how many dollars to trail the stop behind the current position
+
+
         """
 
         entry_price = entry
@@ -273,20 +285,20 @@ class AutoTrader:
                 # executor = ThreadPoolExecutor(max_workers=5)
                 # ret = executor.submit(self.trailing_stop, market=market, side=opp_side, qty=float(o_size),
                 #                      entry=float(entry), offset=float(self.trailing_stop_pct))
-                th = ThreadWithReturnValue(target=self.trailing_stop, args=(market, side, size, self.trailing_stop_pct,
-                                                                            entry, self.order_type))
-                th.start()
-                ret = th.join()
-                if ret:
-                    self.cp.purple(f'[~] Success at taking profit.')
-                    self.wins += 1
-                    return True
-                """ret = self.trailing_stop(market=market, side=side, qty=size, offset=self.trailing_stop_pct, entry=entry,
+                #th = ThreadWithReturnValue(target=self.trailing_stop, args=(market, side, size, self.trailing_stop_pct,
+                #                                                            entry, self.order_type))
+                #th.start()
+                #ret = th.join()
+                #if ret:
+                #    self.cp.purple(f'[~] Success at taking profit.')
+                #    self.wins += 1
+                #    return True
+                ret = self.api_trailing_stop(market=market, side=side, qty=size, offset=self.trailing_stop_pct, entry=entry,
                                          ts_o_type=self.order_type)
                 if ret:
                     print('Success at take profit')
                     self.wins += 1
-                    return True"""
+                    return True
             else:
 
                 if order_type == 'market':  # market, qty, reduce, ioc, cid):
@@ -305,12 +317,12 @@ class AutoTrader:
                 # executor = ThreadPoolExecutor(max_workers=5)
                 # ret = executor.submit(self.trailing_stop, market=market, side=opp_side, qty=float(o_size),
                 #                      entry=float(entry), offset=float(self.trailing_stop_pct))
-                """ret = self.trailing_stop(market=market, side=side, qty=size, offset=self.trailing_stop_pct, entry=entry,
-                                         ts_o_type=self.order_type)"""
-                th = ThreadWithReturnValue(target=self.trailing_stop, args=(market, side, size, self.trailing_stop_pct,
-                                                                            entry, self.order_type))
-                th.start()
-                ret = th.join()
+                ret = self.api_trailing_stop(market=market, side=side, qty=size, offset=self.trailing_stop_pct, entry=entry,
+                                         ts_o_type=self.order_type)
+                #th = ThreadWithReturnValue(target=self.trailing_stop, args=(market, side, size, self.trailing_stop_pct,
+                #                                                            entry, self.order_type))
+                #th.start()
+                #ret = th.join()
                 if ret:
                     self.cp.purple(f'[~] Success at taking profit.')
                     self.wins += 1
