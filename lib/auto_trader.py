@@ -139,7 +139,7 @@ class AutoTrader:
                 f'Trailing Stop for long position of entry price: {entry_price} triggered: offset: {offset_price}'
                 f' current price: {current_price}, qty: {qty}')
 
-            ret = self.api.trailing_stop(market=market, side=opp_side, offset=offset_price, qty=float(qty), reduce=True)
+            ret = self.api.trailing_stop(market=market, side=opp_side, trail_value=offset_price, size=float(qty), reduce_only=True)
             print(ret)
             return ret
 
