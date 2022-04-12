@@ -697,6 +697,7 @@ class AutoTrader:
         pnl_pct = 0
         tpnl = 0
         tsl = 0
+        ret = ''
 
         # For future implantation
         # Are we a long or a short?
@@ -784,6 +785,7 @@ class AutoTrader:
                     if re.match(r'^(.*)margin for order(.*)$',
                                 'Exception: Account does not have enough margin for order.'):
                         self.cp.red('[~] Order size is too small!')
+                        ret = False
 
 
                 else:
