@@ -137,9 +137,9 @@ class AutoTrader:
             opp_side = 'sell'
             self.cp.green(
                 f'Trailing Stop for long position of entry price: {entry_price} triggered: offset price {offset_price}'
-                f' current price: {current_price}')
+                f' current price: {current_price}, qty: {qty}')
 
-            ret = self.api.trailing_stop(market=market, side=opp_side, offset=offset_price, qty=qty, reduce=True)
+            ret = self.api.trailing_stop(market=market, side=opp_side, offset=offset_price, qty=float(qty), reduce=True)
             self.logger.debug(ret)
             return ret
 
@@ -155,9 +155,9 @@ class AutoTrader:
             opp_side = 'buy'
             self.cp.red(
                 f'Trailing Stop for short position of entry price: {entry_price} triggered: offset price {offset_price}'
-                f' current price: {current_price}')
+                f' current price: {current_price}, qty: {qty}')
 
-            ret = self.api.trailing_stop(market=market, side=opp_side, offset=offset_price, qty=qty, reduce=True)
+            ret = self.api.trailing_stop(market=market, side=opp_side, offset=offset_price, qty=float(qty), reduce=True)
             self.logger.debug(ret)
             return ret
 
