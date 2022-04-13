@@ -45,7 +45,7 @@ class Monitor:
         self.ts = conf.ts_offset
         self.ot = conf.order_type
         self.show_tickers = conf.show_tickers
-        self.monitor_only = conf.monitor_only
+        self.monitor_only = conf.monitor
         self.use_strategy = conf.use_strategy
         self.strategy = conf.strategy
         self.symbol = conf.symbol
@@ -114,7 +114,7 @@ class Monitor:
             #t.start()
             self.executor.submit(mq_server.start_process)
 
-        if self.auto or self.monitor_only or self.update_db:
+        if self.auto or self.update_db or self.monitor_only:
             self.cp.navy(data='Starting auto trader')
             self.auto_trade = AutoTrader(self.api,
                                          stop_loss=self.sl,
@@ -126,7 +126,7 @@ class Monitor:
                                          reopen=self.reopen,
                                          disable_stop_loss=self.no_sl,
                                          show_tickers=self.show_tickers,
-                                         monitor_only=self.monitor_only,
+                                         #monitor_only=self.monitor_only,
                                          close_method=self.close_method,
                                          ot=self.ot,
                                          relist_iterations=self.relist_iterations,
@@ -158,7 +158,7 @@ class Monitor:
         current_time = 0
         running = self.running = True
         time.sleep(0.25)
-        if self.auto or self.update_db or self.monitor_only:
+        if self.auto or self.update_db:
             self.auto_trade.start_process()
         while running:
             try:

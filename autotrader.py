@@ -98,18 +98,13 @@ def parse_and_exec(args):
     key, secret, subaccount = config_loader.load_config('conf.json')
     bot = Bot()
 
-
-
-    if args.monitor_only:
-        cp.navy('[🌡] Monitoring only mode.')
-        #bot.monitor(key=key, secret=secret, subaccount_name=args.subaccount, args=args)
-
     if args.monitor or args.auto_trader or args.monitor_only or args.update_db:
         logo.post()
         if args.update_db:
             cp.red('[I] Updating the market database, please stand by ... ')
-            bot.monitor(key=key, secret=secret, subaccount_name=args.subaccount, args=args)
             exit()
+        if args.monitor and not args.auto_trader:
+            cp.navy('[🌡] Monitoring only mode.')
 
         if args.balance_arbitrage:
             cp.navy('WARNING: EXPERIMENTAL !! -- Loading balance arbitrage engine...')

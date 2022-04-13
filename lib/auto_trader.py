@@ -849,7 +849,7 @@ class AutoTrader:
                 self.parse(pos, account_info)
 
     def start_process(self):
-
+        restarts = 0
         _iter = 0
         while True:
             _iter += 1
@@ -864,29 +864,37 @@ class AutoTrader:
             try:
                 info = self.api.info()
                 pos = self.api.positions()
-            except RestartError as fuck:
-                self.logger.error(fuck)
-                print(repr(f'Restart: {fuck} {_iter}'))
-                exit(1)
+
             except KeyboardInterrupt:
                 print('[~] Caught Sigal...')
                 exit(0)
 
+            except Exception as err:
+                _iter = 0
+                print(f'[!] Error: {err}')
+
             else:
                 if _iter == 1:
+                    restarts += 1
                     self.cp.purple('[i] Starting AutoTrader, performing sanity check. ...')
                     self.sanity_check(positions=pos)
                 self.cp.pulse(f'[$] Account Value: {info["totalAccountValue"]} Collateral: {info["collateral"]} '
-                              f'Free Collateral: {info["freeCollateral"]}, Contracts Traded: {self.total_contacts_trade}')
+                              f'Free Collateral: {info["freeCollateral"]}, Contracts Traded: {self.total_contacts_trade}'
+                              f' Restarts: {restarts}')
                 if self.wins != 0 or self.losses != 0:
                     self.cp.white_black(f'[🃑] Wins: {self.wins} [🃏] Losses: {self.losses}')
                 else:
                     self.cp.white_black(f'[🃑] Wins: - [🃏] Losses: -')
+            try:
+                self.position_parser(positions=pos, account_info=info)
 
-            self.position_parser(positions=pos, account_info=info)
-            #try:
-                # print(info)
+            except RestartError as fuck:
+                self.logger.error(fuck)
+                print(repr(f'Restart: {fuck} {_iter}'))
+                _iter = 0
+            except Exception as fuck:
+                self.logger.error(fuck)
+                print(repr(f'Restart: {fuck} {_iter}'))
+                _iter = 0
 
-            #except RestartError:
-            #    self.cp.red('[!] Timeout, redo ... ')
 

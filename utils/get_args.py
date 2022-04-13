@@ -111,8 +111,7 @@ def get_args():
 
     auto_stop_opts = parser.add_argument_group('Auto Stop Loss Options')
     auto_stop_opts.add_argument('-a', '--auto', dest='auto_trader', action='store_true', help='Use AutoTrader')
-    auto_stop_opts.add_argument('-mo', '--monitor_only', dest='monitor_only', action='store_true',
-                                help='Do not trade. Monitor only.')
+
     auto_stop_opts.add_argument('--trade', '--really', dest='confirm',
                                 action='store_true',
                                 help='This is a FAILSAFE options to'
