@@ -79,6 +79,7 @@ class Monitor:
         self.hedge_ratio = conf.hedge_ratio
         self.hedge_mode = conf.hedge_mode
         self.mqtt_topic = conf.mqtt_topic
+        self.live_score = conf.live_score
 
         if self.sl > 0.0:
             self.sl = self.sl * -1
@@ -110,7 +111,7 @@ class Monitor:
             mq_server = MqReceiver(server_uri=self.mqtt_uri, rest=self.rest, _ws=self.ws, sa=self.subaccount,
                                    collateral_pct=self.portfolio_pct, reenter=self.reenter, data_source=self.data_source,
                                    exclude_markets=self.exclude_markets, debug=False, min_score=self.min_score,
-                                   topic=self.mqtt_topic)
+                                   topic=self.mqtt_topic, live_score=self.live_score)
             #t = threading.Thread(target=mq_server.run())
             #t.setDaemon(True)
             #t.start()

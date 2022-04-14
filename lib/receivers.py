@@ -132,7 +132,7 @@ class WsReceiver:
 
 class MqReceiver:
     def __init__(self, server_uri, rest, _ws, sa, collateral_pct, reenter,
-                 data_source, exclude_markets, debug=True, min_score=10, topic='/signals'):
+                 data_source, exclude_markets, debug=True, min_score=10, topic='/signals', live_score=False):
         self.debug = debug
         self.api = FtxApi(rest, _ws)
         self.sa = sa
@@ -148,6 +148,7 @@ class MqReceiver:
         self.mq = MqSkel(host=self.host, port=self.port, topic=self.topic)
         self.cp.red('Starting ... mqtt')
         self.mq.mqStart(streamId='blackmirrorclient')
+        self.live_score = live_score
 
         self.sig_ = {}
         self.min_score = min_score
@@ -176,13 +177,20 @@ class MqReceiver:
             self.position_close(symbol=symbol, side=_type, size=size)
         if message.get('Status') == 'open':
             self.sig_.update(message)
-            score = message.get('Score')
+            if self.live_score:
+                score = float(message.get('Live_score'))
+            else:
+                score = float(message.get('score'))
             _type = self.sig_.get('Signal')
             _instrument = self.sig_.get('Instrument')
             _symbol = str(_instrument[:-4] + '-PERP')
             if float(score) < 0:
                 score = float(score) * -1
-            self.cp.blue(f'[E] Received {_type} Enter Signal for instrument {_instrument} of Score {score} %')
+            if self.live_score:
+                if float(score) < self.min_score:
+                    ok, size = self.check_position_exists_diff(future=symbol, s=None)
+                    self.position_close(symbol=symbol, side=_type, size=size)
+
             for i in range(1, 10):
                 b, a, l = self.api.get_ticker(market=_symbol)
                 if l == 0:
@@ -197,8 +205,9 @@ class MqReceiver:
             print(balance, leverage, qty)
 
             if _type == 'LONG':
+                #self.cp.blue(f'[E] Received {_type} Enter Signal for instrument {_instrument} of Score {score} %')
                 if float(score) > float(self.min_score):
-                    self.cp.alert('[LONG SIGNAL]: ENTERING!')
+                    self.cp.alert('[LONG SIGNAL]: {_instrument} Score {score} % ENTERING!')
                     check, size = self.check_position_exists_diff(future=_symbol)
                     if check:
                         ret = self.api.buy_market(market=_symbol, qty=qty, reduce=False, ioc=False, cid=None)
@@ -210,7 +219,7 @@ class MqReceiver:
                     self.cp.yellow('[-] Score too low')
             elif _type == 'SHORT':
                 if float(score) > float(self.min_score):
-                    self.cp.alert('[SHORT SIGNAL] ENTERING!')
+                    self.cp.alert('[SHORT SIGNAL]: {_instrument} Score {score} % ENTERING!')
                     check, size = self.check_position_exists_diff(future=_symbol)
                     if check:
                         ret = self.api.sell_market(_symbol, qty=qty, reduce=False, ioc=False, cid=None)

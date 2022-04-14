@@ -93,6 +93,9 @@ def get_args():
                                help='Websocket/Mqtt uri, wss://host:port | localhost:1883')
     receiver_opts.add_argument('-mt', '--mqtt_topic', dest='mqtt_topic', default='/signals', help='MqTT Topic For '
                                                                                                   'Signals')
+    receiver_opts.add_argument('-ls', '--live_score', dest='live_score', action='store_true', help='Experimental: '
+                                                                                                   'use the real-time'
+                                                                                                   'analysis feed.')
     receiver_opts.add_argument('-pf', '--portfolio_pct', dest='portfolio_pct', type=float, default=.1,
                                help='Float representing pct of'
                                     'holdings to use on incoming'
