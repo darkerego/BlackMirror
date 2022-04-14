@@ -28,13 +28,13 @@ class FtxClient:
     def __post(self, path: str, params: Optional[Dict[str, Any]] = None) -> Any:
         return self._request('POST', path, json=params)
 
-    @timeout_decorator.timeout(5)
+    #@timeout_decorator.timeout(5)
     def _get(self, path: str, params: Optional[Dict[str, Any]] = None) -> Any:
         ret = self.__get(path, params)
         return ret
 
 
-    @timeout_decorator.timeout(5)
+    #@timeout_decorator.timeout(5)
     def _post(self, path: str, params: Optional[Dict[str, Any]] = None) -> Any:
         ret = self.__post(path, params)
         return ret
