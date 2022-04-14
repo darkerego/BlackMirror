@@ -26,7 +26,7 @@ class MqSkel:
         self.debug = False
         self.CLIENTS = {}
         # SUBSCRIPTIONS = [("/incoming/" + v, 0)  for v in PAIRS]
-        self.SUBSCRIPTIONS = [('/signals', 0), ('/echo', 0)]
+        self.SUBSCRIPTIONS = [('/live', 0), ('/echo', 0)]
         self.mqStart(streamId=self.streamid)
 
     def mqConnect(self, client, userdata, flags, rc):
