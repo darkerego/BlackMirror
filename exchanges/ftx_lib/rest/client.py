@@ -5,11 +5,13 @@ from typing import Optional, Dict, Any, List
 from requests import Request, Session, Response
 import hmac
 from ciso8601 import parse_datetime
+from timeout_decorator import timeout_decorator
 
 import lib.exceptions
-from lib.exceptions import RestartError
-from lib.func_timer import exit_after, cdquit
-
+#from lib.exceptions import RestartError
+#from lib.func_timer import exit_after, cdquit
+import multiprocessing
+import time
 
 class FtxClient:
     _ENDPOINT = 'https://ftx.com/api/'
@@ -26,26 +28,16 @@ class FtxClient:
     def __post(self, path: str, params: Optional[Dict[str, Any]] = None) -> Any:
         return self._request('POST', path, json=params)
 
-    @exit_after(10)
+    @timeout_decorator.timeout(5)
     def _get(self, path: str, params: Optional[Dict[str, Any]] = None) -> Any:
-        while 1:
-            try:
-                ret = self.__get(path, params)
-            except lib.exceptions.RestartError as err:
-                print(f'API ERROR: {err}')
-            else:
-                return ret
+        ret = self.__get(path, params)
+        return ret
 
 
-    @exit_after(10)
+    @timeout_decorator.timeout(5)
     def _post(self, path: str, params: Optional[Dict[str, Any]] = None) -> Any:
-        while 1:
-            try:
-                ret = self.__post(path, params)
-            except lib.exceptions.RestartError as err:
-                print(f'API ERROR: {err}')
-            else:
-                return ret
+        ret = self.__post(path, params)
+        return ret
 
     def _delete(self, path: str, params: Optional[Dict[str, Any]] = None) -> Any:
         return self._request('DELETE', path, json=params)
