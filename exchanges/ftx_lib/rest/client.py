@@ -6,6 +6,7 @@ from requests import Request, Session, Response
 import hmac
 from ciso8601 import parse_datetime
 
+import lib.exceptions
 from lib.exceptions import RestartError
 from lib.func_timer import exit_after, cdquit
 
@@ -25,13 +26,26 @@ class FtxClient:
     def __post(self, path: str, params: Optional[Dict[str, Any]] = None) -> Any:
         return self._request('POST', path, json=params)
 
-    #@exit_after(10)
+    @exit_after(10)
     def _get(self, path: str, params: Optional[Dict[str, Any]] = None) -> Any:
-        return self.__get(path, params)
+        while 1:
+            try:
+                ret = self.__get(path, params)
+            except lib.exceptions.RestartError as err:
+                print(f'API ERROR: {err}')
+            else:
+                return ret
 
-    #@exit_after(10)
+
+    @exit_after(10)
     def _post(self, path: str, params: Optional[Dict[str, Any]] = None) -> Any:
-        return self.__post(path, params)
+        while 1:
+            try:
+                ret = self.__post(path, params)
+            except lib.exceptions.RestartError as err:
+                print(f'API ERROR: {err}')
+            else:
+                return ret
 
     def _delete(self, path: str, params: Optional[Dict[str, Any]] = None) -> Any:
         return self._request('DELETE', path, json=params)
