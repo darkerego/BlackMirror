@@ -25,8 +25,9 @@ class MqSkel:
         self.port = port
         self.debug = False
         self.CLIENTS = {}
+        self.topic = topic
         # SUBSCRIPTIONS = [("/incoming/" + v, 0)  for v in PAIRS]
-        self.SUBSCRIPTIONS = [(f'{topic}', 0), ('/echo', 0)]
+        self.SUBSCRIPTIONS = [(f'{self.topic}', 0), ('/echo', 0)]
         print(f'[m] Starting MqTT Receiver ... Topic is: {topic}')
         self.mqStart(streamId=self.streamid)
 
