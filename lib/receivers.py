@@ -141,6 +141,7 @@ class MqReceiver:
         self.data_source = data_source
         self.exclude_markets = exclude_markets
         self.server_uri = server_uri
+        self.topic = topic
         self.host = self.server_uri.split(':')[0]
         self.port = int(self.server_uri.split(':')[1])
         self.cp = NewColorPrint()
