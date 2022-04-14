@@ -15,8 +15,44 @@
 
 # About Blackmirror
 
-### Coming Really Soon: Trade Signals via MqTT Will Be FREE for a limited Evaluation Period!
+### Trade Signals via MqTT Now Available For Evaluation
 
+<p>
+I am currently streaming trade signals for use with this bot. They are available over mqtt at:
+    beta.blackmirror.app:1883
+
+Keep in mind that these signals are pretty alpha right now, but I am actually having some success. 
+There are a couple of different streams you can use:
+
+- /signals - the main stream. These are sent out when they are generated and only broadcast when they 
+   open and close.
+- /stream - these are updated in real time and just keep streaming in. 
+
+Here is a sample command you can use to trade with these signals:
+
+```
+./app.py -m -a  -src binance --trade -tp .6  -sl 0.3 -cm market  \
+-mc .75 -pc .25 -uri beta.blackmirror.app:1883 -mq -ot limit  -ms 29  -mt /stream -lS
+```
+
+Breakdown of command:
+
+- enable monitor mode
+- enable auto trader
+- signal data source is binance
+- actually trade
+- take profit at .6%
+- stop loss at .5%
+- close with market (trailing stop) order
+- use 75% of collateral max
+- close 25% of the position at a time
+- connect to the host
+- enable mqtt
+- try to use limit orders
+- min score to enter trade 29% (its a weighted average of indicators)
+- use the live stream
+- gotta enable -lS to use the live stream
+</p>
 ### What's New - 04/14/2022
 - Bot is stable!
 - Fixed random api freezes
