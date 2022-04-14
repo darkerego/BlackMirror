@@ -109,6 +109,7 @@ class FtxApi:
         """
         Place a market buy order
         """
+        print(f'{market}, {qty}, {reduce})
         return self.rest.place_order(market=market, side='buy', size=qty, type='market', reduce_only=reduce,
                                      post_only=False, client_id=cid, ioc=ioc, price=None)
 
@@ -124,6 +125,7 @@ class FtxApi:
         """
         Place a market sell order
         """
+        print(f'{market}, {qty}, {reduce})
         return self.rest.place_order(market=market, side='sell', size=qty, type='market', reduce_only=reduce,
                                      post_only=False, client_id=cid, ioc=ioc, price=None)
 
