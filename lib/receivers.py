@@ -170,11 +170,11 @@ class MqReceiver:
             _type = message.get('Signal')
             _type = _type.lower()
             _instrument = self.sig_.get('Instrument')
-            symbol = str(_instrument[:-4] + '-PERP')
+            _symbol = str(_instrument[:-4] + '-PERP')
             score = message.get('Score')
-            self.cp.blue(f'[X] Received {_type} EXIT Signal for {symbol}')
-            ok, size = self.check_position_exists_diff(future=symbol, s=None)
-            self.position_close(symbol=symbol, side=_type, size=size)
+            self.cp.blue(f'[X] Received {_type} EXIT Signal for {_symbol}')
+            ok, size = self.check_position_exists_diff(future=_symbol, s=None)
+            self.position_close(symbol=_symbol, side=_type, size=size)
         if message.get('Status') == 'open':
             self.sig_.update(message)
             if self.live_score:
@@ -189,7 +189,7 @@ class MqReceiver:
             if self.live_score:
                 if float(score) < self.min_score:
                     ok, size = self.check_position_exists_diff(future=_symbol, s=None)
-                    self.position_close(symbol=symbol, side=_type, size=size)
+                    self.position_close(symbol=_symbol, side=_type, size=size)
 
             for i in range(1, 10):
                 b, a, l = self.api.get_ticker(market=_symbol)
