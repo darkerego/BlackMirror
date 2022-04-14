@@ -15,6 +15,15 @@
 
 # About Blackmirror
 
+### Coming Really Soon: Trade Signals via MqTT Will Be FREE for a limited Evaluation Period!
+
+### What's New - 04/14/2022
+- Bot is stable!
+- Fixed random api freezes
+- Switched trailing stop to use API
+- Order chasing works
+- Signal engine honors exit signals
+- Countless bugfixes
 
 <p>
 <b>The Case for Blackmirror's Existence</b>
