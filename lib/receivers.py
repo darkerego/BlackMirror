@@ -207,7 +207,7 @@ class MqReceiver:
             if _type == 'LONG':
                 #self.cp.blue(f'[E] Received {_type} Enter Signal for instrument {_instrument} of Score {score} %')
                 if float(score) > float(self.min_score):
-                    self.cp.alert('[LONG SIGNAL]: {_instrument} Score {score} % ENTERING!')
+                    self.cp.alert(f'[LONG SIGNAL]: {_instrument} Score {score} % ENTERING!')
                     check, size = self.check_position_exists_diff(future=_symbol)
                     if check:
                         ret = self.api.buy_market(market=_symbol, qty=qty, reduce=False, ioc=False, cid=None)
@@ -219,7 +219,7 @@ class MqReceiver:
                     self.cp.yellow('[-] Score too low')
             elif _type == 'SHORT':
                 if float(score) > float(self.min_score):
-                    self.cp.alert('[SHORT SIGNAL]: {_instrument} Score {score} % ENTERING!')
+                    self.cp.alert(f'[SHORT SIGNAL]: {_instrument} Score {score} % ENTERING!')
                     check, size = self.check_position_exists_diff(future=_symbol)
                     if check:
                         ret = self.api.sell_market(_symbol, qty=qty, reduce=False, ioc=False, cid=None)
