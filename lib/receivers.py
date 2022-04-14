@@ -187,9 +187,12 @@ class MqReceiver:
             if float(score) < 0:
                 score = float(score) * -1
             if self.live_score:
+
                 if float(score) < self.min_score:
                     ok, size = self.check_position_exists_diff(future=_symbol, s=None)
                     self.position_close(symbol=_symbol, side=_type, size=size)
+                    if float(score) < 0:
+                        score = float(score) * -1
 
             for i in range(1, 10):
                 b, a, l = self.api.get_ticker(market=_symbol)
