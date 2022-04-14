@@ -188,7 +188,7 @@ class MqReceiver:
                 score = float(score) * -1
             if self.live_score:
                 if float(score) < self.min_score:
-                    ok, size = self.check_position_exists_diff(future=symbol, s=None)
+                    ok, size = self.check_position_exists_diff(future=_symbol, s=None)
                     self.position_close(symbol=symbol, side=_type, size=size)
 
             for i in range(1, 10):
