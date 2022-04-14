@@ -178,7 +178,7 @@ class MqReceiver:
         if message.get('Status') == 'open':
             self.sig_.update(message)
             if self.live_score:
-                print(message.get('Live_score'))
+                #print(message.get('Live_score'))
                 score = float(message.get('Live_score'))
             else:
                 score = float(message.get('score'))
@@ -191,9 +191,11 @@ class MqReceiver:
 
                 if float(score) < self.min_score:
                     ok, size = self.check_position_exists_diff(future=_symbol, s=None)
-                    self.position_close(symbol=_symbol, side=_type, size=size)
                     if float(score) < 0:
                         score = float(score) * -1
+                    if not ok:
+                        self.position_close(symbol=_symbol, side=_type, size=size)
+
 
             for i in range(1, 10):
                 b, a, l = self.api.get_ticker(market=_symbol)
