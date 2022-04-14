@@ -171,7 +171,8 @@ def get_args():
                                 help='Hedge ratio. Greater than 0: Delta is long. Less than 0 (negative): Delta is '
                                      'short.')
     auto_stop_opts.add_argument('-mc', '--max_collateral', dest='max_collateral', type=float, default=0.5,
-                                help='Max amount of collateral to use. 1 == 100 percent, .5 == 50 percent.')
+                                help='Max amount of collateral to use. 1 == 100 percent, .5 == 50 percent. Note that '
+                                     'this will actually use half of whatever you specify as a safeguard.')
     auto_stop_opts.add_argument('-pc', '--position_close_pct', type=float, default=1.0,
                                 help='Float point percentage (.5 is 50 percent) of position to close at at time'
                                      'when taking profit.')

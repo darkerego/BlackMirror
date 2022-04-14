@@ -91,8 +91,6 @@ class Bot:
                     self.restarts += 1
                     cp.red(f'[!] Websocket Disconnected: Restarts #: {self.restarts}, Error Message: {err}')
 
-
-
 def parse_and_exec(args):
     limit_price = 0
     key, secret, subaccount = config_loader.load_config('conf.json')
@@ -152,6 +150,8 @@ def parse_and_exec(args):
                 print(o)
 
         if args.trailing_stop_buy:
+            print('Not implemented.')
+            return False
 
             """{'future': 'AXS-PERP', 'size': 1.1, 'side': 'buy', 'netSize': 1.1, 'longOrderSize': 0.0,
              'shortOrderSize': 0.0, 'cost': 49.7475, 'entryPrice': 45.225, 'unrealizedPnl': 0.0, 're
@@ -196,6 +196,8 @@ def parse_and_exec(args):
 
 
         if args.trailing_stop_sell:
+            print('Not implemented.')
+            return False
             if len(args.buy) < 3:
                 cp.red('[⛔] <market> <qty> <offset_percent>')
                 market = args.trailing_stop_sell[0]
@@ -239,8 +241,6 @@ def parse_and_exec(args):
                         ret = api.chase_limit_order(market=o_market, oid=ret['id'], max_chase=args.limit_chase,
                                               failsafe_market=args.chase_failsafe)
                         cp.purple(f'[~] {ret}')
-
-
         if args.sell:
             if len(args.sell) < 3:
                 cp.red('[⛔] Required parameters: <order type> <market> <qty> Optional Parameters: <price>')
@@ -291,7 +291,7 @@ def main():
     if args.confirm and args.auto_trader:
         args.monitor_only = False
         for _ in range(0, 3):
-            cp.random_color(f'[⚡! TOASTERTUB DISCLAIMER: You have specified `--confirm` which means that THIS BOT WILL '
+            cp.random_color(f'[⚡! TOASTER TUB DISCLAIMER: You have specified `--confirm` which means that THIS BOT WILL '
                             f'interact with the FTX api, performing whatever actions were requested by *you*.]',  static_set='bright')
             time.sleep(0.125)
     else:
