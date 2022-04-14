@@ -84,7 +84,7 @@ class MqSkel:
         if "/echo" in message.topic:
             print(message.payload)
         elif f'{self.topic}' in message.topic:
-            print(message.payload.decode())
+            #print(message.payload.decode())
             mqtt_que.append(message.payload.decode())
 
 
