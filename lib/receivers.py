@@ -178,6 +178,7 @@ class MqReceiver:
         if message.get('Status') == 'open':
             self.sig_.update(message)
             if self.live_score:
+                print(message.get('Live_score'))
                 score = float(message.get('Live_score'))
             else:
                 score = float(message.get('score'))
