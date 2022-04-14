@@ -25,11 +25,11 @@ class FtxClient:
     def __post(self, path: str, params: Optional[Dict[str, Any]] = None) -> Any:
         return self._request('POST', path, json=params)
 
-    @exit_after(10)
+    #@exit_after(10)
     def _get(self, path: str, params: Optional[Dict[str, Any]] = None) -> Any:
         return self.__get(path, params)
 
-    @exit_after(10)
+    #@exit_after(10)
     def _post(self, path: str, params: Optional[Dict[str, Any]] = None) -> Any:
         return self.__post(path, params)
 
