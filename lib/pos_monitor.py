@@ -78,6 +78,7 @@ class Monitor:
         self.increment_period = conf.increment_period
         self.hedge_ratio = conf.hedge_ratio
         self.hedge_mode = conf.hedge_mode
+        self.mqtt_topic = conf.mqtt_topic
 
         if self.sl > 0.0:
             self.sl = self.sl * -1
@@ -108,7 +109,8 @@ class Monitor:
             self.cp.purple(f'[mq] Starting mqtt receiver ... ')
             mq_server = MqReceiver(server_uri=self.mqtt_uri, rest=self.rest, _ws=self.ws, sa=self.subaccount,
                                    collateral_pct=self.portfolio_pct, reenter=self.reenter, data_source=self.data_source,
-                                   exclude_markets=self.exclude_markets, debug=False, min_score=self.min_score)
+                                   exclude_markets=self.exclude_markets, debug=False, min_score=self.min_score,
+                                   topic=self.mqtt_topic)
             #t = threading.Thread(target=mq_server.run())
             #t.setDaemon(True)
             #t.start()

@@ -132,7 +132,7 @@ class WsReceiver:
 
 class MqReceiver:
     def __init__(self, server_uri, rest, _ws, sa, collateral_pct, reenter,
-                 data_source, exclude_markets, debug=True, min_score=10):
+                 data_source, exclude_markets, debug=True, min_score=10, topic='/signals'):
         self.debug = debug
         self.api = FtxApi(rest, _ws)
         self.sa = sa
@@ -144,7 +144,7 @@ class MqReceiver:
         self.host = self.server_uri.split(':')[0]
         self.port = int(self.server_uri.split(':')[1])
         self.cp = NewColorPrint()
-        self.mq = MqSkel(host=self.host, port=self.port)
+        self.mq = MqSkel(host=self.host, port=self.port, topic=self.topic)
         self.cp.red('Starting ... mqtt')
         self.mq.mqStart(streamId='blackmirrorclient')
 

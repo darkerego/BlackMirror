@@ -17,7 +17,7 @@ klines = {}
 #sql = sql_lib.SQLLiteConnection()
 
 class MqSkel:
-    def __init__(self, host='localhost', port=1883, debug=False):
+    def __init__(self, host='localhost', port=1883, topic='/signals', debug=False):
         self.streamid = 'blackmirror_'
         for _ in (x for x in random.sample('abcdefghijkl', 5)):
             self.streamid += _
@@ -26,7 +26,8 @@ class MqSkel:
         self.debug = False
         self.CLIENTS = {}
         # SUBSCRIPTIONS = [("/incoming/" + v, 0)  for v in PAIRS]
-        self.SUBSCRIPTIONS = [('/live', 0), ('/echo', 0)]
+        self.SUBSCRIPTIONS = [(f'{topic}', 0), ('/echo', 0)]
+        print(f'[m] Starting MqTT Receiver ... Topic is: {topic}')
         self.mqStart(streamId=self.streamid)
 
     def mqConnect(self, client, userdata, flags, rc):
@@ -79,11 +80,9 @@ class MqSkel:
           ]
         """
 
-
         if "/echo" in message.topic:
-            #if self.debug:
             print(message.payload)
-        elif '/signals' in message.topic:
+        elif f'{self.topic}' in message.topic:
             print(message.payload.decode())
             mqtt_que.append(message.payload.decode())
 

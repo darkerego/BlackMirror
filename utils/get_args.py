@@ -91,6 +91,8 @@ def get_args():
                                help='Enable mqtt receiver for automatic trading of signals.')
     receiver_opts.add_argument('-uri', '--ws_uri', dest='ws_uri', type=str, default='ws://localhost:8000',
                                help='Websocket/Mqtt uri, wss://host:port | localhost:1883')
+    receiver_opts.add_argument('-mt', '--mqtt_topic', dest='mqtt_topic', default='/signals', help='MqTT Topic For '
+                                                                                                  'Signals')
     receiver_opts.add_argument('-pf', '--portfolio_pct', dest='portfolio_pct', type=float, default=.1,
                                help='Float representing pct of'
                                     'holdings to use on incoming'
