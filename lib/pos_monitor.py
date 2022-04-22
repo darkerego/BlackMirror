@@ -82,6 +82,7 @@ class Monitor:
         self.live_score = conf.live_score
         self.confirm = conf.confirm
         self.anti_liq = conf.anti_liq
+        check_before_reopen = conf.check_before_reopen
 
         if self.sl > 0.0:
             self.sl = self.sl * -1
@@ -139,7 +140,9 @@ class Monitor:
                                          chase_close=self.chase_close,
                                          chase_reopen=self.chase_reopen,
                                          update_db=self.update_db,
-                                         anti_liq = self.anti_liq)
+                                         anti_liq = self.anti_liq,
+                                         min_score = self.min_score,
+                                         check_before_reopen = self.check_before_reopen)
 
     def __enter__(self):
         return self

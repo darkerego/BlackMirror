@@ -14,6 +14,7 @@ def get_args():
                                                                                                  'to. None for main '
                                                                                                  'account.')
     gen_opts.add_argument('--antiliq', dest='anti_liq', action='store_true')
+
     gen_opts.add_argument('-v', '--verbose', dest='verbose', action='store_true', default=False, help='Verbose mode.')
     gen_opts.add_argument('-st', '--show_tickers', dest='show_tickers', action='store_true', default=False,
                           help='Do not show tickers.')
@@ -64,6 +65,8 @@ def get_args():
                                    'trade.')
     receiver_opts.add_argument('-re', '--reenter', dest='reenter', default=False, action='store_true',
                                help='Re enter position before it closes if price hits entry again.')
+    receiver_opts.add_argument('cbo', '--check', dest='check_before_reopen', help='Before reopening a position, '
+                                                                                  'check the current TA score.')
     receiver_opts.add_argument('-src', '--data_source', dest='data_source', type=str, choices=['binance'],
                                default='binance',
                                help='Exchange where the'

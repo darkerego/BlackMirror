@@ -10,6 +10,7 @@ from utils import profit_tracker
 from lib.func_timer import exit_after, cdquit
 from lib import sql_lib
 from concurrent.futures import ThreadPoolExecutor
+from lib.score_keeper import scores
 
 try:
     import thread
@@ -41,7 +42,8 @@ class AutoTrader:
     def __init__(self, api, stop_loss, _take_profit, use_ts=True, ts_pct=0.05, reopen=False, period=300, ot='limit',
                  max_open_orders=None, position_step_size=0.02, disable_stop_loss=False, show_tickers=True,
                  monitor_only=False, close_method='market', relist_iterations=100, hedge_mode=False, hedge_ratio=0.5,
-                 max_collateral=0.5, position_close_pct=1, chase_close=0, chase_reopen=0, update_db=False, anti_liq=False):
+                 max_collateral=0.5, position_close_pct=1, chase_close=0, chase_reopen=0, update_db=False, anti_liq=False,
+                 min_score=0.0, check_before_reopen=False):
         self.cp = NewColorPrint()
         self.up_markets = {}
         self.down_markets = {}
@@ -61,6 +63,8 @@ class AutoTrader:
         self.position_close_pct = position_close_pct
         self.chase_close = chase_close
         self.chase_reopen = chase_reopen
+        self.min_score = min_score
+        self.check_before_reopen = check_before_reopen
 
         self.total_contacts_trade = 0
         self.reopen = reopen
@@ -85,6 +89,7 @@ class AutoTrader:
         self.relist_iter = {}
         self.update_db = update_db
         self.open_positions = {}
+        self.ta_scores = scores
         if self.reopen:
             self.cp.yellow('Reopen enabled')
         if self.stop_loss > 0.0:
@@ -566,6 +571,14 @@ class AutoTrader:
                     self.cp.red(f'[~] Δ Notice: recalculated position size from {qty} to {new_qty}  ... ')
         if new_qty:
             qty = new_qty
+        ta_score = self.ta_scores.get(market)
+        if self.check_before_reopen:
+            if ta_score.get('status') == 'closed':
+                print(f'[!] Not reopening because the signal has closed.')
+                return False
+            if ta_score.get('score') <= self.min_score:
+                print(f'[!] Not reopening because the score is too low.')
+                return False
         if self.order_type == 'limit' and self.reopen != 'increment':
             return self.re_open_limit(market, side, qty)
         if self.order_type == 'market' and self.reopen != 'increment':

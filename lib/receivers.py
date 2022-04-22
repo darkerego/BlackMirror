@@ -7,7 +7,7 @@ from utils.colorprint import NewColorPrint
 from websocket import create_connection, WebSocketConnectionClosedException
 from trade_engine.api_wrapper import FtxApi
 from utils.mq_skel import MqSkel, mqtt_que
-
+from lib import score_keeper
 
 class WebSocketSignals:
     ws_signals = []
@@ -149,6 +149,7 @@ class MqReceiver:
         self.cp.red('Starting ... mqtt')
         self.mq.mqStart(streamId='blackmirrorclient')
         self.live_score = live_score
+        self.score_keeper = score_keeper.scores
 
         self.sig_ = {}
         self.min_score = min_score
@@ -172,6 +173,7 @@ class MqReceiver:
             _instrument = self.sig_.get('Instrument')
             _symbol = str(_instrument[:-4] + '-PERP')
             score = message.get('Score')
+            self.score_keeper[_symbol] = {'status': 'closed', 'score': float(score)}
             self.cp.blue(f'[X] Received {_type} EXIT Signal for {_symbol}')
             ok, size = self.check_position_exists_diff(future=_symbol, s=None)
             self.position_close(symbol=_symbol, side=_type, size=size)
@@ -185,6 +187,7 @@ class MqReceiver:
             _type = self.sig_.get('Signal')
             _instrument = self.sig_.get('Instrument')
             _symbol = str(_instrument[:-4] + '-PERP')
+            self.score_keeper[_symbol] = {'status': 'open', 'score': float(score)}
             if float(score) < 0:
                 score = float(score) * -1
             if self.live_score:
