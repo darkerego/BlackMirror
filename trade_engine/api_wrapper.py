@@ -254,7 +254,7 @@ class FtxApi:
     def get_ticker(self, market):
         for i in range(10):
             ticker = self.ws.get_ticker(market=market)
-            print(ticker)
+            #print(ticker)
             if ticker.items():
                 return ticker['bid'], ticker['ask'], ticker['last']
             else:
