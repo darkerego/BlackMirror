@@ -356,8 +356,8 @@ class AutoTrader:
                 open_sell.append(o)
 
         print(f'[~] {len(open_orders)} orders on market: {market} open currently ... ')
-        for o in open_orders:
-            print(f'DEBUG: {o}')
+        #for o in open_orders:
+        #    print(f'DEBUG: {o}')
         if len(open_orders) and self.relist_iter == self.relist_iterations:
             self.api.cancel_orders(market=market, limit_orders=True)
         if len(open_orders) and self.relist_iter < self.relist_iterations:
