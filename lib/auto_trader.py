@@ -82,7 +82,7 @@ class AutoTrader:
         self.max_collateral = max_collateral
         self.delta_weight = None
         self.sql = sql_lib.SQLLiteConnection()
-        self.relist_iter = 0
+        self.relist_iter = {}
         self.update_db = update_db
         self.open_positions = {}
         if self.reopen:
@@ -358,15 +358,17 @@ class AutoTrader:
         print(f'[~] {len(open_orders)} orders on market: {market} open currently ... ')
         #for o in open_orders:
         #    print(f'DEBUG: {o}')
-        if len(open_orders) and self.relist_iter == self.relist_iterations:
+        if not self.relist_iter.get(market):
+            self.relist_iter[market] = 0
+        if len(open_orders) and self.relist_iter[market] == self.relist_iterations:
             self.api.cancel_orders(market=market, limit_orders=True)
-        if len(open_orders) and self.relist_iter < self.relist_iterations:
-            self.relist_iter += 1
-            leftover_iterations = self.relist_iterations - self.relist_iter
+        if len(open_orders) and self.relist_iter[market] < self.relist_iterations:
+            self.relist_iter[market] += 1
+            leftover_iterations = self.relist_iterations - self.relist_iter[market]
             self.cp.blue(f'[!] We have open orders, relisting in {leftover_iterations} iterations.  ... ')
             return
-        if self.relist_iter == self.relist_iterations:
-            self.relist_iter = 0
+        if self.relist_iter[market] == self.relist_iterations:
+            self.relist_iter[market] = 0
 
         if self.close_method == 'increment':
 
