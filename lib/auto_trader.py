@@ -847,7 +847,7 @@ class AutoTrader:
                     self.stop_loss_order(market=future_instrument, side=side, size=size * -1)
                 self.accumulated_pnl -= pnl
 
-    @exit_after(10)
+    @exit_after(30)
     def position_parser(self, positions, account_info):
         for pos in positions:
 
