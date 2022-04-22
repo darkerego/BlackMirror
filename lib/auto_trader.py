@@ -800,15 +800,16 @@ class AutoTrader:
                     else:
                         self.cp.red(f'[!] Error with order: {err}')
                 else:
-                    self.accumulated_pnl += pnl
-
-                    self.cp.alert('----------------------------------------------')
-                    self.cp.alert(f'Total Session PROFITS: {self.accumulated_pnl}')
-                    self.cp.alert('----------------------------------------------')
-                    self.cp.green(
-                        f'Reached target pnl of {pnl_pct} on {future_instrument}, taking profit... PNL: {pnl}')
-                    self.total_contacts_trade += (new_qty * last)
                     if ret:
+                        self.accumulated_pnl += pnl
+
+                        self.cp.alert('----------------------------------------------')
+                        self.cp.alert(f'Total Session PROFITS: {self.accumulated_pnl}')
+                        self.cp.alert('----------------------------------------------')
+                        self.cp.green(
+                            f'Reached target pnl of {pnl_pct} on {future_instrument}, taking profit... PNL: {pnl}')
+                        self.total_contacts_trade += (new_qty * last)
+
                         print('[🃑] Success')
 
                     if ret and self.reopen:
@@ -821,8 +822,9 @@ class AutoTrader:
                             #if re.match(r'^(.*)margin for order(.*)$', err.__str__()):
                             self.cp.red(f'[~] Error with order: {err.__str__()}')
                         else:
-                            self.total_contacts_trade += (new_qty * last)
+
                             if ret:
+                                self.total_contacts_trade += (new_qty * last)
                                 print('[🃑] Success')
         else:
             try:
