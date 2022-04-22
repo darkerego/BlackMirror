@@ -65,7 +65,7 @@ def get_args():
                                    'trade.')
     receiver_opts.add_argument('-re', '--reenter', dest='reenter', default=False, action='store_true',
                                help='Re enter position before it closes if price hits entry again.')
-    receiver_opts.add_argument('-cbo', '--check', dest='check_before_reopen', help='Before reopening a position, '
+    receiver_opts.add_argument('-cbo', '--check', action='store_true', dest='check_before_reopen', help='Before reopening a position, '
                                                                                   'check the current TA score.')
     receiver_opts.add_argument('-src', '--data_source', dest='data_source', type=str, choices=['binance'],
                                default='binance',
