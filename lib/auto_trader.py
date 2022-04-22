@@ -571,14 +571,20 @@ class AutoTrader:
                     self.cp.red(f'[~] Δ Notice: recalculated position size from {qty} to {new_qty}  ... ')
         if new_qty:
             qty = new_qty
-        ta_score = self.ta_scores.get(market)
+
+
         if self.check_before_reopen:
-            if ta_score.get('status') == 'closed':
-                print(f'[!] Not reopening because the signal has closed.')
-                return False
-            if ta_score.get('score') <= self.min_score:
-                print(f'[!] Not reopening because the score is too low.')
-                return False
+            ta_score = self.ta_scores.get(market)
+            if ta_score:
+                if ta_score.get('status') == 'closed':
+                    print(f'[!] Not reopening because the signal has closed.')
+                    return False
+                if ta_score.get('score') <= self.min_score:
+                    print(f'[!] Not reopening because the score is too low.')
+                    return False
+            else:
+                print(f'[!] Score not available. Bailing.')
+                return
         if self.order_type == 'limit' and self.reopen != 'increment':
             return self.re_open_limit(market, side, qty)
         if self.order_type == 'market' and self.reopen != 'increment':
