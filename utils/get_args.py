@@ -13,6 +13,7 @@ def get_args():
     gen_opts.add_argument('-sa', '--subaccount', dest='subaccount', default=None, type=str, help='Subaccount to connect'
                                                                                                  'to. None for main '
                                                                                                  'account.')
+    gen_opts.add_argument('--antiliq', dest='anti_liq', action='store_true')
     gen_opts.add_argument('-v', '--verbose', dest='verbose', action='store_true', default=False, help='Verbose mode.')
     gen_opts.add_argument('-st', '--show_tickers', dest='show_tickers', action='store_true', default=False,
                           help='Do not show tickers.')

@@ -41,7 +41,7 @@ class AutoTrader:
     def __init__(self, api, stop_loss, _take_profit, use_ts=True, ts_pct=0.05, reopen=False, period=300, ot='limit',
                  max_open_orders=None, position_step_size=0.02, disable_stop_loss=False, show_tickers=True,
                  monitor_only=False, close_method='market', relist_iterations=100, hedge_mode=False, hedge_ratio=0.5,
-                 max_collateral=0.5, position_close_pct=1, chase_close=0, chase_reopen=0, update_db=False):
+                 max_collateral=0.5, position_close_pct=1, chase_close=0, chase_reopen=0, update_db=False, anti_liq=False):
         self.cp = NewColorPrint()
         self.up_markets = {}
         self.down_markets = {}
