@@ -619,11 +619,11 @@ class AutoTrader:
         future_instrument = pos['future']
         if not self.open_positions.get(future_instrument):
             self.open_positions[future_instrument] = time.time()
-        else:
-            if self.open_positions.get(future_instrument) - time.time() < 2:
-                return
-            else:
-                self.open_positions.pop(future_instrument)
+            #print('Init')
+
+        if time.time() - self.open_positions.get(future_instrument) < 2:
+            #print('Returning')
+            return
 
         pnl_track = profit_tracker.SessionProfits(instrument=future_instrument)
         size = 0
@@ -850,6 +850,13 @@ class AutoTrader:
             if float(pos['collateralUsed'] != 0.0) or float(pos['longOrderSize']) > 0 or float(
                     pos['shortOrderSize']) < 0:
                 self.parse(pos, account_info)
+            else:
+                for _ in self.open_positions:
+                    if pos['future'] == _:
+                        self.open_positions.pop(_)
+
+
+
 
     def start_process(self):
         restarts = 0
@@ -889,6 +896,8 @@ class AutoTrader:
                 else:
                     self.cp.white_black(f'[🃑] Wins: - [🃏] Losses: -')
             try:
+
+
                 self.position_parser(positions=pos, account_info=info)
 
             except RestartError as fuck:
