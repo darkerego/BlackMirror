@@ -453,7 +453,7 @@ class AutoTrader:
                     buy_orders.append(qty)
 
             buy_orders = [x for x in buy_orders.__reversed__()]
-            print(buy_orders)
+            # print(buy_orders)
             c = 1
             for i in buy_orders:
                 if c == 1:
@@ -486,7 +486,7 @@ class AutoTrader:
                 return
             min_qty = self.future_stats[market]['min_order_size']
             bid, ask, last = self.api.get_ticker(market=market)
-            print(bid, ask, last)
+            # print(bid, ask, last)
             # last_order_price = bid - (deviation * self.position_step_size)
             for i in range(max_orders):
                 qty -= qty / 2
@@ -501,7 +501,7 @@ class AutoTrader:
                     sell_orders.append(qty)
 
             sell_orders = [x for x in sell_orders.__reversed__()]
-            print(sell_orders)
+            # print(sell_orders)
             c = 1
             for i in sell_orders:
                 if i == 1:
