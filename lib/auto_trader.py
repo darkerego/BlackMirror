@@ -440,7 +440,7 @@ class AutoTrader:
                 return
             min_qty = self.future_stats[market]['min_order_size']
             bid, ask, last = self.api.get_ticker(market=market)
-            print(bid, ask, last)
+            # print(bid, ask, last)
             # last_order_price = bid - (deviation * self.position_step_size)
             for i in range(max_orders):
                 qty -= qty / 2
@@ -470,15 +470,15 @@ class AutoTrader:
                     try:
                         status = self.api.buy_limit(market=market, price=next_order_price, qty=i,
                                                     reduce=reduce, cid=None)
-                    except Exception:
-                        print('OOF')
+                    except Exception as err:
+                        print(f'[!] Error placing limit order: {err}')
                     else:
                         if status:
                             self.cp.red(f"[฿]: {status.get('id')}")
                             break
                         else:
                             time.sleep(0.25)
-            self.cp.debug(f'Debug: : Buy Orders{buy_orders}')
+            # self.cp.debug(f'Debug: : Buy Orders{buy_orders}')
             return True
 
 
@@ -519,14 +519,14 @@ class AutoTrader:
                         status = self.api.sell_limit(market=market, price=next_order_price, qty=i,
                                                     reduce=reduce, cid=None)
                     except Exception as fuck:
-                        print('OOF', fuck)
+                        print(f'[!] Error:', fuck)
                     else:
                         if status:
                             self.cp.purple(f"[฿]: ({status['id']}")
                             break
                         else:
                             time.sleep(0.25)
-            self.cp.debug(f'Debug: : Sell Orders{sell_orders}')
+            # self.cp.debug(f'Debug: : Sell Orders{sell_orders}')
             return True
 
     def reopen_pos(self, market, side, qty, period=None, info=None):

@@ -182,7 +182,7 @@ class FtxApi:
 
     def rest_get_open_orders(self, market=None, oid=None):
         orders = self.rest.get_open_orders(market=market)
-        print(orders)
+        #print(orders)
         if oid:
             for _ in orders:
                 if _['id'] == oid:
@@ -273,7 +273,7 @@ class FtxApi:
     def ws_get_orders(self):
         for i in range(10):
             orders = self.ws.get_orders()
-            print('orders', orders)
+            # print('orders', orders)
             if orders.items():
                 print(orders)
                 return orders
