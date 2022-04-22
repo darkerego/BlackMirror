@@ -5,12 +5,6 @@ from typing import Optional, Dict, Any, List
 from requests import Request, Session, Response
 import hmac
 from ciso8601 import parse_datetime
-from timeout_decorator import timeout_decorator
-
-import lib.exceptions
-#from lib.exceptions import RestartError
-#from lib.func_timer import exit_after, cdquit
-import multiprocessing
 import time
 
 class FtxClient:
@@ -28,13 +22,10 @@ class FtxClient:
     def __post(self, path: str, params: Optional[Dict[str, Any]] = None) -> Any:
         return self._request('POST', path, json=params)
 
-    #@timeout_decorator.timeout(5)
     def _get(self, path: str, params: Optional[Dict[str, Any]] = None) -> Any:
         ret = self.__get(path, params)
         return ret
 
-
-    #@timeout_decorator.timeout(5)
     def _post(self, path: str, params: Optional[Dict[str, Any]] = None) -> Any:
         ret = self.__post(path, params)
         return ret
@@ -60,7 +51,6 @@ class FtxClient:
         request.headers['FTX-TS'] = str(ts)
         if self._subaccount_name:
             request.headers['FTX-SUBACCOUNT'] = urllib.parse.quote(self._subaccount_name)
-
 
     def _process_response(self, response: Response) -> Any:
         try:
@@ -145,6 +135,10 @@ class FtxClient:
 
     def get_open_orders(self, market: str = None) -> List[dict]:
         return self._get(f'orders', {'market': market})
+
+    def get_order_status(self, order_id):
+        # https://docs.ftx.com/#get-order-status
+        return self._post(f'orders', {"id": order_id})
 
     def get_order_history(self, market: str = None, side: str = None, order_type: str = None, start_time: float = None,
                           end_time: float = None) -> List[dict]:

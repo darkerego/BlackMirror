@@ -80,6 +80,8 @@ class Monitor:
         self.hedge_mode = conf.hedge_mode
         self.mqtt_topic = conf.mqtt_topic
         self.live_score = conf.live_score
+        self.confirm = conf.confirm
+        self.anti_liq = conf.anti_liq
 
         if self.sl > 0.0:
             self.sl = self.sl * -1
@@ -112,13 +114,10 @@ class Monitor:
                                    collateral_pct=self.portfolio_pct, reenter=self.reenter, data_source=self.data_source,
                                    exclude_markets=self.exclude_markets, debug=False, min_score=self.min_score,
                                    topic=self.mqtt_topic, live_score=self.live_score)
-            #t = threading.Thread(target=mq_server.run())
-            #t.setDaemon(True)
-            #t.start()
             self.executor.submit(mq_server.start_process)
 
         if self.auto or self.update_db or self.monitor_only:
-            self.cp.navy(data='Starting auto trader')
+            self.cp.navy(data='[+] Starting auto trader')
             self.auto_trade = AutoTrader(self.api,
                                          stop_loss=self.sl,
                                          _take_profit=self.tp,
@@ -129,7 +128,6 @@ class Monitor:
                                          reopen=self.reopen,
                                          disable_stop_loss=self.no_sl,
                                          show_tickers=self.show_tickers,
-                                         #monitor_only=self.monitor_only,
                                          close_method=self.close_method,
                                          ot=self.ot,
                                          relist_iterations=self.relist_iterations,
@@ -140,7 +138,8 @@ class Monitor:
                                          position_close_pct=self.position_close_pct,
                                          chase_close=self.chase_close,
                                          chase_reopen=self.chase_reopen,
-                                         update_db=self.update_db)
+                                         update_db=self.update_db,
+                                         anti_liq = self.anti_liq)
 
     def __enter__(self):
         return self
@@ -161,8 +160,7 @@ class Monitor:
         current_time = 0
         running = self.running = True
         time.sleep(0.25)
-        if self.auto or self.update_db:
-            self.auto_trade.start_process()
+        self.auto_trade.start_process()
         while running:
             try:
                 ticker = self.ws.get_ticker(market='BTC-PERP')

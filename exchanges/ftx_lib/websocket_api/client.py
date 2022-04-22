@@ -10,7 +10,6 @@ from gevent.event import Event
 from exchanges.ftx_lib.websocket_api.websocket_manager import WebsocketManager
 
 
-
 class FtxWebsocketClient(WebsocketManager):
     _ENDPOINT = 'wss://ftx.com/ws/'
 

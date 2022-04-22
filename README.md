@@ -52,6 +52,7 @@ Breakdown of command:
 - min score to enter trade 29% (its a weighted average of indicators)
 - use the live stream
 - gotta enable -lS to use the live stream
+
 </p>
 ### What's New - 04/14/2022
 - Bot is stable!
@@ -60,6 +61,8 @@ Breakdown of command:
 - Order chasing works
 - Signal engine honors exit signals
 - Countless bugfixes
+
+Feel free to message me on telegram @chev603 you have any questions, comments or concerns. Have fun.
 
 <p>
 <b>The Case for Blackmirror's Existence</b>

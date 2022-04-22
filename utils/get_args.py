@@ -35,45 +35,6 @@ def get_args():
     arb_opts.add_argument('-cr', '--chase_reopen', dest='chase_reopen', type=int, default=0, help='Use order chase '
                                                                                                   'for position '
                                                                                                   'reopen')
-
-    api_opts = parser.add_argument_group('API Commands')
-    api_opts.description = (
-        'Options for interacting with the exchange. For creating orders, the syntax is -b/-s <order type> <quantity> '
-        '<price>')
-    api_opts.add_argument('-p', '--portfolio', dest='show_portfolio', action='store_true', default=False,
-                          help='Get current balances')
-    api_opts.add_argument('-oc', '--chase', dest='limit_order_chase', nargs=2, help='Limit Order Chasing. '
-                                                                                    'Keeps your limit '
-                                                                                    'order at '
-                                                                                    'the top of the books.'
-                                                                                    'Specify order ID following'
-                                                                                    'an integer representing the max '
-                                                                                    'number of '
-                                                                                    'order modifications '
-                                                                                    'before giving up and '
-                                                                                    'executing as market. ')
-    api_opts.add_argument('-b', '--buy', dest='buy', type=str, nargs='+',
-                          help='Execute a buy order: --buy <limit> <ETH-PERP> <0.5> 2898.89 , '
-                               '[order types: limit, post, market]')
-    api_opts.add_argument('-s', '--sell', dest='sell', type=str, nargs='+',
-                          help='Execute a sell order --sell <market> <BTC-USD> <0.1>')
-    api_opts.add_argument('-lc', '--limit_chase', dest='limit_chase', type=int, default=0, help=f'Chase this limit order this '
-                                                                                          f'many times before .')
-    api_opts.add_argument('-tsb', '--trailing_stop_buy', dest='trailing_stop_buy', type=str, nargs='+', help='API Trailing Stop \
-    <market> <0.1> <.5>')
-
-    api_opts.add_argument('-tss', '--trailing_stop_sell', dest='trailing_stop_sell', type=str, nargs='+', help='API Trailing Stop \
-        <market> <0.1> <.5>')
-
-    api_opts.add_argument('-cf', '--chase_failsafe', action='store_true', dest='chase_failsafe', help='Revert to market'
-                                                                                                      'if order chase'
-                                                                                                      'fails.')
-    api_opts.add_argument('-o', '--orders', dest='open_orders', action='store_true', default=False,
-                          help='Return list of '
-                               'open orders.')
-    api_opts.add_argument('-c', '--cancel', dest='cancel', type=int, default=None, help='Cancel this order id.')
-    api_opts.add_argument('-L', '--leverage', dest='set_leverage', type=int, choices=[1, 2, 3, 5, 10, 20, 50, 100, 101],
-                          help='Set account leverage via API.')
     strategy_opts = parser.add_argument_group('EXPERIMENTAL Trade Strategy Options')
     strategy_opts.add_argument('-S', '--strategy', dest='use_strategy', action='store_true', default=False,
                                help='Use the TA based trade strategy engine.')
@@ -183,5 +144,46 @@ def get_args():
                                      'when taking profit.')
     #wallet_opts = parser.add_argument_group('Wallet & Subacct Options')
     #wallet_opts.add_argument('')
+    api_opts = parser.add_argument_group('API Commands')
+    api_opts.description = (
+        'Options for interacting with the exchange. For creating orders, the syntax is -b/-s <order type> <quantity> '
+        '<price>')
+    api_opts.add_argument('-p', '--portfolio', dest='show_portfolio', action='store_true', default=False,
+                          help='Get current balances')
+    api_opts.add_argument('-oc', '--chase', dest='limit_order_chase', nargs=2, help='Limit Order Chasing. '
+                                                                                    'Keeps your limit '
+                                                                                    'order at '
+                                                                                    'the top of the books.'
+                                                                                    'Specify order ID following'
+                                                                                    'an integer representing the max '
+                                                                                    'number of '
+                                                                                    'order modifications '
+                                                                                    'before giving up and '
+                                                                                    'executing as market. ')
+    api_opts.add_argument('-b', '--buy', dest='buy', type=str, nargs='+',
+                          help='Execute a buy order: --buy <limit> <ETH-PERP> <0.5> 2898.89 , '
+                               '[order types: limit, post, market]')
+    api_opts.add_argument('-s', '--sell', dest='sell', type=str, nargs='+',
+                          help='Execute a sell order --sell <market> <BTC-USD> <0.1>')
+    api_opts.add_argument('-lc', '--limit_chase', dest='limit_chase', type=int, default=0,
+                          help=f'Chase this limit order this '
+                               f'many times before .')
+    api_opts.add_argument('-tsb', '--trailing_stop_buy', dest='trailing_stop_buy', type=str, nargs='+', help='API Trailing Stop \
+        <market> <0.1> <.5>')
 
-    return parser.parse_args()
+    api_opts.add_argument('-tss', '--trailing_stop_sell', dest='trailing_stop_sell', type=str, nargs='+', help='API Trailing Stop \
+            <market> <0.1> <.5>')
+
+    api_opts.add_argument('-cf', '--chase_failsafe', action='store_true', dest='chase_failsafe', help='Revert to market'
+                                                                                                      'if order chase'
+                                                                                                      'fails.')
+    api_opts.add_argument('-o', '--orders', dest='open_orders', action='store_true', default=False,
+                          help='Return list of '
+                               'open orders.')
+    api_opts.add_argument('-c', '--cancel', dest='cancel', type=int, default=None, help='Cancel this order id.')
+    api_opts.add_argument('-L', '--leverage', dest='set_leverage', type=int, choices=[1, 2, 3, 5, 10, 20, 50, 100, 101],
+                          help='Set account leverage via API.')
+
+    args = parser.parse_args()
+
+    return args

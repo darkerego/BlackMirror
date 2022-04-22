@@ -2,7 +2,6 @@ import pandas as pd
 import time
 from utils.colorprint import NewColorPrint as cp
 import logging
-from lib.func_timer import exit_after, cdquit
 cp = cp()
 
 
@@ -15,6 +14,7 @@ class FtxApi:
         self.rest = rest
         self.ws = ws
         self.sa = sa
+
         self.logger = logging.getLogger(__name__)
 
     def chase_limit_order(self, market, oid, max_chase=3, failsafe_market=False):
@@ -25,67 +25,79 @@ class FtxApi:
         time.sleep(1)
         while True:
             for _ in range(3):
-                o = self.rest_get_open_orders(market=market, oid=oid)
-
-
+                o = self.ws_get_order_by_id(oid=oid)
                 if o:
-                    print('order:', o)
+                    print('o', o)
+                    break
+            if not o:
+                    print('No orders .. must have filled or never placed')
+                    return False
+            else:
                     ask, bid, last = self.get_ticker(market=market)
+                    print(ask, bid, last)
                     last_price = o['price']
-
+                    print('order:', o)
                     if o['id'] == oid:
-                        size = o['size']
+                        size = o['remainingSize']
+                        _type = o['type']
                         if o['status'] == 'filled' or o['status'] == 'closed':
                             cp.red(f'[*] Order {oid}: Status: {o["status"]}')
-                            return
+                            break
                         else:
+
                             if o['side'] == 'buy':
                                 current_price = bid
                                 print(current_price)
-                                if current_price > last_price:
+                                print('Chase Buy order')
+                                if count < max_chase:
+                                    if current_price > last_price:
 
-                                    print(f'Modify order from {last_price} to {current_price}')
-                                    ret = self.modify_order(oid=oid, price=current_price)
-                                    last_price = current_price
-                                    if ret:
-                                        self.logger.info('Success: ', ret.__str__)
-                                        count += 1
-                                    else:
-                                        self.logger.info('Fail: ', ret.__str__)
-                                    time.sleep(0.125)
-                            else:
-                                current_price = ask
-                                if current_price < last_price:
-                                    last_price = current_price
-                                    ret = self.modify_order(oid=oid, price=current_price,
-                                                            size=o['remainingSize'])
-                                    if ret:
-                                        self.logger.info('Success: ', ret.__str__)
-                                        count += 1
-                                    else:
-                                        self.logger.info('Fail: ', ret.__str__)
-                                    time.sleep(0.125)
+                                        print(f'Modify order from {last_price} to {current_price}')
+                                        cret = self.cancel_order(oid)
+                                        if cret:
+                                            while True:
+                                                ret = self.buy_limit(market=market, qty=size, price=current_price, post=True)
 
-                            if count >= max_chase:
-                                self.logger.info('Give up.')
-                                if failsafe_market:
-                                    cp.red('[m] Give up, market order...')
-                                    r = self.rest.cancel_order(oid=oid)
-                                    if r:
-                                        ret = self.rest.place_order(market=market, side=o['side'], price=None,
-                                                                    size=o['remainingSize'],
-                                                                    _type='market',
-                                                                    reduce=o['reduce'], ioc=o['ioc'])
+                                                if ret['id']:
+                                                    break
+                                        last_price = current_price
                                         if ret:
-                                            return ret
+                                            self.logger.info('Success: ', ret.__str__)
+                                            oid = ret['id']
+                                            count += 1
                                         else:
-                                            cp.red(f'[!] FAILED TO PLACE MARKET ORDER!')
-                                            return False
-                    else:
-                        return
-                else:
-                    print('No orders ..')
-                    return False
+                                            self.logger.info('Fail: ', ret.__str__)
+                                            time.sleep(0.125)
+                                    else:
+                                        time.sleep(0.125)
+                            else:
+                                    print('Chase Sell order')
+                                    current_price = ask
+                                    if current_price < last_price:
+                                        last_price = current_price
+                                        cret = self.cancel_order(oid)
+                                        if cret:
+                                            ret = self.post_limit_retry(market=market, side='buy', qty=size)
+                                        if ret:
+                                            self.logger.info('Success: ', ret.__str__)
+                                            oid = ret['id']
+                                            count += 1
+                                        else:
+                                            self.logger.info('Fail: ', ret.__str__)
+                                        time.sleep(0.125)
+
+                                    if count >= max_chase:
+                                        self.logger.info('Give up.')
+                                        if failsafe_market:
+                                            cp.red('[m] Give up, market order...')
+                                            cret = self.rest.cancel_order(oid=oid)
+                                            if cret:
+                                                ret = ret = self.post_limit_retry(market=market, side='sell', qty=size)
+                                                if ret:
+                                                    return ret
+                                                else:
+                                                    cp.red(f'[!] FAILED TO PLACE MARKET ORDER!')
+                                                    return False
 
     def parse_balances(self):
         bals = []
@@ -98,6 +110,41 @@ class FtxApi:
         result.sort_values(by=['total'], ascending=False)
         return result
 
+    def get_market(self, market):
+        ret = self.get_markets()
+        for _ in ret:
+            if _.get('name') == market:
+                return _
+
+    def get_markets(self):
+        return self.rest.list_markets()
+
+    def rest_ticker(self, market):
+        ret = self.get_market(market)
+        bid = ret['bid']
+        ask = ret['ask']
+        last = ret['last']
+        return bid, ask, last
+
+    def post_limit_retry(self, market, side, qty, reduce=False):
+        if side == 'buy':
+            while True:
+                price = self.rest_ticker(market=market)[0]
+                ret = self.buy_limit(market, qty, price=price, post=True, reduce=reduce)
+                if ret['id']:
+                    break
+                time.sleep(0.125)
+        else:
+            while True:
+                price = self.rest_ticker(market=market)[1]
+                ret = self.sell_limit(market, qty, price=price, post=True, reduce=reduce)
+                if ret['id']:
+                    break
+                time.sleep(0.125)
+        return ret
+
+
+
     def buy_limit(self, market, qty, price=None, post=False, reduce=False, cid=None):
         """
         Place a limit buy order
@@ -109,7 +156,6 @@ class FtxApi:
         """
         Place a market buy order
         """
-        #print(f'{market}, {qty}, {reduce}')
         return self.rest.place_order(market=market, side='buy', size=qty, type='market', reduce_only=reduce,
                                      post_only=False, client_id=cid, ioc=ioc, price=None)
 
@@ -125,21 +171,8 @@ class FtxApi:
         """
         Place a market sell order
         """
-        #print(f'{market}, {qty}, {reduce}')
         return self.rest.place_order(market=market, side='sell', size=qty, type='market', reduce_only=reduce,
                                      post_only=False, client_id=cid, ioc=ioc, price=None)
-
-
-
-    """def trailing_stop(self, market, side, offset, qty, reduce=True):
-       '''
-        self, market: str, side: str, size: float, type: str = 'stop',
-            limit_price: float = None, reduce_only: bool = False, cancel: bool = True,
-            trigger_price: float = None, trail_value: float = None
-        '''
-        return self.rest.place_conditional_order(market=market, side=side, size=qty, type='trailing_stop',
-                                                 reduce_only=reduce, trail_value=offset)"""
-
 
     def positions(self):
         return self.rest.get_positions()
@@ -149,6 +182,7 @@ class FtxApi:
 
     def rest_get_open_orders(self, market=None, oid=None):
         orders = self.rest.get_open_orders(market=market)
+        print(orders)
         if oid:
             for _ in orders:
                 if _['id'] == oid:
@@ -164,18 +198,43 @@ class FtxApi:
                                        limit_orders=limit_orders)
 
     def modify_order(self, oid, price=None, size=None, cid=None):
+
         return self.rest.modify_order(existing_order_id=oid, price=price, size=size, client_order_id=cid)
 
     def trailing_stop(self, market, side, size, trail_value, reduce_only):
-        #print(market, side, size, trail_value, reduce_only)
         ret = self.rest.place_conditional_order(market=market, side=side, size=size, trail_value=trail_value,
                                                   type='trailingStop', reduce_only=reduce_only)
-        #print(ret)
         return ret
 
-    def stop_loss(self, market, side, triggerPrice):
-        return self.rest.set_private_create_trigger_order(market=market, side=side, triggerPrice=triggerPrice)
+    def stop_loss(self, market, side, trigger_price, limit_price=None, reduce_only=True):
+        """
+        market: str, side: str, size: float, type: str = 'stop',
+            limit_price: float = None, reduce_only: bool = False, cancel: bool = True,
+            trigger_price: float = None, trail_value: float = None
+        """
+        if limit_price is None:
+            # stop market
+            return self.rest.place_conditional_order(market=market, side=side, type='stop', triggerPrice=trigger_price,
+                                                     reduce_only=reduce_only)
+        else:
+            return self.rest.place_conditional_order(market=market, side=side, type='stopLimit', triggerPrice=trigger_price,
+                                                     reduce_only=reduce_only)
 
+    def take_profit(self, market, side, size, triggerPrice, limit_price=None, reduce_only=True):
+        """
+                market 	string 	XRP-PERP
+                side 	string 	sell 	"buy" or "sell"
+                size 	number 	31431.0
+                type 	string 	stop 	"stop", "trailingStop", "takeProfit"; default is stop
+                reduceOnly 	boolean 	false 	optional; default is false
+                retryUntilFilled 	boolean 	false 	Whether or not to keep re-triggering until filled. optional, default
+                true for market orders
+                triggerPrice 	number 	0.306525
+                orderPrice 	number 	0.3063 	optional; order type is limit if this is specified; otherwise market
+        """
+        return self.rest.place_conditional_order(market=market, side=side, size=size, type='takeProfit',
+                                                 trigger_price=triggerPrice, limit_price=limit_price,
+                                                 reduce_only=reduce_only)
 
     def info(self):
         return self.rest.get_account_info()
@@ -195,6 +254,7 @@ class FtxApi:
     def get_ticker(self, market):
         for i in range(10):
             ticker = self.ws.get_ticker(market=market)
+            print(ticker)
             if ticker.items():
                 return ticker['bid'], ticker['ask'], ticker['last']
             else:
@@ -226,12 +286,10 @@ class FtxApi:
             orders = self.ws_get_orders()
             if orders:
                 print(orders.get('id'))
-
                 for o in orders:
-                    print(o)
                     if o['id'] == oid:
                         return o
-        return
+        return None
 
     def get_trades(self, market):
         for i in range(10):
@@ -263,6 +321,9 @@ class FtxApi:
     def transfer(self, coin, size, source, destination):
         return self.rest.tranfer(coin, size, source, destination)
 
+    def latency(self):
+        return self.rest.get_latency_stats()
+
 
 def debug_api(subacct=None, config_path='conf.json'):
     """
@@ -272,7 +333,7 @@ def debug_api(subacct=None, config_path='conf.json'):
     from utils import config_loader
     from exchanges.ftx_lib.rest import client
     from exchanges.ftx_lib.websocket_api import client as ws
-    k, s, a = config_loader.load_config(config_path)
+    k, s, a, l = config_loader.load_config(config_path)
     if subacct:
         a = subacct
     rest = client.FtxClient(api_key=k, api_secret=s, subaccount_name=a)

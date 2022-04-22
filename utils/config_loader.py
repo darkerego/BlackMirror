@@ -9,5 +9,6 @@ def load_config(config_path='conf.json'):
         key = f['conf']['key']
         secret = f['conf']['secret']
         subaccount = f['conf']['subaccount']
-        print(key, secret, subaccount)
-        return key, secret, subaccount
+        anti_liq = f['conf']['anti_liq']
+        print(key, secret, subaccount, anti_liq)
+        return key, secret, subaccount, anti_liq

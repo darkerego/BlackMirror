@@ -93,10 +93,10 @@ class Bot:
 
 def parse_and_exec(args):
     limit_price = 0
-    key, secret, subaccount = config_loader.load_config('conf.json')
+    key, secret, subaccount, anti_liq = config_loader.load_config('conf.json')
     bot = Bot()
 
-    if args.monitor or args.auto_trader or args.monitor_only or args.update_db:
+    if args.monitor or args.auto_trader or args.update_db:
         logo.post()
         if args.update_db:
             cp.red('[I] Updating the market database, please stand by ... ')
@@ -120,7 +120,7 @@ def parse_and_exec(args):
                     f'Re-enter: {args.reenter} Data Source: '
                     f'{args.data_source}, Exclude Markets: {args.exclude_markets}, URI: {args.ws_uri}')
 
-        if args.confirm and not args.monitor_only:
+        if args.confirm:
             cp.red(f'[!] WARN: Autotrader is enabled! This cam make or cost you money.')
             cp.yellow('[📊] Loading auto trader ... ')
         if args.show_tickers:
@@ -132,12 +132,38 @@ def parse_and_exec(args):
         api = bot.api_connection(key=key, secret=secret, subaccount=args.subaccount)
         rest = api[0]
         ws = api[1]
-        api = FtxApi(rest=rest, ws=ws, sa=subaccount)
+        api = FtxApi(rest=rest, ws=ws, sa=subaccount, anti_liq=anti_liq)
         if args.configure_anti_liq:
-            pass
+            cp.yellow('[~] Configuring AntiLiq .. ')
+            ret = api.info().get('freeCollateral')
+            if ret > 0:
+                balances = api.balances()
+                for x in balances:
+                    if x.get('coin') == 'USD':
+                        avail = x.get('availableWithoutBorrow')
+                        if avail <= 0:
+                            cp.yellow(f'[!] Please deposit some USD in this account and try again.')
+                            exit()
+                        else:
+                            sas = api.get_subaccounts()
+                            print(sas)
+                            time.sleep(5)
+                            q = avail / 5
+                            cp.yellow(f'[!] Transferring {q} USD to LIQUIDITY subaccount. This will be used as '
+                                      f'EMERGENCY funds to prevent liquidation. Do not trade with it!')
+                            api.transfer('USD', q, )
 
-
-
+                print(balances[0])
+                time.sleep(5)
+                try:
+                    sas = api.get_subaccounts()
+                except Exception:
+                    cp.red('Ensure you have permission to transfer and create subaccounts and try again!')
+                else:
+                    try:
+                        reserve_sa = api.new_subaccount('LIQUIDITY')
+                    except Exception as err:
+                        cp.red('Ensure you have permission to transfer and create subaccounts and try again!')
 
         if args.show_portfolio:
             balances = api.parse_balances()
@@ -148,63 +174,8 @@ def parse_and_exec(args):
             orders = api.rest_get_open_orders()
             for o in orders:
                 print(o)
-
-        if args.trailing_stop_buy:
-            print('Not implemented.')
-            return False
-
-            """{'future': 'AXS-PERP', 'size': 1.1, 'side': 'buy', 'netSize': 1.1, 'longOrderSize': 0.0,
-             'shortOrderSize': 0.0, 'cost': 49.7475, 'entryPrice': 45.225, 'unrealizedPnl': 0.0, 're
-                 alizedPnl': 28.41865541, 'initialMarginRequirement': 0.05, 'maintenanceMarginRequirement
-             ': 0.03, 'openSize': 1.1, 'collateralUsed': 2.487375, 'estimatedLiquidationPrice': 18.72
-                 990329657341, 'recentAverageOpenPrice': 45.207, 'recentPnl': 0.0198, 'recentBreakEvenPrice': 45.207,
-             'cumulativeBuySize': 1.1, 'cumulativeSellSize': 0.0}"""
-            if len(args.trailing_stop_buy) < 3:
-                cp.red('[⛔] <market> <qty> <offset_percent>')
-            else:
-                market = args.trailing_stop_buy[0]
-                qty = args.trailing_stop_buy[1]
-                offset = args.trailing_stop_buy[2]
-                pos = api.positions()
-                info = api.info()
-                for p in pos:
-                    print(p)
-                    if float(p['collateralUsed'] != 0.0) or float(p['longOrderSize']) > 0 or float(
-                            p['shortOrderSize']) < 0:
-                        if p['future'] == market:
-                            bid, ask, last = api.get_ticker(market)
-                            entry = p['entryPrice']
-                            size = p['size']
-                            cost = p['cost']
-                            fee = info['takerFee']
-                            pnl = pnl_calc.pnl_calc(qty=size, sell=ask, buy=entry, fee=fee)
-                            pnl_pct = (float(pnl) / float(cost)) * 100
-                            current_price = api.get_ticker(market=market)[1]
-                            print(current_price, offset, entry)
-                            trail_value = float((current_price) - float(entry)) * float(offset) * -1
-                            # offset_price = (float(current_price) - float(entry_price)) * (1-offset)
-                            offset_price = float(current_price) - (float(current_price) - float(entry)) * float(offset)
-
-                            if pnl_pct > 0.0:
-                                print(f'[t] Trailing sell stop for long triggered: PNL: {pnl_pct}, offset: {offset}, '
-                                      f'Trail: {trail_value}')
-                                ret = api.trailing_stop(market=market, side='sell', offset=offset_price, qty=qty,
-                                                             reduce=True)
-                                print(ret)
-                            else:
-                                print(f'Position is not in profit!')
-
-
-        if args.trailing_stop_sell:
-            print('Not implemented.')
-            return False
-            if len(args.buy) < 3:
-                cp.red('[⛔] <market> <qty> <offset_percent>')
-                market = args.trailing_stop_sell[0]
-                qty = args.trailing_stop_sell[1]
-                offset = args.trailing_stop_sell[2]
-
         if args.buy:
+
             if len(args.buy) < 3:
                 cp.red('[⛔] Required parameters: <order type> <market> <qty> Optional Parameters: <price>')
                 return False
@@ -221,18 +192,16 @@ def parse_and_exec(args):
                     if ret:
                         cp.purple(f'[~] Status: {ret}')
                 if o_type == 'limit' or o_type == 'post':
-
-                    if limit_price == 0:
-                        bid, ask, last = api.get_ticker(market=o_market)
-                        limit_price = bid
-                        cp.red(f'[!] No price given, using current bid: {bid}')
-
                     cp.red(f'[~] Executing a limit sell order on {o_market} of quantity {o_size}!')
                     if args.limit_chase > 0 or o_type == 'post':
-                        post = True
-
-                    ret = api.buy_limit(market=o_market, qty=o_size, price=limit_price, post=post, reduce=False,
-                                        cid=None)
+                        ret = api.post_limit_retry(market=o_market, side='buy', qty=o_size)
+                    else:
+                        if limit_price == 0:
+                            bid, ask, last = api.rest_ticker(market=o_market)
+                            limit_price = bid
+                            cp.red(f'[!] No price given, using current bid: {bid}')
+                        ret = api.buy_limit(market=o_market, qty=o_size, price=limit_price, post=post, reduce=False,
+                                            cid=None)
                     if ret:
                         cp.purple(f'[~] Status: {ret}')
                     if args.limit_chase > 0:
@@ -258,15 +227,17 @@ def parse_and_exec(args):
                     if ret:
                         cp.purple(f'[~] Status: {ret}')
                 if o_type == 'limit' or o_type == 'post':
-                    if limit_price == 0:
-                        bid, ask, last = api.get_ticker(market=o_market)
-                        print(ask, bid, last)
-                        limit_price = ask
-                        cp.yellow(f'[!] No price given, using current ask: {ask}')
                     cp.red(f'[~] Executing a limit sell order on {o_market} of quantity {o_size}!')
                     if args.limit_chase > 0 or o_type == 'post':
-                        post = True
-                    ret = api.sell_limit(market=o_market, qty=o_size, price=limit_price, post=post, reduce=False, cid=None)
+                        ret = api.post_limit_retry(market=o_market, side='sell', qty=o_size)
+                    else:
+                        if limit_price == 0:
+                            bid, ask, last = api.get_ticker(market=o_market)
+                            print(ask, bid, last)
+                            limit_price = ask
+                            cp.yellow(f'[!] No price given, using current ask: {ask}')
+                        ret = api.sell_limit(market=o_market, qty=o_size, price=limit_price, post=post, reduce=False,
+                                             cid=None)
                     if args.limit_chase > 0:
                         cp.yellow(f'[-] Chasing limit order up the books ... Max Chase: {args.limit_chase} '
                                   f'Revert to market: {args.chase_failsafe}')
@@ -294,9 +265,8 @@ def main():
             cp.random_color(f'[⚡! TOASTER TUB DISCLAIMER: You have specified `--confirm` which means that THIS BOT WILL '
                             f'interact with the FTX api, performing whatever actions were requested by *you*.]',  static_set='bright')
             time.sleep(0.125)
-    else:
-        if args.auto_trader:
-            args.monitor_only = True
+
+
 
     parse_and_exec(args)
 

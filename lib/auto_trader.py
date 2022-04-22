@@ -32,9 +32,6 @@ class ThreadWithReturnValue(threading.Thread):
         return self._return
 
 
-
-
-
 class AutoTrader:
     """
     Automatic Trade Engine. Automatically sets stop losses and take profit orders. Trailing stops are used
@@ -87,6 +84,7 @@ class AutoTrader:
         self.sql = sql_lib.SQLLiteConnection()
         self.relist_iter = 0
         self.update_db = update_db
+        self.open_positions = {}
         if self.reopen:
             self.cp.yellow('Reopen enabled')
         if self.stop_loss > 0.0:
@@ -160,7 +158,6 @@ class AutoTrader:
             ret = self.api.trailing_stop(market=market, side=opp_side, trail_value=trail_value, size=float(qty), reduce_only=True)
             print(ret)
             return ret
-
 
     def trailing_stop(self, market, qty, entry, side, offset=.25, ts_o_type='market'):
         """
@@ -272,6 +269,16 @@ class AutoTrader:
             ret = self.api.buy_market(market=market, qty=size, reduce=True, ioc=False, cid=None)
             return ret
 
+    def api_stop_loss(self, market, side, size, limit_price=None):
+        if limit_price is None:
+            self.api.stop_loss(market, side, size, reduce_only=True)
+        else:
+            self.api.stop_loss(market, side, size, reduce_only=True)
+
+    def api_take_profit(self, market, side, size, trigger_price, order_price=None, reduce_only=True):
+
+        self.api.take_profit(market, side, size, trigger_price, order_price, reduce_only)
+
     def take_profit(self, market: str, side: str, entry: float, size: float, order_type: str = 'limit'):
         ticker = self.api.get_ticker(market=market)
         bid = price = float(ticker[0])
@@ -282,17 +289,6 @@ class AutoTrader:
             trail_value = ((ask - entry) * self.trailing_stop_pct) * -1
             if self.use_ts:
                 self.cp.white_black(f'[฿] Sending a trailing stop: {trail_value}')
-                # executor = ThreadPoolExecutor(max_workers=5)
-                # ret = executor.submit(self.trailing_stop, market=market, side=opp_side, qty=float(o_size),
-                #                      entry=float(entry), offset=float(self.trailing_stop_pct))
-                #th = ThreadWithReturnValue(target=self.trailing_stop, args=(market, side, size, self.trailing_stop_pct,
-                #                                                            entry, self.order_type))
-                #th.start()
-                #ret = th.join()
-                #if ret:
-                #    self.cp.purple(f'[~] Success at taking profit.')
-                #    self.wins += 1
-                #    return True
                 ret = self.api_trailing_stop(market=market, side=side, qty=size, offset=self.trailing_stop_pct, entry=entry,
                                          ts_o_type=self.order_type)
                 if ret:
@@ -319,10 +315,7 @@ class AutoTrader:
                 #                      entry=float(entry), offset=float(self.trailing_stop_pct))
                 ret = self.api_trailing_stop(market=market, side=side, qty=size, offset=self.trailing_stop_pct, entry=entry,
                                          ts_o_type=self.order_type)
-                #th = ThreadWithReturnValue(target=self.trailing_stop, args=(market, side, size, self.trailing_stop_pct,
-                #                                                            entry, self.order_type))
-                #th.start()
-                #ret = th.join()
+
                 if ret:
                     self.cp.purple(f'[~] Success at taking profit.')
                     self.wins += 1
@@ -348,14 +341,20 @@ class AutoTrader:
     def take_profit_wrap(self, market: str, side: str, entry: float, size: float, order_type: str = 'limit'):
 
         open_orders = self.api.rest_get_open_orders(market=market)
-        b=False
-        s=False
+        open_buy = []
+        open_sell = []
+        if side == 'buy':
+            opp_side = 'sell'
+        elif side == 'sell':
+            opp_side = 'buy'
+
         for o in open_orders:
-            side = o['side']
-            if side == 'buy':
-                b=True
-            if side == 'sell':
-                b=True
+            _side = o['side']
+            if _side == 'buy':
+                open_buy.append(o)
+            if _side == 'sell':
+                open_sell.append(o)
+
         print(f'[~] {len(open_orders)} orders on market: {market} open currently ... ')
         for o in open_orders:
             print(f'DEBUG: {o}')
@@ -368,10 +367,7 @@ class AutoTrader:
             return
         if self.relist_iter == self.relist_iterations:
             self.relist_iter = 0
-        if side == 'buy':
-            opp_side = 'sell'
-        else:
-            opp_side = 'buy'
+
         if self.close_method == 'increment':
 
             return self.increment_orders(market=market, side=opp_side, qty=size, period=self.period, reduce=True)
@@ -621,11 +617,18 @@ class AutoTrader:
         """
 
         future_instrument = pos['future']
-        #if self.pnl_trackers.__contains__()
+        if not self.open_positions.get(future_instrument):
+            self.open_positions[future_instrument] = time.time()
+        else:
+            if self.open_positions.get(future_instrument) - time.time() < 2:
+                return
+            else:
+                self.open_positions.pop(future_instrument)
+
         pnl_track = profit_tracker.SessionProfits(instrument=future_instrument)
         size = 0
         if debug:
-            self.cp.white_black(f'[d]: Processsing {future_instrument}')
+            self.cp.white_black(f'[d]: Processing {future_instrument}')
         for f in self.api.futures():
 
             """{'name': 'BTT-PERP', 'underlying': 'BTT', 'description': 'BitTorrent Perpetual Futures', 
@@ -840,7 +843,7 @@ class AutoTrader:
                     self.stop_loss_order(market=future_instrument, side=side, size=size * -1)
                 self.accumulated_pnl -= pnl
 
-    @exit_after(100)
+    @exit_after(10)
     def position_parser(self, positions, account_info):
         for pos in positions:
 
