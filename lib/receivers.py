@@ -183,7 +183,7 @@ class MqReceiver:
                 #print(message.get('Live_score'))
                 score = float(message.get('Live_score'))
             else:
-                score = float(message.get('score'))
+                score = float(message.get('Score'))
             _type = self.sig_.get('Signal')
             _instrument = self.sig_.get('Instrument')
             _symbol = str(_instrument[:-4] + '-PERP')
