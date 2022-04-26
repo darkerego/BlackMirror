@@ -572,7 +572,6 @@ class AutoTrader:
         if new_qty:
             qty = new_qty
 
-
         if self.check_before_reopen:
             ta_score = self.ta_scores.get(market)
             if ta_score:

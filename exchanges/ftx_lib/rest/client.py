@@ -60,8 +60,9 @@ class FtxClient:
             raise
         else:
             if not data['success']:
-                raise Exception(data['error'])
-                # print(f'Error: {data["error"]}', )
+                #raise Exception(data['error'])
+                print(f'Error: {data["error"]}', )
+                return data['error']
                 # return data['error']
             return data['result']
 
