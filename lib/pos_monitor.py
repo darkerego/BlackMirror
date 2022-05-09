@@ -1,3 +1,4 @@
+import asyncio
 import datetime
 import logging
 import os
@@ -83,6 +84,7 @@ class Monitor:
         self.confirm = conf.confirm
         self.anti_liq = conf.anti_liq
         self.check_before_reopen = conf.check_before_reopen
+        self.arrayOfFutures = []
 
         if self.sl > 0.0:
             self.sl = self.sl * -1
@@ -110,12 +112,17 @@ class Monitor:
             t.start()
 
         if self.enable_mqtt:
+
             self.cp.purple(f'[mq] Starting mqtt receiver ... ')
             mq_server = MqReceiver(server_uri=self.mqtt_uri, rest=self.rest, _ws=self.ws, sa=self.subaccount,
                                    collateral_pct=self.portfolio_pct, reenter=self.reenter, data_source=self.data_source,
                                    exclude_markets=self.exclude_markets, debug=False, min_score=self.min_score,
                                    topic=self.mqtt_topic, live_score=self.live_score)
-            self.executor.submit(mq_server.start_process)
+            self.executor.submit(self.wrapper, mq_server.start_process())
+            #self.arrayOfFutures.append(asyncio.create_task(mq_server.start_process()))
+
+
+
 
         if self.auto or self.update_db or self.monitor_only:
             self.cp.navy(data='[+] Starting auto trader')
@@ -156,6 +163,13 @@ class Monitor:
         self.cp.navy('[☠] Starting auto trader...')
         self.executor.submit(self.auto.start_process)
         self.cp.navy('[☑] Started ...')
+
+    def wrapper(self, coro):
+        return asyncio.run(coro)
+
+    #async def receiver(self):
+    #    if self.enable_mqtt:
+    #        await asyncio.gather(*self.arrayOfFutures)
 
     def monitor(self):
         c = 0

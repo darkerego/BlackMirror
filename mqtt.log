@@ -1,0 +1,1359 @@
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+ERROR:gmqtt.mqtt.handler:[ERROR HANDLE PKG]
+Traceback (most recent call last):
+  File "/home/null/PycharmProjects/SemiAutoTrader/venv/lib/python3.8/site-packages/gmqtt/mqtt/handler.py", line 380, in __call__
+    result = self._handle_packet(cmd, packet)
+  File "/home/null/PycharmProjects/SemiAutoTrader/venv/lib/python3.8/site-packages/gmqtt/mqtt/handler.py", line 214, in _handle_packet
+    handler(cmd, packet)
+  File "/home/null/PycharmProjects/SemiAutoTrader/venv/lib/python3.8/site-packages/gmqtt/mqtt/handler.py", line 292, in _handle_connack_packet
+    self.on_connect(self, flags, result, self.properties)
+  File "/home/null/PycharmProjects/SemiAutoTrader/lib/mq/async_client.py", line 40, in on_connect
+    self.logger.info('[+] Connected')
+AttributeError: 'MqttClient' object has no attribute 'logger'
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+ERROR:lib.auto_trader:local variable 'pos' referenced before assignment
+ERROR:lib.auto_trader:local variable 'pos' referenced before assignment
+ERROR:lib.auto_trader:local variable 'pos' referenced before assignment
+ERROR:lib.auto_trader:local variable 'pos' referenced before assignment
+ERROR:lib.auto_trader:local variable 'pos' referenced before assignment
+ERROR:lib.auto_trader:local variable 'pos' referenced before assignment
+ERROR:lib.auto_trader:local variable 'pos' referenced before assignment
+ERROR:lib.auto_trader:local variable 'pos' referenced before assignment
+ERROR:lib.auto_trader:local variable 'pos' referenced before assignment
+ERROR:lib.auto_trader:local variable 'pos' referenced before assignment
+ERROR:lib.auto_trader:local variable 'pos' referenced before assignment
+ERROR:lib.auto_trader:local variable 'pos' referenced before assignment
+ERROR:lib.auto_trader:local variable 'pos' referenced before assignment
+ERROR:lib.auto_trader:local variable 'pos' referenced before assignment
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+ERROR:gmqtt.mqtt.handler:[ERROR HANDLE PKG]
+Traceback (most recent call last):
+  File "/home/null/PycharmProjects/SemiAutoTrader/venv/lib/python3.8/site-packages/gmqtt/mqtt/handler.py", line 380, in __call__
+    result = self._handle_packet(cmd, packet)
+  File "/home/null/PycharmProjects/SemiAutoTrader/venv/lib/python3.8/site-packages/gmqtt/mqtt/handler.py", line 214, in _handle_packet
+    handler(cmd, packet)
+  File "/home/null/PycharmProjects/SemiAutoTrader/venv/lib/python3.8/site-packages/gmqtt/mqtt/handler.py", line 292, in _handle_connack_packet
+    self.on_connect(self, flags, result, self.properties)
+  File "/home/null/PycharmProjects/SemiAutoTrader/lib/mq/async_client.py", line 40, in on_connect
+    self.logger.info('[+] Connected')
+AttributeError: 'MqttClient' object has no attribute 'logger'
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:__main__:[+] Connected
+INFO:__main__:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:__main__:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:__main__:Start pub from que ..
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:__main__:[+] Connected
+INFO:__main__:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:__main__:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:__main__:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:__main__:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:__main__:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:__main__:[+] Connected
+INFO:__main__:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:__main__:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:__main__:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:__main__:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:__main__:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:__main__:[+] Connected
+INFO:__main__:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:__main__:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:__main__:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:__main__:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:__main__:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:__main__:[+] Connected
+INFO:__main__:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:__main__:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:__main__:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:__main__:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:__main__:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:lib.mq.async_client:Publishing ... ' to [
+INFO:gmqtt.mqtt.handler:[RECEIVED PUBACK FOR] 4
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:lib.mq.async_client:Publishing ... ' to [
+INFO:gmqtt.mqtt.handler:[RECEIVED PUBACK FOR] 4
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:lib.mq.async_client:Publishing ... ' to [
+INFO:gmqtt.mqtt.handler:[RECEIVED PUBACK FOR] 4
+INFO:lib.mq.async_client:Publishing ... ' to [
+INFO:gmqtt.mqtt.handler:[RECEIVED PUBACK FOR] 5
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:lib.mq.async_client:Publishing ... ' to [
+INFO:gmqtt.mqtt.handler:[RECEIVED PUBACK FOR] 4
+INFO:lib.mq.async_client:Publishing ... ' to [
+INFO:gmqtt.mqtt.handler:[RECEIVED PUBACK FOR] 5
+INFO:lib.mq.async_client:Publishing ... ' to [
+INFO:gmqtt.mqtt.handler:[RECEIVED PUBACK FOR] 6
+INFO:lib.mq.async_client:Publishing ... ' to [
+INFO:gmqtt.mqtt.handler:[RECEIVED PUBACK FOR] 7
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+ERROR:lib.auto_trader:dictionary changed size during iteration
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+ERROR:lib.auto_trader:dictionary changed size during iteration
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+ERROR:lib.auto_trader:dictionary changed size during iteration
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+ERROR:lib.auto_trader:dictionary changed size during iteration
+ERROR:lib.auto_trader:dictionary changed size during iteration
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+WARNING:gmqtt.mqtt.connection:[LOST HEARTBEAT FOR 120 SECONDS, GOING TO CLOSE CONNECTION]
+INFO:gmqtt.mqtt.protocol:[CONN CLOSE NORMALLY]
+INFO:lib.mq.async_client:Disconnected
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+WARNING:gmqtt.mqtt.connection:[LOST HEARTBEAT FOR 120 SECONDS, GOING TO CLOSE CONNECTION]
+INFO:gmqtt.mqtt.protocol:[CONN CLOSE NORMALLY]
+INFO:lib.mq.async_client:Disconnected
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+WARNING:gmqtt.mqtt.connection:[LOST HEARTBEAT FOR 120 SECONDS, GOING TO CLOSE CONNECTION]
+INFO:gmqtt.mqtt.protocol:[CONN CLOSE NORMALLY]
+INFO:lib.mq.async_client:Disconnected
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:gmqtt.mqtt.protocol:[CONN CLOSE NORMALLY]
+INFO:lib.mq.async_client:Disconnected
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:gmqtt.mqtt.protocol:[CONN CLOSE NORMALLY]
+INFO:lib.mq.async_client:Disconnected
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+WARNING:gmqtt.mqtt.connection:[LOST HEARTBEAT FOR 120 SECONDS, GOING TO CLOSE CONNECTION]
+INFO:gmqtt.mqtt.protocol:[CONN CLOSE NORMALLY]
+INFO:lib.mq.async_client:Disconnected
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 1
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 2
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 3
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 4
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 5
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 6
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 7
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 8
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 9
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 10
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 11
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 12
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 13
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 14
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 15
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+WARNING:gmqtt.mqtt.connection:[LOST HEARTBEAT FOR 120 SECONDS, GOING TO CLOSE CONNECTION]
+INFO:gmqtt.mqtt.protocol:[CONN CLOSE NORMALLY]
+INFO:lib.mq.async_client:Disconnected
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 1
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 2
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 3
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 4
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 5
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 6
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 7
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 8
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 9
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 10
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 11
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 12
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 13
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 14
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 15
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 16
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 17
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 18
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 19
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 20
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 21
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 22
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 23
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 24
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 25
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 26
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 27
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 28
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 29
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 30
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 31
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 32
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 33
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 34
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 35
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 36
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 37
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 38
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 39
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 40
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 41
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 42
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 43
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 44
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 45
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 46
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 47
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 48
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 49
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 50
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 51
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 52
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 53
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 54
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 55
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 56
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 57
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 58
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 59
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 60
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 61
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 62
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 63
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 64
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 65
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 66
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 67
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 68
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 69
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 70
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 71
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 72
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 73
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 74
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 75
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 76
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 77
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 78
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 79
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 80
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 81
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 82
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 83
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 84
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 85
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 86
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 87
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 88
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 89
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 90
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 91
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 92
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 93
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 94
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 95
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 96
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 97
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 98
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 99
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 100
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 101
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 102
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 103
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 104
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 105
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 106
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 107
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 108
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 109
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 110
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 111
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 112
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 113
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 114
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 115
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 116
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 117
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 118
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 119
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 120
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 121
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 122
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 123
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 124
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 125
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 126
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 127
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 128
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 129
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 130
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 131
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 132
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 133
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 134
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 135
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 136
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 137
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 138
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 139
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 140
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 141
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 142
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 143
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 144
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 145
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 146
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 147
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 148
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 149
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 150
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 151
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 152
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 153
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 154
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 155
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 156
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 157
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 158
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 159
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 160
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 161
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 162
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 163
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 164
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 165
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 166
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 167
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 168
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 169
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 170
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 171
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 172
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 173
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 174
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 175
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 176
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 177
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 178
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 179
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 180
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 181
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 182
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 183
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 184
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 185
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 186
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 187
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 188
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 189
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 190
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 191
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 192
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 193
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 194
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 195
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 196
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 197
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 198
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 199
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 200
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 201
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 202
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 203
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 204
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 205
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 206
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 207
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 208
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 209
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 210
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 211
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 212
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 213
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 214
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 215
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 216
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 217
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 218
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 219
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 220
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 221
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 222
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 223
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 224
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 225
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 226
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 227
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 228
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 229
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 230
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 231
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 232
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 233
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 234
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 235
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 236
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 237
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 238
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 239
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 240
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 241
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 242
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 243
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 244
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 245
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 246
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 247
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 248
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 249
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 250
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 251
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 252
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 253
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 254
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 255
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 256
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 257
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 258
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 259
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 260
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 261
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 262
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 263
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 264
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 265
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 266
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 267
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 268
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 269
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 270
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 271
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 272
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 273
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 274
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 275
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 276
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 277
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 278
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 279
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 280
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 281
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 282
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 283
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 284
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 285
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 286
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 287
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 288
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 289
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 290
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 291
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 292
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 293
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 294
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 295
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 296
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 297
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 298
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 299
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 300
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 301
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 302
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 303
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 304
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 305
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 306
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 307
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 308
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 309
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 310
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 311
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 312
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 313
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 314
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 315
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 316
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 317
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 318
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 319
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 320
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 321
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 322
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 323
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 324
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 325
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 326
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 327
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 328
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 329
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 330
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 331
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 332
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 333
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 334
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 335
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 336
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 337
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 338
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 339
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 340
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected

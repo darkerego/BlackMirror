@@ -6,8 +6,12 @@ from utils import config_loader
 from utils.colorprint import NewColorPrint
 from websocket import create_connection, WebSocketConnectionClosedException
 from trade_engine.api_wrapper import FtxApi
-from utils.mq_skel import MqSkel, mqtt_que
+#from utils.mq_skel import mqtt_que
 from lib import score_keeper
+from lib.mq import async_client
+
+import asyncio
+
 
 class WebSocketSignals:
     ws_signals = []
@@ -145,14 +149,15 @@ class MqReceiver:
         self.host = self.server_uri.split(':')[0]
         self.port = int(self.server_uri.split(':')[1])
         self.cp = NewColorPrint()
-        self.mq = MqSkel(host=self.host, port=self.port, topic=self.topic)
-        self.cp.red('Starting ... mqtt')
-        self.mq.mqStart(streamId='blackmirrorclient')
+        # self.mq = async_client.MqttClient(host=self.host, port=self.port)
+
+
         self.live_score = live_score
         self.score_keeper = score_keeper.scores
 
         self.sig_ = {}
         self.min_score = min_score
+
 
     def position_close(self, symbol, side, size, min_score=10):
         self.api.cancel_orders(market=symbol)
@@ -164,30 +169,50 @@ class MqReceiver:
             self.cp.red('Closing Short!')
             self.api.buy_market(market=symbol, qty=size, reduce=True, ioc=False, cid=None)
 
-    def handle_message(self, message):
-        self.cp.purple(f'Received Trade Signal {message}!')
+    def handle_message(self, topic, message):
         message = json.loads(message)
+        # print(message)
+        self.sig_.update(message)
+        if topic == '/echo':
+            print(f'[~] Echo command: {message}')
+            return
+        if self.live_score:
+            if topic == '/signals':
+                return
+            score = float(message.get('Live_score'))
+        else:
+            if topic == '/stream':
+                return
+            score = float(message.get('Score'))
+
+        _type = self.sig_.get('Signal')
+        _instrument = self.sig_.get('Instrument')
+        _symbol = str(_instrument[:-4] + '-PERP')
+        live_score = float(message.get('Live_score'))
+        self.score_keeper[_symbol] = {'status': 'open', 'score': float(live_score)}
+
+        self.cp.purple(f'Received Trade Signal {message} with score {score}!')
+
         if message.get('Status') == 'closed':
             _type = message.get('Signal')
             _type = _type.lower()
             _instrument = self.sig_.get('Instrument')
             _symbol = str(_instrument[:-4] + '-PERP')
-            score = message.get('Score')
+
             self.score_keeper[_symbol] = {'status': 'closed', 'score': float(score)}
             self.cp.blue(f'[X] Received {_type} EXIT Signal for {_symbol}')
             ok, size = self.check_position_exists_diff(future=_symbol, s=None)
-            self.position_close(symbol=_symbol, side=_type, size=size)
+            if not ok:
+                self.position_close(symbol=_symbol, side=_type, size=size)
         if message.get('Status') == 'open':
-            self.sig_.update(message)
-            if self.live_score:
-                #print(message.get('Live_score'))
-                score = float(message.get('Live_score'))
-            else:
-                score = float(message.get('Score'))
+
             _type = self.sig_.get('Signal')
             _instrument = self.sig_.get('Instrument')
             _symbol = str(_instrument[:-4] + '-PERP')
-            self.score_keeper[_symbol] = {'status': 'open', 'score': float(score)}
+            # print(message.get('Live_score'))
+            #live_score = float(message.get('Live_score'))
+            #self.score_keeper[_symbol] = {'status': 'open', 'score': float(live_score)}
+
             if float(score) < 0:
                 score = float(score) * -1
             if self.live_score:
@@ -198,7 +223,6 @@ class MqReceiver:
                         score = float(score) * -1
                     if not ok:
                         self.position_close(symbol=_symbol, side=_type, size=size)
-
 
             for i in range(1, 10):
                 b, a, l = self.api.get_ticker(market=_symbol)
@@ -214,14 +238,14 @@ class MqReceiver:
             print(balance, leverage, qty)
 
             if _type == 'LONG':
-                #self.cp.blue(f'[E] Received {_type} Enter Signal for instrument {_instrument} of Score {score} %')
+                # self.cp.blue(f'[E] Received {_type} Enter Signal for instrument {_instrument} of Score {score} %')
                 if float(score) > float(self.min_score):
                     self.cp.alert(f'[LONG SIGNAL]: {_instrument} Score {score} % ENTERING!')
                     check, size = self.check_position_exists_diff(future=_symbol)
                     if check:
                         ret = self.api.buy_market(market=_symbol, qty=qty, reduce=False, ioc=False, cid=None)
                         self.cp.purple(ret)
-                        #time.sleep(2)
+                        # time.sleep(2)
                     else:
                         self.cp.red('Cannot enter, position already open!')
                 else:
@@ -233,24 +257,43 @@ class MqReceiver:
                     if check:
                         ret = self.api.sell_market(_symbol, qty=qty, reduce=False, ioc=False, cid=None)
                         self.cp.purple(ret)
-                        #time.sleep(2)
+                        # time.sleep(2)
                     else:
                         self.cp.red('Cannot enter, position already open!')
                 else:
                     self.cp.yellow('[-] Score too low')
 
     def run(self):
+        print('Start run')
         while True:
-            message = mqtt_que.__mq__signal__()
-            if message:
-                try:
-                    self.handle_message(message)
-                except Exception as err:
-                    print(err)
-            else:
-                time.sleep(0.25)
+            message = async_client.message_que.read_incoming()
 
-    def start_process(self):
+            if message is not None:
+                # print(message)
+
+                topic = message[0]
+                message = message[1]
+                # print(topic, message)
+                self.handle_message(topic, message)
+                time.sleep(0.24)
+                """try:
+                    
+                except Exception as err:
+                    print('ERROR: ', err)
+            else:
+                time.sleep(0.25)"""
+
+    def launch_event_loops(self, mq):
+        # get a new event loop
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        loop.run_until_complete(mq.start_loop())
+
+    async def start_process(self):
+        print('Start mqtt')
+        mq = async_client.MqttClient(host=self.host, port=int(self.port))
+        threading.Thread(target=self.launch_event_loops, args=(mq, )).start()
+        print('Started')
         t = threading.Thread(target=self.run())
         t.start()
 

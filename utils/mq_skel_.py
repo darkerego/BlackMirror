@@ -1,7 +1,8 @@
 
 import paho.mqtt.client as mqtt
 import random
-from utils import mqtt_que
+from lib.mq import mqtt_que
+
 mqtt_que = mqtt_que.MqttQue()
 
 

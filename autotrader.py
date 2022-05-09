@@ -40,6 +40,7 @@ from utils.colorprint import NewColorPrint
 from utils.ftx_exceptions import FtxDisconnectError
 from utils.get_args import get_args
 from lib import pnl_calc
+import asyncio
 
 try:
     import thread
@@ -70,11 +71,12 @@ class Bot:
 
         return Monitor(rest=rest, ws=ws, subaccount=subaccount_name, conf=args)
 
-    def monitor(self, key, secret, subaccount_name=None, args={}):
+    async def monitor(self, key, secret, subaccount_name=None, args={}):
         while True:
             with self.con(key=key, secret=secret, subaccount_name=subaccount_name, args=args) as ftx:
                 try:
                     cp.navy('[🌡] Monitoring...')
+                    # await ftx.receiver()
                     ftx.monitor()
                     cp.red('Done...')
                 except KeyboardInterrupt:
@@ -91,7 +93,7 @@ class Bot:
                     self.restarts += 1
                     cp.red(f'[!] Websocket Disconnected: Restarts #: {self.restarts}, Error Message: {err}')
 
-def parse_and_exec(args):
+async def parse_and_exec(args):
     limit_price = 0
     key, secret, subaccount, anti_liq = config_loader.load_config('conf.json')
     bot = Bot()
@@ -125,7 +127,7 @@ def parse_and_exec(args):
             cp.yellow('[📊] Loading auto trader ... ')
         if args.show_tickers:
             cp.green('[~] Tickers Enabled!')
-        bot.monitor(key=key, secret=secret, subaccount_name=args.subaccount, args=args)
+        await bot.monitor(key=key, secret=secret, subaccount_name=args.subaccount, args=args)
 
     if args.show_portfolio or args.buy or args.sell or args.cancel or args.open_orders or args.configure_anti_liq \
             or args.trailing_stop_buy or args.trailing_stop_sell:
@@ -254,7 +256,7 @@ def parse_and_exec(args):
                 cp.purple(f'[~] Status: {ret}')
 
 
-def main():
+async def main():
     global cp
     cp = NewColorPrint()
     args = get_args()
@@ -268,8 +270,8 @@ def main():
 
 
 
-    parse_and_exec(args)
+    await parse_and_exec(args)
 
 
 if __name__ == '__main__':
-    main()
+    asyncio.run(main())
