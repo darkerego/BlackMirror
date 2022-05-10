@@ -1357,3 +1357,84 @@ WARNING:gmqtt.client:[CAN'T RECONNECT] 340
 WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
 INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
 INFO:lib.mq.async_client:[+] Connected
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+ERROR:websocket:error from callback <function WebsocketManager._wrap_callback.<locals>.wrapped_f at 0x7f99916afee0>: Error running websocket callback: _on_close() takes 2 positional arguments but 4 were given
+INFO:gmqtt.mqtt.protocol:[CONN CLOSE NORMALLY]
+INFO:lib.mq.async_client:Disconnected
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]
+WARNING:gmqtt.client:[CAN'T RECONNECT] 1
+WARNING:gmqtt.mqtt.protocol:[TRYING WRITE TO CLOSED SOCKET]

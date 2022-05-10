@@ -170,17 +170,24 @@ class MqReceiver:
             self.api.buy_market(market=symbol, qty=size, reduce=True, ioc=False, cid=None)
 
     def handle_message(self, topic, message):
-        message = json.loads(message)
+
         # print(message)
-        self.sig_.update(message)
+
         if topic == '/echo':
             print(f'[~] Echo command: {message}')
             return
         if self.live_score:
+            message = json.loads(message)
+            self.sig_.update(message)
             if topic == '/signals':
                 return
-            score = float(message.get('Live_score'))
+            try:
+                score = float(message.get('Live_score'))
+            except KeyError:
+                return
         else:
+            message = json.loads(message)
+            self.sig_.update(message)
             if topic == '/stream':
                 return
             score = float(message.get('Score'))
@@ -274,14 +281,14 @@ class MqReceiver:
                 topic = message[0]
                 message = message[1]
                 # print(topic, message)
-                self.handle_message(topic, message)
+
                 time.sleep(0.24)
-                """try:
-                    
+                try:
+                    self.handle_message(topic, message)
                 except Exception as err:
                     print('ERROR: ', err)
             else:
-                time.sleep(0.25)"""
+                time.sleep(0.25)
 
     def launch_event_loops(self, mq):
         # get a new event loop
@@ -292,6 +299,7 @@ class MqReceiver:
     async def start_process(self):
         print('Start mqtt')
         mq = async_client.MqttClient(host=self.host, port=int(self.port))
+
         threading.Thread(target=self.launch_event_loops, args=(mq, )).start()
         print('Started')
         t = threading.Thread(target=self.run())

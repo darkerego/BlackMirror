@@ -96,5 +96,3 @@ async def main(host='localhost', port='1883'):
     loop.run_until_complete(_mq.start_loop())
 
 
-if __name__ == '__main__':
-    asyncio.run(main())
