@@ -78,6 +78,8 @@ def get_args():
                                                                                                     'execute a trade '
                                                                                                     'from a received '
                                                                                                     'signal.')
+    receiver_opts.add_argument('-MA', '--min_adx', dest='min_adx', type=float, default=20, help='Min mean adx to enter '
+                                                                                                'trade.')
 
     auto_stop_opts = parser.add_argument_group('Auto Stop Loss Options')
     auto_stop_opts.add_argument('-a', '--auto', dest='auto_trader', action='store_true', help='Use AutoTrader')

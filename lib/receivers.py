@@ -136,7 +136,7 @@ class WsReceiver:
 
 class MqReceiver:
     def __init__(self, server_uri, rest, _ws, sa, collateral_pct, reenter,
-                 data_source, exclude_markets, debug=True, min_score=10, topic='/signals', live_score=False):
+                 data_source, exclude_markets, debug=True, min_score=10, topic='/signals', live_score=False, min_adx=20):
         self.debug = debug
         self.api = FtxApi(rest, _ws)
         self.sa = sa
@@ -157,6 +157,7 @@ class MqReceiver:
 
         self.sig_ = {}
         self.min_score = min_score
+        self.min_adx = min_adx
 
 
     def position_close(self, symbol, side, size, min_score=10):
@@ -191,7 +192,7 @@ class MqReceiver:
             if topic == '/stream':
                 return
             score = float(message.get('Score'))
-
+        _adx = float(self.sig_.get('Mean_Adx'))
         _type = self.sig_.get('Signal')
         _instrument = self.sig_.get('Instrument')
         _symbol = str(_instrument[:-4] + '-PERP')
@@ -247,14 +248,15 @@ class MqReceiver:
             if _type == 'LONG':
                 # self.cp.blue(f'[E] Received {_type} Enter Signal for instrument {_instrument} of Score {score} %')
                 if float(score) > float(self.min_score):
-                    self.cp.alert(f'[LONG SIGNAL]: {_instrument} Score {score} % ENTERING!')
-                    check, size = self.check_position_exists_diff(future=_symbol)
-                    if check:
-                        ret = self.api.buy_market(market=_symbol, qty=qty, reduce=False, ioc=False, cid=None)
-                        self.cp.purple(ret)
-                        # time.sleep(2)
-                    else:
-                        self.cp.red('Cannot enter, position already open!')
+                    if float(_adx) >= self.min_adx:
+                        self.cp.alert(f'[LONG SIGNAL]: {_instrument} Score {score} % ENTERING!')
+                        check, size = self.check_position_exists_diff(future=_symbol)
+                        if check:
+                            ret = self.api.buy_market(market=_symbol, qty=qty, reduce=False, ioc=False, cid=None)
+                            self.cp.purple(ret)
+                            # time.sleep(2)
+                        else:
+                            self.cp.red('Cannot enter, position already open!')
                 else:
                     self.cp.yellow('[-] Score too low')
             elif _type == 'SHORT':
