@@ -32,7 +32,7 @@ class WsReceiver:
         self.wss = None
         self.cp = NewColorPrint()
         self.debug = debug
-        self.api = FtxApi(rest, _ws)
+        self.api = FtxApi(rest, _ws, sa)
         self.sa = sa
         self.contract_size = contract_size
         self.reenter = reenter
