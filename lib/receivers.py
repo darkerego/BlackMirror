@@ -199,7 +199,7 @@ class MqReceiver:
         _symbol = str(_instrument[:-4] + '-PERP')
         live_score = float(message.get('Live_score'))
         self.score_keeper[_symbol] = {'status': 'open', 'score': float(live_score)}
-        if self.exclude_markets.__contains__(_instrument):
+        if self.exclude_markets.__contains__(_symbol):
             return
 
         self.cp.purple(f'Received Trade Signal {message} with score {score}!')
@@ -261,18 +261,23 @@ class MqReceiver:
                             # time.sleep(2)
                         else:
                             self.cp.red('Cannot enter, position already open!')
+                    else:
+                        self.cp.yellow('[-] ADX too low')
                 else:
                     self.cp.yellow('[-] Score too low')
             elif _type == 'SHORT':
                 if float(score) > float(self.min_score):
-                    self.cp.alert(f'[SHORT SIGNAL]: {_instrument} Score {score} % ENTERING!')
-                    check, size = self.check_position_exists_diff(future=_symbol)
-                    if check:
-                        ret = self.api.sell_market(_symbol, qty=qty, reduce=False, ioc=False, cid=None)
-                        self.cp.purple(ret)
-                        # time.sleep(2)
+                    if float(_adx) >= self.min_adx:
+                        self.cp.alert(f'[SHORT SIGNAL]: {_instrument} Score {score} % ENTERING!')
+                        check, size = self.check_position_exists_diff(future=_symbol)
+                        if check:
+                            ret = self.api.sell_market(_symbol, qty=qty, reduce=False, ioc=False, cid=None)
+                            self.cp.purple(ret)
+                            # time.sleep(2)
+                        else:
+                            self.cp.red('Cannot enter, position already open!')
                     else:
-                        self.cp.red('Cannot enter, position already open!')
+                        self.cp.yellow('[-] ADX too low')
                 else:
                     self.cp.yellow('[-] Score too low')
 
