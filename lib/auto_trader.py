@@ -33,6 +33,13 @@ class ThreadWithReturnValue(threading.Thread):
         return self._return
 
 
+class Tally:
+    wins = 0
+    losses = 0
+
+
+tally = Tally()
+
 class AutoTrader:
     """
     Automatic Trade Engine. Automatically sets stop losses and take profit orders. Trailing stops are used
@@ -56,8 +63,9 @@ class AutoTrader:
         self.api = api
         self.monitor_only = monitor_only
         self.logger = logging.getLogger(__name__)
-        self.wins = 0
-        self.losses = 0
+        self.tally = tally
+        self.wins = self.tally.wins
+        self.losses = self.tally.losses
         self.accumulated_pnl = 0
         self.pnl_trackers = []
         self.position_close_pct = position_close_pct
@@ -675,8 +683,14 @@ class AutoTrader:
             self.future_stats[name]['min_order_size'] = min_order_size
             err = None
             if self.update_db:
+                print('[~] Updating ..')
+                current = self.sql.get_list(table='futures')
                 entry = {'instrument': {'name': self.future_stats['name'], 'min_order_size': self.future_stats['min_order_size']}}
-                self.sql.append(entry, table='futures')
+                if current.__contains__(entry):
+                    pass
+                else:
+                    self.sql.append(entry, table='futures')
+                exit()
             # if not self.ticker_stats.__contains__(name):
             #    name = FutureStat(name=name, price=mark_price, volume=volumeUsd24h)
             #    self.ticker_stats.append(name)
@@ -881,9 +895,45 @@ class AutoTrader:
 
 
     def start_process(self):
+
         restarts = 0
         _iter = 0
         while True:
+            for f in self.api.futures():
+
+                """{'name': 'BTT-PERP', 'underlying': 'BTT', 'description': 'BitTorrent Perpetual Futures', 
+                'type': 'perpetual', 'expiry': None, 'perpetual': True, 'expired': False, 'enabled': True, 'postOnly': 
+                False, 'priceIncrement': 5e-08, 'sizeIncrement': 1000.0, 'last': 0.0050772, 'bid': 0.00507655, 
+                'ask': 0.00508115, 'index': 0.0050384623482894655, 'mark': 0.0050785, 'imfFactor': 1e-05, 'lowerBound': 
+                0.00478655, 'upperBound': 0.00532945, 'underlyingDescription': 'BitTorrent', 'expiryDescription': 
+                'Perpetual', 'moveStart': None, 'marginPrice': 0.0050785, 'positionLimitWeight': 20.0, 
+                'group': 'perpetual', 'change1h': -0.009169837089064482, 'change24h': 0.3340075388434311, 'changeBod': 
+                0.11461053925334153, 'volumeUsd24h': 41050555.11565, 'volume': 9253264000.0} """
+                mark_price = f['mark']
+                index = f['index']
+                name = f['name']
+                volumeUsd24h = f['volumeUsd24h']
+                change1h = f['change1h']
+                change24h = f['change24h']
+                min_order_size = f['sizeIncrement']
+                self.future_stats[name] = {}
+                self.future_stats[name]['mark'] = mark_price
+                self.future_stats[name]['index'] = index
+                self.future_stats[name]['volumeUsd24h'] = volumeUsd24h
+                self.future_stats[name]['change1h'] = change1h
+                self.future_stats[name]['change24h'] = change24h
+                self.future_stats[name]['min_order_size'] = min_order_size
+                err = None
+                if self.update_db:
+                    print('[~] Updating ..')
+                    current = self.sql.get_list(table='futures')
+                    entry = {'instrument': {'name': self.future_stats['name'],
+                                            'min_order_size': self.future_stats['min_order_size']}}
+                    if current.__contains__(entry):
+                        pass
+                    else:
+                        self.sql.append(entry, table='futures')
+                    exit()
             _iter += 1
             """{'username': 'xxxxxxxx@gmail.com', 'collateral': 4541.2686261529458, 'freeCollateral': 
                         13.534738011297414, 'totalAccountValue': 4545.7817261529458, 'totalPositionSize': 9535.4797, 

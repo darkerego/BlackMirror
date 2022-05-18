@@ -22,6 +22,7 @@ def get_args():
     exchange_stats_opts.add_argument('-u', '--update_db', action='store_true',
                                      dest='update_db', help='Initialize/Update the market stat'
                                                                                     'database.')
+    exchange_stats_opts.add_argument('-dump', '--dumpdb', action='store_true', dest='dumpdb', help='Dumb the database.')
 
     arb_opts = parser.add_argument_group('OscillationArbitrage Engine Options')
     arb_opts.add_argument('-O', '--osc_arb', dest='balance_arbitrage', action='store_true',

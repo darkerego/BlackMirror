@@ -83,7 +83,7 @@ class Monitor:
         self.live_score = conf.live_score
         self.confirm = conf.confirm
         self.anti_liq = conf.anti_liq
-        self.min_adx = conf.min_afx
+        self.min_adx = conf.min_adx
         self.check_before_reopen = conf.check_before_reopen
         self.arrayOfFutures = []
 

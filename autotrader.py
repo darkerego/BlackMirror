@@ -32,6 +32,7 @@ from exchanges.ftx_lib.websocket_api import client as ws_client
 from lib.exceptions import RestartError
 from lib.pos_monitor import Monitor
 from lib.receivers import WebSocketSignals
+from lib.sql_lib import SQLLiteConnection
 from trade_engine.api_wrapper import FtxApi
 # from trade_engine.stdev_aggravator import FtxAggratavor
 from utils import config_loader
@@ -98,11 +99,18 @@ async def parse_and_exec(args):
     key, secret, subaccount, anti_liq = config_loader.load_config('conf.json')
     bot = Bot()
 
-    if args.monitor or args.auto_trader or args.update_db:
+    if args.monitor or args.auto_trader or args.update_db or args.dumpdb:
+        if args.dumpdb:
+            sql = SQLLiteConnection()
+            futs  =sql.get_list('futures')
+            for _ in futs:
+                print(_)
+            exit()
+
         logo.post()
         if args.update_db:
             cp.red('[I] Updating the market database, please stand by ... ')
-            exit()
+
         if args.monitor and not args.auto_trader:
             cp.navy('[🌡] Monitoring only mode.')
 

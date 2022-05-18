@@ -6,9 +6,10 @@ from utils import config_loader
 from utils.colorprint import NewColorPrint
 from websocket import create_connection, WebSocketConnectionClosedException
 from trade_engine.api_wrapper import FtxApi
-#from utils.mq_skel import mqtt_que
+from lib.auto_trader import tally
 from lib import score_keeper
 from lib.mq import async_client
+
 
 import asyncio
 
@@ -198,6 +199,8 @@ class MqReceiver:
         _symbol = str(_instrument[:-4] + '-PERP')
         live_score = float(message.get('Live_score'))
         self.score_keeper[_symbol] = {'status': 'open', 'score': float(live_score)}
+        if self.exclude_markets.__contains__(_instrument):
+            return
 
         self.cp.purple(f'Received Trade Signal {message} with score {score}!')
 
@@ -210,7 +213,7 @@ class MqReceiver:
             self.score_keeper[_symbol] = {'status': 'closed', 'score': float(score)}
             self.cp.blue(f'[X] Received {_type} EXIT Signal for {_symbol}')
             ok, size = self.check_position_exists_diff(future=_symbol, s=None)
-            if not ok:
+            if ok:
                 self.position_close(symbol=_symbol, side=_type, size=size)
         if message.get('Status') == 'open':
 
@@ -231,6 +234,7 @@ class MqReceiver:
                         score = float(score) * -1
                     if not ok:
                         self.position_close(symbol=_symbol, side=_type, size=size)
+                        tally.losses += 1
 
             for i in range(1, 10):
                 b, a, l = self.api.get_ticker(market=_symbol)
@@ -314,6 +318,6 @@ class MqReceiver:
                 print(pos)
 
                 return True, pos['size']
+
         else:
-            print('No pos')
-        return False, 0
+            return False, 0
