@@ -921,7 +921,7 @@ class AutoTrader:
 
 
 
-    def start_process(self):
+    def start_process_(self):
 
         restarts = 0
         _iter = 0
@@ -1009,3 +1009,8 @@ class AutoTrader:
                 _iter = 0
 
 
+    def start_process(self):
+        try:
+            self.start_process_()
+        except KeyboardInterrupt:
+            exit()
