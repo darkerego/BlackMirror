@@ -106,18 +106,18 @@ class WsReceiver:
                 _type = self.sig_.get('signal')
                 _instrument = self.sig_.get('instrument')
                 _symbol = str(_instrument[:-4] + '-PERP')
-                print(_symbol)
+                #print(_symbol)
                 _entry = self.sig_['entry']
                 print(_type, _instrument, _entry)
                 b, a, l = self.api.get_ticker(market=_symbol)
-                print(l)
+                #print(l)
                 info = self.api.info()
                 positions = info['positions']
                 balance = info["freeCollateral"]
                 leverage = info['leverage']
 
                 qty = (float(balance) * leverage) / float(l) * 0.25
-                print(balance, leverage, qty)
+                #print(balance, leverage, qty)
                 if _type == 'long':
                     self.cp.alert('[LONG SIGNAL]: ENTERING!')
                     if self.check_position_exists_diff(future=_symbol):
@@ -243,7 +243,7 @@ class MqReceiver:
             leverage = info['leverage']
 
             qty = (float(balance) * leverage) / float(l) * self.collateral_pct
-            print(balance, leverage, qty)
+            #print(balance, leverage, qty)
 
             if _type == 'LONG':
                 # self.cp.blue(f'[E] Received {_type} Enter Signal for instrument {_instrument} of Score {score} %')

@@ -329,17 +329,18 @@ class AutoTrader:
                                          ts_o_type=self.order_type)
                 if ret:
                     print('Success at take profit')
-                    self.wins += 1
-                    return True
+                    #self.wins += 1
+                    return ret
             else:
 
                 if order_type == 'market':  # market, qty, reduce, ioc, cid):
                     self.cp.yellow(f'[฿] Sending a market order, side: {opp_side}, price: {price}')
                     ret = self.api.sell_market(market=market, qty=size, ioc=False, reduce=True)
+                    return ret
                 else:  # market, qty, price=None, post=False, reduce=False, cid=None):
                     self.cp.purple(f'[฿] Sending a limit order, side: {opp_side}, price: {price}')
                     ret = self.api.sell_limit(market=market, qty=size, price=ask, reduce=True)
-                    self.wins += 1
+                    #self.wins += 1
                     return ret
         else:  # side == sell
             opp_side = 'buy'
@@ -351,11 +352,12 @@ class AutoTrader:
                 #                      entry=float(entry), offset=float(self.trailing_stop_pct))
                 ret = self.api_trailing_stop(market=market, side=side, qty=size, offset=self.trailing_stop_pct, entry=entry,
                                          ts_o_type=self.order_type)
+                return ret
 
                 if ret:
                     self.cp.purple(f'[~] Success at taking profit.')
-                    self.wins += 1
-                    return True
+                    #self.wins += 1
+                    return ret
 
             else:
 
@@ -365,10 +367,11 @@ class AutoTrader:
                                               _type='market', ioc=False, reduce=True)
                     self.wins += 1
                     return ret
+                    #return ret
                 else:
                     self.cp.purple(f'[฿] Sending a limit order, side: {opp_side}, price: {price}')
                     ret = self.api.buy_limit(market=market, qty=size, price=ask, reduce=True)
-                    self.wins += 1
+                    #self.wins += 1
                     return ret
         self.cp.red(f"[฿]: ({ret}")
 
@@ -845,18 +848,23 @@ class AutoTrader:
                                             market=future_instrument)
                 except Exception as err:
                     print('ERROR', err)
+                    ret = False
                     if re.match(r'^(.*)margin for order(.*)$',
                                 err.__str__()):
                         self.cp.red('[!] Not enough margin!')
-                        ret = False
+
                     elif re.match(r'^(.*)Size too small(.*)$', err.__str__()):
                         qty = size
                         self.cp.red('[!] Size too small! Fail ...')
+
+                    elif re.match(r'^(.*)rigger price too(.*)$', err.__str__()):
+                        self.cp.red('[!] This stupid trigger price error!')
                     else:
                         self.cp.red(f'[!] Error with order: {err}')
                 else:
                     if ret:
                         self.accumulated_pnl += pnl
+                        self.wins += 1
 
                         self.cp.alert('----------------------------------------------')
                         self.cp.alert(f'Total Session PROFITS: {self.accumulated_pnl}')

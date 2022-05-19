@@ -103,7 +103,7 @@ def get_args():
                                      'at, represented'
                                      'as sa floating point number.'
                                      '0.2 wouild be 20 pcercent')
-    auto_stop_opts.add_argument('-tpo', '--trailing_stop_off', dest='no_use_trailing_stop', action='store_true',
+    auto_stop_opts.add_argument('-tS', '--trailing_stops', dest='use_trailing_stop', action='store_true',
                                 help='Do not use Trailing Stops. Not sure why you would not to, but the option is here!')
     auto_stop_opts.add_argument('-ts', '--trailing_stop_offset', dest='ts_offset', type=float, default=0.25,
                                 help='Trailing stop offset, represented as a floating point number, percentage of pnl.')

@@ -44,7 +44,7 @@ class Monitor:
         self.auto = conf.auto_trader
         self.sl = conf.stop_loss_pct
         self.tp = conf.take_profit_pct
-        self.ts = conf.ts_offset
+        self.ts = conf.use_trailing_stop
         self.ot = conf.order_type
         self.show_tickers = conf.show_tickers
         self.monitor_only = conf.monitor
