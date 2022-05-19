@@ -142,7 +142,7 @@ async def parse_and_exec(args):
         api = bot.api_connection(key=key, secret=secret, subaccount=args.subaccount)
         rest = api[0]
         ws = api[1]
-        api = FtxApi(rest=rest, ws=ws, sa=subaccount, anti_liq=anti_liq)
+        api = FtxApi(rest=rest, ws=ws, sa=subaccount)
         if args.configure_anti_liq:
             cp.yellow('[~] Configuring AntiLiq .. ')
             ret = api.info().get('freeCollateral')
@@ -174,6 +174,9 @@ async def parse_and_exec(args):
                         reserve_sa = api.new_subaccount('LIQUIDITY')
                     except Exception as err:
                         cp.red('Ensure you have permission to transfer and create subaccounts and try again!')
+                    else:
+                        pass
+
 
         if args.show_portfolio:
             balances = api.parse_balances()

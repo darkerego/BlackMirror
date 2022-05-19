@@ -171,20 +171,36 @@ class Monitor:
     #async def receiver(self):
     #    if self.enable_mqtt:
     #        await asyncio.gather(*self.arrayOfFutures)
+    def rest_ticker(self):
+        ret = self.rest.list_markets()
+        for _ in ret:
+            if _.get('name') == 'BTC-PERP':
+                return _.get('last')
+
+    def percentage_change(self, current, previous):
+        if previous != 0:
+            return float(current - previous) / abs(previous) * 100
+        else:
+            return 0
 
     def monitor(self):
+
         c = 0
         tt = 0
         current_time = 0
         running = self.running = True
         time.sleep(0.25)
-        self.auto_trade.start_process()
+        threading.Thread(target=self.auto_trade.start_process).start()
+        print('START')
+        rest_count = 0
         while running:
+            rest_count += 1
             try:
                 ticker = self.ws.get_ticker(market='BTC-PERP')
             except Exception as fuck:
                 self.logger.error(f'Ticker Error {fuck}, lets hope its transient!')
             else:
+                #print(ticker)
                 if not ticker:
                     pass
                 else:
@@ -200,3 +216,12 @@ class Monitor:
             c += 1
             if c % 2000000 == 0:
                 tt += 1
+            if rest_count == 100:
+                rest_count = 0
+                ws_last = ticker.get('last')
+                rest_last = self.rest_ticker()
+                diff = self.percentage_change(ws_last, rest_last)
+                if diff > 2 or diff < 2:
+                    self.logger.critical('WS is not accurate {} second(s), we are going down!'.format(self.lag))
+                    running = False
+

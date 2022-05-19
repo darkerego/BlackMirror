@@ -33,6 +33,29 @@ class ThreadWithReturnValue(threading.Thread):
         return self._return
 
 
+def logwrapper(func):
+    '''Decorator that reports the execution time.'''
+
+    def wrap(*args, **kwargs):
+        for a in kwargs:
+            if a == 'n':
+                print(a)
+        result = func(*args, **kwargs)
+        #end = time.time()
+
+        #print(func.__name__, end - start)
+        return result
+
+    return wrap
+
+
+@logwrapper
+def countdown(n):
+    '''Counts down'''
+    while n > 0:
+        n -= 1
+
+
 class Tally:
     wins = 0
     losses = 0

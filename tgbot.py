@@ -1,3 +1,4 @@
+import json
 import logging
 import time
 
@@ -47,13 +48,16 @@ async def echo(message: types.Message):
     send_sig = True
     await message.reply('Monitoring for signals ...')
     while send_sig:
-        m = mqtt_que.__mq__signal__()
-        if m:
-            try:
-                await message.answer(m)
-            except exceptions.RetryAfter:
-                mqtt_que.append(m)
-            time.sleep(0.5)
+
+        if len(mqtt_que.outgoing_msgs):
+            m = mqtt_que.outgoing_msgs.pop()
+            m = json.loads(m)
+            if float(m['Live_score']) >= 30 and float(m['Mean_Adx']) >= 30:
+                try:
+                    await message.answer(m)
+                except exceptions.RetryAfter:
+                    mqtt_que.append(m)
+                time.sleep(0.5)
 
 
 if __name__ == '__main__':

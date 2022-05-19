@@ -121,6 +121,7 @@ class FtxApi:
 
     def rest_ticker(self, market):
         ret = self.get_market(market)
+        #ret = self.rest.list_markets()
         bid = ret['bid']
         ask = ret['ask']
         last = ret['last']

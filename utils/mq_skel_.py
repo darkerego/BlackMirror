@@ -75,7 +75,7 @@ class MqSkel:
             print(message.payload)
         elif f'{self.topic}' in message.topic:
             print('MESSAGE: ', message.payload.decode())
-            mqtt_que.append(message.payload.decode())
+            mqtt_que.outgoing_msgs.append(message.payload.decode())
 
 
     def mqPublish(self, payload, topic, qos=0, retain=False, id=None):
