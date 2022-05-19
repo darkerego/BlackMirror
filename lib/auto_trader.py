@@ -959,6 +959,7 @@ class AutoTrader:
                     if current.__contains__(entry):
                         pass
                     else:
+
                         self.sql.append(entry, table='futures')
                     exit()
             _iter += 1

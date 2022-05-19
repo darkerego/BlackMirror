@@ -149,6 +149,7 @@ class MqReceiver:
         self.topic = topic
         self.host = self.server_uri.split(':')[0]
         self.port = int(self.server_uri.split(':')[1])
+        self.positions = {}
         self.cp = NewColorPrint()
         # self.mq = async_client.MqttClient(host=self.host, port=self.port)
 
@@ -211,18 +212,15 @@ class MqReceiver:
             _symbol = str(_instrument[:-4] + '-PERP')
 
             self.score_keeper[_symbol] = {'status': 'closed', 'score': float(score)}
-            self.cp.blue(f'[X] Received {_type} EXIT Signal for {_symbol}')
             ok, size = self.check_position_exists_diff(future=_symbol, s=None)
             if ok:
+                self.cp.blue(f'[X] Received {_type} EXIT Signal for {_symbol}, closing!')
                 self.position_close(symbol=_symbol, side=_type, size=size)
         if message.get('Status') == 'open':
 
             _type = self.sig_.get('Signal')
             _instrument = self.sig_.get('Instrument')
             _symbol = str(_instrument[:-4] + '-PERP')
-            # print(message.get('Live_score'))
-            #live_score = float(message.get('Live_score'))
-            #self.score_keeper[_symbol] = {'status': 'open', 'score': float(live_score)}
 
             if float(score) < 0:
                 score = float(score) * -1
@@ -230,9 +228,7 @@ class MqReceiver:
 
                 if float(score) < self.min_score:
                     ok, size = self.check_position_exists_diff(future=_symbol, s=None)
-                    if float(score) < 0:
-                        score = float(score) * -1
-                    if not ok:
+                    if ok:
                         self.position_close(symbol=_symbol, side=_type, size=size)
                         tally.losses += 1
 
@@ -322,7 +318,7 @@ class MqReceiver:
             if float(pos['collateralUsed']) == 0.0 and pos['future'] == future:
                 print(pos)
 
-                return True, pos['size']
+                return False, 0
 
         else:
-            return False, 0
+            return False, pos['size']
