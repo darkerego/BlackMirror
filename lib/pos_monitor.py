@@ -163,7 +163,9 @@ class Monitor:
     def start_auto_trade(self):
         self.cp.navy('[☠] Starting auto trader...')
         self.executor.submit(self.auto.start_process)
-        self.cp.navy('[☑] Started ...')
+        self.a_restarts += 1
+        self.cp.navy(f'[☑] Started ... {self.a_restarts}')
+
 
     def wrapper(self, coro):
         return asyncio.run(coro)
