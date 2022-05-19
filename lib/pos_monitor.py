@@ -12,7 +12,7 @@ from lib.strategy import TradeStrategy
 from trade_engine.api_wrapper import FtxApi
 from trade_engine.osc_engine import OscillationArbitrage
 from utils.colorprint import NewColorPrint
-
+import sys
 
 class Monitor:
     """
@@ -36,7 +36,8 @@ class Monitor:
         self.lagging = False
         self.files = []
         self.executor = ThreadPoolExecutor(max_workers=25)
-        self.logger = logging.getLogger(__name__)
+
+        #self.logger = logging.getLogger(__name__)
         self.api = FtxApi(rest=rest, ws=ws, sa=subaccount)
         self.update_db = conf.update_db
 
@@ -86,6 +87,21 @@ class Monitor:
         self.min_adx = conf.min_adx
         self.check_before_reopen = conf.check_before_reopen
         self.arrayOfFutures = []
+
+        if conf.verbose:
+            file_handler = logging.FileHandler(filename='tmp.log')
+            stdout_handler = logging.StreamHandler(sys.stdout)
+            handlers = [file_handler, stdout_handler]
+
+            logging.basicConfig(
+                level=logging.DEBUG,
+                format='[%(asctime)s] {%(filename)s:%(lineno)d} %(levelname)s - %(message)s',
+                handlers=handlers
+            )
+            self.logger = logging.getLogger('LOGGER_NAME')
+            self.logger.addHandler(stdout_handler)
+
+
 
         if self.sl > 0.0:
             self.sl = self.sl * -1
@@ -162,7 +178,7 @@ class Monitor:
 
     def start_auto_trade(self):
         self.cp.navy('[☠] Starting auto trader...')
-        self.executor.submit(self.auto.start_process)
+        self.executor.submit(self.auto_trade.start_process)
         self.a_restarts += 1
         self.cp.navy(f'[☑] Started ... {self.a_restarts}')
 
@@ -192,7 +208,7 @@ class Monitor:
         current_time = 0
         running = self.running = True
         time.sleep(0.25)
-        threading.Thread(target=self.auto_trade.start_process).start()
+        self.start_auto_trade()
         print('START')
         rest_count = 0
         while running:
@@ -201,6 +217,7 @@ class Monitor:
                 ticker = self.ws.get_ticker(market='BTC-PERP')
             except Exception as fuck:
                 self.logger.error(f'Ticker Error {fuck}, lets hope its transient!')
+
             else:
                 if not ticker:
                     pass
@@ -217,13 +234,13 @@ class Monitor:
             c += 1
             if c % 2000000 == 0:
                 tt += 1
-            if rest_count == 100:
+            if rest_count == 1000:
                 rest_count = 0
-                ws_last = ticker.get('last')
+                """ws_last = ticker.get('last')
                 if ws_last is not None:
                     rest_last = self.rest_ticker()
                     diff = self.percentage_change(ws_last, rest_last)
                     if diff > 2 or diff < 2:
                         self.logger.critical('WS is not accurate {} second(s), we are going down!'.format(self.lag))
-                        running = False
+                        running = False"""
 
