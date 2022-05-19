@@ -120,14 +120,14 @@ class WsReceiver:
                 #print(balance, leverage, qty)
                 if _type == 'long':
                     self.cp.alert('[LONG SIGNAL]: ENTERING!')
-                    if self.check_position_exists_diff(future=_symbol):
+                    if not self.check_position_exists_diff(future=_symbol):
                         ret = self.api.buy_market(market=_symbol, qty=qty, reduce=False, ioc=False, cid=None)
                         print(ret)
                     else:
                         self.cp.red('Cannot enter, position already open!')
                 elif _type == 'short':
                     self.cp.alert('[SHORT SIGNAL] ENTERING!')
-                    if self.check_position_exists_diff(future=_symbol):
+                    if not self.check_position_exists_diff(future=_symbol):
                         ret = self.api.sell_market(_symbol, qty=qty, reduce=False, ioc=False, cid=None)
                         print(ret)
                     else:
