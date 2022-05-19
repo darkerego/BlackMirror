@@ -910,9 +910,13 @@ class AutoTrader:
                     pos['shortOrderSize']) < 0:
                 self.parse(pos, account_info)
             else:
-                for _ in self.open_positions:
-                    if pos['future'] == _:
-                        self.open_positions.pop(_)
+                try:
+                    for _ in self.open_positions:
+                        if pos['future'] == _:
+
+                            self.open_positions.pop(_)
+                except:
+                    pass
 
 
 
