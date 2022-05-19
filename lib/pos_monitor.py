@@ -200,7 +200,6 @@ class Monitor:
             except Exception as fuck:
                 self.logger.error(f'Ticker Error {fuck}, lets hope its transient!')
             else:
-                #print(ticker)
                 if not ticker:
                     pass
                 else:
@@ -219,9 +218,10 @@ class Monitor:
             if rest_count == 100:
                 rest_count = 0
                 ws_last = ticker.get('last')
-                rest_last = self.rest_ticker()
-                diff = self.percentage_change(ws_last, rest_last)
-                if diff > 2 or diff < 2:
-                    self.logger.critical('WS is not accurate {} second(s), we are going down!'.format(self.lag))
-                    running = False
+                if ws_last is not None:
+                    rest_last = self.rest_ticker()
+                    diff = self.percentage_change(ws_last, rest_last)
+                    if diff > 2 or diff < 2:
+                        self.logger.critical('WS is not accurate {} second(s), we are going down!'.format(self.lag))
+                        running = False
 
