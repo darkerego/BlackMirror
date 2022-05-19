@@ -120,14 +120,14 @@ class WsReceiver:
                 #print(balance, leverage, qty)
                 if _type == 'long':
                     self.cp.alert('[LONG SIGNAL]: ENTERING!')
-                    if not self.check_position_exists_diff(future=_symbol):
+                    if  self.check_position_exists_diff(future=_symbol):
                         ret = self.api.buy_market(market=_symbol, qty=qty, reduce=False, ioc=False, cid=None)
                         print(ret)
                     else:
                         self.cp.red('Cannot enter, position already open!')
                 elif _type == 'short':
                     self.cp.alert('[SHORT SIGNAL] ENTERING!')
-                    if not self.check_position_exists_diff(future=_symbol):
+                    if self.check_position_exists_diff(future=_symbol):
                         ret = self.api.sell_market(_symbol, qty=qty, reduce=False, ioc=False, cid=None)
                         print(ret)
                     else:
@@ -251,7 +251,7 @@ class MqReceiver:
                     if float(_adx) >= self.min_adx:
                         self.cp.alert(f'[LONG SIGNAL]: {_instrument} Score {score} % ENTERING!')
                         check, size = self.check_position_exists_diff(future=_symbol)
-                        if check:
+                        if not check:
                             ret = self.api.buy_market(market=_symbol, qty=qty, reduce=False, ioc=False, cid=None)
                             self.cp.purple(ret)
                             # time.sleep(2)
@@ -266,7 +266,7 @@ class MqReceiver:
                     if float(_adx) >= self.min_adx:
                         self.cp.alert(f'[SHORT SIGNAL]: {_instrument} Score {score} % ENTERING!')
                         check, size = self.check_position_exists_diff(future=_symbol)
-                        if check:
+                        if not check:
                             ret = self.api.sell_market(_symbol, qty=qty, reduce=False, ioc=False, cid=None)
                             self.cp.purple(ret)
                             # time.sleep(2)
