@@ -207,7 +207,7 @@ class FtxApi:
                                                   type='trailingStop', reduce_only=reduce_only)
         return ret
 
-    def stop_loss(self, market, side, trigger_price, limit_price=None, reduce_only=True):
+    def stop_loss(self, market, side, size, trigger_price, limit_price=None, reduce_only=True):
         """
         market: str, side: str, size: float, type: str = 'stop',
             limit_price: float = None, reduce_only: bool = False, cancel: bool = True,
@@ -215,10 +215,10 @@ class FtxApi:
         """
         if limit_price is None:
             # stop market
-            return self.rest.place_conditional_order(market=market, side=side, type='stop', triggerPrice=trigger_price,
+            return self.rest.place_conditional_order(market=market, size=size, side=side, type='stop', trigger_price=trigger_price,
                                                      reduce_only=reduce_only)
         else:
-            return self.rest.place_conditional_order(market=market, side=side, type='stopLimit', triggerPrice=trigger_price,
+            return self.rest.place_conditional_order(market=market, side=side, size=size, type='stopLimit', trigger_price=trigger_price,
                                                      reduce_only=reduce_only)
 
     def take_profit(self, market, side, size, triggerPrice, limit_price=None, reduce_only=True):

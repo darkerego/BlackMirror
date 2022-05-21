@@ -40,6 +40,7 @@ class Monitor:
         #self.logger = logging.getLogger(__name__)
         self.api = FtxApi(rest=rest, ws=ws, sa=subaccount)
         self.update_db = conf.update_db
+        self.logger = logging.getLogger()
 
         self.auto = conf.auto_trader
         self.sl = conf.stop_loss_pct

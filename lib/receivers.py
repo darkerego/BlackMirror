@@ -254,7 +254,6 @@ class MqReceiver:
                         if not check:
                             ret = self.api.buy_market(market=_symbol, qty=qty, reduce=False, ioc=False, cid=None)
                             self.cp.purple(ret)
-                            # time.sleep(2)
                         else:
                             self.cp.red('Cannot enter, position already open!')
                     else:
@@ -269,7 +268,6 @@ class MqReceiver:
                         if not check:
                             ret = self.api.sell_market(_symbol, qty=qty, reduce=False, ioc=False, cid=None)
                             self.cp.purple(ret)
-                            # time.sleep(2)
                         else:
                             self.cp.red('Cannot enter, position already open!')
                     else:

@@ -1,3 +1,4 @@
+import json
 import logging
 import re
 import threading
@@ -57,11 +58,46 @@ def countdown(n):
 
 
 class Tally:
-    wins = 0
-    losses = 0
+    def __init__(self, sql):
+        self.sql = sql
 
+    def get(self, value=None):
+        x = self.sql.get_list('stats')
+        xx = eval(json.loads(json.dumps(x[0])))
+        if value is None:
+            return xx
+        return xx.get(value)
 
-tally = Tally()
+    def write(self, value):
+        self.sql.clear('stats')
+        self.sql.append(value, 'stats')
+
+    def loss(self):
+        stats = self.get()
+        losses = stats.get('losses')
+        losses +=1
+        stats['losses'] = losses
+        self.write(json.dumps(stats))
+
+    def win(self):
+        stats = self.get()
+        wins = stats.get('wins')
+        wins += 1
+        stats['wins'] = wins
+        self.write(json.dumps(stats))
+
+    def increment_contracts(self, value):
+        stats = self.get()
+        ct = stats.get('contracts_traded')
+        ct += value
+        stats['contracts_traded'] = ct
+        self.write(stats)
+
+    def reset(self):
+        self.write(json.dumps({'wins': 0, 'losses': 0}))
+
+sql = sql_lib.SQLLiteConnection()
+tally = Tally(sql)
 
 class AutoTrader:
     """
@@ -87,8 +123,8 @@ class AutoTrader:
         self.monitor_only = monitor_only
         self.logger = logging.getLogger(__name__)
         self.tally = tally
-        self.wins = self.tally.wins
-        self.losses = self.tally.losses
+        #self.wins = self.tally.wins
+        #self.losses = self.tally.losses
         self.accumulated_pnl = 0
         self.pnl_trackers = []
         self.position_close_pct = position_close_pct
@@ -116,7 +152,7 @@ class AutoTrader:
         self.hedge_ratio = hedge_ratio
         self.max_collateral = max_collateral
         self.delta_weight = None
-        self.sql = sql_lib.SQLLiteConnection()
+        self.sql = sql
         self.relist_iter = {}
         self.update_db = update_db
         self.open_positions = {}
@@ -292,7 +328,7 @@ class AutoTrader:
     def stop_loss_order(self, market, side, size):
         if size < 0.0:
             size = size * -1
-        self.losses += 1
+        self.tally.loss()
         if side == 'buy':
             # market sell # market, qty, reduce, ioc, cid
             self.cp.red('[!] Stop hit!')
@@ -365,7 +401,7 @@ class AutoTrader:
                     self.cp.purple(f'[฿] Sending a market order, side: {opp_side}, price: {price}')
                     ret = self.api.buy_market(market=market, side=opp_side, size=size,
                                               _type='market', ioc=False, reduce=True)
-                    self.wins += 1
+                    self.tally.win()
                     return ret
                     #return ret
                 else:
@@ -832,7 +868,9 @@ class AutoTrader:
                 size = size * -1
 
             o_size = size
-            self.total_contacts_trade += (o_size * last)
+            notational_qty = (o_size * last)
+            self.total_contacts_trade += notational_qty
+            self.tally.increment_contracts(notational_qty)
             new_qty = size * self.position_close_pct
             if float(new_qty) < float(self.future_stats[name]['min_order_size']):
                 new_qty = size
@@ -871,7 +909,9 @@ class AutoTrader:
                         self.cp.alert('----------------------------------------------')
                         self.cp.green(
                             f'Reached target pnl of {pnl_pct} on {future_instrument}, taking profit... PNL: {pnl}')
-                        self.total_contacts_trade += (new_qty * last)
+                        notational_qty = (new_qty * last)
+                        self.total_contacts_trade += notational_qty
+                        self.tally.increment_contracts(notational_qty)
 
                         print('[🃑] Success')
 
@@ -887,7 +927,9 @@ class AutoTrader:
                         else:
 
                             if ret:
-                                self.total_contacts_trade += (new_qty * last)
+                                notational_qty = (new_qty * last)
+                                self.total_contacts_trade += notational_qty
+                                self.tally.increment_contracts(notational_qty)
                                 print('[🃑] Success')
         else:
             try:
@@ -999,10 +1041,14 @@ class AutoTrader:
                 self.cp.pulse(f'[$] Account Value: {info["totalAccountValue"]} Collateral: {info["collateral"]} '
                               f'Free Collateral: {info["freeCollateral"]}, Contracts Traded: {self.total_contacts_trade}'
                               f' Restarts: {restarts}')
-                if self.wins != 0 or self.losses != 0:
-                    self.cp.white_black(f'[🃑] Wins: {self.wins} [🃏] Losses: {self.losses}')
+                _tally = self.tally.get()
+                wins = _tally.get('wins')
+                losses = _tally.get('losses')
+                volume = _tally.get('contracts_traded')
+                if wins != 0 or losses != 0:
+                    self.cp.white_black(f'[🃑] Wins: {wins} [🃏] Losses: {losses}, Volume: {volume}')
                 else:
-                    self.cp.white_black(f'[🃑] Wins: - [🃏] Losses: -')
+                    self.cp.white_black(f'[🃑] Wins: - [🃏] Losses: -, Volume: {volume}')
             try:
 
 
