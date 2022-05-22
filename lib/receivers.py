@@ -263,7 +263,7 @@ class MqReceiver:
                             ret = self.buy_market(market=_symbol, qty=qty, reduce=False, ioc=False, cid=None)
                             self.cp.purple(ret)
                         else:
-                            self.cp.red('Cannot enter, position already open!')
+                            self.cp.red(f'Cannot enter {_symbol}, position already open!')
                     else:
                         self.cp.yellow('[-] ADX too low')
                 else:
@@ -277,7 +277,7 @@ class MqReceiver:
                             ret = self.sell_market(_symbol, qty=qty, reduce=False, ioc=False, cid=None)
                             self.cp.purple(ret)
                         else:
-                            self.cp.red('Cannot enter, position already open!')
+                            self.cp.red(f'Cannot enter {_symbol}, position already open!')
                     else:
                         self.cp.yellow('[-] ADX too low')
                 else:
