@@ -219,8 +219,8 @@ class MqReceiver:
             _symbol = str(_instrument[:-4] + '-PERP')
 
             self.score_keeper[_symbol] = {'status': 'closed', 'score': float(score)}
-            ok, size = self.is_position_open(future=_symbol, s=None)
-            if ok:
+            ok, size = self.check_position_exists(future=_symbol, s=None)
+            if not ok:
                 self.cp.blue(f'[X] Received {_type} EXIT Signal for {_symbol}, closing!')
                 self.position_close(symbol=_symbol, side=_type, size=size)
         if message.get('Status') == 'open':
@@ -246,7 +246,6 @@ class MqReceiver:
                     break
 
             info = self.api.info()
-            positions = info['positions']
             balance = info["freeCollateral"]
             leverage = info['leverage']
 
@@ -258,8 +257,8 @@ class MqReceiver:
                 if float(score) > float(self.min_score):
                     if float(_adx) >= self.min_adx:
                         self.cp.alert(f'[LONG SIGNAL]: {_instrument} Score {score} % ENTERING!')
-                        check, size = self.is_position_open(future=_symbol)
-                        if not check:
+                        check, size = self.check_position_exists(future=_symbol)
+                        if check:
                             ret = self.buy_market(market=_symbol, qty=qty, reduce=False, ioc=False, cid=None)
                             self.cp.purple(ret)
                         else:
@@ -272,8 +271,8 @@ class MqReceiver:
                 if float(score) > float(self.min_score):
                     if float(_adx) >= self.min_adx:
                         self.cp.alert(f'[SHORT SIGNAL]: {_instrument} Score {score} % ENTERING!')
-                        check, size = self.is_position_open(future=_symbol)
-                        if not check:
+                        check, size = self.check_position_exists(future=_symbol)
+                        if check:
                             ret = self.sell_market(_symbol, qty=qty, reduce=False, ioc=False, cid=None)
                             self.cp.purple(ret)
                         else:
@@ -318,7 +317,7 @@ class MqReceiver:
         t = threading.Thread(target=self.run())
         t.start()
 
-    def is_position_open(self, future, s=None):
+    def check_position_exists(self, future, s=None):
         for pos in self.api.positions():
 
             if float(pos['collateralUsed']) == 0.0 and pos['future'] == future:
