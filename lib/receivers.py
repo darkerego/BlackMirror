@@ -56,9 +56,10 @@ class WsReceiver:
 
             if float(pos['collateralUsed']) == 0.0 and pos['future'] == future:
                 print(pos)
-                return True, pos['size']
+                return False, 0
+        return True, pos['size']
 
-        return False, 0
+
 
     def connect(self):
         while True:
