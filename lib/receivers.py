@@ -223,6 +223,7 @@ class MqReceiver:
             if not ok:
                 self.cp.blue(f'[X] Received {_type} EXIT Signal for {_symbol}, closing!')
                 self.position_close(symbol=_symbol, side=_type, size=size)
+
         if message.get('Status') == 'open':
 
             _type = self.sig_.get('Signal')
@@ -236,9 +237,9 @@ class MqReceiver:
                 if float(score) < self.min_score:
                     ok, size = self.check_position_exists(future=_symbol, s=None)
                     if not ok:
-                        print('[!] Closing position')
+                        print(f'[!] Closing position" {_symbol}')
                         self.position_close(symbol=_symbol, side=_type, size=size)
-                        tally.loss()
+                        #tally.loss()
 
             for i in range(1, 10):
                 b, a, l = self.api.get_ticker(market=_symbol)
