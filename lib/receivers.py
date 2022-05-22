@@ -58,9 +58,9 @@ class WsReceiver:
                 print(pos)
 
                 return True, pos['size']
-        else:
-            print('No pos')
-        return False
+            else:
+                print('No pos')
+        return False, 0
 
     def connect(self):
         while True:
@@ -327,4 +327,5 @@ class MqReceiver:
                 return False, 0
 
             else:
+                print(pos)
                 return True, pos['size']
