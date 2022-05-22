@@ -56,10 +56,8 @@ class WsReceiver:
 
             if float(pos['collateralUsed']) == 0.0 and pos['future'] == future:
                 print(pos)
-
                 return True, pos['size']
-            else:
-                print('No pos')
+
         return False, 0
 
     def connect(self):
@@ -120,7 +118,7 @@ class WsReceiver:
                 #print(balance, leverage, qty)
                 if _type == 'long':
                     self.cp.alert('[LONG SIGNAL]: ENTERING!')
-                    if  self.check_position_exists_diff(future=_symbol):
+                    if self.check_position_exists_diff(future=_symbol):
                         ret = self.api.buy_market(market=_symbol, qty=qty, reduce=False, ioc=False, cid=None)
                         print(ret)
                     else:
