@@ -169,7 +169,7 @@ class AutoTrader:
                 self.delta_weight = 'long'
             self.cp.green(f'[~] Hedged Trading Mode Enabled.')
             self.cp.yellow(f'[/] Hedge Ratio: {self.hedge_ratio}, Delta: {self.delta_weight}')
-        if not self.confirm
+        if not self.confirm:
             self.cp.red('[!] Monitor Only enabled. Will NOT trade.')
 
     def sanity_check(self, positions):

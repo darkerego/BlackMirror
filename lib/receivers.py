@@ -326,5 +326,5 @@ class MqReceiver:
 
                 return False, 0
 
-        else:
-            return True, pos['size']
+            else:
+                return True, pos['size']
