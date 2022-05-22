@@ -149,6 +149,9 @@ def get_args():
     auto_stop_opts.add_argument('-pc', '--position_close_pct', type=float, default=1.0,
                                 help='Float point percentage (.5 is 50 percent) of position to close at at time'
                                      'when taking profit.')
+    auto_stop_opts.add_argument('-mf', '--mitigate_fees', dest='mitigate_fees', type=float, default=0.0,
+                                help='Attempt to mitigate the fees incurred from stop loss orders by moving '
+                                     'stop to this value, 0 being disabled and 1 being 100% ')
     #wallet_opts = parser.add_argument_group('Wallet & Subacct Options')
     #wallet_opts.add_argument('')
     api_opts = parser.add_argument_group('API Commands')

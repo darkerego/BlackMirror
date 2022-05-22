@@ -902,7 +902,7 @@ class AutoTrader:
                 else:
                     if ret:
                         self.accumulated_pnl += pnl
-                        self.wins += 1
+                        self.tally.win()
 
                         self.cp.alert('----------------------------------------------')
                         self.cp.alert(f'Total Session PROFITS: {self.accumulated_pnl}')
