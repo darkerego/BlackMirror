@@ -1604,3 +1604,18 @@ INFO:gmqtt.mqtt.handler:[SUBACK] 8 (0,)
 INFO:lib.mq.async_client:SUBSCRIBED
 INFO:gmqtt.mqtt.handler:[SUBACK] 9 (0,)
 INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
