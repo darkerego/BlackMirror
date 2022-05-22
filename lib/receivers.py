@@ -234,8 +234,8 @@ class MqReceiver:
             if self.live_score:
 
                 if float(score) < self.min_score:
-                    ok, size = self.is_position_open(future=_symbol, s=None)
-                    if ok:
+                    ok, size = self.check_position_exists(future=_symbol, s=None)
+                    if not ok:
                         print('[!] Closing position')
                         self.position_close(symbol=_symbol, side=_type, size=size)
                         tally.loss()
