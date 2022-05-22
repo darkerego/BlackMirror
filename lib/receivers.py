@@ -148,30 +148,36 @@ class MqReceiver:
         self.exclude_markets = exclude_markets
         self.server_uri = server_uri
         self.topic = topic
+        self.confirm = confirm
         self.host = self.server_uri.split(':')[0]
         self.port = int(self.server_uri.split(':')[1])
         self.positions = {}
         self.cp = NewColorPrint()
         # self.mq = async_client.MqttClient(host=self.host, port=self.port)
-
-
         self.live_score = live_score
         self.score_keeper = score_keeper.scores
-
         self.sig_ = {}
         self.min_score = min_score
         self.min_adx = min_adx
 
+    def sell_market(self, *args, **kwargs):
+        if self.confirm:
+            return self.api.sell_market(*args, **kwargs)
 
-    def position_close(self, symbol, side, size, min_score=10):
+    def buy_market(self, *args, **kwargs):
+        if self.confirm:
+            return self.api.buy_market(*args, **kwargs)
+
+    def position_close(self, symbol, side, size):
         self.api.cancel_orders(market=symbol)
         if side == 'LONG':
             self.cp.red('Closing Long!')
-            self.api.sell_market(market=symbol, qty=size, reduce=True, ioc=False, cid=None)
+            self.sell_market(market=symbol, qty=size, reduce=True, ioc=False, cid=None)
+
             return True
         else:
             self.cp.red('Closing Short!')
-            self.api.buy_market(market=symbol, qty=size, reduce=True, ioc=False, cid=None)
+            self.buy_market(market=symbol, qty=size, reduce=True, ioc=False, cid=None)
 
     def handle_message(self, topic, message):
 
@@ -254,7 +260,7 @@ class MqReceiver:
                         self.cp.alert(f'[LONG SIGNAL]: {_instrument} Score {score} % ENTERING!')
                         check, size = self.is_position_open(future=_symbol)
                         if not check:
-                            ret = self.api.buy_market(market=_symbol, qty=qty, reduce=False, ioc=False, cid=None)
+                            ret = self.buy_market(market=_symbol, qty=qty, reduce=False, ioc=False, cid=None)
                             self.cp.purple(ret)
                         else:
                             self.cp.red('Cannot enter, position already open!')
@@ -268,7 +274,7 @@ class MqReceiver:
                         self.cp.alert(f'[SHORT SIGNAL]: {_instrument} Score {score} % ENTERING!')
                         check, size = self.is_position_open(future=_symbol)
                         if not check:
-                            ret = self.api.sell_market(_symbol, qty=qty, reduce=False, ioc=False, cid=None)
+                            ret = self.sell_market(_symbol, qty=qty, reduce=False, ioc=False, cid=None)
                             self.cp.purple(ret)
                         else:
                             self.cp.red('Cannot enter, position already open!')

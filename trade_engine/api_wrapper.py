@@ -157,6 +157,7 @@ class FtxApi:
         """
         Place a market buy order
         """
+
         return self.rest.place_order(market=market, side='buy', size=qty, type='market', reduce_only=reduce,
                                      post_only=False, client_id=cid, ioc=ioc, price=None)
 

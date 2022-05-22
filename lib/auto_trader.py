@@ -107,9 +107,9 @@ class AutoTrader:
 
     def __init__(self, api, stop_loss, _take_profit, use_ts=True, ts_pct=0.05, reopen=False, period=300, ot='limit',
                  max_open_orders=None, position_step_size=0.02, disable_stop_loss=False, show_tickers=True,
-                 monitor_only=False, close_method='market', relist_iterations=100, hedge_mode=False, hedge_ratio=0.5,
+                 close_method='market', relist_iterations=100, hedge_mode=False, hedge_ratio=0.5,
                  max_collateral=0.5, position_close_pct=1, chase_close=0, chase_reopen=0, update_db=False, anti_liq=False,
-                 min_score=0.0, check_before_reopen=False):
+                 min_score=0.0, check_before_reopen=False, mitigate_fees=False, confirm=False):
         self.cp = NewColorPrint()
         self.up_markets = {}
         self.down_markets = {}
@@ -120,7 +120,7 @@ class AutoTrader:
         self.use_ts = use_ts
         self.trailing_stop_pct = ts_pct
         self.api = api
-        self.monitor_only = monitor_only
+        self.confirm = confirm
         self.logger = logging.getLogger(__name__)
         self.tally = tally
         #self.wins = self.tally.wins
@@ -132,7 +132,7 @@ class AutoTrader:
         self.chase_reopen = chase_reopen
         self.min_score = min_score
         self.check_before_reopen = check_before_reopen
-
+        self.mitigate_fees = mitigate_fees
         self.total_contacts_trade = 0
         self.reopen = reopen
         self.close_method = close_method
@@ -388,12 +388,11 @@ class AutoTrader:
                 #                      entry=float(entry), offset=float(self.trailing_stop_pct))
                 ret = self.api_trailing_stop(market=market, side=side, qty=size, offset=self.trailing_stop_pct, entry=entry,
                                          ts_o_type=self.order_type)
-                return ret
+
 
                 if ret:
                     self.cp.purple(f'[~] Success at taking profit.')
-                    #self.wins += 1
-                    return ret
+                return ret
 
             else:
 
@@ -401,7 +400,7 @@ class AutoTrader:
                     self.cp.purple(f'[฿] Sending a market order, side: {opp_side}, price: {price}')
                     ret = self.api.buy_market(market=market, side=opp_side, size=size,
                                               _type='market', ioc=False, reduce=True)
-                    self.tally.win()
+                    #self.tally.win()
                     return ret
                     #return ret
                 else:
@@ -715,7 +714,7 @@ class AutoTrader:
             #print('Returning')
             return
 
-        pnl_track = profit_tracker.SessionProfits(instrument=future_instrument)
+        # pnl_track = profit_tracker.SessionProfits(instrument=future_instrument)
         size = 0
         if debug:
             self.cp.white_black(f'[d]: Processing {future_instrument}')
@@ -875,7 +874,7 @@ class AutoTrader:
             if float(new_qty) < float(self.future_stats[name]['min_order_size']):
                 new_qty = size
             self.cp.purple(f'Sending {pos_side} order of size {new_qty} , price {current_price}')
-            if self.monitor_only:
+            if not self.confirm:
                 self.cp.red('[!] Not actually trading... ')
 
             else:
@@ -946,10 +945,11 @@ class AutoTrader:
                 f'[$]PNL %: {pnl_pct}/Target %: {self._take_profit}/Target Stop: {self.stop_loss}, PNL USD: {pnl}, '
                 f'Target PNL USD: ${tpnl}, Target STOP USD: ${tsl}')
             if pnl_pct < self.stop_loss and not self.disable_stop_loss:
-                if self.monitor_only:
-                    self.cp.red('[!] NOT TRADING: Stop Hit.')
-                else:
+                if self.confirm:
                     self.stop_loss_order(market=future_instrument, side=side, size=size * -1)
+
+                else:
+                    self.cp.red('[!] NOT TRADING: Stop Hit.')
                 self.accumulated_pnl -= pnl
 
     @exit_after(30)

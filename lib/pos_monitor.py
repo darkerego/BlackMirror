@@ -41,14 +41,14 @@ class Monitor:
         self.api = FtxApi(rest=rest, ws=ws, sa=subaccount)
         self.update_db = conf.update_db
         self.logger = logging.getLogger()
-
+        self.mitigate_fees = conf.mitigate_fees
         self.auto = conf.auto_trader
         self.sl = conf.stop_loss_pct
         self.tp = conf.take_profit_pct
         self.ts = conf.use_trailing_stop
         self.ot = conf.order_type
         self.show_tickers = conf.show_tickers
-        self.monitor_only = conf.monitor
+        #self.monitor_only = conf.monitor
         self.use_strategy = conf.use_strategy
         self.strategy = conf.strategy
         self.symbol = conf.symbol
@@ -135,14 +135,14 @@ class Monitor:
             mq_server = MqReceiver(server_uri=self.mqtt_uri, rest=self.rest, _ws=self.ws, sa=self.subaccount,
                                    collateral_pct=self.portfolio_pct, reenter=self.reenter, data_source=self.data_source,
                                    exclude_markets=self.exclude_markets, debug=False, min_score=self.min_score, min_adx = self.min_adx,
-                                   topic=self.mqtt_topic, live_score=self.live_score)
+                                   topic=self.mqtt_topic, live_score=self.live_score, confirm=self.confirm)
             self.executor.submit(self.wrapper, mq_server.start_process())
             #self.arrayOfFutures.append(asyncio.create_task(mq_server.start_process()))
 
 
 
 
-        if self.auto or self.update_db or self.monitor_only:
+        if self.auto or self.update_db:
             self.cp.navy(data='[+] Starting auto trader')
             self.auto_trade = AutoTrader(self.api,
                                          stop_loss=self.sl,
@@ -167,7 +167,9 @@ class Monitor:
                                          update_db=self.update_db,
                                          anti_liq = self.anti_liq,
                                          min_score = self.min_score,
-                                         check_before_reopen = self.check_before_reopen)
+                                         check_before_reopen = self.check_before_reopen,
+                                         mitigate_fees = self.mitigate_fees,
+                                         confirm = self.confirm)
 
     def __enter__(self):
         return self
