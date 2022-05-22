@@ -1557,3 +1557,50 @@ CRITICAL:LOGGER_NAME:WS is not accurate 0 second(s), we are going down!
 CRITICAL:LOGGER_NAME:WS is not accurate 0 second(s), we are going down!
 CRITICAL:LOGGER_NAME:WS is not accurate 0 second(s), we are going down!
 CRITICAL:root:WS is lagging 54 second(s), we are going down!
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+CRITICAL:root:WS is lagging 48 second(s), we are going down!
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 4 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 5 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 6 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 4 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 5 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 6 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+CRITICAL:root:WS is lagging 29 second(s), we are going down!
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 7 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 8 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 9 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 7 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 8 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 9 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED

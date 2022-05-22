@@ -137,7 +137,8 @@ class WsReceiver:
 
 class MqReceiver:
     def __init__(self, server_uri, rest, _ws, sa, collateral_pct, reenter,
-                 data_source, exclude_markets, debug=True, min_score=10, topic='/signals', live_score=False, min_adx=20):
+                 data_source, exclude_markets, debug=True, min_score=10, topic='/signals', live_score=False, min_adx=20,
+                 confirm=False):
         self.debug = debug
         self.api = FtxApi(rest, _ws)
         self.sa = sa
@@ -212,7 +213,7 @@ class MqReceiver:
             _symbol = str(_instrument[:-4] + '-PERP')
 
             self.score_keeper[_symbol] = {'status': 'closed', 'score': float(score)}
-            ok, size = self.check_position_exists_diff(future=_symbol, s=None)
+            ok, size = self.is_position_open(future=_symbol, s=None)
             if ok:
                 self.cp.blue(f'[X] Received {_type} EXIT Signal for {_symbol}, closing!')
                 self.position_close(symbol=_symbol, side=_type, size=size)
@@ -227,10 +228,11 @@ class MqReceiver:
             if self.live_score:
 
                 if float(score) < self.min_score:
-                    ok, size = self.check_position_exists_diff(future=_symbol, s=None)
+                    ok, size = self.is_position_open(future=_symbol, s=None)
                     if ok:
+                        print('[!] Closing position')
                         self.position_close(symbol=_symbol, side=_type, size=size)
-                        tally.losses += 1
+                        tally.loss()
 
             for i in range(1, 10):
                 b, a, l = self.api.get_ticker(market=_symbol)
@@ -250,7 +252,7 @@ class MqReceiver:
                 if float(score) > float(self.min_score):
                     if float(_adx) >= self.min_adx:
                         self.cp.alert(f'[LONG SIGNAL]: {_instrument} Score {score} % ENTERING!')
-                        check, size = self.check_position_exists_diff(future=_symbol)
+                        check, size = self.is_position_open(future=_symbol)
                         if not check:
                             ret = self.api.buy_market(market=_symbol, qty=qty, reduce=False, ioc=False, cid=None)
                             self.cp.purple(ret)
@@ -264,7 +266,7 @@ class MqReceiver:
                 if float(score) > float(self.min_score):
                     if float(_adx) >= self.min_adx:
                         self.cp.alert(f'[SHORT SIGNAL]: {_instrument} Score {score} % ENTERING!')
-                        check, size = self.check_position_exists_diff(future=_symbol)
+                        check, size = self.is_position_open(future=_symbol)
                         if not check:
                             ret = self.api.sell_market(_symbol, qty=qty, reduce=False, ioc=False, cid=None)
                             self.cp.purple(ret)
@@ -310,7 +312,7 @@ class MqReceiver:
         t = threading.Thread(target=self.run())
         t.start()
 
-    def check_position_exists_diff(self, future, s=None):
+    def is_position_open(self, future, s=None):
         for pos in self.api.positions():
 
             if float(pos['collateralUsed']) == 0.0 and pos['future'] == future:
@@ -319,4 +321,4 @@ class MqReceiver:
                 return False, 0
 
         else:
-            return False, pos['size']
+            return True, pos['size']
