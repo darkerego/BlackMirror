@@ -26,9 +26,11 @@
     """
 
 import logging
+import threading
 import time
 from exchanges.ftx_lib.rest import client
 from exchanges.ftx_lib.websocket_api import client as ws_client
+from lib.auto_trader import tally
 from lib.exceptions import RestartError
 from lib.pos_monitor import Monitor
 from lib.receivers import WebSocketSignals
@@ -56,6 +58,7 @@ ws_signals = WebSocketSignals()
 
 
 class Bot:
+    lock = threading.Lock()
     restarts = 0
 
     def api_connection(self, key, secret, subaccount):
@@ -99,6 +102,11 @@ async def parse_and_exec(args):
     key, secret, subaccount, anti_liq = config_loader.load_config('conf.json')
     bot = Bot()
 
+    if args.reset_db:
+        cp.yellow('[~] Resetting the pnl stats ... ')
+        tally.reset()
+
+
     if args.monitor or args.auto_trader or args.update_db or args.dumpdb:
         if args.dumpdb:
             sql = SQLLiteConnection()
@@ -138,11 +146,14 @@ async def parse_and_exec(args):
         await bot.monitor(key=key, secret=secret, subaccount_name=args.subaccount, args=args)
 
     if args.show_portfolio or args.buy or args.sell or args.cancel or args.open_orders or args.configure_anti_liq \
-            or args.trailing_stop_buy or args.trailing_stop_sell:
+            or args.trailing_stop_buy or args.trailing_stop_sell or args.set_leverage:
         api = bot.api_connection(key=key, secret=secret, subaccount=args.subaccount)
         rest = api[0]
         ws = api[1]
         api = FtxApi(rest=rest, ws=ws, sa=subaccount)
+        if args.set_leverage:
+            cp.yellow('Setting leverage ... ')
+            print(api.leverage(lev=args.set_leverage))
         if args.configure_anti_liq:
             cp.yellow('[~] Configuring AntiLiq .. ')
             ret = api.info().get('freeCollateral')

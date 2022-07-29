@@ -30,13 +30,15 @@ class Monitor:
         self.ws = ws
         self.subaccount = subaccount
         self.cp = NewColorPrint()
+
         self.running = False
         self.lag = 0
         self.a_restarts = 0
         self.lagging = False
         self.files = []
         self.executor = ThreadPoolExecutor(max_workers=25)
-
+        self.lock = threading.Lock()
+        self.lock2 = threading.Lock()
         #self.logger = logging.getLogger(__name__)
         self.api = FtxApi(rest=rest, ws=ws, sa=subaccount)
         self.update_db = conf.update_db
@@ -85,6 +87,8 @@ class Monitor:
         self.live_score = conf.live_score
         self.confirm = conf.confirm
         self.anti_liq = conf.anti_liq
+        self.tp_fib_enable = conf.tp_fib_enable
+        self.tp_fib_res = conf.tp_fib_res
         self.min_adx = conf.min_adx
         self.check_before_reopen = conf.check_before_reopen
         self.arrayOfFutures = []
@@ -130,14 +134,18 @@ class Monitor:
             t.start()
 
         if self.enable_mqtt:
+            if self.lock.locked():
+                print('ERROR RECEIVER IS LOCKED!')
+            else:
+                self.lock.acquire()
 
-            self.cp.purple(f'[mq] Starting mqtt receiver ... ')
-            mq_server = MqReceiver(server_uri=self.mqtt_uri, rest=self.rest, _ws=self.ws, sa=self.subaccount,
-                                   collateral_pct=self.portfolio_pct, reenter=self.reenter, data_source=self.data_source,
-                                   exclude_markets=self.exclude_markets, debug=False, min_score=self.min_score, min_adx = self.min_adx,
-                                   topic=self.mqtt_topic, live_score=self.live_score, confirm=self.confirm)
-            self.executor.submit(self.wrapper, mq_server.start_process())
-            #self.arrayOfFutures.append(asyncio.create_task(mq_server.start_process()))
+                self.cp.purple(f'[mq] Starting mqtt receiver ... ')
+                mq_server = MqReceiver(server_uri=self.mqtt_uri, rest=self.rest, _ws=self.ws, sa=self.subaccount,
+                                       collateral_pct=self.portfolio_pct, reenter=self.reenter, data_source=self.data_source,
+                                       exclude_markets=self.exclude_markets, debug=False, min_score=self.min_score, min_adx = self.min_adx,
+                                       topic=self.mqtt_topic, live_score=self.live_score, confirm=self.confirm)
+
+                self.executor.submit(self.wrapper, mq_server.start_process())
 
 
 
@@ -176,8 +184,10 @@ class Monitor:
 
     def __exit__(self, *a):
         self.running = False
+        MqReceiver.running = False
         for file in self.files:
             os.unlink(file)
+        sys.exit()
 
     def start_auto_trade(self):
         self.cp.navy('[☠] Starting auto trader...')

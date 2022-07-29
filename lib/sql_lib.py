@@ -4,8 +4,9 @@ import sqlite3
 print(os.getcwd())
 from threading import Lock
 
+
 class SQLLiteConnection:
-    def __init__(self, dbname=f"{os.getcwd()}/ftxdb.sqlite"):
+    def __init__(self, dbname=f"ftxdb.sqlite"):
         self.dbName = dbname
         print(f'Connecting to  {self.dbName}')
         self.conn = sqlite3.connect(self.dbName)

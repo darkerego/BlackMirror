@@ -1,0 +1,20 @@
+{% extends "flask_debug/base.html" %}
+
+{% block container %}
+{{super()}}
+<h1>Flask-Debug plugins</h1>
+The following plugins for <a href="http://pypi.python.org/pypi/Flask-Debug">Flask -Debug</a> have been loaded:
+<table class="table table-striped table-hover">
+    <tr>
+        <th>Plugin</th>
+        <th>Module</th>
+    </tr>
+{% for name, mod in g.dbg._debug_get_plugins().items()|sort(True) %}
+    <tr>
+        <td>{{name}}</td>
+        <td><a href="file://{{mod.__file__|urlencode}}">{{mod.__file__}}</a></td>
+    </tr>
+{% endfor %}
+</table>
+
+{% endblock %}

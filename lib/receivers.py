@@ -138,7 +138,9 @@ class MqReceiver:
     def __init__(self, server_uri, rest, _ws, sa, collateral_pct, reenter,
                  data_source, exclude_markets, debug=True, min_score=10, topic='/signals', live_score=False, min_adx=20,
                  confirm=False):
+        self.lock = asyncio.Lock()
         self.debug = debug
+        self.running = False
         self.api = FtxApi(rest, _ws)
         self.sa = sa
         self.collateral_pct = collateral_pct
@@ -168,7 +170,7 @@ class MqReceiver:
             return self.api.buy_market(*args, **kwargs)
 
     def position_close(self, symbol, side, size):
-        self.api.cancel_orders(market=symbol)
+        #self.api.cancel_orders(market=symbol)
         if side == 'LONG':
             self.cp.red(f'Closing Long on {symbol}!')
             self.sell_market(market=symbol, qty=size, reduce=True, ioc=False, cid=None)
@@ -284,8 +286,11 @@ class MqReceiver:
 
     def run(self):
         print('Start run')
-        while True:
+        self.running = True
+        while self.running:
             message = async_client.message_que.read_incoming()
+            ts=time.time()
+
 
             if message is not None:
                 # print(message)
@@ -293,6 +298,7 @@ class MqReceiver:
                 topic = message[0]
                 message = message[1]
                 # print(topic, message)
+                #print(f'MESSAGE {ts} {message}')
 
                 time.sleep(0.24)
                 try:
@@ -309,13 +315,15 @@ class MqReceiver:
         loop.run_until_complete(mq.start_loop())
 
     async def start_process(self):
-        print('Start mqtt')
-        mq = async_client.MqttClient(host=self.host, port=int(self.port))
+        if not self.lock.locked():
+            await self.lock.acquire()
+            print('Start mqtt')
+            mq = async_client.MqttClient(host=self.host, port=int(self.port))
 
-        threading.Thread(target=self.launch_event_loops, args=(mq, )).start()
-        print('Started')
-        t = threading.Thread(target=self.run())
-        t.start()
+            threading.Thread(target=self.launch_event_loops, args=(mq, )).start()
+            print('Started')
+            t = threading.Thread(target=self.run())
+            t.start()
 
     def check_position_exists(self, future, s=None):
         for pos in self.api.positions():

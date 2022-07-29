@@ -14,6 +14,7 @@ def get_args():
                                                                                                  'to. None for main '
                                                                                                  'account.')
     gen_opts.add_argument('--antiliq', dest='anti_liq', action='store_true')
+    gen_opts.add_argument('-rst', '--reset', dest='reset_db', action='store_true', help='Reset PNL and Volume stats')
 
     gen_opts.add_argument('-v', '--verbose', dest='verbose', action='store_true', default=False, help='Verbose mode.')
     gen_opts.add_argument('-st', '--show_tickers', dest='show_tickers', action='store_true', default=False,
@@ -124,6 +125,11 @@ def get_args():
                                      'rebuilding position using '
                                      'increment mode. See documentation.'
                                 ,default=None)
+    auto_stop_opts.add_argument('-fb', '--fib', dest='tp_fib_enable', action='store_true', help='Enable fib retrace '
+                                                                                                'levels for taking '
+                                                                                                'profit.')
+    auto_stop_opts.add_argument('-fp', '--fib_period', dest='tp_fib_res', type=float, default=60, choices=[15, 60, 300, 900, 900, 3600, 14400, 86400],
+                                help='The period to derive the standard deviation for the fib retrace.')
     #auto_stop_opts.add_argument('-')
     auto_stop_opts.add_argument('-no', '--num_orders', dest='num_open_orders', default=4, type=int,
                                 help='Number of open orders to reopen position in increments')
@@ -151,7 +157,7 @@ def get_args():
                                      'when taking profit.')
     auto_stop_opts.add_argument('-mf', '--mitigate_fees', dest='mitigate_fees', type=float, default=0.0,
                                 help='Attempt to mitigate the fees incurred from stop loss orders by moving '
-                                     'stop to this value, 0 being disabled and 1 being 100% ')
+                                     'stop to this value, 0 being disabled and 1 being 100pct ')
     #wallet_opts = parser.add_argument_group('Wallet & Subacct Options')
     #wallet_opts.add_argument('')
     api_opts = parser.add_argument_group('API Commands')
@@ -191,8 +197,14 @@ def get_args():
                           help='Return list of '
                                'open orders.')
     api_opts.add_argument('-c', '--cancel', dest='cancel', type=int, default=None, help='Cancel this order id.')
-    api_opts.add_argument('-L', '--leverage', dest='set_leverage', type=int, choices=[1, 2, 3, 5, 10, 20, 50, 100, 101],
+    api_opts.add_argument('-L', '--leverage', dest='set_leverage', type=int, choices=[1, 2, 3, 5, 10, 20],
                           help='Set account leverage via API.')
+
+    mirror_opts = parser.add_argument_group('Trade Mirroring Options')
+    mirror_opts.add_argument('--mirror', '-mi', dest='enable_mirror', action='store_true', help='Enable trade mirror.')
+    mirror_opts.add_argument('-mst', '--master_account', dest='master_account', type=str, help='Mirror trades from this account')
+    mirror_opts.add_argument('-ca', '--client_accounts', dest='client_accounts', type=str, nargs='+', help='Mirror to these subaccounts')
+    mirror_opts.add_argument('-mm', '--mirror_markets', dest='mirror_markets', type=str, nargs='+', help='Mirr these markets')
 
     args = parser.parse_args()
 

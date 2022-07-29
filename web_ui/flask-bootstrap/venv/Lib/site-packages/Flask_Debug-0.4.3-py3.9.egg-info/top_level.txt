@@ -1,0 +1,2 @@
+flask_debug
+flask_debug_plugins

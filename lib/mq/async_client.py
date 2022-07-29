@@ -1,9 +1,5 @@
 import asyncio
 import logging
-import os
-import random
-import signal
-import time
 import random
 from gmqtt import Client as MQTTClient
 from lib.mq.mqtt_que import MqttQue
@@ -12,9 +8,6 @@ import string
 logging.basicConfig(filename='mqtt.log', level=logging.INFO)
 
 message_que = MqttQue()
-
-
-
 
 
 class MqttClient:

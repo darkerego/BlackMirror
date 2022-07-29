@@ -59,7 +59,7 @@ def interactive_call(_args):
     """
     global cp
     _args_ = _args
-    key, secret, subaccount = config_loader.load_config('utils/conf.json')
+    key, secret, subaccount = config_loader.load_config('conf.json')
     bot = Bot()
     cp = NewColorPrint()
     t = threading.Thread(target=bot.monitor, args=(key, secret, subaccount, _args_))

@@ -144,6 +144,9 @@ class FtxApi:
                 time.sleep(0.125)
         return ret
 
+    def leverage(self, lev):
+        return self.rest.leverage(lev)
+
 
 
     def buy_limit(self, market, qty, price=None, post=False, reduce=False, cid=None):
@@ -241,8 +244,8 @@ class FtxApi:
     def info(self):
         return self.rest.get_account_info()
 
-    def get_public_k_line(self, market, res, start, end):
-        return self.rest.get_public_k_line(market=market, res=res, start_time=start, end_time=end)
+    def get_public_k_line(self, market, res, limit=20, start=None, end=None):
+        return self.rest.get_public_k_line(market=market, resolution=res, limit=limit, start_time=start, end_time=end)
 
     def futures(self):
         return self.rest.list_futures()
@@ -325,6 +328,12 @@ class FtxApi:
 
     def latency(self):
         return self.rest.get_latency_stats()
+
+    def ws_order_stream(self):
+        return self.ws.get_orders()
+
+    def rest_trigger_order_history(self):
+        return self.rest.get_conditional_order_history()
 
 
 def debug_api(subacct=None, config_path='conf.json'):

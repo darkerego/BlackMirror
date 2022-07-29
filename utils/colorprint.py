@@ -1,7 +1,7 @@
 import random
 from colored import fg, attr, bg
 from utils.color_mappings import ColorMaps
-
+message_que = []
 class NewColorPrint:
     def __init__(self):
         self.i = 0
