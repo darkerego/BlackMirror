@@ -63,6 +63,7 @@ class TheSARsAreAllAligning:
         :param market:
         :return: mark price
         """
+
         ret = requests.get(f'https://ftx.com/api/futures/{market}').json()
         print(ret)
         return ret['result']['mark']
@@ -119,6 +120,7 @@ class TheSARsAreAllAligning:
 
         if period is not None:
             print(f'Getting {period} {symbol}')
+
             _candles = requests.get(f'https://ftx.com/api/markets/{symbol}/candles?resolution={period}')
             for c in _candles.json()['result']:
                 close_array.append(c['close'])

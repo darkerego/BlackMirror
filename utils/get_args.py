@@ -1,8 +1,11 @@
 import argparse
+import configparser
+
+import configargparse
 
 
 def get_args():
-    parser = argparse.ArgumentParser(usage='SUPPORT MY WORK! USE MY REFERRAL: https://ftx.com/referrals#a=darkerego')
+    parser = configargparse.ArgumentParser(usage='SUPPORT MY WORK! USE MY REFERRAL: https://ftx.com/referrals#a=darkerego')
     gen_opts = parser.add_argument_group('General Opts')
     gen_opts.description = 'General Options'
     gen_opts.add_argument('-m', '--monitor', dest='monitor', action='store_true', default=False,
@@ -196,16 +199,48 @@ def get_args():
     api_opts.add_argument('-o', '--orders', dest='open_orders', action='store_true', default=False,
                           help='Return list of '
                                'open orders.')
-    api_opts.add_argument('-c', '--cancel', dest='cancel', type=int, default=None, help='Cancel this order id.')
+    api_opts.add_argument('-ca', '--cancel', dest='cancel', type=int, default=None, help='Cancel this order id.')
     api_opts.add_argument('-L', '--leverage', dest='set_leverage', type=int, choices=[1, 2, 3, 5, 10, 20],
                           help='Set account leverage via API.')
 
     mirror_opts = parser.add_argument_group('Trade Mirroring Options')
     mirror_opts.add_argument('--mirror', '-mi', dest='enable_mirror', action='store_true', help='Enable trade mirror.')
     mirror_opts.add_argument('-mst', '--master_account', dest='master_account', type=str, help='Mirror trades from this account')
-    mirror_opts.add_argument('-ca', '--client_accounts', dest='client_accounts', type=str, nargs='+', help='Mirror to these subaccounts')
+    mirror_opts.add_argument('-cn', '--client_accounts', dest='client_accounts', type=str, nargs='+', help='Mirror to these subaccounts')
     mirror_opts.add_argument('-mm', '--mirror_markets', dest='mirror_markets', type=str, nargs='+', help='Mirr these markets')
 
-    args = parser.parse_args()
 
+    config_file_args = parser.add_argument_group('Configuration file arguments')
+    config_file_args.add_argument('-wc', '--write_cfg', dest='write_cfg', type=str, default=None, help='Write currently supplied args to disc.')
+    config_file_args.add_argument('-c', '--config', dest='config_fn', type=str, default='blackmirror.cfg',
+                                  help='Write/read config to/from this file (stored in configs directory).')
+
+
+    args = parser.parse_args()
+    if args.write_cfg:
+        parsed_args, argv = parser.parse_known_args()
+        print(parsed_args, argv)
+        print(f'Writing configuration to {args.write_cfg} ... ')
+        parser.write_config_file(parsed_args, [f'configs/{args.write_cfg}'], True)
+        if 'configs/' in args.write_cfg:
+            pass
+        else:
+            with open('configs/%s'% args.write_cfg, 'r') as f:
+                f.write(parsed_args)
+    else:
+        if args.config_fn:
+            import os
+            if os.path.exists(args.config_fn):
+                pass
+            else:
+                if os.path.exists(f'configs/{args.config_fn}'):
+                    setattr(args, 'config_fn', f'configs/{args.config_fn}')
+            print(f'Opening and parsing {args.config_fn}')
+            with open(args.config_fn, 'r') as f:
+                config = configparser.SafeConfigParser()
+                config.read([args.config_fn])
+            for k, v in config.items("Defaults"):
+                parser.parse_args([str(k), str(v)], args)
+
+            args = parser.parse_args(args)
     return args
