@@ -68,7 +68,7 @@ class TheSARsAreAllAligning:
         # print(ret)
         return ret['result']['mark']
 
-    def generate_sar(self, high_array, low_array, acceleration=0.05, maximum=0.2):
+    def generate_sar(self, high_array, low_array, acceleration=0.02, maximum=0.2):
         """
         Use talib's parabolic sar function to return current psar value
         :param high_array: as array
