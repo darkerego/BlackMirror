@@ -2,6 +2,7 @@ import logging
 import re
 import time
 
+import numpy as np
 import requests
 import talib
 
@@ -22,7 +23,6 @@ except ImportError:
 debug = True
 
 import threading
-
 
 
 class FtxTechnicalAnalysis:
@@ -113,6 +113,7 @@ class FtxTechnicalAnalysis:
         low_array = np.asarray(low_array)
         sar = self.generate_sar(high_array, low_array)
         return self.calc_sar(sar, symbol)
+
 
 class ThreadWithReturnValue(threading.Thread):
     def __init__(self, *init_args, **init_kwargs):
@@ -214,7 +215,7 @@ class AutoTrader:
         self.logger = logging.getLogger(__name__)
         self.tally = tally
         self.sar_sl = sar_sl
-        self.ta_engine =TheSARsAreAllAligning()
+        self.ta_engine = TheSARsAreAllAligning()
         # self.wins = self.tally.wins
         # self.losses = self.tally.losses
         self.accumulated_pnl = 0
@@ -877,7 +878,7 @@ class AutoTrader:
         self.sql.append(sql, 'orders')
 
     def parse(self, pos, info):
-        self.iter+=1
+        self.iter += 1
         """
         {'future': 'TRX-0625', 'size': 9650.0, 'side': 'buy', 'netSize': 9650.0, 'longOrderSize': 0.0,
         'shortOrderSize': 2900.0, 'cost': 1089.1955, 'entryPrice': 0.11287, 'unrealizedPnl': 0.0, 'realizedPnl':
@@ -1052,8 +1053,8 @@ class AutoTrader:
 
                 o_size = size
                 notational_qty = (o_size * last)
-                #self.total_contacts_trade += notational_qty
-                #self.tally.increment_contracts(notational_qty)
+                # self.total_contacts_trade += notational_qty
+                # self.tally.increment_contracts(notational_qty)
                 new_qty = size * self.position_close_pct
                 # print('ok')
                 if float(new_qty) < float(self.future_stats[name]['min_order_size']):
@@ -1095,7 +1096,7 @@ class AutoTrader:
                             self.cp.green(
                                 f'Reached target pnl of {pnl_pct} on {future_instrument}, taking profit... PNL: {pnl}')
                             notational_qty = (new_qty * last)
-                            #self.total_contacts_trade += notational_qty
+                            # self.total_contacts_trade += notational_qty
                             self.tally.increment_contracts(notational_qty)
 
                             print('[🃑] Success')
@@ -1244,12 +1245,12 @@ class AutoTrader:
                 self.logger.error(fuck)
                 print(repr(f'Restart: {fuck} {_iter}'))
                 _iter = 0
-                #break
+                # break
             except Exception as fuck:
                 self.logger.error(fuck)
                 print(repr(f'Restart: {fuck} {_iter}'))
                 _iter = 0
-                #break
+                # break
 
     def start_process(self):
         if not self.lock.locked():
