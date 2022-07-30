@@ -10,6 +10,7 @@ from lib import tally
 from lib.exceptions import *
 from lib.func_timer import exit_after
 from lib.score_keeper import scores
+from trade_engine.aligning_sar import TheSARsAreAllAligning
 from trade_engine.stdev_aggravator import FtxAggratavor
 from utils.colorprint import NewColorPrint
 
@@ -213,7 +214,7 @@ class AutoTrader:
         self.logger = logging.getLogger(__name__)
         self.tally = tally
         self.sar_sl = sar_sl
-        self.ta_engine = FtxTechnicalAnalysis()
+        self.ta_engine =TheSARsAreAllAligning()
         # self.wins = self.tally.wins
         # self.losses = self.tally.losses
         self.accumulated_pnl = 0
