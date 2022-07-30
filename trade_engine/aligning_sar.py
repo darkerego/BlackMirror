@@ -65,7 +65,7 @@ class TheSARsAreAllAligning:
         """
 
         ret = requests.get(f'https://ftx.com/api/futures/{market}').json()
-        print(ret)
+        # print(ret)
         return ret['result']['mark']
 
     def generate_sar(self, high_array, low_array, acceleration=0.05, maximum=0.2):
@@ -116,7 +116,7 @@ class TheSARsAreAllAligning:
         close_array = []
         high_array = []
         low_array = []
-        print(f'Getting {period} {symbol}')
+        #print(f'Getting {period} {symbol}')
         _candles = requests.get(f'https://ftx.com/api/markets/{symbol}/candles?resolution={period}')
         for c in _candles.json()['result']:
             close_array.append(c['close'])

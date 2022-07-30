@@ -219,6 +219,7 @@ class AutoTrader:
         # self.wins = self.tally.wins
         # self.losses = self.tally.losses
         self.accumulated_pnl = 0
+        self.position_sars = []
         self.pnl_trackers = []
         self.lock = threading.Lock()
         self.position_close_pct = position_close_pct
@@ -248,6 +249,7 @@ class AutoTrader:
         self.anti_liq = anti_liq
         self.max_collateral = max_collateral
         self.delta_weight = None
+        self.start_time = time.time()
 
         self.relist_iter = {}
         self.update_db = update_db
@@ -879,6 +881,8 @@ class AutoTrader:
 
     def parse(self, pos, info):
         self.iter += 1
+
+
         """
         {'future': 'TRX-0625', 'size': 9650.0, 'side': 'buy', 'netSize': 9650.0, 'longOrderSize': 0.0,
         'shortOrderSize': 2900.0, 'cost': 1089.1955, 'entryPrice': 0.11287, 'unrealizedPnl': 0.0, 'realizedPnl':
@@ -891,6 +895,9 @@ class AutoTrader:
         future_instrument = pos['future']
         if not self.open_positions.get(future_instrument):
             self.open_positions[future_instrument] = time.time()
+
+
+
 
             # print('Init')
 
@@ -1017,21 +1024,21 @@ class AutoTrader:
             f'UPNL: {unrealized_pnl}, Collateral: {collateral_used}')
         if recent_pnl is None:
             return
-        if self.sar_sl and self.iter == 10:
+        if self.sar_sl and self.iter == 30:
             self.iter = 0
             close_pos = False
-            iter = 0
+
             self.cp.yellow('[~] Checking SAR ... ')
             sar, ticker, blah = self.ta_engine.get_sar(future_instrument, int(self.sar_sl))
 
             if side == 'buy':
                 if sar == 1:
-                    print('SAR IS OK')
+                    pass
                 else:
                     close_pos = True
             else:
                 if sar == -1:
-                    print('SAR IS OK')
+                    pass
                 else:
                     close_pos = True
             if close_pos:
