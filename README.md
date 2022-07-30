@@ -54,6 +54,26 @@ Breakdown of command:
 - gotta enable -lS to use the live stream
 
 </p>
+## What's new - 07/30/2022
+- Option to use sar as stop loss. Specify period to use: example: use the one minute as a stop: `-ssl 60` WARNING: be 
+logical about this. If you enter a long position and the 1 minute sar is saying sell, then don't be surprised when 
+the system immediately closes your position. 
+- Fixed a rather dreadful error that was causing duplicates of the trade engine and receiver threads. The system now 
+runs 100x smoother... 
+- Began adding support for using Fibonacci retracement levels to calculate take profit and stop loss levels. Not fully 
+implemented just yet. The idea is the user will specify a time period to calculate the standard deviation on and then 
+run a fib retrace on this stdev so that take profit orders will be set around the next level, and (optionally) stop loss 
+can be set at the previous level. 
+- Began adding an advanced position logging system. Eventually I will have every position graphed out when the position 
+is closed, showing entrance and exit points along with optional other data. Also every position is stored in an sql db - 
+this is currently implemented. 
+
+# TODO
+- fix and port web interface back in code
+- finish fib retrace
+- finish position graphing
+- finish anti-liquidation logic
+
 ### What's New - 04/14/2022
 - Bot is stable!
 - Fixed random api freezes
