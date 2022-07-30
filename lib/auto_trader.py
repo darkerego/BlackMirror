@@ -1022,20 +1022,22 @@ class AutoTrader:
             close_pos = False
             iter = 0
             self.cp.yellow('[~] Checking SAR ... ')
-            sar, ticker, blah = self.ta_engine.get_sar(future_instrument, self.sar_sl)
+            sar, ticker, blah = self.ta_engine.get_sar(future_instrument, int(self.sar_sl))
+
             if side == 'buy':
                 if sar == 1:
-                    pass
+                    print('SAR IS OK')
                 else:
                     close_pos = True
             else:
                 if sar == -1:
-                    pass
+                    print('SAR IS OK')
                 else:
                     close_pos = True
             if close_pos:
-                self.cp.red('[!!] Closing position as the sar is not in our favor!')
-                self.stop_loss_order(market=future_instrument, side=side, size=size * -1)
+                if self.confirm:
+                    self.cp.red('[!!] Closing position as the sar is not in our favor!')
+                    self.stop_loss_order(market=future_instrument, side=side, size=size * -1)
         if pnl_pct > self._take_profit:
             # confirm price via rest
 
