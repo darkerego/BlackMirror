@@ -1,19 +1,16 @@
+import asyncio
 import json
 import ssl
 import threading
 import time
 
-import trade_engine.aligning_sar
-from utils import config_loader
-from utils.colorprint import NewColorPrint
 from websocket import create_connection, WebSocketConnectionClosedException
-from trade_engine.api_wrapper import FtxApi
-from lib.auto_trader import tally
+
+import trade_engine.aligning_sar
 from lib import score_keeper
 from lib.mq import async_client
-from trade_engine import aligning_sar
-
-import asyncio
+from trade_engine.api_wrapper import FtxApi
+from utils.colorprint import NewColorPrint
 
 
 class WebSocketSignals:
@@ -266,9 +263,13 @@ class MqReceiver:
                         check, size = self.check_position_exists(future=_symbol)
                         if not check:
                             ret, t, sar = self.validator.get_sar(symbol=_instrument, period=60)
+
                             if ret == 1:
+                                self.cp.purple('[+] Trade validated! ... ENTERING!')
                                 ret = self.buy_market(market=_symbol, qty=qty, reduce=False, ioc=False, cid=None)
                                 self.cp.purple(ret)
+                            else:
+                                self.cp.navy('[-] Trade not valid! ... DISCARDING!')
                         else:
                             self.cp.red(f'Cannot enter {_symbol}, position already open!')
                     else:
@@ -278,13 +279,17 @@ class MqReceiver:
             elif _type == 'SHORT':
                 if float(score) > float(self.min_score):
                     if float(_adx) >= self.min_adx:
-                        self.cp.alert(f'[SHORT SIGNAL]: {_instrument} Score {score} % ENTERING!')
+                        self.cp.alert(f'[SHORT SIGNAL]: {_instrument} Score {score} % --  !')
                         check, size = self.check_position_exists(future=_symbol)
                         if not check:
+
                             ret, t, sar = self.validator.get_sar(symbol=_instrument, period=60)
                             if ret == -1:
+                                self.cp.purple('[+] Trade validated! ... ENTERING!')
                                 ret = self.sell_market(_symbol, qty=qty, reduce=False, ioc=False, cid=None)
                                 self.cp.purple(ret)
+                            else:
+                                self.cp.navy('[-] Trade not valid! ... DISCARDING!')
                         else:
                             self.cp.red(f'Cannot enter {_symbol}, position already open!')
                     else:
