@@ -54,6 +54,8 @@ Breakdown of command:
 - gotta enable -lS to use the live stream
 
 </p>
+
+
 ## What's new - 07/30/2022
 - Option to use sar as stop loss. Specify period to use: example: use the one minute as a stop: `-ssl 60` WARNING: be 
 logical about this. If you enter a long position and the 1 minute sar is saying sell, then don't be surprised when 
