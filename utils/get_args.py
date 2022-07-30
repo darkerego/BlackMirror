@@ -85,6 +85,8 @@ def get_args():
                                                                                                     'signal.')
     receiver_opts.add_argument('-MA', '--min_adx', dest='min_adx', type=float, default=20, help='Min mean adx to enter '
                                                                                                 'trade.')
+    receiver_opts.add_argument('-sv', '--sar_validation', dest='sar_validation', default=[60, 300], type=int, nargs='+'
+                               , help='The period(s) to validate the signal for with sar. Set to 0 to disable.')
 
     auto_stop_opts = parser.add_argument_group('Auto Stop Loss Options')
     auto_stop_opts.add_argument('-a', '--auto', dest='auto_trader', action='store_true', help='Use AutoTrader')

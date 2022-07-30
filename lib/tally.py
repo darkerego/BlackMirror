@@ -1,5 +1,11 @@
 import json
+
+
 class Tally:
+    """
+    Stores stats about the bot's history, such as
+    win/loss rate and volume.
+    """
     def __init__(self, sql):
         self.sql = sql
 
@@ -32,7 +38,7 @@ class Tally:
         stats = self.get()
         ct = stats.get('contracts_traded')
         ct = float(ct)
-        ct += value
+        ct += float(value)
         stats['contracts_traded'] = ct
         self.write(stats)
 
