@@ -240,6 +240,7 @@ class AutoTrader:
         self.position_step_size = position_step_size
         self.disable_stop_loss = disable_stop_loss
         self.relist_iterations = relist_iterations
+        self.iter = 0
         self.hedge_mode = hedge_mode
         self.hedge_ratio = hedge_ratio
         self.anti_liq = anti_liq
@@ -875,6 +876,7 @@ class AutoTrader:
         self.sql.append(sql, 'orders')
 
     def parse(self, pos, info):
+        self.iter+=1
         """
         {'future': 'TRX-0625', 'size': 9650.0, 'side': 'buy', 'netSize': 9650.0, 'longOrderSize': 0.0,
         'shortOrderSize': 2900.0, 'cost': 1089.1955, 'entryPrice': 0.11287, 'unrealizedPnl': 0.0, 'realizedPnl':
@@ -1013,8 +1015,10 @@ class AutoTrader:
             f'UPNL: {unrealized_pnl}, Collateral: {collateral_used}')
         if recent_pnl is None:
             return
-        if self.sar_sl:
+        if self.sar_sl and self.iter == 10:
+            self.iter = 0
             close_pos = False
+            iter = 0
             self.cp.yellow('[~] Checking SAR ... ')
             sar, ticker, blah = self.ta_engine.get_sar(future_instrument, self.sar_sl)
             if side == 'buy':
