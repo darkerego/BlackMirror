@@ -96,7 +96,7 @@ class TheSARsAreAllAligning:
             # above candle, is short
             return -1, ticker, sar
 
-    def get_sar(self, symbol, period=None, period_list=None, sar_=True):
+    def get_sar(self, symbol, period=60):
         """
         Grab kline data for multiple timeframes #TODO: aiohttp
         :param symbol:
@@ -105,8 +105,7 @@ class TheSARsAreAllAligning:
         :param sar_:
         :return:
         """
-        if period_list is None:
-            period_list = [15, 60, 300, 900, 3600, 14400, 86400]
+
         """
         Periods in number of seconds:
         15s, 1m,  5m,  15m,  1h,   4h,   1d
@@ -117,20 +116,16 @@ class TheSARsAreAllAligning:
         close_array = []
         high_array = []
         low_array = []
-
-        if period is not None:
-            print(f'Getting {period} {symbol}')
-
-            _candles = requests.get(f'https://ftx.com/api/markets/{symbol}/candles?resolution={period}')
-            for c in _candles.json()['result']:
-                close_array.append(c['close'])
-                high_array.append(c['high'])
-                low_array.append(c['low'])
-            high_array = np.asarray(high_array)
-            low_array = np.asarray(low_array)
-            if sar_:
-                sar = self.generate_sar(high_array, low_array)
-                return self.calc_sar(sar, symbol)
+        print(f'Getting {period} {symbol}')
+        _candles = requests.get(f'https://ftx.com/api/markets/{symbol}/candles?resolution={period}')
+        for c in _candles.json()['result']:
+            close_array.append(c['close'])
+            high_array.append(c['high'])
+            low_array.append(c['low'])
+        high_array = np.asarray(high_array)
+        low_array = np.asarray(low_array)
+        sar = self.generate_sar(high_array, low_array)
+        return self.calc_sar(sar, symbol)
 
     def sar_scalper(self, instrument):
         """

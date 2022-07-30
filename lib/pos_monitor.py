@@ -90,6 +90,7 @@ class Monitor:
         self.tp_fib_enable = conf.tp_fib_enable
         self.tp_fib_res = conf.tp_fib_res
         self.min_adx = conf.min_adx
+        self.sar_sl = conf.sar_sl
         self.check_before_reopen = conf.check_before_reopen
         self.arrayOfFutures = []
 
@@ -177,7 +178,8 @@ class Monitor:
                                          min_score = self.min_score,
                                          check_before_reopen = self.check_before_reopen,
                                          mitigate_fees = self.mitigate_fees,
-                                         confirm = self.confirm)
+                                         confirm = self.confirm,
+                                         sar_sl = self.sar_sl)
 
     def __enter__(self):
         return self

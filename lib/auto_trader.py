@@ -2,6 +2,9 @@ import logging
 import re
 import time
 
+import requests
+import talib
+
 from lib import sql_lib
 from lib import tally
 from lib.exceptions import *
@@ -19,6 +22,96 @@ debug = True
 
 import threading
 
+
+
+class FtxTechnicalAnalysis:
+    """
+    Sar spike/dip detector - constantly check the sar on multi time frames. If they all align,
+    send a trade signal.
+    """
+
+    def __init__(self, debug=False):
+        self.debug = debug
+
+    def spot_ticker(self, market):
+        """
+        Retrieve spot market ticker data
+        :param market:
+        :return: last price
+        """
+        ret = requests.get(f'https://ftx.com/api/markets/{market}').json()
+        print(ret)
+        return ret['result']['price']
+
+    def future_ticker(self, market):
+        """
+        Futures market
+        :param market:
+        :return: mark price
+        """
+
+        ret = requests.get(f'https://ftx.com/api/futures/{market}').json()
+        print(ret)
+        return ret['result']['mark']
+
+    def generate_sar(self, high_array, low_array, acceleration=0.05, maximum=0.2):
+        """
+        Use talib's parabolic sar function to return current psar value
+        :param high_array: as array
+        :param low_array:
+        :param acceleration: acceleration factor
+        :param maximum: acc max
+        :return:
+        """
+        sar = talib.SAR(high_array, low_array, acceleration=acceleration, maximum=maximum)
+        return sar
+
+    def calc_sar(self, sar, symbol):
+        """
+        Determine if sar reads under or above the candle
+        :param sar:
+        :param symbol:
+        :return: tuple
+        """
+        ticker = (self.future_ticker(symbol))
+        sar = sar[-3]
+        if sar < ticker:
+            # under candle, is long
+            return 1, ticker, sar
+        if sar > ticker:
+            # above candle, is short
+            return -1, ticker, sar
+
+    def get_sar(self, symbol, period=60):
+        """
+        Grab kline data for multiple timeframes #TODO: aiohttp
+        :param symbol:
+        :param period:
+        :param period_list:
+        :param sar_:
+        :return:
+        """
+
+        """
+        Periods in number of seconds:
+        15s, 1m,  5m,  15m,  1h,   4h,   1d
+        15, 60, 300, 900, 3600, 14400, 86400
+        0.01736111111111111 %, 0.06944444444444445 %  0.3472222222222222 % 1.0416666666666665% 4.166666666666666% 
+        16.666666666666664 % 77%
+        """
+        close_array = []
+        high_array = []
+        low_array = []
+        print(f'Getting {period} {symbol}')
+        _candles = requests.get(f'https://ftx.com/api/markets/{symbol}/candles?resolution={period}')
+        for c in _candles.json()['result']:
+            close_array.append(c['close'])
+            high_array.append(c['high'])
+            low_array.append(c['low'])
+        high_array = np.asarray(high_array)
+        low_array = np.asarray(low_array)
+        sar = self.generate_sar(high_array, low_array)
+        return self.calc_sar(sar, symbol)
 
 class ThreadWithReturnValue(threading.Thread):
     def __init__(self, *init_args, **init_kwargs):
@@ -101,7 +194,7 @@ class AutoTrader:
                  max_collateral=0.5, position_close_pct=1, chase_close=0, chase_reopen=0, update_db=False,
                  anti_liq=False,
                  min_score=0.0, check_before_reopen=False, mitigate_fees=False, confirm=False, tp_fib_enable=False,
-                 tp_fib_res=300):
+                 tp_fib_res=300, sar_sl=0):
         # self.trade_logger = TradeLog()
         self.cp = NewColorPrint()
         self.up_markets = {}
@@ -119,6 +212,8 @@ class AutoTrader:
         self.sql = sql_lib.SQLLiteConnection()
         self.logger = logging.getLogger(__name__)
         self.tally = tally
+        self.sar_sl = sar_sl
+        self.ta_engine = FtxTechnicalAnalysis()
         # self.wins = self.tally.wins
         # self.losses = self.tally.losses
         self.accumulated_pnl = 0
@@ -918,7 +1013,23 @@ class AutoTrader:
             f'UPNL: {unrealized_pnl}, Collateral: {collateral_used}')
         if recent_pnl is None:
             return
-
+        if self.sar_sl:
+            close_pos = False
+            self.cp.yellow('[~] Checking SAR ... ')
+            sar, ticker, blah = self.ta_engine.get_sar(future_instrument, self.sar_sl)
+            if side == 'buy':
+                if sar == 1:
+                    pass
+                else:
+                    close_pos = True
+            else:
+                if sar == -1:
+                    pass
+                else:
+                    close_pos = True
+            if close_pos:
+                self.cp.red('[!!] Closing position as the sar is not in our favor!')
+                self.stop_loss_order(market=future_instrument, side=side, size=size * -1)
         if pnl_pct > self._take_profit:
             # confirm price via rest
 

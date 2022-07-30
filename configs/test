@@ -1,3 +1,5 @@
+[Defaults]
+monitor = true
 write_cfg = test
 min_spread = 0.25
 chase_close = 0

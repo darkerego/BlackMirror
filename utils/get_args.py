@@ -128,12 +128,22 @@ def get_args():
                                      'rebuilding position using '
                                      'increment mode. See documentation.'
                                 ,default=None)
-    auto_stop_opts.add_argument('-fb', '--fib', dest='tp_fib_enable', action='store_true', help='Enable fib retrace '
+    smart_sl_tp_opts = parser.add_argument_group('Smart Stoploss/Take Profit Options')
+
+    smart_sl_tp_opts.add_argument('-ftp', '--fibtp', dest='tp_fib_enable', action='store_true', help='Enable fib retrace '
                                                                                                 'levels for taking '
                                                                                                 'profit.')
-    auto_stop_opts.add_argument('-fp', '--fib_period', dest='tp_fib_res', type=float, default=60, choices=[15, 60, 300, 900, 900, 3600, 14400, 86400],
+    smart_sl_tp_opts.add_argument('-fsl', '--fibsl', dest='tp_fib_sl_enable', action='store_true', help='Enable fib retrace '
+                                                                                                        'levels for stoploss.')
+    smart_sl_tp_opts.add_argument('-ssl', '--sarsl', dest='sar_sl', type=float, choices=[15, 60, 180, 300, 900, 3600, 14400, 86400],
+                                  help='Sar stop loss -- close position when the sar on this period flips.')
+    smart_sl_tp_opts.add_argument('-fp', '--fib_period', dest='tp_fib_res', type=float, default=60, choices=[15, 60, 180,
+                                                                                                           300, 900,
+                                                                                                           900, 3600,
+                                                                                                           14400, 86400],
                                 help='The period to derive the standard deviation for the fib retrace.')
-    #auto_stop_opts.add_argument('-')
+
+
     auto_stop_opts.add_argument('-no', '--num_orders', dest='num_open_orders', default=4, type=int,
                                 help='Number of open orders to reopen position in increments')
     auto_stop_opts.add_argument('-ps', '--position_step_size', dest='position_step_size', default=0.02, type=float,
@@ -215,32 +225,29 @@ def get_args():
     config_file_args.add_argument('-c', '--config', dest='config_fn', type=str, default='blackmirror.cfg',
                                   help='Write/read config to/from this file (stored in configs directory).')
 
+    """if args.write_cfg:
+                parsed_args, argv = parser.parse_known_args()
+                print(parsed_args, argv)
+                print(f'Writing configuration to {args.write_cfg} ... ')
+                parser.write_config_file(parsed_args, [f'configs/{args.write_cfg}'], True)
 
-    args = parser.parse_args()
-    if args.write_cfg:
-        parsed_args, argv = parser.parse_known_args()
-        print(parsed_args, argv)
-        print(f'Writing configuration to {args.write_cfg} ... ')
-        parser.write_config_file(parsed_args, [f'configs/{args.write_cfg}'], True)
-        if 'configs/' in args.write_cfg:
-            pass
-        else:
-            with open('configs/%s'% args.write_cfg, 'r') as f:
-                f.write(parsed_args)
-    else:
-        if args.config_fn:
-            import os
-            if os.path.exists(args.config_fn):
-                pass
+
             else:
-                if os.path.exists(f'configs/{args.config_fn}'):
-                    setattr(args, 'config_fn', f'configs/{args.config_fn}')
-            print(f'Opening and parsing {args.config_fn}')
-            with open(args.config_fn, 'r') as f:
-                config = configparser.SafeConfigParser()
-                config.read([args.config_fn])
-            for k, v in config.items("Defaults"):
-                parser.parse_args([str(k), str(v)], args)
+                if args.config_fn:
+                    import os
+                    if os.path.exists(args.config_fn):
+                        pass
+                    else:
+                        if os.path.exists(f'configs/{args.config_fn}'):
+                            setattr(args, 'config_fn', f'configs/{args.config_fn}')
+                    print(f'Opening and parsing {args.config_fn}')
+                    with open(args.config_fn, 'r') as f:
+                        config = configparser.SafeConfigParser()
+                        config.read([args.config_fn])
+                    for k, v in config.items("Defaults"):
+                       setattr(args, k, v)
 
-            args = parser.parse_args(args)
-    return args
+                    args = parser.parse_args(args)
+            return args"""
+    return parser.parse_args()
+
