@@ -1,22 +1,14 @@
-import json
 import logging
 import re
-import threading
 import time
-import sys
-import uuid
-from typing import NamedTuple
 
-from utils.colorprint import NewColorPrint
-from trade_engine.stdev_aggravator import FtxAggratavor
-from lib.exceptions import *
-from utils import profit_tracker
-from lib.func_timer import exit_after, cdquit
 from lib import sql_lib
-from concurrent.futures import ThreadPoolExecutor
-from lib.score_keeper import scores
 from lib import tally
-from threading import Lock
+from lib.exceptions import *
+from lib.func_timer import exit_after
+from lib.score_keeper import scores
+from trade_engine.stdev_aggravator import FtxAggratavor
+from utils.colorprint import NewColorPrint
 
 try:
     import thread
