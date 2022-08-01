@@ -134,14 +134,14 @@ class WsReceiver:
 
 
 class MqReceiver:
-    def __init__(self, server_uri, api, sa, collateral_pct, reenter,
+    def __init__(self, server_uri, api, collateral_pct, reenter,
                  data_source, exclude_markets, debug=True, min_score=10, topic='/signals', live_score=False, min_adx=20,
                  confirm=False):
         self.lock = asyncio.Lock()
         self.debug = debug
         self.running = False
         self.api = api
-        self.sa = sa
+        #self.sa = sa
         self.collateral_pct = collateral_pct
         self.reenter = reenter
         self.data_source = data_source
