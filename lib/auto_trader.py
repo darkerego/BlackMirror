@@ -433,7 +433,7 @@ class AutoTrader:
             self.relist_iter[market] += 1
             leftover_iterations = self.relist_iterations - self.relist_iter[market]
             self.cp.blue(f'[!] We have open orders, relisting in {leftover_iterations} iterations.  ... ')
-            return
+
         if self.relist_iter[market] == self.relist_iterations:
             self.relist_iter[market] = 0
 
@@ -1138,7 +1138,7 @@ class AutoTrader:
                 _iter = 0
                 # break
             except Exception as fuck:
-                self.logger.error(f'Error with position parser: {err}')
+                self.logger.error(f'Error with position parser: {fuck}')
                 _iter = 0
                 # break
 

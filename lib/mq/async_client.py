@@ -87,5 +87,7 @@ async def main(host='localhost', port='1883'):
     _mq = MqttClient(host=host, port=int(port))
     loop = asyncio.get_event_loop()
     loop.run_until_complete(_mq.start_loop())
+    while True:
+        pass
 
 
