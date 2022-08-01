@@ -25,11 +25,12 @@
 
     """
 
+import asyncio
 import logging
 import threading
 import time
-from exchanges.ftx_lib.rest import client
-from exchanges.ftx_lib.websocket_api import client as ws_client
+
+
 from lib.auto_trader import tally
 from lib.exceptions import RestartError
 from lib.pos_monitor import Monitor
@@ -40,10 +41,7 @@ from trade_engine.api_wrapper import FtxApi
 from utils import config_loader
 from utils import logo
 from utils.colorprint import NewColorPrint
-from utils.ftx_exceptions import FtxDisconnectError
 from utils.get_args import get_args
-from lib import pnl_calc
-import asyncio
 
 try:
     import thread
@@ -57,27 +55,22 @@ logging.basicConfig()
 ws_signals = WebSocketSignals()
 
 
+
+
+
+
 class Bot:
     lock = threading.Lock()
     restarts = 0
 
-    def api_connection(self, key, secret, subaccount):
-        global ws
-        global rest
-        ws = ws_client.FtxWebsocketClient(api_key=key, api_secret=secret, subaccount_name=subaccount)
-        rest = client.FtxClient(api_key=key, api_secret=secret, subaccount_name=subaccount)
-        return rest, ws
 
-    def con(self, key, secret, subaccount_name=None, args=None):
-        api = self.api_connection(key=key, secret=secret, subaccount=subaccount_name)
-        rest = api[0]
-        ws = api[1]
 
-        return Monitor(rest=rest, ws=ws, subaccount=subaccount_name, conf=args)
 
-    async def monitor(self, key, secret, subaccount_name=None, args={}):
+
+    async def monitor(self, api, args={}):
         while True:
-            with self.con(key=key, secret=secret, subaccount_name=subaccount_name, args=args) as ftx:
+            print('Starting mon')
+            with Monitor(api, conf=args) as ftx:
                 try:
                     cp.navy('[🌡] Monitoring...')
                     # await ftx.receiver()
@@ -92,10 +85,7 @@ class Bot:
                     ftx.__exit__()
                     self.restarts += 1
                     print('[!] Timeout error, restart!')
-                except FtxDisconnectError as err:
-                    ftx.__exit__()
-                    self.restarts += 1
-                    cp.red(f'[!] Websocket Disconnected: Restarts #: {self.restarts}, Error Message: {err}')
+
 
 async def parse_and_exec(args):
     limit_price = 0
@@ -105,7 +95,6 @@ async def parse_and_exec(args):
     if args.reset_db:
         cp.yellow('[~] Resetting the pnl stats ... ')
         tally.reset()
-
 
     if args.monitor or args.auto_trader or args.update_db or args.dumpdb:
         if args.dumpdb:
@@ -143,14 +132,17 @@ async def parse_and_exec(args):
             cp.yellow('[📊] Loading auto trader ... ')
         if args.show_tickers:
             cp.green('[~] Tickers Enabled!')
-        await bot.monitor(key=key, secret=secret, subaccount_name=args.subaccount, args=args)
+        api = FtxApi(key, secret, subaccount)
+        await bot.monitor(api, args=args)
+
 
     if args.show_portfolio or args.buy or args.sell or args.cancel or args.open_orders or args.configure_anti_liq \
             or args.trailing_stop_buy or args.trailing_stop_sell or args.set_leverage:
-        api = bot.api_connection(key=key, secret=secret, subaccount=args.subaccount)
-        rest = api[0]
-        ws = api[1]
-        api = FtxApi(rest=rest, ws=ws, sa=subaccount)
+
+        #api = bot.api_connection(key=key, secret=secret, subaccount=args.subaccount)
+        #rest = api[0]
+        #ws = api[1]
+
         if args.set_leverage:
             cp.yellow('Setting leverage ... ')
             print(api.leverage(lev=args.set_leverage))

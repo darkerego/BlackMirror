@@ -3,18 +3,18 @@ import time
 from utils.colorprint import NewColorPrint as cp
 import logging
 cp = cp()
-
+from exchanges.ftx_lib.rest import client
+from exchanges.ftx_lib.websocket_api import client as ws_client
 
 class FtxApi:
     """
     Api Function Wrapper
     """
 
-    def __init__(self, rest, ws, sa=None):
-        self.rest = rest
-        self.ws = ws
+    def __init__(self, key, secret, sa=None):
+        self.ws = ws_client.FtxWebsocketClient(api_key=key, api_secret=secret, subaccount_name=sa)
+        self.rest = client.FtxClient(api_key=key, api_secret=secret, subaccount_name=sa)
         self.sa = sa
-
         self.logger = logging.getLogger(__name__)
 
     def chase_limit_order(self, market, oid, max_chase=3, failsafe_market=False):

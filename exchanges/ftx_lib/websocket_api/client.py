@@ -1,5 +1,7 @@
+import datetime
 import hmac
 import json
+import logging
 import time
 import zlib
 from collections import defaultdict, deque
@@ -8,13 +10,20 @@ from typing import DefaultDict, Deque, List, Dict, Tuple, Optional
 from gevent.event import Event
 
 from exchanges.ftx_lib.websocket_api.websocket_manager import WebsocketManager
+from lib import logmod
 
 
 class FtxWebsocketClient(WebsocketManager):
     _ENDPOINT = 'wss://ftx.com/ws/'
 
+
     def __init__(self, api_key=None, api_secret=None, subaccount_name=None) -> None:
+
         super().__init__()
+        self.logger = logmod.CustomLogger(log_file='debug3.log')
+        self.logger.setup_file_handler()
+        self.logger = self.logger.get_logger()
+        self.logger.info('Init ws')
         self._api_key = api_key  # TODO: Place your API key here
         self._api_secret = api_secret  # TODO: Place your API secret here
         self._subaccount = subaccount_name
@@ -50,6 +59,7 @@ class FtxWebsocketClient(WebsocketManager):
         return self._ENDPOINT
 
     def _login(self) -> None:
+        self.logger.info('Logging in .. ')
         ts = int(time.time() * 1000)
         self.send_json({'op': 'login', 'args': {
             'key': self._api_key,
@@ -61,6 +71,7 @@ class FtxWebsocketClient(WebsocketManager):
         self._logged_in = True
 
     def _subscribe(self, subscription: Dict) -> None:
+        self.logger.info(f'Subscribing to {subscription}')
         self.send_json({'op': 'subscribe', **subscription})
         self._subscriptions.append(subscription)
 
@@ -115,11 +126,24 @@ class FtxWebsocketClient(WebsocketManager):
             self._subscribe(subscription)
         self._orderbook_update_events[market].wait(timeout)
 
+    def check_lag(self, message: str):
+        #self.logger.info(message)
+        if message:
+            last_time = datetime.datetime.utcfromtimestamp(message['time']).second
+            current_time = datetime.datetime.utcnow().second.real
+            lag = last_time - current_time
+
+            if lag >= 10 and current_time > 0:
+                self.logger.critical('WS is lagging {} second(s), we are going down!'.format(lag))
+                self.reconnect()
+
     def get_ticker(self, market: str) -> Dict:
         subscription = {'channel': 'ticker', 'market': market}
         if subscription not in self._subscriptions:
             self._subscribe(subscription)
-        return self._tickers[market]
+        message = self._tickers[market]
+        self.check_lag(message)
+        return message
 
     def _handle_orderbook_message(self, message: Dict) -> None:
         market = message['market']
@@ -166,6 +190,8 @@ class FtxWebsocketClient(WebsocketManager):
     def _handle_orders_message(self, message: Dict) -> None:
         data = message['data']
         self._orders.update({data['id']: data})
+
+
 
     def _on_message(self, ws, raw_message: str) -> None:
         message = json.loads(raw_message)

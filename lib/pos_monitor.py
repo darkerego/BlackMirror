@@ -5,7 +5,7 @@ import os
 import threading
 import time
 from concurrent.futures import ThreadPoolExecutor
-
+import lib.logmod
 from lib.auto_trader import AutoTrader
 from lib.receivers import WsReceiver, MqReceiver
 from lib.strategy import TradeStrategy
@@ -13,22 +13,29 @@ from trade_engine.api_wrapper import FtxApi
 from trade_engine.osc_engine import OscillationArbitrage
 from utils.colorprint import NewColorPrint
 import sys
+from exchanges.ftx_lib.rest import client
+from exchanges.ftx_lib.websocket_api import client as ws_client
+from utils.ftx_exceptions import FtxDisconnectError
+
 
 class Monitor:
     """
     This is the spine of the program. User supplied options are parsed here
     for consumption by the required libraries.
     """
-    def __init__(self, rest, ws, subaccount, conf):
+    def __init__(self, api, conf):
         """
         :param rest: restful api object
         :param ws: websocket api object
         :param conf: dictionary containing
             everything from argparse
         """
-        self.rest = rest
-        self.ws = ws
-        self.subaccount = subaccount
+        #self.key = key
+        #self.secret = secret
+        #self.ws = ws_client.FtxWebsocketClient(api_key=key, api_secret=secret, subaccount_name=subaccount)
+        #self.rest = client.FtxClient(api_key=key, api_secret=secret, subaccount_name=subaccount)
+        #self.subaccount = subaccount
+
         self.cp = NewColorPrint()
 
         self.running = False
@@ -39,8 +46,9 @@ class Monitor:
         self.executor = ThreadPoolExecutor(max_workers=25)
         self.lock = threading.Lock()
         self.lock2 = threading.Lock()
-        #self.logger = logging.getLogger(__name__)
-        self.api = FtxApi(rest=rest, ws=ws, sa=subaccount)
+        self.logger = lib.logmod.CustomLogger(log_file='debug2.log')
+        self.logger.setup_file_handler()
+        self.api = api
         self.update_db = conf.update_db
         self.logger = logging.getLogger()
         self.mitigate_fees = conf.mitigate_fees
@@ -94,7 +102,7 @@ class Monitor:
         self.check_before_reopen = conf.check_before_reopen
         self.arrayOfFutures = []
 
-        if conf.verbose:
+        """if conf.verbose:
             file_handler = logging.FileHandler(filename='tmp.log')
             stdout_handler = logging.StreamHandler(sys.stdout)
             handlers = [file_handler, stdout_handler]
@@ -105,7 +113,7 @@ class Monitor:
                 handlers=handlers
             )
             self.logger = logging.getLogger('LOGGER_NAME')
-            self.logger.addHandler(stdout_handler)
+            self.logger.addHandler(stdout_handler)"""
 
 
 
@@ -182,14 +190,18 @@ class Monitor:
                                          sar_sl = self.sar_sl)
 
     def __enter__(self):
+        print('Entering monitor')
         return self
 
     def __exit__(self, *a):
+        print("Exiting montitor")
         self.running = False
         MqReceiver.running = False
         for file in self.files:
             os.unlink(file)
         sys.exit()
+
+
 
     def start_auto_trade(self):
         self.cp.navy('[☠] Starting auto trader...')
@@ -217,16 +229,21 @@ class Monitor:
             return 0
 
     def monitor(self):
+        self.start_auto_trade()
+
+    """def monitor(self):
 
         c = 0
         tt = 0
+        ticker = None
         current_time = 0
         running = self.running = True
         time.sleep(0.25)
         self.start_auto_trade()
         print('START')
         rest_count = 0
-        while running:
+        while True:
+
             rest_count += 1
             try:
                 ticker = self.ws.get_ticker(market='BTC-PERP')
@@ -234,8 +251,9 @@ class Monitor:
                 self.logger.error(f'Ticker Error {fuck}, lets hope its transient!')
 
             else:
+                #print(ticker)
                 if not ticker:
-                    pass
+                    self.logger.debug('No ticker?')
                 else:
 
                     last_time = datetime.datetime.utcfromtimestamp(ticker['time']).second
@@ -244,18 +262,24 @@ class Monitor:
 
             if self.lag >= 10 and current_time > 0:
                 self.logger.critical('WS is lagging {} second(s), we are going down!'.format(self.lag))
-                running = False
+                self.ws.reconnect()
+                time.sleep(10)
+                raise FtxDisconnectError
+
 
             c += 1
             if c % 2000000 == 0:
                 tt += 1
-            if rest_count == 1000:
+            if rest_count == 100:
                 rest_count = 0
-                """ws_last = ticker.get('last')
-                if ws_last is not None:
-                    rest_last = self.rest_ticker()
-                    diff = self.percentage_change(ws_last, rest_last)
-                    if diff > 2 or diff < 2:
-                        self.logger.critical('WS is not accurate {} second(s), we are going down!'.format(self.lag))
-                        running = False"""
+                if ticker:
+                    self.logger.debug('Getting rest ticker ... ')
+                    ws_last = ticker.get('last')
+                    if ws_last is not None:
+                        rest_last = self.rest_ticker()
+
+                        diff = self.percentage_change(ws_last, rest_last)
+                        if float(diff) > 1.0 or float(diff) < 3.0:
+                            self.logger.critical(f'WS is not accurate {diff}: {rest_last}:{ws_last} we are going down!')
+                            running = False"""
 

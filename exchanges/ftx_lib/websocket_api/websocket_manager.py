@@ -5,6 +5,9 @@ from threading import Thread, Lock
 from websocket import WebSocketApp
 
 import ssl
+
+from lib import logmod
+
 ssl_context = ssl.SSLContext()
 ssl_context.check_hostname = False
 ssl_context.verify_mode = ssl.CERT_NONE
@@ -15,6 +18,7 @@ class WebsocketManager:
     def __init__(self):
         self.connect_lock = Lock()
         self.ws = None
+
 
     def _get_url(self):
         raise NotImplementedError()

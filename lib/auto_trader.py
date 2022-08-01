@@ -6,7 +6,7 @@ import numpy as np
 import requests
 import talib
 
-from lib import sql_lib
+from lib import sql_lib, logmod
 from lib import tally
 from lib.exceptions import *
 from lib.func_timer import exit_after
@@ -91,7 +91,9 @@ class AutoTrader:
         self.api = api
         self.confirm = confirm
         self.sql = sql_lib.SQLLiteConnection()
-        self.logger = logging.getLogger(__name__)
+        self.logger = logmod.CustomLogger(log_file='autotrader.log')
+        self.logger.setup_file_handler()
+        self.logger = self.logger.get_logger()
         self.tally = tally
         self.sar_sl = sar_sl
         self.ta_engine = TheSARsAreAllAligning()
@@ -168,7 +170,7 @@ class AutoTrader:
         """
         entry_price = entry
         qty = qty
-        print('Trailing stop triggered')
+        self.logger.info('Trailing stop triggered')
         if side == 'buy':
             current_price = self.api.get_ticker(market=market)[1]
             trail_value = (current_price - entry) * self.trailing_stop_pct * -1
@@ -186,7 +188,7 @@ class AutoTrader:
 
             ret = self.api.trailing_stop(market=market, side=opp_side, trail_value=trail_value, size=float(qty),
                                          reduce_only=True)
-            print(ret)
+            #print(ret)
             return ret
 
         else:
@@ -220,7 +222,7 @@ class AutoTrader:
 
         entry_price = entry
         qty = qty
-        print('Trailing stop triggered')
+        self.logger.info('Trailing stop triggered')
         if side == 'buy':
             # side = 'sell'
             # long position, so this will be a sell stop
@@ -303,6 +305,7 @@ class AutoTrader:
                     return True
 
     def stop_loss_order(self, market, side, size):
+        #self.logger.info(f'Stop loss triggered for {market}, size: {size}, side: {side}')
         a, b, l = self.api.get_ticker(market)
         if size < 0.0:
             size = size * -1
@@ -728,7 +731,7 @@ class AutoTrader:
                                              cost=cost, future_instrument=future_instrument, fee=takerFee,
                                              double_check=double_check)
             except Exception as err:
-                print('DEBUG Error calculating PNL line 647: ', err)
+                self.logger.error('DEBUG Error calculating PNL line 647: ', err)
             else:
                 return pnl, pnl_pct
 
@@ -748,7 +751,7 @@ class AutoTrader:
                 else:
                     self.cp.green(f'[🔺] Positive PNL {pnl} on position {future_instrument}')
             except Exception as err:
-                print('DEBUG Error calculating PNL line 677: ', err)
+                self.logger.error('DEBUG Error calculating PNL line 677: ', err)
                 pass
             else:
                 return pnl, pnl_pct
@@ -935,7 +938,7 @@ class AutoTrader:
                 pass
             else:
 
-                print(f'Target profit level of {self._take_profit} reached! Calculating pnl')
+                print(f'[+] Target profit level of {self._take_profit} reached! Calculating pnl')
                 if float(size) < 0.0:
                     size = size * -1
 
@@ -959,7 +962,7 @@ class AutoTrader:
                                                     order_type=self.order_type,
                                                     market=future_instrument)
                     except Exception as err:
-                        print('ERROR', err)
+                        self.logger.error('Error with take profit wrap:', err)
                         ret = False
                         if re.match(r'^(.*)margin for order(.*)$',
                                     err.__str__()):
@@ -1047,7 +1050,7 @@ class AutoTrader:
                     pass
 
     def start_process_(self):
-
+        self.logger.info(f"Starting autotrader at {time.time()}")
         restarts = 0
         _iter = 0
         while True:
@@ -1106,8 +1109,8 @@ class AutoTrader:
 
             except Exception as err:
                 _iter = 0
-                print(f'[!] Error: {err}')
-                pass
+                self.logger.error(f'Error with parse: {err}')
+
 
             else:
                 if _iter == 1:
@@ -1135,14 +1138,13 @@ class AutoTrader:
                 _iter = 0
                 # break
             except Exception as fuck:
-                self.logger.error(fuck)
-                print(repr(f'Restart: {fuck} {_iter}'))
+                self.logger.error(f'Error with position parser: {err}')
                 _iter = 0
                 # break
 
     def start_process(self):
         if not self.lock.locked():
-            print('Aquiring lock in autotrader')
+            print('Acquiring lock in autotrader')
             self.lock.acquire()
         else:
             return
