@@ -2,3 +2,4 @@
 2022-07-31 22:04:20,636 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-0930'}
 2022-07-31 22:47:22,169 | INFO | Starting autotrader at 1659322042.1695316
 2022-07-31 22:47:27,796 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-0930'}
+2022-08-01 18:41:42,149 | INFO | Starting autotrader at 1659393702.1498904

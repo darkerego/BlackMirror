@@ -229,57 +229,10 @@ class Monitor:
             return 0
 
     def monitor(self):
-        self.start_auto_trade()
+        self.cp.navy('[☠] Starting auto trader...')
+        #self.executor.submit(self.auto_trade.start_process)
+        self.auto_trade.start_process()
+        self.a_restarts += 1
+        self.cp.navy(f'[☑] Started ... {self.a_restarts}')
 
-    """def monitor(self):
-
-        c = 0
-        tt = 0
-        ticker = None
-        current_time = 0
-        running = self.running = True
-        time.sleep(0.25)
-        self.start_auto_trade()
-        print('START')
-        rest_count = 0
-        while True:
-
-            rest_count += 1
-            try:
-                ticker = self.ws.get_ticker(market='BTC-PERP')
-            except Exception as fuck:
-                self.logger.error(f'Ticker Error {fuck}, lets hope its transient!')
-
-            else:
-                #print(ticker)
-                if not ticker:
-                    self.logger.debug('No ticker?')
-                else:
-
-                    last_time = datetime.datetime.utcfromtimestamp(ticker['time']).second
-                    current_time = datetime.datetime.utcnow().second.real
-                    self.lag = last_time - current_time
-
-            if self.lag >= 10 and current_time > 0:
-                self.logger.critical('WS is lagging {} second(s), we are going down!'.format(self.lag))
-                self.ws.reconnect()
-                time.sleep(10)
-                raise FtxDisconnectError
-
-
-            c += 1
-            if c % 2000000 == 0:
-                tt += 1
-            if rest_count == 100:
-                rest_count = 0
-                if ticker:
-                    self.logger.debug('Getting rest ticker ... ')
-                    ws_last = ticker.get('last')
-                    if ws_last is not None:
-                        rest_last = self.rest_ticker()
-
-                        diff = self.percentage_change(ws_last, rest_last)
-                        if float(diff) > 1.0 or float(diff) < 3.0:
-                            self.logger.critical(f'WS is not accurate {diff}: {rest_last}:{ws_last} we are going down!')
-                            running = False"""
 

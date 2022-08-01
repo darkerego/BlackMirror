@@ -4,3 +4,5 @@ INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-0930'}
 INFO:root:Init ws
 INFO:root:Starting autotrader at 1659322042.1695316
 INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-0930'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1659393702.1498904
