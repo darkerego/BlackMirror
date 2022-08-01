@@ -149,7 +149,7 @@ class Monitor:
                 self.lock.acquire()
 
                 self.cp.purple(f'[mq] Starting mqtt receiver ... ')
-                mq_server = MqReceiver(server_uri=self.mqtt_uri, rest=self.rest, _ws=self.ws, sa=self.subaccount,
+                mq_server = MqReceiver(server_uri=self.mqtt_uri, api=api, sa=self.subaccount,
                                        collateral_pct=self.portfolio_pct, reenter=self.reenter, data_source=self.data_source,
                                        exclude_markets=self.exclude_markets, debug=False, min_score=self.min_score, min_adx = self.min_adx,
                                        topic=self.mqtt_topic, live_score=self.live_score, confirm=self.confirm)
