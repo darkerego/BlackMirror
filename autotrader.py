@@ -91,6 +91,7 @@ async def parse_and_exec(args):
     limit_price = 0
     key, secret, subaccount, anti_liq = config_loader.load_config('conf.json')
     bot = Bot()
+    subaccount = args.subaccount
 
     if args.reset_db:
         cp.yellow('[~] Resetting the pnl stats ... ')
