@@ -136,11 +136,11 @@ class TheSARsAreAllAligning:
             #print('MAKING SAR API CALL')
             sar = self.get(symbol, period)
             side, ticker, sar = self.calc_sar(sar, symbol)
-            self.sar_dict[symbol] = {'updated': time.time(), 'value': sar, 'side': side}
+            self.sar_dict[f'{symbol}_{period}'] = {'updated': time.time(), 'value': sar, 'side': side}
             return side,sar
 
         if self.sar_dict.get(symbol):
-            last = self.sar_dict.get(symbol).get('updated')
+            last = self.sar_dict.get(f'{symbol}_{period}').get('updated')
             elapsed = time.time() - last
             if elapsed > period:
                 # recalc and store
@@ -148,7 +148,7 @@ class TheSARsAreAllAligning:
                 return side, sar
 
             else:
-                sar = self.sar_dict.get(symbol).get('value')
+                sar = self.sar_dict.get(f'{symbol}_{period}').get('value')
                 side = self.sar_dict.get('side')
                 return side, sar
 
