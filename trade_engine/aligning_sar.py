@@ -141,10 +141,11 @@ class TheSARsAreAllAligning:
             side, ticker, sar = self.calc_sar(sar, symbol)
             self.sar_dict[f'{symbol}_{period}'] = {'updated': time.time(), 'value': sar, 'side': side}
             return side,sar
-        if not self.scheduled.__contains__(f'{symbol}_{period}'):
-            threading.Thread(target=retrieve, args=(symbol, period, True)).start()
 
-        if self.sar_dict.get(symbol):
+        side, sar = retrieve(symbol, period)
+        return side, sar
+
+        """if self.sar_dict.get(symbol):
             last = self.sar_dict.get(f'{symbol}_{period}').get('updated')
             elapsed = time.time() - last
             if elapsed > period:
@@ -158,9 +159,8 @@ class TheSARsAreAllAligning:
                 return side, sar
 
         else:
-            # calc store first time
-            side, sar = retrieve(symbol, period)
-            return side, sar
+            # calc store first time"""
+
 
 
 
