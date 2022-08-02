@@ -66,6 +66,7 @@ class AutoTrader:
         self.accumulated_pnl = 0
         self.position_sars = []
         self.pnl_trackers = []
+        self.sar_dict = {}
         self.lock = threading.Lock()
         self.position_close_pct = position_close_pct
         self.chase_close = chase_close
@@ -874,22 +875,26 @@ class AutoTrader:
         if recent_pnl is None:
             return
         if self.sar_sl:
+
             self.iter = 0
             close_pos = False
 
-            self.cp.yellow('[~] Checking SAR ... ')
-            sar, ticker, blah = self.ta_engine.get_sar(future_instrument, int(self.sar_sl))
+
+            _side, sar = self.ta_engine.get_sar(future_instrument, int(self.sar_sl))
+            #print(side,sar)
+
 
             if side == 'buy':
                 if sar == 1:
-                    pass
+                    _side= 'long'
                 else:
                     close_pos = True
             else:
                 if sar == -1:
-                    pass
+                    _side = 'short'
                 else:
                     close_pos = True
+
             if close_pos:
                 if self.confirm:
                     self.cp.red('[!!] Closing position as the sar is not in our favor!')

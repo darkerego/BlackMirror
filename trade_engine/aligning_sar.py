@@ -1,5 +1,6 @@
 import sys
 import threading
+import time
 
 import numpy as np
 # import grequests
@@ -46,6 +47,7 @@ class TheSARsAreAllAligning:
 
     def __init__(self, debug=False):
         self.debug = debug
+        self.sar_dict = {}
 
     def spot_ticker(self, market):
         """
@@ -98,7 +100,21 @@ class TheSARsAreAllAligning:
             # above candle, is short
             return -1, ticker, sar
 
-    def get_sar(self, symbol, period=60):
+    def get(self, symbol, period):
+        close_array = []
+        high_array = []
+        low_array = []
+        # print(f'Getting {period} {symbol}')
+        _candles = requests.get(f'https://ftx.com/api/markets/{symbol}/candles?resolution={period}')
+        for c in _candles.json()['result']:
+            close_array.append(c['close'])
+            high_array.append(c['high'])
+            low_array.append(c['low'])
+        high_array = np.asarray(high_array)
+        low_array = np.asarray(low_array)
+        return self.generate_sar(high_array, low_array)
+
+    def get_sar(self, symbol, period=60, no_calc=False):
         """
         Grab kline data for multiple timeframes #TODO: aiohttp
         :param symbol:
@@ -115,19 +131,36 @@ class TheSARsAreAllAligning:
         0.01736111111111111 %, 0.06944444444444445 %  0.3472222222222222 % 1.0416666666666665% 4.166666666666666% 
         16.666666666666664 % 77%
         """
-        close_array = []
-        high_array = []
-        low_array = []
-        #print(f'Getting {period} {symbol}')
-        _candles = requests.get(f'https://ftx.com/api/markets/{symbol}/candles?resolution={period}')
-        for c in _candles.json()['result']:
-            close_array.append(c['close'])
-            high_array.append(c['high'])
-            low_array.append(c['low'])
-        high_array = np.asarray(high_array)
-        low_array = np.asarray(low_array)
-        sar = self.generate_sar(high_array, low_array)
-        return self.calc_sar(sar, symbol)
+
+        def retrieve(symbol, period):
+            #print('MAKING SAR API CALL')
+            sar = self.get(symbol, period)
+            side, ticker, sar = self.calc_sar(sar, symbol)
+            self.sar_dict[symbol] = {'updated': time.time(), 'value': sar, 'side': side}
+            return side,sar
+
+        if self.sar_dict.get(symbol):
+            last = self.sar_dict.get(symbol).get('updated')
+            elapsed = time.time() - last
+            if elapsed > period:
+                # recalc and store
+                side, sar = retrieve(symbol, period)
+                return side, sar
+
+            else:
+                sar = self.sar_dict.get(symbol).get('value')
+                side = self.sar_dict.get('side')
+                return side, sar
+
+        else:
+            # calc store first time
+            side, sar = retrieve(symbol, period)
+            return side, sar
+
+
+
+
+        # return self.calc_sar(sar, symbol)
 
     def sar_scalper(self, instrument):
         """

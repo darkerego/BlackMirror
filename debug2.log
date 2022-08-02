@@ -4,3 +4,27 @@
 2022-07-31 22:47:27,796 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-0930'}
 2022-08-01 18:41:42,149 | INFO | Starting autotrader at 1659393702.1498904
 2022-08-01 19:06:18,889 | INFO | Starting autotrader at 1659395178.8895762
+2022-08-02 11:23:40,823 | INFO | Starting autotrader at 1659453820.823628
+2022-08-02 11:23:46,561 | INFO | Subscribing to {'channel': 'ticker', 'market': 'LINA-PERP'}
+2022-08-02 11:23:46,561 | INFO | _connect called
+2022-08-02 11:23:49,058 | INFO | Subscribing to {'channel': 'ticker', 'market': 'KAVA-PERP'}
+2022-08-02 11:47:13,260 | INFO | Starting autotrader at 1659455233.2607756
+2022-08-02 11:47:19,020 | INFO | Subscribing to {'channel': 'ticker', 'market': 'LINA-PERP'}
+2022-08-02 11:47:19,020 | INFO | _connect called
+2022-08-02 11:47:22,754 | INFO | Subscribing to {'channel': 'ticker', 'market': 'KAVA-PERP'}
+2022-08-02 11:48:10,785 | INFO | Starting autotrader at 1659455290.7856205
+2022-08-02 11:48:16,996 | INFO | Subscribing to {'channel': 'ticker', 'market': 'LINA-PERP'}
+2022-08-02 11:48:16,996 | INFO | _connect called
+2022-08-02 11:48:20,739 | INFO | Subscribing to {'channel': 'ticker', 'market': 'KAVA-PERP'}
+2022-08-02 11:48:56,682 | INFO | Starting autotrader at 1659455336.6819782
+2022-08-02 11:49:02,635 | INFO | Subscribing to {'channel': 'ticker', 'market': 'LINA-PERP'}
+2022-08-02 11:49:02,636 | INFO | _connect called
+2022-08-02 11:49:06,767 | INFO | Subscribing to {'channel': 'ticker', 'market': 'KAVA-PERP'}
+2022-08-02 11:49:34,582 | INFO | Starting autotrader at 1659455374.5824053
+2022-08-02 11:49:40,716 | INFO | Subscribing to {'channel': 'ticker', 'market': 'LINA-PERP'}
+2022-08-02 11:49:40,716 | INFO | _connect called
+2022-08-02 11:49:44,860 | INFO | Subscribing to {'channel': 'ticker', 'market': 'KAVA-PERP'}
+2022-08-02 11:49:58,513 | INFO | Starting autotrader at 1659455398.513405
+2022-08-02 11:50:04,644 | INFO | Subscribing to {'channel': 'ticker', 'market': 'LINA-PERP'}
+2022-08-02 11:50:04,644 | INFO | _connect called
+2022-08-02 11:50:08,482 | INFO | Subscribing to {'channel': 'ticker', 'market': 'KAVA-PERP'}

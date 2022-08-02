@@ -8,3 +8,33 @@ INFO:root:Init ws
 INFO:root:Starting autotrader at 1659393702.1498904
 INFO:root:Init ws
 INFO:root:Starting autotrader at 1659395178.8895762
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1659453820.823628
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LINA-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'KAVA-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1659455233.2607756
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LINA-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'KAVA-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1659455290.7856205
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LINA-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'KAVA-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1659455336.6819782
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LINA-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'KAVA-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1659455374.5824053
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LINA-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'KAVA-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1659455398.513405
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LINA-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'KAVA-PERP'}
