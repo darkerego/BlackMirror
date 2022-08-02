@@ -356,10 +356,11 @@ class MqReceiver:
         positions=self.api.positions()
         for pos in positions:
             if pos.get('future') == future:
-                if float(pos['collateralUsed']) == 0.0 and pos['future'] == future:
-                    return False, 0
-                else:
-                    return True, pos['size']
+                if pos['future'] == future:
+                    if float(pos['collateralUsed']) == 0.0:
+                        return False, 0
+                    else:
+                        return True, pos['size']
 
             return False, 0
 
