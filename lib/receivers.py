@@ -348,11 +348,12 @@ class MqReceiver:
 
     def check_position_exists(self, future, s=None):
         positions=self.api.positions()
-        print(len(positions))
         for pos in positions:
-            print(f'DEBUG: {pos}')
+            if pos.get('future') == future:
+                if float(pos['collateralUsed']) == 0.0 and pos['future'] == future:
+                    return False, 0
+                else:
+                    return True, pos['size']
 
-            if float(pos['collateralUsed']) == 0.0 and pos['future'] == future:
+            return False, 0
 
-                return False, 0
-        return True, pos['size']
