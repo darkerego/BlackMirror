@@ -350,6 +350,6 @@ def debug_api(subacct=None, config_path='conf.json'):
     k, s, a, l = config_loader.load_config(config_path)
     if subacct:
         a = subacct
-    rest = client.FtxClient(api_key=k, api_secret=s, subaccount_name=a)
-    ws = ws.FtxWebsocketClient(api_key=k, api_secret=s, subaccount_name=a)
-    return FtxApi(rest, ws, a)
+    # rest = client.FtxClient(api_key=k, api_secret=s, subaccount_name=a)
+    #w#s = ws.FtxWebsocketClient(api_key=k, api_secret=s, subaccount_name=a)
+    return FtxApi(k,s,a)

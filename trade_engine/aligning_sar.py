@@ -46,6 +46,7 @@ class TheSARsAreAllAligning:
     """
 
     def __init__(self, debug=False):
+        self.scheduled = []
         self.debug = debug
         self.sar_dict = {}
 
@@ -131,13 +132,17 @@ class TheSARsAreAllAligning:
         0.01736111111111111 %, 0.06944444444444445 %  0.3472222222222222 % 1.0416666666666665% 4.166666666666666% 
         16.666666666666664 % 77%
         """
-
-        def retrieve(symbol, period):
-            #print('MAKING SAR API CALL')
+        def retrieve(symbol, period, wait=False):
+            if wait:
+                time.sleep(60 - (time.time() % 60) + 7)
+                self.scheduled.remove(f'{symbol}_{period}')
+            print(f'MAKING SAR API CALL, waited: {wait} ' )
             sar = self.get(symbol, period)
             side, ticker, sar = self.calc_sar(sar, symbol)
             self.sar_dict[f'{symbol}_{period}'] = {'updated': time.time(), 'value': sar, 'side': side}
             return side,sar
+        if not self.scheduled.__contains__(f'{symbol}_{period}'):
+            threading.Thread(target=retrieve, args=(symbol, period, True)).start()
 
         if self.sar_dict.get(symbol):
             last = self.sar_dict.get(f'{symbol}_{period}').get('updated')

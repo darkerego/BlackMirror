@@ -261,6 +261,7 @@ class MqReceiver:
                         self.cp.alert(f'[LONG SIGNAL]: {_instrument} Score {score} % VALIDATING!!')
 
                         check, size = self.check_position_exists(future=_symbol)
+                        print(check, size)
                         if not check:
                             side, sar = self.validator.get_sar(symbol=_symbol, period=300)
                             print(side,sar)
@@ -349,6 +350,9 @@ class MqReceiver:
             t.start()
 
     def check_position_exists(self, future, s=None):
+        """
+        Return True if position exists
+        """
         positions=self.api.positions()
         for pos in positions:
             if pos.get('future') == future:

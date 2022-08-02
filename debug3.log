@@ -78,3 +78,15 @@
 2022-08-02 11:50:04,644 | INFO | _connect called
 2022-08-02 11:50:08,482 | INFO | Subscribing to {'channel': 'ticker', 'market': 'KAVA-PERP'}
 2022-08-02 11:50:08,482 | INFO | Subscribing to {'channel': 'ticker', 'market': 'KAVA-PERP'}
+2022-08-02 13:09:19,413 | INFO | Init ws
+2022-08-02 13:09:19,413 | INFO | Init ws
+2022-08-02 13:09:19,413 | INFO | Init ws
+2022-08-02 13:09:19,413 | INFO | Init ws
+2022-08-02 13:09:19,413 | INFO | Init ws
+2022-08-02 13:09:19,413 | INFO | Init ws
+2022-08-02 13:15:34,026 | INFO | Init ws
+2022-08-02 13:15:34,026 | INFO | Init ws
+2022-08-02 13:16:00,757 | INFO | Init ws
+2022-08-02 13:16:00,757 | INFO | Init ws
+2022-08-02 13:16:00,757 | INFO | Init ws
+2022-08-02 13:16:00,757 | INFO | Init ws
