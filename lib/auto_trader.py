@@ -1076,8 +1076,7 @@ class AutoTrader:
             try:
                 info = self.api.info()
                 pos = self.api.positions()
-                print('POS:')
-                print(pos)
+
 
             except KeyboardInterrupt:
                 print('[~] Caught Sigal...')
@@ -1086,7 +1085,6 @@ class AutoTrader:
             except Exception as err:
                 _iter = 0
                 self.logger.error(f'Error with parse: {err}')
-
 
             else:
                 if _iter == 1:
