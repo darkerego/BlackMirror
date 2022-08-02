@@ -58,3 +58,13 @@
 2022-08-02 11:50:04,644 | INFO | _connect called
 2022-08-02 11:50:08,482 | INFO | Subscribing to {'channel': 'ticker', 'market': 'KAVA-PERP'}
 2022-08-02 11:50:08,482 | INFO | Subscribing to {'channel': 'ticker', 'market': 'KAVA-PERP'}
+2022-08-02 13:45:54,795 | INFO | Starting autotrader at 1659462354.7954555
+2022-08-02 13:45:54,795 | INFO | Starting autotrader at 1659462354.7954555
+2022-08-02 13:46:00,143 | INFO | Subscribing to {'channel': 'ticker', 'market': 'AAVE-PERP'}
+2022-08-02 13:46:00,143 | INFO | Subscribing to {'channel': 'ticker', 'market': 'AAVE-PERP'}
+2022-08-02 13:46:00,143 | INFO | _connect called
+2022-08-02 13:46:00,143 | INFO | _connect called
+2022-08-02 13:46:02,636 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+2022-08-02 13:46:02,636 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+2022-08-02 16:00:52,781 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETC-PERP'}
+2022-08-02 16:00:52,781 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETC-PERP'}

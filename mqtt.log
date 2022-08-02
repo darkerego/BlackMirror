@@ -38,3 +38,9 @@ INFO:root:Starting autotrader at 1659455398.513405
 INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LINA-PERP'}
 INFO:root:_connect called
 INFO:root:Subscribing to {'channel': 'ticker', 'market': 'KAVA-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1659462354.7954555
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AAVE-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETC-PERP'}

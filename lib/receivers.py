@@ -353,11 +353,9 @@ class MqReceiver:
         """
         Return True if position exists
         """
-        positions=self.api.positions()
+        positions = self.api.positions()
         for pos in positions:
             if pos.get('future') == future:
-                if pos['future'] == future:
-                    return pos['collateralUsed']
-
+                return pos['collateralUsed']
             return 0.0
 

@@ -45,10 +45,11 @@ class TheSARsAreAllAligning:
     send a trade signal.
     """
 
-    def __init__(self, debug=False):
+    def __init__(self, debug=False, api=None):
         self.scheduled = []
         self.debug = debug
         self.sar_dict = {}
+        self.api = api
 
     def spot_ticker(self, market):
         """
@@ -156,10 +157,12 @@ class TheSARsAreAllAligning:
             else:
                 sar = self.sar_dict.get(f'{symbol}_{period}').get('value')
                 side = self.sar_dict.get('side')
+                #a,b,l =
                 return side, sar
 
         else:
-            # calc store first time"""
+            # calc store first time
+            return side, sar"""
 
 
 
