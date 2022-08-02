@@ -220,10 +220,10 @@ class MqReceiver:
             _symbol = str(_instrument[:-4] + '-PERP')
 
             self.score_keeper[_symbol] = {'status': 'closed', 'score': float(score)}
-            ok, size = self.check_position_exists(future=_symbol, s=None)
-            if ok:
-                self.cp.blue(f'[X] Received {_type} EXIT Signal for {_symbol}, closing!')
-                self.position_close(symbol=_symbol, side=_type, size=size)
+            size = self.check_position_exists(future=_symbol, s=None)
+            #if size:
+            #    self.cp.blue(f'[X] Received {_type} EXIT Signal for {_symbol}, closing!')
+            #    self.position_close(symbol=_symbol, side=_type, size=size)
 
         if message.get('Status') == 'open':
 
@@ -260,9 +260,9 @@ class MqReceiver:
                     if float(_adx) >= self.min_adx:
                         self.cp.alert(f'[LONG SIGNAL]: {_instrument} Score {score} % VALIDATING!!')
 
-                        check, size = self.check_position_exists(future=_symbol)
-                        print(check, size)
-                        if not check:
+                        size = self.check_position_exists(future=_symbol)
+                        print(size)
+                        if not size:
                             side, sar = self.validator.get_sar(symbol=_symbol, period=300)
                             print(side,sar)
 
@@ -287,8 +287,8 @@ class MqReceiver:
                 if float(score) > float(self.min_score):
                     if float(_adx) >= self.min_adx:
                         self.cp.alert(f'[SHORT SIGNAL]: {_instrument} Score {score} % --  !')
-                        check, size = self.check_position_exists(future=_symbol)
-                        if not check:
+                        size = self.check_position_exists(future=_symbol)
+                        if not size:
 
                             side, sar = self.validator.get_sar(symbol=_symbol, period=300)
                             if side == -1:
@@ -357,10 +357,7 @@ class MqReceiver:
         for pos in positions:
             if pos.get('future') == future:
                 if pos['future'] == future:
-                    if float(pos['collateralUsed']) == 0.0:
-                        return False, 0
-                    else:
-                        return True, pos['size']
+                    return pos['collateralUsed']
 
-            return False, 0
+            return 0.0
 
