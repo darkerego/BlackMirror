@@ -263,9 +263,11 @@ class MqReceiver:
                         check, size = self.check_position_exists(future=_symbol)
                         if not check:
                             side, sar = self.validator.get_sar(symbol=_symbol, period=300)
+                            print(side,sar)
 
                             if side == 1:
                                 side, sar = self.validator.get_sar(symbol=_symbol, period=60)
+                                print(side,sar)
                                 if side == 1:
                                     self.cp.purple('[+] Trade validated! ... ENTERING!')
                                     ret = self.buy_market(market=_symbol, qty=qty, reduce=False, ioc=False, cid=None)
