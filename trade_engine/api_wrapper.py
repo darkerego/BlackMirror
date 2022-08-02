@@ -17,6 +17,9 @@ class FtxApi:
         self.sa = sa
         self.logger = logging.getLogger(__name__)
 
+    def get_subaccount(self):
+        return self.sa
+
     def chase_limit_order(self, market, oid, max_chase=3, failsafe_market=False):
         self.logger.info(f'Chasing order {market}, {oid}')
         time.sleep(1.5)

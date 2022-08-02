@@ -1,13 +1,9 @@
-import logging
 import re
 import time
 
-import numpy as np
-import requests
-import talib
-
 from lib import sql_lib, logmod
 from lib import tally
+from lib.anti_liq import AntiLiq
 from lib.exceptions import *
 from lib.func_timer import exit_after
 from lib.score_keeper import scores
@@ -24,40 +20,7 @@ debug = True
 
 import threading
 
-class ThreadWithReturnValue(threading.Thread):
-    def __init__(self, *init_args, **init_kwargs):
-        threading.Thread.__init__(self, *init_args, **init_kwargs)
-        self._return = None
 
-    def run(self):
-        self._return = self._target(*self._args, **self._kwargs)
-
-    def join(self):
-        threading.Thread.join(self)
-        return self._return
-
-
-def logwrapper(func):
-    '''Decorator that reports the execution time.'''
-
-    def wrap(*args, **kwargs):
-        for a in kwargs:
-            if a == 'n':
-                print(a)
-        result = func(*args, **kwargs)
-        # end = time.time()
-
-        # print(func.__name__, end - start)
-        return result
-
-    return wrap
-
-
-@logwrapper
-def countdown(n):
-    '''Counts down'''
-    while n > 0:
-        n -= 1
 
 sql = sql_lib.SQLLiteConnection()
 tally = tally.Tally(sql)
@@ -94,6 +57,7 @@ class AutoTrader:
         self.logger = logmod.CustomLogger(log_file='autotrader.log')
         self.logger.setup_file_handler()
         self.logger = self.logger.get_logger()
+        self.anti_liq_api = AntiLiq(self.api, self.api.getsubaccount())
         self.tally = tally
         self.sar_sl = sar_sl
         self.ta_engine = TheSARsAreAllAligning()
@@ -129,6 +93,7 @@ class AutoTrader:
         self.max_collateral = max_collateral
         self.delta_weight = None
         self.start_time = time.time()
+        self.balance_start = 0.0
 
         self.relist_iter = {}
         self.update_db = update_db
@@ -906,7 +871,7 @@ class AutoTrader:
             f'UPNL: {unrealized_pnl}, Collateral: {collateral_used}')
         if recent_pnl is None:
             return
-        if self.sar_sl and self.iter == 30:
+        if self.sar_sl:
             self.iter = 0
             close_pos = False
 
@@ -989,6 +954,8 @@ class AutoTrader:
                             notational_qty = (new_qty * last)
                             # self.total_contacts_trade += notational_qty
                             self.tally.increment_contracts(notational_qty)
+                            if self.anti_liq:
+                                self.anti_liq_transfer()
 
                             print('[🃑] Success')
 
@@ -1152,3 +1119,9 @@ class AutoTrader:
             self.start_process_()
         except KeyboardInterrupt:
             exit()
+
+    def anti_liq_transfer(self, profit):
+        qty_fraction = self._take_profit * 0.1
+        self.anti_liq_api.transfer()
+
+

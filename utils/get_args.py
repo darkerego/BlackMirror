@@ -17,6 +17,14 @@ def get_args():
                                                                                                  'to. None for main '
                                                                                                  'account.')
     gen_opts.add_argument('--antiliq', dest='anti_liq', action='store_true')
+    gen_opts.add_argument('--rsp', '--reserve_pct',  dest='anti_liq_pct', type=float, default=0.1, help='Stash this '
+                                                                                                        'amount of '
+                                                                                                        'profit for '
+                                                                                                        'emergency '
+                                                                                                        'situations, '
+                                                                                                        'where 0.1 is 10 '
+                                                                                                        'percent.')
+
     gen_opts.add_argument('-rst', '--reset', dest='reset_db', action='store_true', help='Reset PNL and Volume stats')
 
     gen_opts.add_argument('-v', '--verbose', dest='verbose', action='store_true', default=False, help='Verbose mode.')

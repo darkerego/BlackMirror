@@ -89,6 +89,8 @@ class TheSARsAreAllAligning:
         """
         ticker = (self.future_ticker(symbol))
         sar = sar[-3]
+        if self.debug:
+            print(sar)
         if sar < ticker:
             # under candle, is long
             return 1, ticker, sar
@@ -172,10 +174,11 @@ def main():
     parser.add_argument('-s', '--symbol', dest='symbol', type=str, default='BTC-PERP', help='Future Market to Query')
     parser.add_argument('-l', '--list', dest='symbol_list', type=str, default=None, help='Iterate over list'
                                                                                                   'of symbols.')
+    parser.add_argument('--debug', dest='debug', action='store_true')
     args = parser.parse_args()
     while True:
         if args.symbol_list:
-            sar_ = TheSARsAreAllAligning(debug=True)
+            sar_ = TheSARsAreAllAligning(debug=args.debug)
             with open(args.symbol_list, 'r') as f:
                 f = f.readlines()
             try:

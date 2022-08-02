@@ -1,4 +1,5 @@
 import json
+import logging
 import time
 from threading import Thread, Lock
 
@@ -6,7 +7,7 @@ from websocket import WebSocketApp
 
 import ssl
 
-from lib import logmod
+#from lib import logmod
 
 ssl_context = ssl.SSLContext()
 ssl_context.check_hostname = False
@@ -18,6 +19,7 @@ class WebsocketManager:
     def __init__(self):
         self.connect_lock = Lock()
         self.ws = None
+        self.logger = logging.getLogger()
 
 
     def _get_url(self):
@@ -34,6 +36,8 @@ class WebsocketManager:
         self.send(json.dumps(message))
 
     def _connect(self):
+        self.logger.info('_connect called')
+
         assert not self.ws, "ws should be closed before attempting to connect"
 
         self.ws = WebSocketApp(

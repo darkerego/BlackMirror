@@ -151,23 +151,8 @@ async def parse_and_exec(args):
             cp.yellow('[~] Configuring AntiLiq .. ')
             ret = api.info().get('freeCollateral')
             if ret > 0:
-                balances = api.balances()
-                for x in balances:
-                    if x.get('coin') == 'USD':
-                        avail = x.get('availableWithoutBorrow')
-                        if avail <= 0:
-                            cp.yellow(f'[!] Please deposit some USD in this account and try again.')
-                            exit()
-                        else:
-                            sas = api.get_subaccounts()
-                            print(sas)
-                            time.sleep(5)
-                            q = avail / 5
-                            cp.yellow(f'[!] Transferring {q} USD to LIQUIDITY subaccount. This will be used as '
-                                      f'EMERGENCY funds to prevent liquidation. Do not trade with it!')
-                            api.transfer('USD', q, )
+                anti_liq.transfer()
 
-                print(balances[0])
                 time.sleep(5)
                 try:
                     sas = api.get_subaccounts()

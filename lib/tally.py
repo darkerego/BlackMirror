@@ -14,7 +14,7 @@ class Tally:
         xx = eval(json.loads(json.dumps(x[0])))
         if value is None:
             return xx
-        return xx.get(value)
+        return float(xx.get(value))
 
     def write(self, value):
         self.sql.clear('stats')
@@ -23,14 +23,16 @@ class Tally:
     def loss(self):
         stats = self.get()
         losses = stats.get('losses')
-        losses +=1
+        losses = int(losses)
+        losses += int(1)
         stats['losses'] = losses
         self.write(json.dumps(stats))
 
     def win(self):
         stats = self.get()
         wins = stats.get('wins')
-        wins += 1
+        wins = int(wins)
+        wins += int(1)
         stats['wins'] = wins
         self.write(json.dumps(stats))
 
@@ -42,5 +44,16 @@ class Tally:
         stats['contracts_traded'] = ct
         self.write(stats)
 
+    def pnl(self, change, direction=0):
+        """
+        dir 0: up
+        dir 1: down
+        """
+        stats = self.get()
+        ct = stats.get('session_pnl')
+        ct += float(change)
+        stats['session_pnl'] = ct
+        self.write(stats)
+
     def reset(self):
-        self.write(json.dumps({'wins': 0, 'losses': 0, 'contracts_traded': 0.0}))
+        self.write(json.dumps({'wins': 0, 'losses': 0, 'contracts_traded': 0.0, 'session_pnl': 0.0}))
