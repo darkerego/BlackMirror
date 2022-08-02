@@ -57,7 +57,9 @@ class AutoTrader:
         self.logger = logmod.CustomLogger(log_file='autotrader.log')
         self.logger.setup_file_handler()
         self.logger = self.logger.get_logger()
-        self.anti_liq_api = AntiLiq(self.api, self.api.getsubaccount())
+        #self.anti_liq_api = AntiLiq(self.api, self.api.getsubaccount())
+
+        self.anti_liq_api = None
         self.tally = tally
         self.sar_sl = sar_sl
         self.ta_engine = TheSARsAreAllAligning()
