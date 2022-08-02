@@ -885,12 +885,12 @@ class AutoTrader:
 
 
             if side == 'buy':
-                if sar == 1:
+                if _side == 1:
                     _side= 'long'
                 else:
                     close_pos = True
             else:
-                if sar == -1:
+                if _side == -1:
                     _side = 'short'
                 else:
                     close_pos = True
