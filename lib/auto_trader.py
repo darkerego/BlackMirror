@@ -1076,6 +1076,8 @@ class AutoTrader:
             try:
                 info = self.api.info()
                 pos = self.api.positions()
+                print('POS:')
+                print(pos)
 
             except KeyboardInterrupt:
                 print('[~] Caught Sigal...')
