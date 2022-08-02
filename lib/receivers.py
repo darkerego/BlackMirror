@@ -348,6 +348,7 @@ class MqReceiver:
 
     def check_position_exists(self, future, s=None):
         for pos in self.api.positions():
+            print(f'DEBUG: {pos}')
 
             if float(pos['collateralUsed']) == 0.0 and pos['future'] == future:
 
