@@ -133,7 +133,7 @@ class FtxWebsocketClient(WebsocketManager):
             current_time = datetime.datetime.utcnow().second.real
             lag = last_time - current_time
 
-            if lag >= 10 and current_time > 0:
+            if lag >= 60 and current_time > 0:
                 self.logger.critical('WS is lagging {} second(s), we are going down!'.format(lag))
                 self.reconnect()
 
