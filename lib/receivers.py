@@ -356,6 +356,7 @@ class MqReceiver:
         positions = self.api.positions()
         for pos in positions:
             if pos.get('future') == future:
+                print('OK')
                 return pos['collateralUsed']
-            return 0.0
+        return 0.0
 
