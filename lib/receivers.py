@@ -221,9 +221,9 @@ class MqReceiver:
 
             self.score_keeper[_symbol] = {'status': 'closed', 'score': float(score)}
             size = self.check_position_exists(future=_symbol, s=None)
-            #if size:
-            #    self.cp.blue(f'[X] Received {_type} EXIT Signal for {_symbol}, closing!')
-            #    self.position_close(symbol=_symbol, side=_type, size=size)
+            if size:
+                self.cp.blue(f'[X] Received {_type} EXIT Signal for {_symbol}, closing!')
+                self.position_close(symbol=_symbol, side=_type, size=size)
 
         if message.get('Status') == 'open':
 

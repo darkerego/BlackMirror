@@ -44,3 +44,12 @@ INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AAVE-PERP'}
 INFO:root:_connect called
 INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
 INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETC-PERP'}
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Init ws

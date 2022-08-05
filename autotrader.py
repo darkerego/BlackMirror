@@ -92,6 +92,7 @@ async def parse_and_exec(args):
     key, secret, subaccount, anti_liq = config_loader.load_config('conf.json')
     bot = Bot()
     subaccount = args.subaccount
+    api = FtxApi(key, secret, subaccount)
 
     if args.reset_db:
         cp.yellow('[~] Resetting the pnl stats ... ')
@@ -133,7 +134,7 @@ async def parse_and_exec(args):
             cp.yellow('[📊] Loading auto trader ... ')
         if args.show_tickers:
             cp.green('[~] Tickers Enabled!')
-        api = FtxApi(key, secret, subaccount)
+
         await bot.monitor(api, args=args)
 
 
@@ -177,77 +178,79 @@ async def parse_and_exec(args):
             for o in orders:
                 print(o)
         if args.buy:
+            for _ in range(args.repeat_action):
 
-            if len(args.buy) < 3:
-                cp.red('[⛔] Required parameters: <order type> <market> <qty> Optional Parameters: <price>')
-                return False
-            else:
-                post = False
-                o_type = args.buy[0]
-                o_market = args.buy[1]
-                o_size = args.buy[2]
-                if len(args.buy) == 4:
-                    limit_price = args.buy[3]
-                if o_type == 'market':
-                    cp.green(f'[~] Executing a market buy order on {o_market} of quantity {o_size}!')
-                    ret = api.buy_market(market=o_market, qty=o_size, reduce=False, ioc=False, cid=None)
-                    if ret:
-                        cp.purple(f'[~] Status: {ret}')
-                if o_type == 'limit' or o_type == 'post':
-                    cp.red(f'[~] Executing a limit sell order on {o_market} of quantity {o_size}!')
-                    if args.limit_chase > 0 or o_type == 'post':
-                        ret = api.post_limit_retry(market=o_market, side='buy', qty=o_size)
-                    else:
-                        if limit_price == 0:
-                            bid, ask, last = api.rest_ticker(market=o_market)
-                            limit_price = bid
-                            cp.red(f'[!] No price given, using current bid: {bid}')
-                        ret = api.buy_limit(market=o_market, qty=o_size, price=limit_price, post=post, reduce=False,
-                                            cid=None)
-                    if ret:
-                        cp.purple(f'[~] Status: {ret}')
-                    if args.limit_chase > 0:
-                        cp.yellow(f'[-] Chasing limit order up the books ... Max Chase: {args.limit_chase} '
-                                  f'Revert to market: {args.chase_failsafe}')
-                        ret = api.chase_limit_order(market=o_market, oid=ret['id'], max_chase=args.limit_chase,
-                                              failsafe_market=args.chase_failsafe)
-                        cp.purple(f'[~] {ret}')
+                if len(args.buy) < 3:
+                    cp.red('[⛔] Required parameters: <order type> <market> <qty> Optional Parameters: <price>')
+                    return False
+                else:
+                    post = False
+                    o_type = args.buy[0]
+                    o_market = args.buy[1]
+                    o_size = args.buy[2]
+                    if len(args.buy) == 4:
+                        limit_price = args.buy[3]
+                    if o_type == 'market':
+                        cp.green(f'[~] Executing a market buy order on {o_market} of quantity {o_size}!')
+                        ret = api.buy_market(market=o_market, qty=o_size, reduce=False, ioc=False, cid=None)
+                        if ret:
+                            cp.purple(f'[~] Status: {ret}')
+                    if o_type == 'limit' or o_type == 'post':
+                        cp.red(f'[~] Executing a limit sell order on {o_market} of quantity {o_size}!')
+                        if args.limit_chase > 0 or o_type == 'post':
+                            ret = api.post_limit_retry(market=o_market, side='buy', qty=o_size)
+                        else:
+                            if limit_price == 0:
+                                bid, ask, last = api.rest_ticker(market=o_market)
+                                limit_price = bid
+                                cp.red(f'[!] No price given, using current bid: {bid}')
+                            ret = api.buy_limit(market=o_market, qty=o_size, price=limit_price, post=post, reduce=False,
+                                                cid=None)
+                        if ret:
+                            cp.purple(f'[~] Status: {ret}')
+                        if args.limit_chase > 0:
+                            cp.yellow(f'[-] Chasing limit order up the books ... Max Chase: {args.limit_chase} '
+                                      f'Revert to market: {args.chase_failsafe}')
+                            ret = api.chase_limit_order(market=o_market, oid=ret['id'], max_chase=args.limit_chase,
+                                                  failsafe_market=args.chase_failsafe)
+                            cp.purple(f'[~] {ret}')
         if args.sell:
-            if len(args.sell) < 3:
-                cp.red('[⛔] Required parameters: <order type> <market> <qty> Optional Parameters: <price>')
-                return False
-            else:
-                post = False
-                o_type = args.sell[0]
-                o_market = args.sell[1]
-                o_size = args.sell[2]
-                if len(args.sell) == 4:
-                    limit_price = args.sell[3]
-                if o_type == 'market':
-                    cp.red(f'[~] Executing a market sell order on {o_market} of quantity {o_size}!')
-                    ret = api.sell_market(market=o_market, qty=o_size, reduce=False, ioc=False, cid=None)
-                    if ret:
-                        cp.purple(f'[~] Status: {ret}')
-                if o_type == 'limit' or o_type == 'post':
-                    cp.red(f'[~] Executing a limit sell order on {o_market} of quantity {o_size}!')
-                    if args.limit_chase > 0 or o_type == 'post':
-                        ret = api.post_limit_retry(market=o_market, side='sell', qty=o_size)
-                    else:
-                        if limit_price == 0:
-                            bid, ask, last = api.get_ticker(market=o_market)
-                            print(ask, bid, last)
-                            limit_price = ask
-                            cp.yellow(f'[!] No price given, using current ask: {ask}')
-                        ret = api.sell_limit(market=o_market, qty=o_size, price=limit_price, post=post, reduce=False,
-                                             cid=None)
-                    if args.limit_chase > 0:
-                        cp.yellow(f'[-] Chasing limit order up the books ... Max Chase: {args.limit_chase} '
-                                  f'Revert to market: {args.chase_failsafe}')
-                        ret = api.chase_limit_order(market=o_market, oid=ret['id'], max_chase=args.limit_chase,
-                                              failsafe_market=args.chase_failsafe)
-                        cp.purple(f'[~] {ret}')
-                    if ret:
-                        cp.purple(f'[~] Status: {ret}')
+            for _ in range(args.repeat_action):
+                if len(args.sell) < 3:
+                    cp.red('[⛔] Required parameters: <order type> <market> <qty> Optional Parameters: <price>')
+                    return False
+                else:
+                    post = False
+                    o_type = args.sell[0]
+                    o_market = args.sell[1]
+                    o_size = args.sell[2]
+                    if len(args.sell) == 4:
+                        limit_price = args.sell[3]
+                    if o_type == 'market':
+                        cp.red(f'[~] Executing a market sell order on {o_market} of quantity {o_size}!')
+                        ret = api.sell_market(market=o_market, qty=o_size, reduce=False, ioc=False, cid=None)
+                        if ret:
+                            cp.purple(f'[~] Status: {ret}')
+                    if o_type == 'limit' or o_type == 'post':
+                        cp.red(f'[~] Executing a limit sell order on {o_market} of quantity {o_size}!')
+                        if args.limit_chase > 0 or o_type == 'post':
+                            ret = api.post_limit_retry(market=o_market, side='sell', qty=o_size)
+                        else:
+                            if limit_price == 0:
+                                bid, ask, last = api.get_ticker(market=o_market)
+                                print(ask, bid, last)
+                                limit_price = ask
+                                cp.yellow(f'[!] No price given, using current ask: {ask}')
+                            ret = api.sell_limit(market=o_market, qty=o_size, price=limit_price, post=post, reduce=False,
+                                                 cid=None)
+                        if args.limit_chase > 0:
+                            cp.yellow(f'[-] Chasing limit order up the books ... Max Chase: {args.limit_chase} '
+                                      f'Revert to market: {args.chase_failsafe}')
+                            ret = api.chase_limit_order(market=o_market, oid=ret['id'], max_chase=args.limit_chase,
+                                                  failsafe_market=args.chase_failsafe)
+                            cp.purple(f'[~] {ret}')
+                        if ret:
+                            cp.purple(f'[~] Status: {ret}')
         if args.cancel:
             oid = args.cancel
             cp.red(f'[c] Canceling order #{oid}')

@@ -1,5 +1,5 @@
+#!/usr/bin/env python3
 import argparse
-
 import numpy as np
 import pandas as pd
 import requests
@@ -175,7 +175,7 @@ class FtxAggratavor:
 #levels=[0,0.236, 0.382, 0.5 , 0.618, 0.786,1]
 args = argparse.ArgumentParser()
 args.add_argument('-s', '--symbol', type=str, help='symbol')
-args.add_argument('-p', '--period', type=int, help='period', default=None)
+args.add_argument('-p', '--period', type=int, help='period', default=None, choices=[15, 60, 300, 900, 1800, 3600, 14400, 86400])
 
 args=args.parse_args()
 api = FtxAggratavor()

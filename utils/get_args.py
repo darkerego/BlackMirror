@@ -4,6 +4,11 @@ import configparser
 import configargparse
 
 
+def geneneral_options():
+    args = argparse.ArgumentParser()
+
+
+
 def get_args():
     parser = configargparse.ArgumentParser(usage='SUPPORT MY WORK! USE MY REFERRAL: https://ftx.com/referrals#a=darkerego')
     gen_opts = parser.add_argument_group('General Opts')
@@ -202,6 +207,8 @@ def get_args():
     api_opts.add_argument('-b', '--buy', dest='buy', type=str, nargs='+',
                           help='Execute a buy order: --buy <limit> <ETH-PERP> <0.5> 2898.89 , '
                                '[order types: limit, post, market]')
+    api_opts.add_argument('--repeat', dest='repeat_action', type=int, default=1, help='Repeat this order this many times in '
+                                                                                      'fast succession.')
     api_opts.add_argument('-s', '--sell', dest='sell', type=str, nargs='+',
                           help='Execute a sell order --sell <market> <BTC-USD> <0.1>')
     api_opts.add_argument('-lc', '--limit_chase', dest='limit_chase', type=int, default=0,
