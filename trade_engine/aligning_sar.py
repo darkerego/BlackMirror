@@ -94,7 +94,7 @@ class TheSARsAreAllAligning:
         ticker = (self.future_ticker(symbol))
         sar = sar[-3]
         if self.debug:
-            print(sar)
+            print(f'Sar: {sar}, Mark: {ticker}')
         if sar < ticker:
             # under candle, is long
             return 1, ticker, sar
