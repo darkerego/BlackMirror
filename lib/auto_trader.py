@@ -62,7 +62,7 @@ class AutoTrader:
         self.anti_liq_api = None
         self.tally = tally
         self.sar_sl = sar_sl
-        self.ta_engine = TheSARsAreAllAligning()
+        self.ta_engine = TheSARsAreAllAligning(debug=True)
         self.accumulated_pnl = 0
         self.position_sars = []
         self.pnl_trackers = []
