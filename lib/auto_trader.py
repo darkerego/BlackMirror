@@ -1,6 +1,7 @@
 import re
 import time
 
+#import fibber
 from lib import sql_lib, logmod
 from lib import tally
 from lib.anti_liq import AntiLiq
@@ -10,6 +11,7 @@ from lib.score_keeper import scores
 from trade_engine.aligning_sar import TheSARsAreAllAligning
 from trade_engine.stdev_aggravator import FtxAggratavor
 from utils.colorprint import NewColorPrint
+#from lib import fibber
 
 try:
     import thread
@@ -38,12 +40,14 @@ class AutoTrader:
                  max_collateral=0.5, position_close_pct=1, chase_close=0, chase_reopen=0, update_db=False,
                  anti_liq=False,
                  min_score=0.0, check_before_reopen=False, mitigate_fees=False, confirm=False, tp_fib_enable=False,
-                 tp_fib_res=300, sar_sl=0):
+                 tp_fib_res=300, sar_sl=0, auto_stop_only=False):
         # self.trade_logger = TradeLog()
+        self.position_fib_levels = None
         self.cp = NewColorPrint()
         self.up_markets = {}
         self.down_markets = {}
         self.trend = 'N/A'
+        self.auto_stop_only = auto_stop_only
         self.show_tickers = show_tickers
         self.stop_loss = stop_loss
         self._take_profit = _take_profit
@@ -60,6 +64,7 @@ class AutoTrader:
         #self.anti_liq_api = AntiLiq(self.api, self.api.getsubaccount())
 
         self.anti_liq_api = None
+        self.fib_api = None
         self.tally = tally
         self.sar_sl = sar_sl
         self.ta_engine = TheSARsAreAllAligning(debug=True)
@@ -474,7 +479,7 @@ class AutoTrader:
         max_orders = self.max_open_orders
         stdev = self.agg.get_stdev(symbol=market, period=period)
         self.cp.yellow(f'Standard deviation: {stdev}')
-        stdev_each_side = stdev / 2
+        increment_ = stdev / max_orders
 
         # o_qty = qty / max_orders
         o_qty = qty
@@ -484,7 +489,7 @@ class AutoTrader:
         buy_order_que = []
         sell_order_que = []
         if side == 'buy':
-            if open_buy_order_count == self.max_open_orders:
+            if open_buy_order_count == (self.max_open_orders/2):
                 print('Not doing anything as max orders ..')
                 return
             min_qty = self.future_stats[market]['min_order_size']
@@ -506,13 +511,14 @@ class AutoTrader:
             buy_orders = [x for x in buy_orders.__reversed__()]
             # print(buy_orders)
             c = 1
-            for i in buy_orders:
-                if c == 1:
-                    next_order_price = bid
-                    buy_order_que.append(['buy', i, next_order_price, market, 'limit'])
-                else:
-                    next_order_price = bid - (stdev * self.position_step_size) * c
-                    buy_order_que.append(['buy', i, next_order_price, market, 'limit'])
+            for x, i in enumerate(buy_orders):
+                #if c == 1:
+                #    next_order_price = bid
+                #    buy_order_que.append(['buy', i, next_order_price, market, 'limit'])
+                #else:
+                next_order_price = bid - (increment_ * x)
+                    # next_order_price = bid - (stdev * self.position_step_size) * c
+                buy_order_que.append(['buy', i, next_order_price, market, 'limit'])
                 c += 1
                 self.cp.yellow(
                     f'[o] Placing new {side} order of size {i} on market {market} at price {next_order_price}')
@@ -537,7 +543,7 @@ class AutoTrader:
 
 
         else:
-            if open_sell_order_count == self.max_open_orders:
+            if open_sell_order_count == (self.max_open_orders/2):
                 print('Not doing anything as max open sell orders')
                 return
             min_qty = self.future_stats[market]['min_order_size']
@@ -559,13 +565,14 @@ class AutoTrader:
             sell_orders = [x for x in sell_orders.__reversed__()]
             # print(sell_orders)
             c = 1
-            for i in sell_orders:
-                if i == 1:
-                    next_order_price = ask
-                    sell_order_que.append(['sell', i, next_order_price, market, 'limit'])
-                else:
-                    next_order_price = ask + (stdev * self.position_step_size) * c
-                    sell_order_que.append(['sell', i, next_order_price, market, 'limit'])
+            for x, i in enumerate(sell_orders):
+                #if i == 1:
+                #    next_order_price = ask
+                #    sell_order_que.append(['sell', i, next_order_price, market, 'limit'])
+                #else:
+                #next_order_price = ask + (stdev * self.position_step_size) * c
+                next_order_price = ask + (increment_ * x)
+                sell_order_que.append(['sell', i, next_order_price, market, 'limit'])
                 c += 1
                 self.cp.yellow(
                     f'[o] Placing new {side} order of size {i} on market {market} at price {next_order_price}')
@@ -783,6 +790,11 @@ class AutoTrader:
             self.future_stats[name]['change1h'] = change1h
             self.future_stats[name]['change24h'] = change24h
             self.future_stats[name]['min_order_size'] = min_order_size
+
+            #if self.tp_fib_enable:
+            #    levels = selff
+            #    #self.position_fib_levels[future_instrument]
+
             err = None
             if self.update_db:
                 print('[~] Updating ..')
@@ -899,7 +911,7 @@ class AutoTrader:
                 if self.confirm:
                     self.cp.red('[!!] Closing position as the sar is not in our favor!')
                     self.stop_loss_order(market=future_instrument, side=side, size=size * -1)
-        if pnl_pct > self._take_profit:
+        if pnl_pct > self._take_profit and not self.auto_stop_only:
             # confirm price via rest
 
             # print('Recalculating with rest ticker .. ')

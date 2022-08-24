@@ -16,7 +16,8 @@ class FtxAggratavor:
     Grab kline data from ftx and calculate a standard deviation
     """
 
-    def __init__(self):
+    def __init__(self, api=None):
+        self.api = api
         self.rolling_stdev = 0.0
         self.stdev_1d = 0.0
         self.stdev_4h = 0.0
@@ -75,21 +76,49 @@ class FtxAggratavor:
 
     def gen_fib(self, stdev, _mx, _mi, p):
         levels = [0, 0.236, 0.382, 0.5, 0.618, 0.786, 1]
+        retrace_long = []
+        retrace_short = []
         #df = pd.read_csv()
         print(f'Up: {p}')
         for _ in levels:
             #
             diff_ = _mx - _mi
             val = _mx - (diff_ * _)
-            print(f'Level: {_} , Value: {val} ')
+            #print(f'Level: {_} , Value: {val} ')
+            retrace_long.append((_, val))
         print(f'Down: {p}')
         for _ in levels:
             #
             diff_ = _mx - _mi
             val = _mi + (diff_ * _)
-            print(f'Level: {_} , Value: {val} ')
+            #print(f'Level: {_} , Value: {val} ')
+            retrace_short.append((_, val))
+        return retrace_long, retrace_short
 
-    def get_stdev(self, symbol, period=None):
+    def next_fib_level(self, symbol, retrace_levels):
+        ask, bid, last = self.api.get_ticker(symbol)
+        retrace_levels.append((0, last))
+        level_map = sorted(retrace_levels, key=lambda tup: tup[1])
+        for x, y in enumerate(level_map):
+            if y[0] == 0:
+                try:
+                    above = level_map[x+1]
+                except IndexError:
+                    above = 0
+                try:
+                    below = level_map[x-1]
+                except IndexError:
+                    below = 0
+            return above, below
+
+
+
+
+
+
+
+
+    def get_stdev(self, symbol, period=None, side='LONG'):
         """
         Periods in number of seconds:
         15s, 1m,  5m,  15m,  1h,   4h,   1d
@@ -128,7 +157,11 @@ class FtxAggratavor:
                 # close_array = [float(entry[5]) for entry in _candles.json()['result']]
                 close_array = np.asarray(close_array)
                 std_dev, _mx, _mi = self.stdev(close_array)
-                self.gen_fib(std_dev, _mx, _mi, p)
+                up, down = self.gen_fib(std_dev, _mx, _mi, p)
+                if side == 'LONG':
+                    return self.next_fib_level(symbol, up)
+                else:
+                    return self.next_fib_level(symbol, down)
 
 
                 std_dict.append(std_dev)
@@ -173,16 +206,11 @@ class FtxAggratavor:
 
 
 #levels=[0,0.236, 0.382, 0.5 , 0.618, 0.786,1]
-resolutions = [15, 60, 300, 900, 1800, 3600, 14400, 86400]
 args = argparse.ArgumentParser()
 args.add_argument('-s', '--symbol', type=str, help='symbol')
-args.add_argument('-p', '--period', type=int, help='period', default=None, choices=resolutions)
-args.add_argument('-a', '-all', dest='all', action='store_true', help='Calculate for all periods.')
+args.add_argument('-p', '--period', type=int, help='period', default=None, choices=[15, 60, 300, 900, 1800, 3600, 14400, 86400])
 
 args=args.parse_args()
 api = FtxAggratavor()
-if args.all:
-    for _ in resolutions:
-        print(api.get_stdev(args.symbol, period=_))
-else:
-    print(api.get_stdev(args.symbol, args.period))
+ret=api.get_stdev(args.symbol, args.period)
+print(ret)

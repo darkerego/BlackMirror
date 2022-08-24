@@ -58,8 +58,6 @@ class WsReceiver:
                 return False, 0
         return True, pos['size']
 
-
-
     def connect(self):
         while True:
             self.wss.send(f"request_signal")
@@ -104,18 +102,18 @@ class WsReceiver:
                 _type = self.sig_.get('signal')
                 _instrument = self.sig_.get('instrument')
                 _symbol = str(_instrument[:-4] + '-PERP')
-                #print(_symbol)
+                # print(_symbol)
                 _entry = self.sig_['entry']
                 print(_type, _instrument, _entry)
                 b, a, l = self.api.get_ticker(market=_symbol)
-                #print(l)
+                # print(l)
                 info = self.api.info()
                 positions = info['positions']
                 balance = info["freeCollateral"]
                 leverage = info['leverage']
 
                 qty = (float(balance) * leverage) / float(l) * 0.25
-                #print(balance, leverage, qty)
+                # print(balance, leverage, qty)
                 if _type == 'long':
                     self.cp.alert('[LONG SIGNAL]: ENTERING!')
                     if not self.check_position_exists_diff(future=_symbol):
@@ -134,14 +132,14 @@ class WsReceiver:
 
 
 class MqReceiver:
-    def __init__(self, server_uri, api, collateral_pct, reenter,
+    def __init__(self, server_uri, api, collateral_pct, reenter, sar_validation,
                  data_source, exclude_markets, debug=True, min_score=10, topic='/signals', live_score=False, min_adx=20,
                  confirm=False):
         self.lock = asyncio.Lock()
         self.debug = debug
         self.running = False
         self.api = api
-        #self.sa = sa
+        # self.sa = sa
         self.collateral_pct = collateral_pct
         self.reenter = reenter
         self.data_source = data_source
@@ -159,6 +157,7 @@ class MqReceiver:
         self.sig_ = {}
         self.min_score = min_score
         self.min_adx = min_adx
+        self.sar_validation = sar_validation
         self.validator = trade_engine.aligning_sar.TheSARsAreAllAligning()
 
     def sell_market(self, *args, **kwargs):
@@ -170,7 +169,7 @@ class MqReceiver:
             return self.api.buy_market(*args, **kwargs)
 
     def position_close(self, symbol, side, size):
-        #self.api.cancel_orders(market=symbol)
+        # self.api.cancel_orders(market=symbol)
         if side == 'LONG':
             self.cp.red(f'Closing Long on {symbol}!')
             self.sell_market(market=symbol, qty=size, reduce=True, ioc=False, cid=None)
@@ -179,6 +178,10 @@ class MqReceiver:
         else:
             self.cp.red(f'Closing Short on {symbol}!')
             self.buy_market(market=symbol, qty=size, reduce=True, ioc=False, cid=None)
+
+    def sar_validate(self, _symbol, res=300):
+        return self.validator.get_sar(symbol=_symbol, period=res)
+
 
     def handle_message(self, topic, message):
 
@@ -252,7 +255,7 @@ class MqReceiver:
             leverage = info['leverage']
 
             qty = (float(balance) * leverage) / float(l) * self.collateral_pct
-            #print(balance, leverage, qty)
+            # print(balance, leverage, qty)
 
             if _type == 'LONG':
                 # self.cp.blue(f'[E] Received {_type} Enter Signal for instrument {_instrument} of Score {score} %')
@@ -264,11 +267,10 @@ class MqReceiver:
                         print(size)
                         if not size:
                             side, sar = self.validator.get_sar(symbol=_symbol, period=300)
-                            print(side,sar)
-
+                            print(side, sar)
                             if side == 1:
                                 side, sar = self.validator.get_sar(symbol=_symbol, period=60)
-                                print(side,sar)
+                                print(side, sar)
                                 if side == 1:
                                     self.cp.purple('[+] Trade validated! ... ENTERING!')
                                     ret = self.buy_market(market=_symbol, qty=qty, reduce=False, ioc=False, cid=None)
@@ -313,17 +315,11 @@ class MqReceiver:
         self.running = True
         while self.running:
             message = async_client.message_que.read_incoming()
-            ts=time.time()
-
+            ts = time.time()
 
             if message is not None:
-                # print(message)
-
                 topic = message[0]
                 message = message[1]
-                # print(topic, message)
-                #print(f'MESSAGE {ts} {message}')
-
                 time.sleep(0.24)
                 try:
                     self.handle_message(topic, message)
@@ -344,7 +340,7 @@ class MqReceiver:
             print('Start mqtt')
             mq = async_client.MqttClient(host=self.host, port=int(self.port))
 
-            threading.Thread(target=self.launch_event_loops, args=(mq, )).start()
+            threading.Thread(target=self.launch_event_loops, args=(mq,)).start()
             print('Started')
             t = threading.Thread(target=self.run())
             t.start()
@@ -359,4 +355,3 @@ class MqReceiver:
                 print('OK')
                 return pos['collateralUsed']
         return 0.0
-

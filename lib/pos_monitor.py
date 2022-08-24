@@ -49,6 +49,7 @@ class Monitor:
         self.logger = lib.logmod.CustomLogger(log_file='debug2.log')
         self.logger.setup_file_handler()
         self.api = api
+        self.auto_stop_only=conf.auto_stop_only
         self.update_db = conf.update_db
         self.logger = logging.getLogger()
         self.mitigate_fees = conf.mitigate_fees

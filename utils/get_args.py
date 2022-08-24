@@ -112,6 +112,9 @@ def get_args():
 
     auto_stop_opts.add_argument('-ds', '--disable_sl', dest='disable_stop_loss', action='store_true', default=False,
                                 help='Do not use stop losses.')
+    auto_stop_opts.add_argument('-aso', '--auto_stop_only', dest='auto_stop_only', action='store_true',
+                                help='Only manage stop losses and not '
+                                                                                      'take profit.')
 
     auto_stop_opts.add_argument('-sl', '--stop_loss', dest='stop_loss_pct', action='store', type=float, default=0.5,
                                 help='Stop Loss Percentage represented as a floating point. -0.1 would be -10 percent PNL')

@@ -88,7 +88,7 @@ class FtxAggratavor:
             _candles = requests.get(f'https://ftx.com/api/markets/{symbol}/candles?resolution={period}')
             for c in _candles.json()['result']:
                 close_array.append(c['close'])
-            s = self.stdev(close_array)
+            s = std_dev = pd.Series(close_array).rolling(26).std(ddof=0)[1499]
             return s
         else:
             period_list = [15, 60, 300, 900, 3600, 14400, 86400]
@@ -102,7 +102,8 @@ class FtxAggratavor:
                 candle_dict.append((p, _candles.json()))
                 # close_array = [float(entry[5]) for entry in _candles.json()['result']]
                 close_array = np.asarray(close_array)
-                std_dev = self.stdev(close_array)
+                std_dev = pd.Series(close_array).rolling(26).std(ddof=0)[1499]
+                # std_dev = self.stdev(close_array)
                 std_dict.append(std_dev)
                 std_periods.append((std_dev, p))
                 if p == 15:
