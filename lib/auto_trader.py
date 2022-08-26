@@ -406,11 +406,15 @@ class AutoTrader:
             self.relist_iter[market] += 1
             leftover_iterations = self.relist_iterations - self.relist_iter[market]
             self.cp.blue(f'[!] We have open orders, relisting in {leftover_iterations} iterations.  ... ')
+            run_now =False
+        else:
+            run_now = True
 
         if self.relist_iter[market] == self.relist_iterations:
             self.relist_iter[market] = 0
 
         if self.close_method == 'increment':
+            #if run_now:
 
             return self.increment_orders(market=market, side=opp_side, qty=size, period=self.period, reduce=True)
         elif self.close_method == 'market' or self.close_method == 'limit':
@@ -469,7 +473,8 @@ class AutoTrader:
             else:
                 open_sell_order_count += 1
                 current_sell_orders_qty += o.get('size')
-        self.cp.yellow(f'[i] Open Orders: {len(open_order_count)}, Qty Given: {qty}, Current open Qty: {current_size}')
+            #current_size
+        self.cp.yellow(f'[i] Open Orders: {len(open_order_count)}, Qty Given: {qty}, Current open buy Qty: {current_buy_orders_qty}, current open sell qty: {current_sell_orders_qty}')
 
         # if len(open_order_count) > self.max_open_orders * 2:
         #    self.api.cancel_orders(market=market)
@@ -489,7 +494,7 @@ class AutoTrader:
         buy_order_que = []
         sell_order_que = []
         if side == 'buy':
-            if open_buy_order_count == (self.max_open_orders/2):
+            if open_buy_order_count >= (self.max_open_orders):
                 print('Not doing anything as max orders ..')
                 return
             min_qty = self.future_stats[market]['min_order_size']
@@ -543,8 +548,8 @@ class AutoTrader:
 
 
         else:
-            if open_sell_order_count == (self.max_open_orders/2):
-                print('Not doing anything as max open sell orders')
+            if open_sell_order_count >= (self.max_open_orders):
+                print(f'Not doing anything as max open sell orders: max{self.max_open_orders}')
                 return
             min_qty = self.future_stats[market]['min_order_size']
             bid, ask, last = self.api.get_ticker(market=market)
@@ -1026,7 +1031,7 @@ class AutoTrader:
 
             if float(pos['collateralUsed'] != 0.0) or float(pos['longOrderSize']) > 0 or float(
                     pos['shortOrderSize']) < 0:
-                self.parse(pos, account_info)
+                ret = self.parse(pos, account_info)
             else:
                 try:
                     for _ in self.open_positions:

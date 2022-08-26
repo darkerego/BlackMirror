@@ -474,3 +474,91 @@
 2022-08-23 20:01:30,969 | INFO | _connect called
 2022-08-23 20:22:39,475 | ERROR | Error with parse: An unexpected error occurred, please try again later (AE0D811864).
 2022-08-23 20:22:39,475 | ERROR | Error with parse: An unexpected error occurred, please try again later (AE0D811864).
+2022-08-23 21:22:21,892 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-23 21:22:21,892 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-23 21:22:23,815 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-23 21:22:23,815 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-25 15:59:03,461 | INFO | Init ws
+2022-08-25 15:59:03,461 | INFO | Init ws
+2022-08-25 15:59:03,494 | INFO | Starting autotrader at 1661457543.494942
+2022-08-25 15:59:03,494 | INFO | Starting autotrader at 1661457543.494942
+2022-08-25 15:59:08,929 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+2022-08-25 15:59:08,929 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+2022-08-25 15:59:08,929 | INFO | _connect called
+2022-08-25 15:59:08,929 | INFO | _connect called
+2022-08-25 20:05:46,726 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-25 20:05:46,726 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-25 20:16:15,135 | INFO | Init ws
+2022-08-25 20:16:15,135 | INFO | Init ws
+2022-08-25 20:16:15,167 | INFO | Starting autotrader at 1661472975.1677465
+2022-08-25 20:16:15,167 | INFO | Starting autotrader at 1661472975.1677465
+2022-08-25 20:16:20,016 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-25 20:16:20,016 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-25 20:16:20,016 | INFO | _connect called
+2022-08-25 20:16:20,016 | INFO | _connect called
+2022-08-25 20:17:10,101 | INFO | Init ws
+2022-08-25 20:17:10,101 | INFO | Init ws
+2022-08-25 20:17:10,133 | INFO | Starting autotrader at 1661473030.1338696
+2022-08-25 20:17:10,133 | INFO | Starting autotrader at 1661473030.1338696
+2022-08-25 20:17:14,954 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-25 20:17:14,954 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-25 20:17:14,954 | INFO | _connect called
+2022-08-25 20:17:14,954 | INFO | _connect called
+2022-08-25 20:19:28,388 | INFO | Init ws
+2022-08-25 20:19:28,388 | INFO | Init ws
+2022-08-25 20:19:28,421 | INFO | Starting autotrader at 1661473168.4211771
+2022-08-25 20:19:28,421 | INFO | Starting autotrader at 1661473168.4211771
+2022-08-25 20:19:33,069 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-25 20:19:33,069 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-25 20:19:33,069 | INFO | _connect called
+2022-08-25 20:19:33,069 | INFO | _connect called
+2022-08-25 20:43:19,636 | INFO | Init ws
+2022-08-25 20:43:19,636 | INFO | Init ws
+2022-08-25 20:43:19,668 | INFO | Starting autotrader at 1661474599.6684518
+2022-08-25 20:43:19,668 | INFO | Starting autotrader at 1661474599.6684518
+2022-08-25 20:43:25,247 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-25 20:43:25,247 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-25 20:43:25,247 | INFO | _connect called
+2022-08-25 20:43:25,247 | INFO | _connect called
+2022-08-25 20:45:22,703 | INFO | Init ws
+2022-08-25 20:45:22,703 | INFO | Init ws
+2022-08-25 20:45:22,734 | INFO | Starting autotrader at 1661474722.734944
+2022-08-25 20:45:22,734 | INFO | Starting autotrader at 1661474722.734944
+2022-08-25 20:45:28,255 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-25 20:45:28,255 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-25 20:45:28,255 | INFO | _connect called
+2022-08-25 20:45:28,255 | INFO | _connect called
+2022-08-25 20:47:31,416 | INFO | Init ws
+2022-08-25 20:47:31,416 | INFO | Init ws
+2022-08-25 20:47:31,451 | INFO | Starting autotrader at 1661474851.4512138
+2022-08-25 20:47:31,451 | INFO | Starting autotrader at 1661474851.4512138
+2022-08-25 20:47:36,890 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-25 20:47:36,890 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-25 20:47:36,890 | INFO | _connect called
+2022-08-25 20:47:36,890 | INFO | _connect called
+2022-08-25 20:47:39,644 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-25 20:47:39,644 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-25 20:50:15,227 | INFO | Init ws
+2022-08-25 20:50:15,227 | INFO | Init ws
+2022-08-25 20:50:15,259 | INFO | Starting autotrader at 1661475015.2596707
+2022-08-25 20:50:15,259 | INFO | Starting autotrader at 1661475015.2596707
+2022-08-25 20:50:20,846 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-25 20:50:20,846 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-25 20:50:20,846 | INFO | _connect called
+2022-08-25 20:50:20,846 | INFO | _connect called
+2022-08-25 22:29:18,131 | INFO | Init ws
+2022-08-25 22:29:18,131 | INFO | Init ws
+2022-08-25 22:29:18,164 | INFO | Starting autotrader at 1661480958.164027
+2022-08-25 22:29:18,164 | INFO | Starting autotrader at 1661480958.164027
+2022-08-25 22:29:23,967 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-25 22:29:23,967 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-25 22:29:23,967 | INFO | _connect called
+2022-08-25 22:29:23,967 | INFO | _connect called
+2022-08-25 22:45:52,307 | INFO | Init ws
+2022-08-25 22:45:52,307 | INFO | Init ws
+2022-08-25 22:45:52,339 | INFO | Starting autotrader at 1661481952.33953
+2022-08-25 22:45:52,339 | INFO | Starting autotrader at 1661481952.33953
+2022-08-25 22:45:56,820 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-25 22:45:56,820 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-25 22:45:56,820 | INFO | _connect called
+2022-08-25 22:45:56,820 | INFO | _connect called

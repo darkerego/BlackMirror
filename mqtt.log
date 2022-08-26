@@ -230,3 +230,47 @@ INFO:root:Starting autotrader at 1661299285.3346584
 INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
 INFO:root:_connect called
 ERROR:root:Error with parse: An unexpected error occurred, please try again later (AE0D811864).
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661457543.494942
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661472975.1677465
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661473030.1338696
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661473168.4211771
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661474599.6684518
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661474722.734944
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661474851.4512138
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+INFO:root:_connect called
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661475015.2596707
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661480958.164027
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661481952.33953
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+INFO:root:_connect called
