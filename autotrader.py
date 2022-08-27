@@ -89,7 +89,7 @@ class Bot:
 
 async def parse_and_exec(args):
     limit_price = 0
-    key, secret, subaccount, anti_liq = config_loader.load_config('conf.json')
+    key, secret, subaccount = config_loader.load_config('conf.json')
     bot = Bot()
     subaccount = args.subaccount
     api = FtxApi(key, secret, subaccount)

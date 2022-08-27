@@ -1034,3 +1034,5 @@
 2022-08-26 21:17:06,720 | INFO | _connect called
 2022-08-26 21:24:00,840 | INFO | Subscribing to {'channel': 'ticker', 'market': 'BTC-PERP'}
 2022-08-26 21:24:00,840 | INFO | Subscribing to {'channel': 'ticker', 'market': 'BTC-PERP'}
+2022-08-26 21:40:38,551 | INFO | Init ws
+2022-08-26 21:40:38,551 | INFO | Init ws

@@ -510,3 +510,4 @@ INFO:root:Starting autotrader at 1661563018.5399382
 INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
 INFO:root:_connect called
 INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BTC-PERP'}
+INFO:root:Init ws
