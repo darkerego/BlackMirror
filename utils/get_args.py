@@ -191,6 +191,12 @@ def get_args():
                                      'stop to this value, 0 being disabled and 1 being 100pct ')
     #wallet_opts = parser.add_argument_group('Wallet & Subacct Options')
     #wallet_opts.add_argument('')
+    mm_opts = parser.add_argument_group('Market Maker Options')
+    mm_opts.add_argument('-mmm', '--maker_maker_mode', dest='mm_mode', action='store_true', help='Enable market maker mode.')
+    mm_opts.add_argument('-mmlm', '--mm_long_market', dest='mm_long_market', type=str, default='BTC-PERP', help='Long Market to run mm on')
+    mm_opts.add_argument('-mmsm', '--mm_short_market', dest='mm_short_market', type=str, help='Short market to run mm on')
+    mm_opts.add_argument('-mms', '--mm_spread', dest='mm_spread', type=float, default=0.01, help='Min spread to operate')
+    mm_opts.add_argument('-mmr', '--mm_ratio', dest='mm_ratio', type=float, default=0.5, help='Ratio of long and short')
     api_opts = parser.add_argument_group('API Commands')
     api_opts.description = (
         'Options for interacting with the exchange. For creating orders, the syntax is -b/-s <order type> <quantity> '

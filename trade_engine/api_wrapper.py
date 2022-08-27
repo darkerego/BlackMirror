@@ -199,6 +199,7 @@ class FtxApi:
             return orders
 
     def cancel_order(self, oid):
+
         return self.rest.cancel_order(order_id=oid)
 
     def cancel_orders(self, market, conditional_orders=False, limit_orders=False):

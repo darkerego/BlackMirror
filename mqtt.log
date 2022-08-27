@@ -274,3 +274,239 @@ INFO:root:Init ws
 INFO:root:Starting autotrader at 1661481952.33953
 INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
 INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661482609.2707553
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661496360.9782228
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+INFO:root:_connect called
+ERROR:root:Error with parse: Please retry request
+ERROR:root:Error with parse: 500 Server Error: Internal Server Error for url: https://ftx.com/api/positions?showAvgPrice=False
+ERROR:root:Error with parse: 500 Server Error: Internal Server Error for url: https://ftx.com/api/positions?showAvgPrice=False
+ERROR:root:Error with parse: 500 Server Error: Internal Server Error for url: https://ftx.com/api/positions?showAvgPrice=False
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ATOM-PERP'}
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661546747.9588342
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661546908.635895
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661546915.6100457
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661547336.5772939
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661547344.4737353
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+INFO:root:_connect called
+ERROR:root:Error with parse: Please retry request
+ERROR:root:Error with parse: Please retry request
+ERROR:root:Error with parse: Please retry request
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661549471.9854467
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CEL-0930'}
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661549958.9106765
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CEL-0930'}
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661552665.8977587
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-0930'}
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661553662.1616795
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-0930'}
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661555104.8574142
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-0930'}
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661556791.5248287
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:_connect called
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661557175.3277266
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661562495.3632886
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:_connect called
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661562832.4000082
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661562904.5699115
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661563018.5399382
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BTC-PERP'}

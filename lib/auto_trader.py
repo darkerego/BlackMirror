@@ -40,7 +40,7 @@ class AutoTrader:
                  max_collateral=0.5, position_close_pct=1, chase_close=0, chase_reopen=0, update_db=False,
                  anti_liq=False,
                  min_score=0.0, check_before_reopen=False, mitigate_fees=False, confirm=False, tp_fib_enable=False,
-                 tp_fib_res=300, sar_sl=0, auto_stop_only=False):
+                 tp_fib_res=300, sar_sl=0, auto_stop_only=False, mm_mode=False, mm_long_market=None, mm_short_market=None, mm_spread=0.0):
         # self.trade_logger = TradeLog()
         self.position_fib_levels = None
         self.cp = NewColorPrint()
@@ -107,6 +107,10 @@ class AutoTrader:
         self.update_db = update_db
         self.open_positions = {}
         self.ta_scores = scores
+        self.mm_mode = mm_mode
+        self.mm_long_market = mm_long_market
+        self.mm_short_market = mm_short_market
+        self.mm_spread = mm_spread
         if self.reopen:
             self.cp.yellow('Reopen enabled')
         if self.stop_loss > 0.0:
@@ -406,12 +410,14 @@ class AutoTrader:
             self.relist_iter[market] += 1
             leftover_iterations = self.relist_iterations - self.relist_iter[market]
             self.cp.blue(f'[!] We have open orders, relisting in {leftover_iterations} iterations.  ... ')
-            run_now =False
+            relist =False
         else:
-            run_now = True
+            relist = True
+            self.api.cancel_orders(market)
 
         if self.relist_iter[market] == self.relist_iterations:
             self.relist_iter[market] = 0
+
 
         if self.close_method == 'increment':
             #if run_now:
@@ -457,6 +463,14 @@ class AutoTrader:
                                    text='%s reopen sell', side='sell')
                     return ret
 
+    def cancel_limit_side(self, side, market):
+        open_order_count = self.api.rest_get_open_orders(market=market)
+        if len(open_order_count):
+            for o in open_order_count:
+                o_side = o.get('side')
+                if o_side == side:
+                    self.api.cancel_order('id')
+
     def increment_orders(self, market, side, qty, period, reduce=False, text=None):
         current_size = 0
         open_buy_order_count = 0
@@ -495,8 +509,10 @@ class AutoTrader:
         sell_order_que = []
         if side == 'buy':
             if open_buy_order_count >= (self.max_open_orders):
-                print('Not doing anything as max orders ..')
+                print(f'Not doing anything as max orders: {self.max_open_orders} ..')
                 return
+            else:
+                print(f'Max is : {self.max_open_orders}')
             min_qty = self.future_stats[market]['min_order_size']
             bid, ask, last = self.api.get_ticker(market=market)
             # print(bid, ask, last)
@@ -515,6 +531,7 @@ class AutoTrader:
 
             buy_orders = [x for x in buy_orders.__reversed__()]
             # print(buy_orders)
+            #buy_orders.reverse()
             c = 1
             for x, i in enumerate(buy_orders):
                 #if c == 1:
@@ -570,6 +587,7 @@ class AutoTrader:
             sell_orders = [x for x in sell_orders.__reversed__()]
             # print(sell_orders)
             c = 1
+            #sell_orders.
             for x, i in enumerate(sell_orders):
                 #if i == 1:
                 #    next_order_price = ask

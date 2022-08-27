@@ -430,3 +430,433 @@
 2022-08-25 22:45:56,820 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
 2022-08-25 22:45:56,820 | INFO | _connect called
 2022-08-25 22:45:56,820 | INFO | _connect called
+2022-08-25 22:56:49,270 | INFO | Starting autotrader at 1661482609.2707553
+2022-08-25 22:56:49,270 | INFO | Starting autotrader at 1661482609.2707553
+2022-08-25 22:56:54,827 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-25 22:56:54,827 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-25 22:56:54,827 | INFO | _connect called
+2022-08-25 22:56:54,827 | INFO | _connect called
+2022-08-26 02:46:00,978 | INFO | Starting autotrader at 1661496360.9782228
+2022-08-26 02:46:00,978 | INFO | Starting autotrader at 1661496360.9782228
+2022-08-26 02:46:06,516 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-26 02:46:06,516 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-26 02:46:06,516 | INFO | _connect called
+2022-08-26 02:46:06,516 | INFO | _connect called
+2022-08-26 05:11:49,827 | ERROR | Error with parse: Please retry request
+2022-08-26 05:11:49,827 | ERROR | Error with parse: Please retry request
+2022-08-26 05:30:06,121 | ERROR | Error with parse: 500 Server Error: Internal Server Error for url: https://ftx.com/api/positions?showAvgPrice=False
+2022-08-26 05:30:06,121 | ERROR | Error with parse: 500 Server Error: Internal Server Error for url: https://ftx.com/api/positions?showAvgPrice=False
+2022-08-26 05:30:21,282 | ERROR | Error with parse: 500 Server Error: Internal Server Error for url: https://ftx.com/api/positions?showAvgPrice=False
+2022-08-26 05:30:21,282 | ERROR | Error with parse: 500 Server Error: Internal Server Error for url: https://ftx.com/api/positions?showAvgPrice=False
+2022-08-26 05:30:22,491 | ERROR | Error with parse: 500 Server Error: Internal Server Error for url: https://ftx.com/api/positions?showAvgPrice=False
+2022-08-26 05:30:22,491 | ERROR | Error with parse: 500 Server Error: Internal Server Error for url: https://ftx.com/api/positions?showAvgPrice=False
+2022-08-26 09:59:06,717 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ATOM-PERP'}
+2022-08-26 09:59:06,717 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ATOM-PERP'}
+2022-08-26 09:59:07,244 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 09:59:07,244 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 09:59:10,041 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 09:59:10,041 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 09:59:18,551 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 09:59:18,551 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 09:59:20,782 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 09:59:20,782 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 16:24:43,995 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+2022-08-26 16:24:43,995 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+2022-08-26 16:41:52,668 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 16:41:52,668 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 16:41:54,532 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 16:41:54,532 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 16:45:47,958 | INFO | Starting autotrader at 1661546747.9588342
+2022-08-26 16:45:47,958 | INFO | Starting autotrader at 1661546747.9588342
+2022-08-26 16:45:53,002 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-26 16:45:53,002 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-26 16:45:53,002 | INFO | _connect called
+2022-08-26 16:45:53,002 | INFO | _connect called
+2022-08-26 16:47:29,832 | INFO | _connect called
+2022-08-26 16:47:29,832 | INFO | _connect called
+2022-08-26 16:48:28,635 | INFO | Starting autotrader at 1661546908.635895
+2022-08-26 16:48:28,635 | INFO | Starting autotrader at 1661546908.635895
+2022-08-26 16:48:35,610 | INFO | Starting autotrader at 1661546915.6100457
+2022-08-26 16:48:35,610 | INFO | Starting autotrader at 1661546915.6100457
+2022-08-26 16:48:41,720 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-26 16:48:41,720 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-26 16:48:41,720 | INFO | _connect called
+2022-08-26 16:48:41,720 | INFO | _connect called
+2022-08-26 16:55:36,577 | INFO | Starting autotrader at 1661547336.5772939
+2022-08-26 16:55:36,577 | INFO | Starting autotrader at 1661547336.5772939
+2022-08-26 16:55:44,473 | INFO | Starting autotrader at 1661547344.4737353
+2022-08-26 16:55:44,473 | INFO | Starting autotrader at 1661547344.4737353
+2022-08-26 16:55:49,756 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-26 16:55:49,756 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-26 16:55:49,756 | INFO | _connect called
+2022-08-26 16:55:49,756 | INFO | _connect called
+2022-08-26 17:02:20,578 | ERROR | Error with parse: Please retry request
+2022-08-26 17:02:20,578 | ERROR | Error with parse: Please retry request
+2022-08-26 17:02:28,776 | ERROR | Error with parse: Please retry request
+2022-08-26 17:02:28,776 | ERROR | Error with parse: Please retry request
+2022-08-26 17:02:34,229 | ERROR | Error with parse: Please retry request
+2022-08-26 17:02:34,229 | ERROR | Error with parse: Please retry request
+2022-08-26 17:31:11,985 | INFO | Starting autotrader at 1661549471.9854467
+2022-08-26 17:31:11,985 | INFO | Starting autotrader at 1661549471.9854467
+2022-08-26 17:31:17,045 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-26 17:31:17,045 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-26 17:31:17,045 | INFO | _connect called
+2022-08-26 17:31:17,045 | INFO | _connect called
+2022-08-26 17:34:41,075 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-0930'}
+2022-08-26 17:34:41,075 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-0930'}
+2022-08-26 17:38:44,941 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 17:38:44,941 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 17:38:47,588 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 17:38:47,588 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 17:39:18,910 | INFO | Starting autotrader at 1661549958.9106765
+2022-08-26 17:39:18,910 | INFO | Starting autotrader at 1661549958.9106765
+2022-08-26 17:39:24,972 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-26 17:39:24,972 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-08-26 17:39:24,973 | INFO | _connect called
+2022-08-26 17:39:24,973 | INFO | _connect called
+2022-08-26 17:39:26,973 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-0930'}
+2022-08-26 17:39:26,973 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-0930'}
+2022-08-26 18:24:25,897 | INFO | Starting autotrader at 1661552665.8977587
+2022-08-26 18:24:25,897 | INFO | Starting autotrader at 1661552665.8977587
+2022-08-26 18:24:35,204 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+2022-08-26 18:24:35,204 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+2022-08-26 18:24:35,205 | INFO | _connect called
+2022-08-26 18:24:35,205 | INFO | _connect called
+2022-08-26 18:24:40,823 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-0930'}
+2022-08-26 18:24:40,823 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-0930'}
+2022-08-26 18:24:42,076 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 18:24:42,076 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 18:32:56,131 | INFO | _connect called
+2022-08-26 18:32:56,131 | INFO | _connect called
+2022-08-26 18:33:01,138 | INFO | _connect called
+2022-08-26 18:33:01,138 | INFO | _connect called
+2022-08-26 18:34:04,960 | INFO | _connect called
+2022-08-26 18:34:04,960 | INFO | _connect called
+2022-08-26 18:34:09,966 | INFO | _connect called
+2022-08-26 18:34:09,966 | INFO | _connect called
+2022-08-26 18:34:14,973 | INFO | _connect called
+2022-08-26 18:34:14,973 | INFO | _connect called
+2022-08-26 18:34:19,980 | INFO | _connect called
+2022-08-26 18:34:19,980 | INFO | _connect called
+2022-08-26 18:34:24,987 | INFO | _connect called
+2022-08-26 18:34:24,987 | INFO | _connect called
+2022-08-26 18:34:29,994 | INFO | _connect called
+2022-08-26 18:34:29,994 | INFO | _connect called
+2022-08-26 18:34:35,001 | INFO | _connect called
+2022-08-26 18:34:35,001 | INFO | _connect called
+2022-08-26 18:34:40,008 | INFO | _connect called
+2022-08-26 18:34:40,008 | INFO | _connect called
+2022-08-26 18:34:45,015 | INFO | _connect called
+2022-08-26 18:34:45,015 | INFO | _connect called
+2022-08-26 18:34:50,022 | INFO | _connect called
+2022-08-26 18:34:50,022 | INFO | _connect called
+2022-08-26 18:34:55,029 | INFO | _connect called
+2022-08-26 18:34:55,029 | INFO | _connect called
+2022-08-26 18:35:00,036 | INFO | _connect called
+2022-08-26 18:35:00,036 | INFO | _connect called
+2022-08-26 18:35:05,043 | INFO | _connect called
+2022-08-26 18:35:05,043 | INFO | _connect called
+2022-08-26 18:35:10,049 | INFO | _connect called
+2022-08-26 18:35:10,049 | INFO | _connect called
+2022-08-26 18:35:15,056 | INFO | _connect called
+2022-08-26 18:35:15,056 | INFO | _connect called
+2022-08-26 18:35:20,063 | INFO | _connect called
+2022-08-26 18:35:20,063 | INFO | _connect called
+2022-08-26 18:35:25,069 | INFO | _connect called
+2022-08-26 18:35:25,069 | INFO | _connect called
+2022-08-26 18:35:30,076 | INFO | _connect called
+2022-08-26 18:35:30,076 | INFO | _connect called
+2022-08-26 18:35:35,082 | INFO | _connect called
+2022-08-26 18:35:35,082 | INFO | _connect called
+2022-08-26 18:35:40,089 | INFO | _connect called
+2022-08-26 18:35:40,089 | INFO | _connect called
+2022-08-26 18:35:45,097 | INFO | _connect called
+2022-08-26 18:35:45,097 | INFO | _connect called
+2022-08-26 18:35:50,103 | INFO | _connect called
+2022-08-26 18:35:50,103 | INFO | _connect called
+2022-08-26 18:35:55,110 | INFO | _connect called
+2022-08-26 18:35:55,110 | INFO | _connect called
+2022-08-26 18:36:00,117 | INFO | _connect called
+2022-08-26 18:36:00,117 | INFO | _connect called
+2022-08-26 18:36:05,124 | INFO | _connect called
+2022-08-26 18:36:05,124 | INFO | _connect called
+2022-08-26 18:36:10,131 | INFO | _connect called
+2022-08-26 18:36:10,131 | INFO | _connect called
+2022-08-26 18:36:15,137 | INFO | _connect called
+2022-08-26 18:36:15,137 | INFO | _connect called
+2022-08-26 18:36:20,145 | INFO | _connect called
+2022-08-26 18:36:20,145 | INFO | _connect called
+2022-08-26 18:36:25,151 | INFO | _connect called
+2022-08-26 18:36:25,151 | INFO | _connect called
+2022-08-26 18:36:30,158 | INFO | _connect called
+2022-08-26 18:36:30,158 | INFO | _connect called
+2022-08-26 18:36:35,165 | INFO | _connect called
+2022-08-26 18:36:35,165 | INFO | _connect called
+2022-08-26 18:36:40,173 | INFO | _connect called
+2022-08-26 18:36:40,173 | INFO | _connect called
+2022-08-26 18:36:45,180 | INFO | _connect called
+2022-08-26 18:36:45,180 | INFO | _connect called
+2022-08-26 18:36:50,188 | INFO | _connect called
+2022-08-26 18:36:50,188 | INFO | _connect called
+2022-08-26 18:36:55,195 | INFO | _connect called
+2022-08-26 18:36:55,195 | INFO | _connect called
+2022-08-26 18:37:00,202 | INFO | _connect called
+2022-08-26 18:37:00,202 | INFO | _connect called
+2022-08-26 18:37:05,208 | INFO | _connect called
+2022-08-26 18:37:05,208 | INFO | _connect called
+2022-08-26 18:37:10,215 | INFO | _connect called
+2022-08-26 18:37:10,215 | INFO | _connect called
+2022-08-26 18:37:15,222 | INFO | _connect called
+2022-08-26 18:37:15,222 | INFO | _connect called
+2022-08-26 18:37:20,229 | INFO | _connect called
+2022-08-26 18:37:20,229 | INFO | _connect called
+2022-08-26 18:37:25,236 | INFO | _connect called
+2022-08-26 18:37:25,236 | INFO | _connect called
+2022-08-26 18:37:30,242 | INFO | _connect called
+2022-08-26 18:37:30,242 | INFO | _connect called
+2022-08-26 18:37:35,249 | INFO | _connect called
+2022-08-26 18:37:35,249 | INFO | _connect called
+2022-08-26 18:38:37,261 | INFO | _connect called
+2022-08-26 18:38:37,261 | INFO | _connect called
+2022-08-26 18:39:39,118 | INFO | _connect called
+2022-08-26 18:39:39,118 | INFO | _connect called
+2022-08-26 18:40:40,565 | INFO | _connect called
+2022-08-26 18:40:40,565 | INFO | _connect called
+2022-08-26 18:41:02,161 | INFO | Starting autotrader at 1661553662.1616795
+2022-08-26 18:41:02,161 | INFO | Starting autotrader at 1661553662.1616795
+2022-08-26 18:41:23,844 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+2022-08-26 18:41:23,844 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+2022-08-26 18:41:23,845 | INFO | _connect called
+2022-08-26 18:41:23,845 | INFO | _connect called
+2022-08-26 18:41:29,629 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-0930'}
+2022-08-26 18:41:29,629 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-0930'}
+2022-08-26 18:47:01,176 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 18:47:01,176 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 18:47:08,051 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 18:47:08,051 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 19:05:04,857 | INFO | Starting autotrader at 1661555104.8574142
+2022-08-26 19:05:04,857 | INFO | Starting autotrader at 1661555104.8574142
+2022-08-26 19:05:10,403 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+2022-08-26 19:05:10,403 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+2022-08-26 19:05:10,404 | INFO | _connect called
+2022-08-26 19:05:10,404 | INFO | _connect called
+2022-08-26 19:05:12,664 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-0930'}
+2022-08-26 19:05:12,664 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-0930'}
+2022-08-26 19:08:42,628 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 19:08:42,628 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 19:08:46,276 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 19:08:46,276 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 19:16:39,400 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 19:16:39,400 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 19:16:43,188 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 19:16:43,188 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 19:29:41,336 | INFO | _connect called
+2022-08-26 19:29:41,336 | INFO | _connect called
+2022-08-26 19:30:42,614 | INFO | _connect called
+2022-08-26 19:30:42,614 | INFO | _connect called
+2022-08-26 19:33:11,524 | INFO | Starting autotrader at 1661556791.5248287
+2022-08-26 19:33:11,524 | INFO | Starting autotrader at 1661556791.5248287
+2022-08-26 19:33:17,760 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+2022-08-26 19:33:17,760 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+2022-08-26 19:33:17,760 | INFO | _connect called
+2022-08-26 19:33:17,760 | INFO | _connect called
+2022-08-26 19:38:29,276 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 19:38:29,276 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 19:38:31,975 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 19:38:31,975 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 19:39:35,327 | INFO | Starting autotrader at 1661557175.3277266
+2022-08-26 19:39:35,327 | INFO | Starting autotrader at 1661557175.3277266
+2022-08-26 19:39:41,976 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+2022-08-26 19:39:41,976 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+2022-08-26 19:39:41,977 | INFO | _connect called
+2022-08-26 19:39:41,977 | INFO | _connect called
+2022-08-26 19:49:31,399 | INFO | _connect called
+2022-08-26 19:49:31,399 | INFO | _connect called
+2022-08-26 19:50:32,749 | INFO | _connect called
+2022-08-26 19:50:32,749 | INFO | _connect called
+2022-08-26 19:51:34,113 | INFO | _connect called
+2022-08-26 19:51:34,113 | INFO | _connect called
+2022-08-26 19:52:35,513 | INFO | _connect called
+2022-08-26 19:52:35,513 | INFO | _connect called
+2022-08-26 19:53:37,071 | INFO | _connect called
+2022-08-26 19:53:37,071 | INFO | _connect called
+2022-08-26 19:54:38,448 | INFO | _connect called
+2022-08-26 19:54:38,448 | INFO | _connect called
+2022-08-26 19:55:39,945 | INFO | _connect called
+2022-08-26 19:55:39,945 | INFO | _connect called
+2022-08-26 19:56:41,207 | INFO | _connect called
+2022-08-26 19:56:41,207 | INFO | _connect called
+2022-08-26 19:57:47,753 | INFO | _connect called
+2022-08-26 19:57:47,753 | INFO | _connect called
+2022-08-26 19:57:52,761 | INFO | _connect called
+2022-08-26 19:57:52,761 | INFO | _connect called
+2022-08-26 19:58:54,245 | INFO | _connect called
+2022-08-26 19:58:54,245 | INFO | _connect called
+2022-08-26 19:59:09,139 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 19:59:09,139 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 19:59:56,261 | INFO | _connect called
+2022-08-26 19:59:56,261 | INFO | _connect called
+2022-08-26 20:00:58,232 | INFO | _connect called
+2022-08-26 20:00:58,232 | INFO | _connect called
+2022-08-26 20:01:59,646 | INFO | _connect called
+2022-08-26 20:01:59,646 | INFO | _connect called
+2022-08-26 20:03:01,366 | INFO | _connect called
+2022-08-26 20:03:01,366 | INFO | _connect called
+2022-08-26 20:03:04,453 | INFO | _connect called
+2022-08-26 20:03:04,453 | INFO | _connect called
+2022-08-26 20:04:07,750 | INFO | _connect called
+2022-08-26 20:04:07,750 | INFO | _connect called
+2022-08-26 20:04:12,758 | INFO | _connect called
+2022-08-26 20:04:12,758 | INFO | _connect called
+2022-08-26 20:05:16,214 | INFO | _connect called
+2022-08-26 20:05:16,214 | INFO | _connect called
+2022-08-26 20:06:17,891 | INFO | _connect called
+2022-08-26 20:06:17,891 | INFO | _connect called
+2022-08-26 20:07:20,507 | INFO | _connect called
+2022-08-26 20:07:20,507 | INFO | _connect called
+2022-08-26 20:08:21,821 | INFO | _connect called
+2022-08-26 20:08:21,821 | INFO | _connect called
+2022-08-26 20:09:23,075 | INFO | _connect called
+2022-08-26 20:09:23,075 | INFO | _connect called
+2022-08-26 20:10:24,441 | INFO | _connect called
+2022-08-26 20:10:24,441 | INFO | _connect called
+2022-08-26 20:11:25,741 | INFO | _connect called
+2022-08-26 20:11:25,741 | INFO | _connect called
+2022-08-26 20:12:27,020 | INFO | _connect called
+2022-08-26 20:12:27,020 | INFO | _connect called
+2022-08-26 20:13:28,287 | INFO | _connect called
+2022-08-26 20:13:28,287 | INFO | _connect called
+2022-08-26 20:14:29,604 | INFO | _connect called
+2022-08-26 20:14:29,604 | INFO | _connect called
+2022-08-26 20:15:31,252 | INFO | _connect called
+2022-08-26 20:15:31,252 | INFO | _connect called
+2022-08-26 20:16:32,538 | INFO | _connect called
+2022-08-26 20:16:32,538 | INFO | _connect called
+2022-08-26 20:17:33,870 | INFO | _connect called
+2022-08-26 20:17:33,870 | INFO | _connect called
+2022-08-26 20:18:35,145 | INFO | _connect called
+2022-08-26 20:18:35,145 | INFO | _connect called
+2022-08-26 20:19:36,438 | INFO | _connect called
+2022-08-26 20:19:36,438 | INFO | _connect called
+2022-08-26 20:20:37,807 | INFO | _connect called
+2022-08-26 20:20:37,807 | INFO | _connect called
+2022-08-26 20:21:39,091 | INFO | _connect called
+2022-08-26 20:21:39,091 | INFO | _connect called
+2022-08-26 20:22:40,527 | INFO | _connect called
+2022-08-26 20:22:40,527 | INFO | _connect called
+2022-08-26 20:23:41,778 | INFO | _connect called
+2022-08-26 20:23:41,778 | INFO | _connect called
+2022-08-26 20:24:43,135 | INFO | _connect called
+2022-08-26 20:24:43,135 | INFO | _connect called
+2022-08-26 20:25:44,500 | INFO | _connect called
+2022-08-26 20:25:44,500 | INFO | _connect called
+2022-08-26 20:26:45,754 | INFO | _connect called
+2022-08-26 20:26:45,754 | INFO | _connect called
+2022-08-26 20:27:47,037 | INFO | _connect called
+2022-08-26 20:27:47,037 | INFO | _connect called
+2022-08-26 20:28:48,305 | INFO | _connect called
+2022-08-26 20:28:48,305 | INFO | _connect called
+2022-08-26 20:29:50,022 | INFO | _connect called
+2022-08-26 20:29:50,022 | INFO | _connect called
+2022-08-26 20:30:51,380 | INFO | _connect called
+2022-08-26 20:30:51,380 | INFO | _connect called
+2022-08-26 20:31:52,682 | INFO | _connect called
+2022-08-26 20:31:52,682 | INFO | _connect called
+2022-08-26 20:32:53,999 | INFO | _connect called
+2022-08-26 20:32:53,999 | INFO | _connect called
+2022-08-26 20:33:55,277 | INFO | _connect called
+2022-08-26 20:33:55,277 | INFO | _connect called
+2022-08-26 20:34:56,554 | INFO | _connect called
+2022-08-26 20:34:56,554 | INFO | _connect called
+2022-08-26 20:35:58,064 | INFO | _connect called
+2022-08-26 20:35:58,064 | INFO | _connect called
+2022-08-26 20:36:59,321 | INFO | _connect called
+2022-08-26 20:36:59,321 | INFO | _connect called
+2022-08-26 20:38:00,688 | INFO | _connect called
+2022-08-26 20:38:00,688 | INFO | _connect called
+2022-08-26 20:39:01,936 | INFO | _connect called
+2022-08-26 20:39:01,936 | INFO | _connect called
+2022-08-26 20:40:03,179 | INFO | _connect called
+2022-08-26 20:40:03,179 | INFO | _connect called
+2022-08-26 20:41:04,602 | INFO | _connect called
+2022-08-26 20:41:04,602 | INFO | _connect called
+2022-08-26 20:42:05,935 | INFO | _connect called
+2022-08-26 20:42:05,935 | INFO | _connect called
+2022-08-26 20:43:07,195 | INFO | _connect called
+2022-08-26 20:43:07,195 | INFO | _connect called
+2022-08-26 20:44:08,436 | INFO | _connect called
+2022-08-26 20:44:08,436 | INFO | _connect called
+2022-08-26 20:45:09,710 | INFO | _connect called
+2022-08-26 20:45:09,710 | INFO | _connect called
+2022-08-26 20:46:11,097 | INFO | _connect called
+2022-08-26 20:46:11,097 | INFO | _connect called
+2022-08-26 20:47:12,414 | INFO | _connect called
+2022-08-26 20:47:12,414 | INFO | _connect called
+2022-08-26 20:48:13,764 | INFO | _connect called
+2022-08-26 20:48:13,764 | INFO | _connect called
+2022-08-26 20:49:15,108 | INFO | _connect called
+2022-08-26 20:49:15,108 | INFO | _connect called
+2022-08-26 20:50:16,331 | INFO | _connect called
+2022-08-26 20:50:16,331 | INFO | _connect called
+2022-08-26 20:51:17,922 | INFO | _connect called
+2022-08-26 20:51:17,922 | INFO | _connect called
+2022-08-26 20:52:19,441 | INFO | _connect called
+2022-08-26 20:52:19,441 | INFO | _connect called
+2022-08-26 20:53:20,774 | INFO | _connect called
+2022-08-26 20:53:20,774 | INFO | _connect called
+2022-08-26 20:54:22,006 | INFO | _connect called
+2022-08-26 20:54:22,006 | INFO | _connect called
+2022-08-26 20:55:23,336 | INFO | _connect called
+2022-08-26 20:55:23,336 | INFO | _connect called
+2022-08-26 20:56:24,678 | INFO | _connect called
+2022-08-26 20:56:24,678 | INFO | _connect called
+2022-08-26 20:57:26,055 | INFO | _connect called
+2022-08-26 20:57:26,055 | INFO | _connect called
+2022-08-26 20:58:27,351 | INFO | _connect called
+2022-08-26 20:58:27,351 | INFO | _connect called
+2022-08-26 20:59:28,600 | INFO | _connect called
+2022-08-26 20:59:28,600 | INFO | _connect called
+2022-08-26 21:00:29,852 | INFO | _connect called
+2022-08-26 21:00:29,852 | INFO | _connect called
+2022-08-26 21:01:31,188 | INFO | _connect called
+2022-08-26 21:01:31,188 | INFO | _connect called
+2022-08-26 21:02:32,430 | INFO | _connect called
+2022-08-26 21:02:32,430 | INFO | _connect called
+2022-08-26 21:03:33,703 | INFO | _connect called
+2022-08-26 21:03:33,703 | INFO | _connect called
+2022-08-26 21:04:35,086 | INFO | _connect called
+2022-08-26 21:04:35,086 | INFO | _connect called
+2022-08-26 21:05:36,323 | INFO | _connect called
+2022-08-26 21:05:36,323 | INFO | _connect called
+2022-08-26 21:06:37,682 | INFO | _connect called
+2022-08-26 21:06:37,682 | INFO | _connect called
+2022-08-26 21:07:38,941 | INFO | _connect called
+2022-08-26 21:07:38,941 | INFO | _connect called
+2022-08-26 21:08:15,363 | INFO | Starting autotrader at 1661562495.3632886
+2022-08-26 21:08:15,363 | INFO | Starting autotrader at 1661562495.3632886
+2022-08-26 21:08:22,537 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+2022-08-26 21:08:22,537 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+2022-08-26 21:08:22,538 | INFO | _connect called
+2022-08-26 21:08:22,538 | INFO | _connect called
+2022-08-26 21:08:25,092 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 21:08:25,092 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 21:13:52,400 | INFO | Starting autotrader at 1661562832.4000082
+2022-08-26 21:13:52,400 | INFO | Starting autotrader at 1661562832.4000082
+2022-08-26 21:13:58,004 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+2022-08-26 21:13:58,004 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+2022-08-26 21:13:58,005 | INFO | _connect called
+2022-08-26 21:13:58,005 | INFO | _connect called
+2022-08-26 21:15:04,569 | INFO | Starting autotrader at 1661562904.5699115
+2022-08-26 21:15:04,569 | INFO | Starting autotrader at 1661562904.5699115
+2022-08-26 21:15:10,006 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+2022-08-26 21:15:10,006 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+2022-08-26 21:15:10,006 | INFO | _connect called
+2022-08-26 21:15:10,006 | INFO | _connect called
+2022-08-26 21:16:58,539 | INFO | Starting autotrader at 1661563018.5399382
+2022-08-26 21:16:58,539 | INFO | Starting autotrader at 1661563018.5399382
+2022-08-26 21:17:06,719 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+2022-08-26 21:17:06,719 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+2022-08-26 21:17:06,720 | INFO | _connect called
+2022-08-26 21:17:06,720 | INFO | _connect called
+2022-08-26 21:24:00,840 | INFO | Subscribing to {'channel': 'ticker', 'market': 'BTC-PERP'}
+2022-08-26 21:24:00,840 | INFO | Subscribing to {'channel': 'ticker', 'market': 'BTC-PERP'}

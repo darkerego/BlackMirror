@@ -85,6 +85,10 @@ class Monitor:
         self.position_step_size = conf.position_step_size
         self.reopen = conf.reopen_method
         self.close_method = conf.close_method
+        self.mm_mode = conf.mm_mode
+        self.mm_long_market = conf.mm_long_market
+        self.mm_short_market = conf.mm_short_market
+        self.mm_spread = conf.mm_spread
         self.no_sl = conf.disable_stop_loss
         self.chase_close = conf.chase_close
         self.chase_reopen = conf.chase_reopen
@@ -188,7 +192,11 @@ class Monitor:
                                          check_before_reopen = self.check_before_reopen,
                                          mitigate_fees = self.mitigate_fees,
                                          confirm = self.confirm,
-                                         sar_sl = self.sar_sl)
+                                         sar_sl = self.sar_sl,
+                                         mm_mode = self.mm_mode,
+                                         mm_long_market = self.mm_long_market,
+                                         mm_short_market = self.mm_short_market,
+                                         mm_spread = self.mm_spread)
 
     def __enter__(self):
         print('Entering monitor')
