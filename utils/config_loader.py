@@ -12,4 +12,4 @@ def load_config(config_path='conf.json'):
         subaccount = f['conf']['subaccount']
         #anti_liq = f['conf']['anti_liq']
         # print(key, secret, subaccount, anti_liq)
-        return key, secret, subaccount, anti_liq
+        return key, secret, subaccount
