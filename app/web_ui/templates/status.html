@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% from 'bootstrap/table.html' import render_table %}
+
+{% block content %}
+<h3>ATAK</h3>
+<div>
+    {{ render_table(demo_msgs) }}
+
+</div>
+<div id="pridemonth" class="container" style="height: 25%; width:100%; padding:3px;;">
+    <div class=card" style="overflow-y: auto;     height:224px;">
+        <div class="container" , style="height: 100px; overflow: auto; display: flex; flex-direction: column-reverse;">
+            <div>
+                <div class="card" id="log">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

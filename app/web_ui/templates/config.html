@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% from 'bootstrap/form.html' import render_form, render_field, render_form_row %}
+{% from 'bootstrap/table.html' import render_table %}
+
+{% block content %}
+
+<h1>ATAK</h1>
+    <h2>FTXTool Options Form</h2>
+
+    {{ render_form(ftxoptions) }}
+
+<h1> rendered options </h1>
+{% if ftxoptions %}{{ ftxoptions.data }}{% else %}none{% endif %}
+
+{% endblock %}

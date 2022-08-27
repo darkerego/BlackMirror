@@ -1124,8 +1124,8 @@ class AutoTrader:
             else:
                 if _iter == 1:
                     restarts += 1
-                    self.cp.purple('[i] Starting AutoTrader, performing sanity check. ...')
-                    self.sanity_check(positions=pos)
+                    self.cp.purple('[i] Starting AutoTrader,  ...')
+                    #self.sanity_check(positions=pos)
                 self.cp.pulse(f'[$] Account Value: {info["totalAccountValue"]} Collateral: {info["collateral"]} '
                               f'Free Collateral: {info["freeCollateral"]}, Contracts Traded: {self.total_contacts_trade}'
                               f' Restarts: {restarts}')

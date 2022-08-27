@@ -152,7 +152,7 @@ async def parse_and_exec(args):
             cp.yellow('[~] Configuring AntiLiq .. ')
             ret = api.info().get('freeCollateral')
             if ret > 0:
-                anti_liq.transfer()
+                #anti_liq.transfer()
 
                 time.sleep(5)
                 try:

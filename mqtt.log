@@ -511,3 +511,40 @@ INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
 INFO:root:_connect called
 INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BTC-PERP'}
 INFO:root:Init ws
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CHZ-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661570769.194553
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CHZ-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661572420.991981
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+INFO:root:_connect called
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661572514.0405052
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ALGO-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AVAX-PERP'}
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661578067.7696974
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AVAX-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661578729.301231
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AVAX-PERP'}
+INFO:root:_connect called
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1661579013.8633926
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AVAX-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FTT-PERP'}

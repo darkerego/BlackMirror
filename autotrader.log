@@ -860,3 +860,65 @@
 2022-08-26 21:17:06,720 | INFO | _connect called
 2022-08-26 21:24:00,840 | INFO | Subscribing to {'channel': 'ticker', 'market': 'BTC-PERP'}
 2022-08-26 21:24:00,840 | INFO | Subscribing to {'channel': 'ticker', 'market': 'BTC-PERP'}
+2022-08-26 23:08:07,855 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CHZ-PERP'}
+2022-08-26 23:08:07,855 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CHZ-PERP'}
+2022-08-26 23:26:09,194 | INFO | Starting autotrader at 1661570769.194553
+2022-08-26 23:26:09,194 | INFO | Starting autotrader at 1661570769.194553
+2022-08-26 23:26:14,137 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CHZ-PERP'}
+2022-08-26 23:26:14,137 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CHZ-PERP'}
+2022-08-26 23:26:14,137 | INFO | _connect called
+2022-08-26 23:26:14,137 | INFO | _connect called
+2022-08-26 23:45:09,057 | INFO | Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+2022-08-26 23:45:09,057 | INFO | Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+2022-08-26 23:45:09,569 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 23:45:09,569 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 23:53:40,992 | INFO | Starting autotrader at 1661572420.991981
+2022-08-26 23:53:40,992 | INFO | Starting autotrader at 1661572420.991981
+2022-08-26 23:53:53,024 | INFO | Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+2022-08-26 23:53:53,024 | INFO | Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+2022-08-26 23:53:53,025 | INFO | _connect called
+2022-08-26 23:53:53,025 | INFO | _connect called
+2022-08-26 23:53:55,780 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 23:53:55,780 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-26 23:55:14,040 | INFO | Starting autotrader at 1661572514.0405052
+2022-08-26 23:55:14,040 | INFO | Starting autotrader at 1661572514.0405052
+2022-08-26 23:55:20,008 | INFO | Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+2022-08-26 23:55:20,008 | INFO | Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+2022-08-26 23:55:20,008 | INFO | _connect called
+2022-08-26 23:55:20,008 | INFO | _connect called
+2022-08-27 00:19:52,784 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ALGO-PERP'}
+2022-08-27 00:19:52,784 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ALGO-PERP'}
+2022-08-27 01:18:24,703 | INFO | Subscribing to {'channel': 'ticker', 'market': 'AVAX-PERP'}
+2022-08-27 01:18:24,703 | INFO | Subscribing to {'channel': 'ticker', 'market': 'AVAX-PERP'}
+2022-08-27 01:18:25,216 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-27 01:18:25,216 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-27 01:18:27,632 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-27 01:18:27,632 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-27 01:27:47,769 | INFO | Starting autotrader at 1661578067.7696974
+2022-08-27 01:27:47,769 | INFO | Starting autotrader at 1661578067.7696974
+2022-08-27 01:29:17,222 | INFO | Subscribing to {'channel': 'ticker', 'market': 'AVAX-PERP'}
+2022-08-27 01:29:17,222 | INFO | Subscribing to {'channel': 'ticker', 'market': 'AVAX-PERP'}
+2022-08-27 01:29:17,223 | INFO | _connect called
+2022-08-27 01:29:17,223 | INFO | _connect called
+2022-08-27 01:38:49,301 | INFO | Starting autotrader at 1661578729.301231
+2022-08-27 01:38:49,301 | INFO | Starting autotrader at 1661578729.301231
+2022-08-27 01:38:55,119 | INFO | Subscribing to {'channel': 'ticker', 'market': 'AVAX-PERP'}
+2022-08-27 01:38:55,119 | INFO | Subscribing to {'channel': 'ticker', 'market': 'AVAX-PERP'}
+2022-08-27 01:38:55,119 | INFO | _connect called
+2022-08-27 01:38:55,119 | INFO | _connect called
+2022-08-27 01:41:44,837 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-27 01:41:44,837 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-27 01:41:46,676 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-27 01:41:46,676 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-27 01:41:55,162 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-27 01:41:55,162 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-27 01:41:57,535 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-27 01:41:57,535 | ERROR | Error with position parser: cannot unpack non-iterable NoneType object
+2022-08-27 01:43:33,863 | INFO | Starting autotrader at 1661579013.8633926
+2022-08-27 01:43:33,863 | INFO | Starting autotrader at 1661579013.8633926
+2022-08-27 01:43:39,340 | INFO | Subscribing to {'channel': 'ticker', 'market': 'AVAX-PERP'}
+2022-08-27 01:43:39,340 | INFO | Subscribing to {'channel': 'ticker', 'market': 'AVAX-PERP'}
+2022-08-27 01:43:39,341 | INFO | _connect called
+2022-08-27 01:43:39,341 | INFO | _connect called
+2022-08-27 01:49:38,937 | INFO | Subscribing to {'channel': 'ticker', 'market': 'FTT-PERP'}
+2022-08-27 01:49:38,937 | INFO | Subscribing to {'channel': 'ticker', 'market': 'FTT-PERP'}
