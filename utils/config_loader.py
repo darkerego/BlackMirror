@@ -1,4 +1,10 @@
 import json
+import os
+
+if not os.path.exists('conf.json'):
+    print('[!] Please copy `conf.json.example` to `conf.json` and add your api keys. Then run again!')
+    exit(1)
+
 
 def load_config(config_path='conf.json'):
     print('Reading %s' % config_path)
