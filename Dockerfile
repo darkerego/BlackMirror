@@ -10,7 +10,7 @@ RUN echo "Installing talib";
 RUN (cd /opt; wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz; tar -xzf ta-lib-0.4.0-src.tar.gz; cd ta-lib; ./configure; make; make install);
 RUN echo 'Installing BlackMirror'
 RUN pip3 install virtualenv websocket-client==0.37.0
-RUN (cd /opt; git clone https://github.com/darkerego/BlackMirror; cd BlackMirror; python3 -m venv env; source env/bin/activate; pip3 install -r requirements.txt; pip install websocket-client==0.37.0; pip install ta-lib );
+RUN (cd /opt; git clone https://github.com/darkerego/BlackMirror; cd BlackMirror; pip3 install -r requirements.txt; pip install websocket-client==0.37.0; pip install ta-lib );
 RUN echo "Installing stubborn pip dependencies";
 RUN pip3 install websocket-client==0.37.0
 RUN echo "Done, lets see if it worked ...";
