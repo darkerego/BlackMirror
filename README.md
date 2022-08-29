@@ -15,10 +15,14 @@
 
 # About Blackmirror
 
+<p>As requested, I have created a Dockerfile to simplify the installation of this program and get you started. By 
+the way I am looking for people to collaberate on this project.
+</p> 
+
 ### Trade Signals via MqTT Now Available For Evaluation
 
 <p>
-I am currently streaming trade signals for use with this bot. They are available over mqtt at:
+I am <no longer, sorry> streaming trade signals for use with this bot. They are available over mqtt at:
     beta.blackmirror.app:1883
 
 Keep in mind that these signals are pretty alpha right now, but I am actually having some success. 
