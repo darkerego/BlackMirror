@@ -764,7 +764,8 @@ class AutoTrader:
         sql = (market, side, price, trigger_price, offset, _type, order_id, status, qty, text, time.time())
         self.sql.append(sql, 'orders')
 
-    def check_new_listings(self, info, side=None):
+    def check_new_listings(self, side=None):
+        info = self.api.info()
         fut = self.api.futures()
         print('Checking for new perpetual future listings ... ')
         current_listings = self.sql.get_list(table='listings')
