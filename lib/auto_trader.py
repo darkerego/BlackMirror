@@ -1197,7 +1197,7 @@ class AutoTrader:
                         new_side = 'sell'
                     if _iter % 10 == 0:
                     #info = self.api.info()
-                        self.check_new_listings(info=info, side=new_side)
+                        self.check_new_listings(side=new_side)
                 self.cp.pulse(f'[$] Account Value: {info["totalAccountValue"]} Collateral: {info["collateral"]} '
                               f'Free Collateral: {info["freeCollateral"]}, Contracts Traded: {self.total_contacts_trade}'
                               f' Restarts: {restarts}')
