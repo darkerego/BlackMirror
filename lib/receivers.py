@@ -132,7 +132,7 @@ class WsReceiver:
 
 
 class MqReceiver:
-    def __init__(self, server_uri, api, collateral_pct, reenter, sar_validation,
+    def __init__(self, server_uri, api, collateral_pct, reenter,
                  data_source, exclude_markets, debug=True, min_score=10, topic='/signals', live_score=False, min_adx=20,
                  confirm=False):
         self.lock = asyncio.Lock()
@@ -157,7 +157,7 @@ class MqReceiver:
         self.sig_ = {}
         self.min_score = min_score
         self.min_adx = min_adx
-        self.sar_validation = sar_validation
+        #self.sar_validation = sar_validation
         self.validator = trade_engine.aligning_sar.TheSARsAreAllAligning()
 
     def sell_market(self, *args, **kwargs):

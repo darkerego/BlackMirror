@@ -1,7 +1,10 @@
-import pandas as pd
-import time
-from utils.colorprint import NewColorPrint as cp
 import logging
+import time
+
+import pandas as pd
+
+from utils.colorprint import NewColorPrint as cp
+
 cp = cp()
 from exchanges.ftx_lib.rest import client
 from exchanges.ftx_lib.websocket_api import client as ws_client
@@ -346,9 +349,7 @@ def debug_api(subacct=None, config_path='conf.json'):
     :return:
     """
     from utils import config_loader
-    from exchanges.ftx_lib.rest import client
-    from exchanges.ftx_lib.websocket_api import client as ws
-    k, s, a, l = config_loader.load_config(config_path)
+    k, s, a, = config_loader.load_config(config_path)
     if subacct:
         a = subacct
     # rest = client.FtxClient(api_key=k, api_secret=s, subaccount_name=a)

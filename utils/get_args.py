@@ -29,6 +29,12 @@ def get_args():
                                                                                                         'situations, '
                                                                                                         'where 0.1 is 10 '
                                                                                                         'percent.')
+    gen_opts.add_argument('-lnl', '--long_new_listings', dest='long_new_listings', action='store_true',
+                          help='When a new future is added, immediately enter long.')
+    gen_opts.add_argument('-snl', '--short_new_listings', dest='short_new_listings', action='store_true',
+                          help='When a new listing is added, immediatly enter short.')
+    gen_opts.add_argument('-nlp', '--new_listing_percentage', dest='new_listing_percent', type=float, default=0.2,
+                          help='Floating point percentage of equity to use on new listing orders. 1 is 100')
 
     gen_opts.add_argument('-rst', '--reset', dest='reset_db', action='store_true', help='Reset PNL and Volume stats')
 

@@ -25,7 +25,6 @@ sniffio==1.2.0
 sortedcontainers==2.4.0
 statsmodels==0.13.2
 TA-Lib==0.4.24
-trio==0.21.0
 urllib3==1.26.12
 websockets==10.3
 zope.event==4.5.0

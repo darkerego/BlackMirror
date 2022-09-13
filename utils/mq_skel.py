@@ -1,4 +1,4 @@
-import paho.mqtt.client as mqtt
+#import paho.mqtt.client as mqtt
 import random
 
 from lib.mq import mqtt_que

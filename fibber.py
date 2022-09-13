@@ -1,8 +1,14 @@
+#!/usr/bin/env python3
+import argparse
 import numpy as np
 import pandas as pd
 import requests
 from statsmodels.stats.weightstats import DescrStatsW
 from utils.colorprint import  NewColorPrint
+import numpy as np
+import pandas as pd
+# import matplotlib.pyplot as plt
+#plt.style.use('fivethirtyeight')
 cp = NewColorPrint()
 
 class FtxAggratavor:
@@ -61,9 +67,27 @@ class FtxAggratavor:
 
     def stdev(self, data):
         import math
+        _max = max(data)
+        _min = min(data)
         var = self.variance(data)
         std_dev = math.sqrt(var)
-        return std_dev
+        return std_dev, _max, _min
+
+    def gen_fib(self, stdev, _mx, _mi, p):
+        levels = [0, 0.236, 0.382, 0.5, 0.618, 0.786, 1]
+        #df = pd.read_csv()
+        print(f'Up: {p}')
+        for _ in levels:
+            #
+            diff_ = _mx - _mi
+            val = _mx - (diff_ * _)
+            print(f'Level: {_} , Value: {val} ')
+        print(f'Down: {p}')
+        for _ in levels:
+            #
+            diff_ = _mx - _mi
+            val = _mi + (diff_ * _)
+            print(f'Level: {_} , Value: {val} ')
 
     def get_stdev(self, symbol, period=None):
         """
@@ -79,7 +103,6 @@ class FtxAggratavor:
         std_dict = []
         std_periods = []
         close_array = []
-        open_array=[]
         if period is not None:
             if period not in [15, 60, 300, 900, 3600, 14400, 86400]:
                 return False
@@ -89,11 +112,9 @@ class FtxAggratavor:
             _candles = requests.get(f'https://ftx.com/api/markets/{symbol}/candles?resolution={period}')
             for c in _candles.json()['result']:
                 close_array.append(c['close'])
-                open_array.append(c['open'])
-            candle_open = open_array[-1:]
-            s = std_dev = pd.Series(close_array).rolling(26).std(ddof=0)[-1:]
-            #print(type(s), float(s))
-            return float(s), candle_open
+            s, _mx, _mi = self.stdev(close_array)
+            self.gen_fib(s, _mx, _mi, period)
+            return s,
         else:
             period_list = [15, 60, 300, 900, 3600, 14400, 86400]
             for p in period_list:
@@ -106,10 +127,10 @@ class FtxAggratavor:
                 candle_dict.append((p, _candles.json()))
                 # close_array = [float(entry[5]) for entry in _candles.json()['result']]
                 close_array = np.asarray(close_array)
-                #print(len(close_array))
-                std_dev = pd.Series(close_array).rolling(26).std(ddof=0)[-1:]
-                return std_dev
-                # std_dev = self.stdev(close_array)
+                std_dev, _mx, _mi = self.stdev(close_array)
+                self.gen_fib(std_dev, _mx, _mi, p)
+
+
                 std_dict.append(std_dev)
                 std_periods.append((std_dev, p))
                 if p == 15:
@@ -149,3 +170,19 @@ class FtxAggratavor:
             cp.red(f'Weighted Statistical Standard Error: {weighted_stats.std_mean}')
             cp.green(f'Weighted Statistical Mean: {weighted_stats.mean}')
             return weighted_stats.mean
+
+
+#levels=[0,0.236, 0.382, 0.5 , 0.618, 0.786,1]
+resolutions = [15, 60, 300, 900, 1800, 3600, 14400, 86400]
+args = argparse.ArgumentParser()
+args.add_argument('-s', '--symbol', type=str, help='symbol')
+args.add_argument('-p', '--period', type=int, help='period', default=None, choices=resolutions)
+args.add_argument('-a', '-all', dest='all', action='store_true', help='Calculate for all periods.')
+
+args=args.parse_args()
+api = FtxAggratavor()
+if args.all:
+    for _ in resolutions:
+        print(api.get_stdev(args.symbol, period=_))
+else:
+    print(api.get_stdev(args.symbol, args.period))

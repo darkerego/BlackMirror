@@ -58,7 +58,30 @@ Breakdown of command:
 - gotta enable -lS to use the live stream
 
 </p>
+## What's new - 09/13/2022
+Hello my dear stargazers! I hope that the bot is making you very wealthy like it has me! (jk I am broke af, consider 
+using my ftx referal code!) Anyway, new features!!!
 
+- New listing exploitation
+<p>
+has finally been added back! Now you have the option to monitor for and then either go 
+ long or short on new perpetual futures the moment that they are added. Which direction you go is up to you, and 
+either is a valid strategy, but I would advise going long. When a new asset is listed, the moment it becomes 
+available on the api, bots start buying it. There is always a big wick. After the wick, they usually crash. So 
+what i recommend is create a separate subaccount for this and fund it. 
+
+These are the approximate settings you should use for this (you may also want to use incremental take profit
+[--cm increment] but with no market history, the results may be unpredictable):
+</p>
+<pre>
+$ ./app.py -m -a --trade -sa NEW_SUBACCOUNT --long_new_listings -nlp .25 -tp 2 -sl 1
+</pre>
+<p>The only other you need to know is that if the bot is offline for a while you ought to manually update the 
+database of listings. The bot cant tell when a new listing was added. If you leave it always online then 
+you do not need to worry about this, just run it once before you start it:</p>
+<pre>
+./app.py --update_db
+</pre>
 
 ## What's new - 07/30/2022
 - Option to use sar as stop loss. Specify period to use: example: use the one minute as a stop: `-ssl 60` WARNING: be 

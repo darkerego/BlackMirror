@@ -1,16 +1,16 @@
 import re
 import time
 
-#import fibber
+# import fibber
 from lib import sql_lib, logmod
 from lib import tally
-from lib.anti_liq import AntiLiq
 from lib.exceptions import *
 from lib.func_timer import exit_after
 from lib.score_keeper import scores
 from trade_engine.aligning_sar import TheSARsAreAllAligning
 from trade_engine.stdev_aggravator import FtxAggratavor
 from utils.colorprint import NewColorPrint
+
 #from lib import fibber
 
 try:
@@ -40,8 +40,13 @@ class AutoTrader:
                  max_collateral=0.5, position_close_pct=1, chase_close=0, chase_reopen=0, update_db=False,
                  anti_liq=False,
                  min_score=0.0, check_before_reopen=False, mitigate_fees=False, confirm=False, tp_fib_enable=False,
-                 tp_fib_res=300, sar_sl=0, auto_stop_only=False, mm_mode=False, mm_long_market=None, mm_short_market=None, mm_spread=0.0):
+                 tp_fib_res=300, sar_sl=0, auto_stop_only=False, mm_mode=False, mm_long_market=None, mm_short_market=None, mm_spread=0.0,
+                 long_new_listings=False, short_new_listings=False, new_listing_percent=0):
         # self.trade_logger = TradeLog()
+        self.listings_checked = []
+        self.long_new_listings = long_new_listings
+        self.short_new_listings = short_new_listings
+        self.new_listing_percent = new_listing_percent
         self.position_fib_levels = None
         self.cp = NewColorPrint()
         self.up_markets = {}
@@ -57,7 +62,7 @@ class AutoTrader:
         self.trailing_stop_pct = ts_pct
         self.api = api
         self.confirm = confirm
-        self.sql = sql_lib.SQLLiteConnection()
+        self.sql = sql_lib.SQLLiteConnection('blackmirror.sqlite')
         self.logger = logmod.CustomLogger(log_file='autotrader.log')
         self.logger.setup_file_handler()
         self.logger = self.logger.get_logger()
@@ -496,7 +501,7 @@ class AutoTrader:
         buy_orders = []
         sell_orders = []
         max_orders = self.max_open_orders
-        stdev = self.agg.get_stdev(symbol=market, period=period)
+        stdev, candle_open = self.agg.get_stdev(symbol=market, period=period)
         self.cp.yellow(f'Standard deviation: {stdev}')
         increment_ = stdev / max_orders
 
@@ -538,7 +543,7 @@ class AutoTrader:
                 #    next_order_price = bid
                 #    buy_order_que.append(['buy', i, next_order_price, market, 'limit'])
                 #else:
-                next_order_price = bid - (increment_ * x)
+                next_order_price = ((bid+ask)/2) - (increment_ * x)
                     # next_order_price = bid - (stdev * self.position_step_size) * c
                 buy_order_que.append(['buy', i, next_order_price, market, 'limit'])
                 c += 1
@@ -594,7 +599,7 @@ class AutoTrader:
                 #    sell_order_que.append(['sell', i, next_order_price, market, 'limit'])
                 #else:
                 #next_order_price = ask + (stdev * self.position_step_size) * c
-                next_order_price = ask + (increment_ * x)
+                next_order_price = ((bid+ask)/2) + (increment_ * x)
                 sell_order_que.append(['sell', i, next_order_price, market, 'limit'])
                 c += 1
                 self.cp.yellow(
@@ -759,6 +764,34 @@ class AutoTrader:
         sql = (market, side, price, trigger_price, offset, _type, order_id, status, qty, text, time.time())
         self.sql.append(sql, 'orders')
 
+    def check_new_listings(self, info, side=None):
+        fut = self.api.futures()
+        print('Checking for new perpetual future listings ... ')
+        current_listings = self.sql.get_list(table='listings')
+        for _ in fut:
+            _ = _.get('name')
+            #self.cp.random_color(f'Checking listing...{listing}')
+            if current_listings.__contains__(_):
+                pass
+            else:
+                if self.listings_checked.__contains__(_):
+                    pass
+                else:
+                    _type = _.split('-')[1]
+                    if _type == 'PERP':
+                        self.cp.alert(f'[🎲🎲🎲] NEW LISTING DETECTED: {_}, lets roll those fuckin\' dice! WOOT!')
+
+                    self.sql.append(value=_,
+                                    table='listings')  # TODO: Keep track of index price data so that we can automatically
+                    # trade trending assets!
+                    if side is not None and not self.update_db:
+                        l_size = info['freeCollateral'] * self.new_listing_percent
+                        self.api.new_order(market=_, side=side, price=None, _type='market', size=l_size)
+
+
+
+
+
     def parse(self, pos, info):
         self.iter += 1
 
@@ -789,7 +822,10 @@ class AutoTrader:
         size = 0
         if debug:
             self.cp.white_black(f'[d]: Processing {future_instrument}')
+        #fut =
+        #print(fut)
         for f in self.api.futures():
+           # print(f'Iterating {f}')
 
             """{'name': 'BTT-PERP', 'underlying': 'BTT', 'description': 'BitTorrent Perpetual Futures', 
             'type': 'perpetual', 'expiry': None, 'perpetual': True, 'expired': False, 'enabled': True, 'postOnly': 
@@ -819,16 +855,8 @@ class AutoTrader:
             #    #self.position_fib_levels[future_instrument]
 
             err = None
-            if self.update_db:
-                print('[~] Updating ..')
-                current = self.sql.get_list(table='futures')
-                entry = {'instrument': {'name': self.future_stats['name'],
-                                        'min_order_size': self.future_stats['min_order_size']}}
-                if current.__contains__(entry):
-                    pass
-                else:
-                    self.sql.append(entry, table='futures')
-                exit()
+
+                # exit()
             # if not self.ticker_stats.__contains__(name):
             #    name = FutureStat(name=name, price=mark_price, volume=volumeUsd24h)
             #    self.ticker_stats.append(name)
@@ -1058,10 +1086,28 @@ class AutoTrader:
                 except:
                     pass
 
+    def update_database(self):
+        added = 0
+        futures = self.api.futures()
+        current_listings = self.sql.get_list(table='listings')
+        for x in futures:
+            name = x.get('name')
+            if current_listings.__contains__(name):
+                pass
+            else:
+                self.sql.append(table='listings', value=name)
+                added += 1
+        print(f'Updated db. Added {added} entries to db.')
+
     def start_process_(self):
+        nl_iter = 0
         self.logger.info(f"Starting autotrader at {time.time()}")
         restarts = 0
         _iter = 0
+        if self.update_db:
+            self.cp.yellow('[~] Updating futures database ... ')
+            self.update_database()
+            exit()
         while True:
             for f in self.api.futures():
 
@@ -1081,6 +1127,7 @@ class AutoTrader:
                 change24h = f['change24h']
                 min_order_size = f['sizeIncrement']
                 self.future_stats[name] = {}
+                self.future_stats[name]['name'] = name
                 self.future_stats[name]['mark'] = mark_price
                 self.future_stats[name]['index'] = index
                 self.future_stats[name]['volumeUsd24h'] = volumeUsd24h
@@ -1088,17 +1135,29 @@ class AutoTrader:
                 self.future_stats[name]['change24h'] = change24h
                 self.future_stats[name]['min_order_size'] = min_order_size
                 err = None
-                if self.update_db:
+
+                """current = self.sql.get_list(table='futures')
+                entry = {'instrument': {'name': self.future_stats['name'],
+                                        'min_order_size': self.future_stats['min_order_size']}}
+                if current.__contains__(entry):
+                    pass
+                else:
+                    print(f'Appending {entry}')
+                    self.sql.append(entry, table='futures')"""
+
+                """if self.update_db:
                     print('[~] Updating ..')
                     current = self.sql.get_list(table='futures')
                     entry = {'instrument': {'name': self.future_stats['name'],
                                             'min_order_size': self.future_stats['min_order_size']}}
+                    print(entry)
                     if current.__contains__(entry):
                         pass
                     else:
+                        print(f'Adding {entry}')
 
-                        self.sql.append(entry, table='futures')
-                    exit()
+                        self.sql.append(entry, table='futures')"""
+                    #exit()
             _iter += 1
             """{'username': 'xxxxxxxx@gmail.com', 'collateral': 4541.2686261529458, 'freeCollateral': 
                         13.534738011297414, 'totalAccountValue': 4545.7817261529458, 'totalPositionSize': 9535.4797, 
@@ -1126,6 +1185,19 @@ class AutoTrader:
                     restarts += 1
                     self.cp.purple('[i] Starting AutoTrader,  ...')
                     #self.sanity_check(positions=pos)
+                if self.long_new_listings or self.short_new_listings:
+                    if nl_iter == 0:
+                        self.cp.alert('[!] Make sure you periodically update the listing database manually when using this '
+                                      'feature unless the bot is always online. I can only guarantee good results if the new '
+                                      'listing is detected the moment that it is listed.')
+                    nl_iter += 1
+                    if self.long_new_listings:
+                        new_side = 'buy'
+                    else:
+                        new_side = 'sell'
+                    if _iter % 10 == 0:
+                    #info = self.api.info()
+                        self.check_new_listings(info=info, side=new_side)
                 self.cp.pulse(f'[$] Account Value: {info["totalAccountValue"]} Collateral: {info["collateral"]} '
                               f'Free Collateral: {info["freeCollateral"]}, Contracts Traded: {self.total_contacts_trade}'
                               f' Restarts: {restarts}')
@@ -1147,6 +1219,7 @@ class AutoTrader:
                 _iter = 0
                 # break
             except Exception as fuck:
+                print(fuck)
                 self.logger.error(f'Error with position parser: {fuck}')
                 _iter = 0
                 # break

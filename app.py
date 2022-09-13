@@ -100,6 +100,7 @@ async def parse_and_exec(args):
 
     if args.monitor or args.auto_trader or args.update_db or args.dumpdb:
         if args.dumpdb:
+            print('Dump db .. ')
             sql = SQLLiteConnection()
             futs  =sql.get_list('futures')
             for _ in futs:

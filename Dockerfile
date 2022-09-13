@@ -5,7 +5,7 @@ COPY . .
 RUN echo "Installing depends from apt";
 RUN apt  update;
 RUN apt -y upgrade;
-RUN apt -y install wget build-essential python3-virtualenv;
+RUN apt -y install wget build-essential python3 python3-virtualenv;
 RUN echo "Installing talib";
 RUN (cd /opt; wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz; tar -xzf ta-lib-0.4.0-src.tar.gz; cd ta-lib; ./configure; make; make install);
 RUN echo 'Installing BlackMirror'

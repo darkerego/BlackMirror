@@ -11,7 +11,7 @@ from utils import colorprint
 cp = colorprint.NewColorPrint()
 
 import ssl
-import trio
+
 from python_socks.async_.trio import Proxy
 #from conf import proxyrack
 proxy = Proxy.from_url('socks5://user:password@127.0.0.1:1080')

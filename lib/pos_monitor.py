@@ -43,6 +43,9 @@ class Monitor:
         self.a_restarts = 0
         self.lagging = False
         self.files = []
+        self.new_listing_percent =  conf.new_listing_percent,
+        self.long_new_listings = conf.long_new_listings,
+        self.short_new_listings = conf.short_new_listings,
         self.executor = ThreadPoolExecutor(max_workers=25)
         self.lock = threading.Lock()
         self.lock2 = threading.Lock()
@@ -196,14 +199,17 @@ class Monitor:
                                          mm_mode = self.mm_mode,
                                          mm_long_market = self.mm_long_market,
                                          mm_short_market = self.mm_short_market,
-                                         mm_spread = self.mm_spread)
+                                         mm_spread = self.mm_spread,
+                                         long_new_listings = self.long_new_listings,
+                                        short_new_listings= self.short_new_listings,
+                                        new_listing_percent=self.new_listing_percent)
 
     def __enter__(self):
         print('Entering monitor')
         return self
 
     def __exit__(self, *a):
-        print("Exiting montitor")
+        print("Exiting monitor")
         self.running = False
         MqReceiver.running = False
         for file in self.files:
