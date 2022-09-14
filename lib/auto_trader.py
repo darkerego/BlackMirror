@@ -761,8 +761,8 @@ class AutoTrader:
 
     def log_order(self, market, price, trigger_price=0.0, offset=0.0, _type='limit', qty=0.0, order_id=None,
                   status='open', text=None, side=None):
-        sql = (market, side, price, trigger_price, offset, _type, order_id, status, qty, text, time.time())
-        self.sql.append(sql, 'orders')
+        _sql = (market, side, price, trigger_price, offset, _type, order_id, status, qty, text, time.time())
+        self.sql.append(_sql, 'orders')
 
     def check_new_listings(self, info, side=None):
         print('Enumerating new listings .. ')
@@ -1082,7 +1082,8 @@ class AutoTrader:
                     for _ in self.open_positions:
                         if pos['future'] == _:
                             self.open_positions.pop(_)
-                except:
+                except Exception as err:
+                    print(err)
                     pass
 
     def update_database(self):
@@ -1096,7 +1097,7 @@ class AutoTrader:
             else:
                 self.sql.append(table='listings', value=name)
                 added += 1
-        print('Updated db. Added {added} entries to db.')
+        print(f'Updated db. Added {added} entries to db.')
 
     def start_process_(self):
         self.logger.info(f"Starting autotrader at {time.time()}")
@@ -1105,9 +1106,18 @@ class AutoTrader:
         if self.update_db:
             self.cp.yellow('[~] Updating futures database ... ')
             self.update_database()
+            exit()
         while True:
             for f in self.api.futures():
-                _iter += 1
+
+                """{'username': 'xxxxxxxx@gmail.com', 'collateral': 4541.2686261529458, 'freeCollateral': 
+                                                13.534738011297414, 'totalAccountValue': 4545.7817261529458, 'totalPositionSize': 9535.4797, 
+                                                'initialMarginRequirement': 0.05, 'maintenanceMarginRequirement': 0.03, 'marginFraction': 
+                                                0.07802672286726425, 'openMarginFraction': 0.07527591244130713, 'liquidating': False, 'backstopProvider': 
+                                                False, 'positions': [{'future': 'BAT-PERP', 'size': 0.0, 'side': 'buy', 'netSize': 0.0, 'longOrderSize': 
+                                                0.0, 'shortOrderSize': 0.0, 'cost': 0.0, 'entryPrice': None, 'unrealizedPnl': 0.0, 'realizedPnl': 
+                                                5.59641262, 'initialMarginRequirement': 0.05, 'maintenanceMarginRequirement': 0.03, 'openSize': 0.0, 
+                                                'collateralUsed': 0.0, 'estimatedLiquidationPrice': None}, """
 
                 """{'name': 'BTT-PERP', 'underlying': 'BTT', 'description': 'BitTorrent Perpetual Futures', 
                 'type': 'perpetual', 'expiry': None, 'perpetual': True, 'expired': False, 'enabled': True, 'postOnly': 
@@ -1134,86 +1144,80 @@ class AutoTrader:
                 self.future_stats[name]['min_order_size'] = min_order_size
                 err = None
                 if self.long_new_listings or self.short_new_listings:
-                    if self.long_new_listings:
-                        new_side = 'buy'
-                    else:
-                        new_side = 'sell'
-                    info = self.api.info()
-                    self.check_new_listings(info=info, side=new_side)
-                    """current = self.sql.get_list(table='futures')
-                    entry = {'instrument': {'name': self.future_stats['name'],
-                                            'min_order_size': self.future_stats['min_order_size']}}
-                    if current.__contains__(entry):
-                        pass
-                    else:
-                        print(f'Appending {entry}')
-                        self.sql.append(entry, table='futures')"""
-
-                    """if self.update_db:
-                        print('[~] Updating ..')
-                        current = self.sql.get_list(table='futures')
+                    #print(_iter)
+                    if _iter %100 == 0:
+                        if self.long_new_listings:
+                            new_side = 'buy'
+                        else:
+                            new_side = 'sell'
+                        info = self.api.info()
+                        self.check_new_listings(info=info, side=new_side)
+                        """current = self.sql.get_list(table='futures')
                         entry = {'instrument': {'name': self.future_stats['name'],
                                                 'min_order_size': self.future_stats['min_order_size']}}
-                        print(entry)
                         if current.__contains__(entry):
                             pass
                         else:
-                            print(f'Adding {entry}')
-    
+                            print(f'Appending {entry}')
                             self.sql.append(entry, table='futures')"""
-                        #exit()
-            # _
-            """{'username': 'xxxxxxxx@gmail.com', 'collateral': 4541.2686261529458, 'freeCollateral': 
-                        13.534738011297414, 'totalAccountValue': 4545.7817261529458, 'totalPositionSize': 9535.4797, 
-                        'initialMarginRequirement': 0.05, 'maintenanceMarginRequirement': 0.03, 'marginFraction': 
-                        0.07802672286726425, 'openMarginFraction': 0.07527591244130713, 'liquidating': False, 'backstopProvider': 
-                        False, 'positions': [{'future': 'BAT-PERP', 'size': 0.0, 'side': 'buy', 'netSize': 0.0, 'longOrderSize': 
-                        0.0, 'shortOrderSize': 0.0, 'cost': 0.0, 'entryPrice': None, 'unrealizedPnl': 0.0, 'realizedPnl': 
-                        5.59641262, 'initialMarginRequirement': 0.05, 'maintenanceMarginRequirement': 0.03, 'openSize': 0.0, 
-                        'collateralUsed': 0.0, 'estimatedLiquidationPrice': None}, """
-            try:
-                info = self.api.info()
-                pos = self.api.positions()
+
+                        """if self.update_db:
+                            print('[~] Updating ..')
+                            current = self.sql.get_list(table='futures')
+                            entry = {'instrument': {'name': self.future_stats['name'],
+                                                    'min_order_size': self.future_stats['min_order_size']}}
+                            print(entry)
+                            if current.__contains__(entry):
+                                pass
+                            else:
+                                print(f'Adding {entry}')
+        
+                                self.sql.append(entry, table='futures')"""
+
+                try:
+                    info = self.api.info()
+                    pos = self.api.positions()
 
 
-            except KeyboardInterrupt:
-                print('[~] Caught Sigal...')
-                exit(0)
+                except KeyboardInterrupt:
+                    print('[~] Caught Sigal...')
+                    exit(0)
 
-            except Exception as err:
-                _iter = 0
-                self.logger.error(f'Error with parse: {err}')
+                except Exception as err:
+                    _iter = 0
+                    self.logger.error(f'Error with parse: {err}')
 
-            else:
-                if _iter == 1:
-                    restarts += 1
-                    self.cp.purple('[i] Starting AutoTrader,  ...')
-                    #self.sanity_check(positions=pos)
-                self.cp.pulse(f'[$] Account Value: {info["totalAccountValue"]} Collateral: {info["collateral"]} '
-                              f'Free Collateral: {info["freeCollateral"]}, Contracts Traded: {self.total_contacts_trade}'
-                              f' Restarts: {restarts}')
-                _tally = self.tally.get()
-                wins = _tally.get('wins')
-                losses = _tally.get('losses')
-                volume = _tally.get('contracts_traded')
-                if wins != 0 or losses != 0:
-                    self.cp.white_black(f'[🃑] Wins: {wins} [🃏] Losses: {losses}, Volume: {volume}')
                 else:
-                    self.cp.white_black(f'[🃑] Wins: - [🃏] Losses: -, Volume: {volume}')
-            try:
+                    _iter += 1
+                    if _iter == 1:
+                        restarts += 1
+                        self.cp.purple('[i] Starting AutoTrader,  ...')
+                        #self.sanity_check(positions=pos)
+                    self.cp.pulse(f'[$] Account Value: {info["totalAccountValue"]} Collateral: {info["collateral"]} '
+                                  f'Free Collateral: {info["freeCollateral"]}, Contracts Traded: {self.total_contacts_trade}'
+                                  f' Restarts: {restarts}')
+                    _tally = self.tally.get()
+                    wins = _tally.get('wins')
+                    losses = _tally.get('losses')
+                    volume = _tally.get('contracts_traded')
+                    if wins != 0 or losses != 0:
+                        self.cp.white_black(f'[🃑] Wins: {wins} [🃏] Losses: {losses}, Volume: {volume}')
+                    else:
+                        self.cp.white_black(f'[🃑] Wins: - [🃏] Losses: -, Volume: {volume}')
+                    try:
 
-                self.position_parser(positions=pos, account_info=info)
+                        self.position_parser(positions=pos, account_info=info)
 
-            except RestartError as fuck:
-                self.logger.error(fuck)
-                print(repr(f'Restart: {fuck} {_iter}'))
-                _iter = 0
-                # break
-            except Exception as fuck:
-                print(fuck)
-                self.logger.error(f'Error with position parser: {fuck}')
-                _iter = 0
-                # break
+                    except RestartError as fuck:
+                        self.logger.error(fuck)
+                        print(repr(f'Restart: {fuck} {_iter}'))
+                        _iter = 0
+                        # break
+                    except Exception as fuck:
+                        print(fuck)
+                        self.logger.error(f'Error with position parser: {fuck}')
+                        _iter = 0
+                        # break
 
     def start_process(self):
         if not self.lock.locked():

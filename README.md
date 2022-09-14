@@ -12,6 +12,8 @@
 
 </pre>
 
+# Sorry, I broke something please use for now till i can fix: 
+https://github.com/darkerego/BlackMirror/tree/0ab7b02cd4180a700dbbd6e77e0861b1e8408614
 
 # About Blackmirror
 
