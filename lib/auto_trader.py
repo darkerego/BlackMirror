@@ -764,34 +764,32 @@ class AutoTrader:
         sql = (market, side, price, trigger_price, offset, _type, order_id, status, qty, text, time.time())
         self.sql.append(sql, 'orders')
 
-    def check_new_listings(self, side=None):
-        info = self.api.info()
+    def check_new_listings(self, info, side=None):
+        print('Enumerating new listings .. ')
         fut = self.api.futures()
-        print('Checking for new perpetual future listings ... ')
         current_listings = self.sql.get_list(table='listings')
+        # print(current_listings)
         for _ in fut:
-            _ = _.get('name')
+            listing = _.get('name')
             #self.cp.random_color(f'Checking listing...{listing}')
-            if current_listings.__contains__(_):
+            if current_listings.__contains__(listing):
                 pass
             else:
-                if self.listings_checked.__contains__(_):
+                if self.listings_checked.__contains__(listing):
                     pass
                 else:
-                    _type = _.split('-')[1]
-                    if _type == 'PERP':
-                        self.cp.alert(f'[🎲🎲🎲] NEW LISTING DETECTED: {_}, lets roll those fuckin\' dice! WOOT!')
-
-                    self.sql.append(value=_,
+                    self.sql.append(value=listing,
                                     table='listings')  # TODO: Keep track of index price data so that we can automatically
                     # trade trending assets!
+                    self.cp.alert(f'[🎲🎲🎲] NEW LISTING DETECTED: {listing}, lets roll those fuckin\' dice! WOOT!')
+
                     if side is not None and not self.update_db:
                         l_size = info['freeCollateral'] * self.new_listing_percent
-                        self.api.new_order(market=_, side=side, price=None, _type='market', size=l_size)
+                        self.api.new_order(market=listing, side=side, price=None, _type='market', size=l_size)
 
 
 
-
+       
 
     def parse(self, pos, info):
         self.iter += 1
@@ -984,7 +982,7 @@ class AutoTrader:
                 # self.tally.increment_contracts(notational_qty)
                 new_qty = size * self.position_close_pct
                 # print('ok')
-                if float(new_qty) < float(self.future_stats[name]['min_order_size']):
+                if float(new_qty) < float(self.future_stats[future_instrument]['min_order_size']):
                     new_qty = size
                 self.cp.purple(f'Sending {pos_side} order of size {new_qty} , price {last}')
                 if not self.confirm:
@@ -1098,19 +1096,18 @@ class AutoTrader:
             else:
                 self.sql.append(table='listings', value=name)
                 added += 1
-        print(f'Updated db. Added {added} entries to db.')
+        print('Updated db. Added {added} entries to db.')
 
     def start_process_(self):
-        nl_iter = 0
         self.logger.info(f"Starting autotrader at {time.time()}")
         restarts = 0
         _iter = 0
         if self.update_db:
             self.cp.yellow('[~] Updating futures database ... ')
             self.update_database()
-            exit()
         while True:
             for f in self.api.futures():
+                _iter += 1
 
                 """{'name': 'BTT-PERP', 'underlying': 'BTT', 'description': 'BitTorrent Perpetual Futures', 
                 'type': 'perpetual', 'expiry': None, 'perpetual': True, 'expired': False, 'enabled': True, 'postOnly': 
@@ -1136,30 +1133,36 @@ class AutoTrader:
                 self.future_stats[name]['change24h'] = change24h
                 self.future_stats[name]['min_order_size'] = min_order_size
                 err = None
-
-                """current = self.sql.get_list(table='futures')
-                entry = {'instrument': {'name': self.future_stats['name'],
-                                        'min_order_size': self.future_stats['min_order_size']}}
-                if current.__contains__(entry):
-                    pass
-                else:
-                    print(f'Appending {entry}')
-                    self.sql.append(entry, table='futures')"""
-
-                """if self.update_db:
-                    print('[~] Updating ..')
-                    current = self.sql.get_list(table='futures')
+                if self.long_new_listings or self.short_new_listings:
+                    if self.long_new_listings:
+                        new_side = 'buy'
+                    else:
+                        new_side = 'sell'
+                    info = self.api.info()
+                    self.check_new_listings(info=info, side=new_side)
+                    """current = self.sql.get_list(table='futures')
                     entry = {'instrument': {'name': self.future_stats['name'],
                                             'min_order_size': self.future_stats['min_order_size']}}
-                    print(entry)
                     if current.__contains__(entry):
                         pass
                     else:
-                        print(f'Adding {entry}')
-
+                        print(f'Appending {entry}')
                         self.sql.append(entry, table='futures')"""
-                    #exit()
-            _iter += 1
+
+                    """if self.update_db:
+                        print('[~] Updating ..')
+                        current = self.sql.get_list(table='futures')
+                        entry = {'instrument': {'name': self.future_stats['name'],
+                                                'min_order_size': self.future_stats['min_order_size']}}
+                        print(entry)
+                        if current.__contains__(entry):
+                            pass
+                        else:
+                            print(f'Adding {entry}')
+    
+                            self.sql.append(entry, table='futures')"""
+                        #exit()
+            # _
             """{'username': 'xxxxxxxx@gmail.com', 'collateral': 4541.2686261529458, 'freeCollateral': 
                         13.534738011297414, 'totalAccountValue': 4545.7817261529458, 'totalPositionSize': 9535.4797, 
                         'initialMarginRequirement': 0.05, 'maintenanceMarginRequirement': 0.03, 'marginFraction': 
@@ -1186,19 +1189,6 @@ class AutoTrader:
                     restarts += 1
                     self.cp.purple('[i] Starting AutoTrader,  ...')
                     #self.sanity_check(positions=pos)
-                if self.long_new_listings or self.short_new_listings:
-                    if nl_iter == 0:
-                        self.cp.alert('[!] Make sure you periodically update the listing database manually when using this '
-                                      'feature unless the bot is always online. I can only guarantee good results if the new '
-                                      'listing is detected the moment that it is listed.')
-                    nl_iter += 1
-                    if self.long_new_listings:
-                        new_side = 'buy'
-                    else:
-                        new_side = 'sell'
-                    if _iter % 10 == 0:
-                    #info = self.api.info()
-                        self.check_new_listings(side=new_side)
                 self.cp.pulse(f'[$] Account Value: {info["totalAccountValue"]} Collateral: {info["collateral"]} '
                               f'Free Collateral: {info["freeCollateral"]}, Contracts Traded: {self.total_contacts_trade}'
                               f' Restarts: {restarts}')

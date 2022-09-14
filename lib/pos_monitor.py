@@ -201,8 +201,8 @@ class Monitor:
                                          mm_short_market = self.mm_short_market,
                                          mm_spread = self.mm_spread,
                                          long_new_listings = self.long_new_listings,
-                                        short_new_listings= self.short_new_listings,
-                                        new_listing_percent=self.new_listing_percent)
+                                         short_new_listings= self.short_new_listings,
+                                         new_listing_percent=self.new_listing_percent)
 
     def __enter__(self):
         print('Entering monitor')
