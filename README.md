@@ -12,8 +12,15 @@
 
 </pre>
 
-# Sorry, I broke something please use for now till i can fix: 
-https://github.com/darkerego/BlackMirror/tree/0ab7b02cd4180a700dbbd6e77e0861b1e8408614
+# Fixed it! 
+<p>Note: If autotrader doesn't start, its because the db is corrupt. In that case run:
+</p>
+<pre>
+$ ./app.py --reset
+</pre>
+<p>
+That will reset the pnl and win/loss settings, and you should be good.
+</p>
 
 # About Blackmirror
 

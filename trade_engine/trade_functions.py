@@ -1,120 +1,93 @@
-import re
+import threading
 import time
 
-# import fibber
-from lib import sql_lib, logmod
-from lib import tally
-from lib.exceptions import *
-from lib.func_timer import exit_after
-from lib.score_keeper import scores
+from fibber import FtxAggratavor
+from lib import logmod
 from trade_engine.aligning_sar import TheSARsAreAllAligning
-from trade_engine.stdev_aggravator import FtxAggratavor
 from utils.colorprint import NewColorPrint
 
-# from lib import fibber
 
-try:
-    import thread
-except ImportError:
-    import _thread as thread
-
-debug = True
-
-import threading
-
-sql = sql_lib.SQLLiteConnection()
-tally = tally.Tally(sql)
-
-
-class AutoTrader:
+class TradeFunctions:
     """
     Automatic Trade Engine. Automatically sets stop losses and take profit orders. Trailing stops are used
     unless otherwise specified.
     """
 
-    def __init__(self, api, stop_loss, _take_profit, use_ts=True, ts_pct=0.05, reopen=False, period=300, ot='limit',
-                 max_open_orders=None, position_step_size=0.02, disable_stop_loss=False, show_tickers=True,
-                 close_method='market', relist_iterations=100, hedge_mode=False, hedge_ratio=0.5,
-                 max_collateral=0.5, position_close_pct=1, chase_close=0, chase_reopen=0, update_db=False,
-                 anti_liq=False,
-                 min_score=0.0, check_before_reopen=False, mitigate_fees=False, confirm=False, tp_fib_enable=False,
-                 tp_fib_res=300, sar_sl=0, auto_stop_only=False, mm_mode=False, mm_long_market=None,
-                 mm_short_market=None, mm_spread=0.0,
-                 long_new_listings=False, short_new_listings=False, new_listing_percent=0):
+    def __init__(self, api, args):
         # self.trade_logger = TradeLog()
         self.listings_checked = []
-        self.long_new_listings = long_new_listings
-        self.short_new_listings = short_new_listings
-        self.new_listing_percent = new_listing_percent
+        self.long_new_listings = args.long_new_listings
+        self.short_new_listings = args.short_new_listings
+        self.new_listing_percent = args.new_listing_percent
         self.position_fib_levels = None
         self.cp = NewColorPrint()
         self.up_markets = {}
         self.down_markets = {}
         self.trend = 'N/A'
-        self.auto_stop_only = auto_stop_only
-        self.show_tickers = show_tickers
-        self.stop_loss = stop_loss
-        self._take_profit = _take_profit
-        self.tp_fib_enable = tp_fib_enable
-        self.tp_fib_res = tp_fib_res
-        self.use_ts = use_ts
-        self.trailing_stop_pct = ts_pct
+        self.auto_stop_only = args.auto_stop_only
+        self.show_tickers = args.show_tickers
+        self.stop_loss = args.stop_loss
+        self._take_profit = args._take_profit
+        self.tp_fib_enable = args.tp_fib_enable
+        self.tp_fib_res = args.tp_fib_res
+        self.use_ts = args.use_ts
+        self.trailing_stop_pct = args.ts_pct
         self.api = api
-        self.confirm = confirm
+        self.confirm = args.confirm
         self.sql = sql_lib.SQLLiteConnection('blackmirror.sqlite')
         self.logger = logmod.CustomLogger(log_file='autotrader.log')
         self.logger.setup_file_handler()
         self.logger = self.logger.get_logger()
-        # self.anti_liq_api = AntiLiq(self.api, self.api.getsubaccount())
+        #self.anti_liq_api = AntiLiq(self.api, self.api.getsubaccount())
 
         self.anti_liq_api = None
         self.fib_api = None
-        self.tally = tally
-        self.sar_sl = sar_sl
+        self.tally = args.tally
+        self.sar_sl = args.sar_sl
         self.ta_engine = TheSARsAreAllAligning(debug=True)
         self.accumulated_pnl = 0
         self.position_sars = []
         self.pnl_trackers = []
         self.sar_dict = {}
         self.lock = threading.Lock()
-        self.position_close_pct = position_close_pct
-        self.chase_close = chase_close
-        self.chase_reopen = chase_reopen
-        self.min_score = min_score
-        self.check_before_reopen = check_before_reopen
-        self.mitigate_fees = mitigate_fees
+        self.position_close_pct = args.position_close_pct
+        self.chase_close = args.chase_close
+        self.chase_reopen = args.chase_reopen
+        self.min_score = args.min_score
+        self.check_before_reopen = args.check_before_reopen
+        self.mitigate_fees = args.mitigate_fees
         self.total_contacts_trade = 0.0
-        self.reopen = reopen
-        self.close_method = close_method
-        self.period = period
-        self.order_type = ot
+        self.reopen = args.reopen
+        self.close_method = args.close_method
+        self.period = args.period
+        self.order_type = args.ot
         self.agg = FtxAggratavor()
         self.future_stats = {}
         self.alert_map = []
         self.alert_up_levels = [0.25, 2.5, 5, 10, 12.5, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100]
         self.alert_down_levels = [-0.25, -2.5, -5, -10, -12.5, -15, -20, -25, -30, -40, -50 - 60, -70, -80, -90, -100]
 
-        self.max_open_orders = max_open_orders
-        self.position_step_size = position_step_size
-        self.disable_stop_loss = disable_stop_loss
-        self.relist_iterations = relist_iterations
+        self.max_open_orders = args.max_open_orders
+        self.position_step_size = args.position_step_size
+        self.disable_stop_loss = args.disable_stop_loss
+        self.relist_iterations = args.relist_iterations
         self.iter = 0
-        self.hedge_mode = hedge_mode
-        self.hedge_ratio = hedge_ratio
-        self.anti_liq = anti_liq
-        self.max_collateral = max_collateral
+        self.hedge_mode = args.hedge_mode
+        self.hedge_ratio = args.hedge_ratio
+        self.anti_liq = args.anti_liq
+        self.max_collateral = args.max_collateral
         self.delta_weight = None
         self.start_time = time.time()
         self.balance_start = 0.0
 
         self.relist_iter = {}
-        self.update_db = update_db
+        self.update_db = args.update_db
         self.open_positions = {}
-        self.ta_scores = scores
-        self.mm_mode = mm_mode
-        self.mm_long_market = mm_long_market
-        self.mm_short_market = mm_short_market
-        self.mm_spread = mm_spread
+        self.ta_scores = args.scores
+        self.mm_mode = args.mm_mode
+        self.mm_long_market = args.mm_long_market
+        self.mm_short_market =args. mm_short_market
+        self.mm_spread = args.mm_spread
         if self.reopen:
             self.cp.yellow('Reopen enabled')
         if self.stop_loss > 0.0:
@@ -169,7 +142,7 @@ class AutoTrader:
 
             ret = self.api.trailing_stop(market=market, side=opp_side, trail_value=trail_value, size=float(qty),
                                          reduce_only=True)
-            # print(ret)
+            #print(ret)
             return ret
 
         else:
@@ -286,11 +259,11 @@ class AutoTrader:
                     return True
 
     def stop_loss_order(self, market, side, size):
-        # self.logger.info(f'Stop loss triggered for {market}, size: {size}, side: {side}')
+        #self.logger.info(f'Stop loss triggered for {market}, size: {size}, side: {side}')
         a, b, l = self.api.get_ticker(market)
         if size < 0.0:
             size = size * -1
-        # self.tally.loss()
+        #self.tally.loss()
         if side == 'buy':
             # market sell # market, qty, reduce, ioc, cid
             self.cp.red('[!] Stop hit!')
@@ -414,7 +387,7 @@ class AutoTrader:
             self.relist_iter[market] += 1
             leftover_iterations = self.relist_iterations - self.relist_iter[market]
             self.cp.blue(f'[!] We have open orders, relisting in {leftover_iterations} iterations.  ... ')
-            relist = False
+            relist =False
         else:
             relist = True
             self.api.cancel_orders(market)
@@ -422,8 +395,9 @@ class AutoTrader:
         if self.relist_iter[market] == self.relist_iterations:
             self.relist_iter[market] = 0
 
+
         if self.close_method == 'increment':
-            # if run_now:
+            #if run_now:
 
             return self.increment_orders(market=market, side=opp_side, qty=size, period=self.period, reduce=True)
         elif self.close_method == 'market' or self.close_method == 'limit':
@@ -490,9 +464,8 @@ class AutoTrader:
             else:
                 open_sell_order_count += 1
                 current_sell_orders_qty += o.get('size')
-            # current_size
-        self.cp.yellow(
-            f'[i] Open Orders: {len(open_order_count)}, Qty Given: {qty}, Current open buy Qty: {current_buy_orders_qty}, current open sell qty: {current_sell_orders_qty}')
+            #current_size
+        self.cp.yellow(f'[i] Open Orders: {len(open_order_count)}, Qty Given: {qty}, Current open buy Qty: {current_buy_orders_qty}, current open sell qty: {current_sell_orders_qty}')
 
         # if len(open_order_count) > self.max_open_orders * 2:
         #    self.api.cancel_orders(market=market)
@@ -535,15 +508,15 @@ class AutoTrader:
 
             buy_orders = [x for x in buy_orders.__reversed__()]
             # print(buy_orders)
-            # buy_orders.reverse()
+            #buy_orders.reverse()
             c = 1
             for x, i in enumerate(buy_orders):
-                # if c == 1:
+                #if c == 1:
                 #    next_order_price = bid
                 #    buy_order_que.append(['buy', i, next_order_price, market, 'limit'])
-                # else:
-                next_order_price = ((bid + ask) / 2) - (increment_ * x)
-                # next_order_price = bid - (stdev * self.position_step_size) * c
+                #else:
+                next_order_price = ((bid+ask)/2) - (increment_ * x)
+                    # next_order_price = bid - (stdev * self.position_step_size) * c
                 buy_order_que.append(['buy', i, next_order_price, market, 'limit'])
                 c += 1
                 self.cp.yellow(
@@ -591,14 +564,14 @@ class AutoTrader:
             sell_orders = [x for x in sell_orders.__reversed__()]
             # print(sell_orders)
             c = 1
-            # sell_orders.
+            #sell_orders.
             for x, i in enumerate(sell_orders):
-                # if i == 1:
+                #if i == 1:
                 #    next_order_price = ask
                 #    sell_order_que.append(['sell', i, next_order_price, market, 'limit'])
-                # else:
-                # next_order_price = ask + (stdev * self.position_step_size) * c
-                next_order_price = ((bid + ask) / 2) + (increment_ * x)
+                #else:
+                #next_order_price = ask + (stdev * self.position_step_size) * c
+                next_order_price = ((bid+ask)/2) + (increment_ * x)
                 sell_order_que.append(['sell', i, next_order_price, market, 'limit'])
                 c += 1
                 self.cp.yellow(
@@ -757,451 +730,3 @@ class AutoTrader:
                 pass
             else:
                 return pnl, pnl_pct
-
-    def log_order(self, market, price, trigger_price=0.0, offset=0.0, _type='limit', qty=0.0, order_id=None,
-                  status='open', text=None, side=None):
-        _sql = (market, side, price, trigger_price, offset, _type, order_id, status, qty, text, time.time())
-        self.sql.append(_sql, 'orders')
-
-    def check_new_listings(self, info, side=None):
-        print('Enumerating new listings .. ')
-        fut = self.api.futures()
-        current_listings = self.sql.get_list(table='listings')
-        # print(current_listings)
-        for _ in fut:
-            listing = _.get('name')
-            # self.cp.random_color(f'Checking listing...{listing}')
-            if current_listings.__contains__(listing):
-                pass
-            else:
-                if self.listings_checked.__contains__(listing):
-                    pass
-                else:
-                    self.sql.append(value=listing,
-                                    table='listings')  # TODO: Keep track of index price data so that we can automatically
-                    # trade trending assets!
-                    self.cp.alert(f'[🎲🎲🎲] NEW LISTING DETECTED: {listing}, lets roll those fuckin\' dice! WOOT!')
-
-                    if side is not None and not self.update_db:
-                        l_size = info['freeCollateral'] * self.new_listing_percent
-                        self.api.new_order(market=listing, side=side, price=None, _type='market', size=l_size)
-
-    def parse(self, pos, info):
-        self.iter += 1
-
-        """
-        {'future': 'TRX-0625', 'size': 9650.0, 'side': 'buy', 'netSize': 9650.0, 'longOrderSize': 0.0,
-        'shortOrderSize': 2900.0, 'cost': 1089.1955, 'entryPrice': 0.11287, 'unrealizedPnl': 0.0, 'realizedPnl':
-        -100.1977075, 'initialMarginRequirement': 0.05, 'maintenanceMarginRequirement': 0.03, 'openSize': 9650.0,
-        'collateralUsed': 54.459775, 'estimatedLiquidationPrice': 0.11020060583397326, 'recentAverageOpenPrice':
-        0.14736589533678757, 'recentPnl': -332.88539, 'recentBreakEvenPrice': 0.14736589533678757,
-        'cumulativeBuySize': 9650.0, 'cumulativeSellSize': 0.0}
-        """
-
-        future_instrument = pos['future']
-        if not self.open_positions.get(future_instrument):
-            self.open_positions[future_instrument] = time.time()
-
-            # print('Init')
-
-        if time.time() - self.open_positions.get(future_instrument) < 2:
-            # print('Returning')
-            return
-
-        # pnl_track = profit_tracker.SessionProfits(instrument=future_instrument)
-        size = 0
-        if debug:
-            self.cp.white_black(f'[d]: Processing {future_instrument}')
-        # fut =
-        # print(fut)
-        for f in self.api.futures():
-            # print(f'Iterating {f}')
-
-            """{'name': 'BTT-PERP', 'underlying': 'BTT', 'description': 'BitTorrent Perpetual Futures', 
-            'type': 'perpetual', 'expiry': None, 'perpetual': True, 'expired': False, 'enabled': True, 'postOnly': 
-            False, 'priceIncrement': 5e-08, 'sizeIncrement': 1000.0, 'last': 0.0050772, 'bid': 0.00507655, 
-            'ask': 0.00508115, 'index': 0.0050384623482894655, 'mark': 0.0050785, 'imfFactor': 1e-05, 'lowerBound': 
-            0.00478655, 'upperBound': 0.00532945, 'underlyingDescription': 'BitTorrent', 'expiryDescription': 
-            'Perpetual', 'moveStart': None, 'marginPrice': 0.0050785, 'positionLimitWeight': 20.0, 
-            'group': 'perpetual', 'change1h': -0.009169837089064482, 'change24h': 0.3340075388434311, 'changeBod': 
-            0.11461053925334153, 'volumeUsd24h': 41050555.11565, 'volume': 9253264000.0} """
-            mark_price = f['mark']
-            index = f['index']
-            name = f['name']
-            volumeUsd24h = f['volumeUsd24h']
-            change1h = f['change1h']
-            change24h = f['change24h']
-            min_order_size = f['sizeIncrement']
-            self.future_stats[name] = {}
-            self.future_stats[name]['mark'] = mark_price
-            self.future_stats[name]['index'] = index
-            self.future_stats[name]['volumeUsd24h'] = volumeUsd24h
-            self.future_stats[name]['change1h'] = change1h
-            self.future_stats[name]['change24h'] = change24h
-            self.future_stats[name]['min_order_size'] = min_order_size
-
-            # if self.tp_fib_enable:
-            #    levels = selff
-            #    #self.position_fib_levels[future_instrument]
-
-            err = None
-
-            # exit()
-            # if not self.ticker_stats.__contains__(name):
-            #    name = FutureStat(name=name, price=mark_price, volume=volumeUsd24h)
-            #    self.ticker_stats.append(name)
-            # else:
-            #    p, v = name.update(price=mark_price, volume=volumeUsd24h)
-
-            # if self.show_tickers:
-            if f['name'] == future_instrument:
-                if debug:
-                    self.cp.dark(
-                        f"[🎰] [{name}] Future Stats: {change1h}/hour {change24h}/today, Volume: {volumeUsd24h}")
-                # print(f'Debug: {f}')
-            if float(change1h) > 0.025 and self.show_tickers:
-                if float(change24h) > 0:
-                    self.cp.ticker_up(
-                        f'[🔺]Future {name} is up {change1h} % this hour! and {change24h} today, Volume: {volumeUsd24h}, ')
-
-
-                else:
-                    self.cp.ticker_up(f'[🔺] Future {name} is up {change1h} % this hour!')
-
-            if change1h < -0.025 and self.show_tickers:
-                if float(change24h) < 0:
-                    self.cp.ticker_down(
-                        f'[🔻]Future {name} is down {change1h} % this hour!and {change24h} today, Volume: {volumeUsd24h}!')
-                else:
-                    self.cp.ticker_down(f'[🔻] Future {name} is down {change1h} % this hour!')
-
-            if change24h > 0:
-                self.up_markets[name] = (volumeUsd24h, change1h)
-            elif change24h < 0:
-                self.down_markets[name] = (volumeUsd24h, change1h)
-
-        if len(self.up_markets) > len(self.down_markets):
-            if self.show_tickers:
-                self.cp.green('[+] Market Average Trend: LONG')
-            self.trend = 'up'
-        if len(self.up_markets) == len(self.down_markets):
-            if self.show_tickers:
-                self.cp.yellow('[~] Market Average Trend: NEUTRAL')
-        if len(self.up_markets) < len(self.down_markets):
-            if self.show_tickers:
-                self.cp.red('[-] Market Average Trend: SHORT')
-            self.trend = 'down'
-
-        # if future_instrument in self.symbols:
-        collateral_used = pos['collateralUsed']
-        cost = pos['cost']
-        buy_size = pos['cumulativeBuySize']
-        sell_size = pos['cumulativeSellSize']
-        size = pos['netSize']
-        entry_price = pos['entryPrice']
-        liq_price = pos['estimatedLiquidationPrice']
-        avg_open_price = pos['recentAverageOpenPrice']
-        avg_break_price = pos['recentBreakEvenPrice']
-        recent_pnl = pos['recentPnl']
-        unrealized_pnl = pos['unrealizedPnl']
-        takerFee = info['takerFee']
-        makerFee = info['makerFee']
-        side = pos['side']
-        pnl = 0
-        pnl_pct = 0
-        tpnl = 0
-        tsl = 0
-
-        # For future implantation
-        # Are we a long or a short?
-        pnl, pnl_pct = self.check_pnl(side, future_instrument, size, avg_open_price, cost, takerFee)
-        ask, bid, last = self.api.get_ticker(future_instrument)
-        if side == 'buy':
-            pos_side = 'sell'
-        else:
-            pos_side = 'buy'
-
-        self.cp.random_pulse(
-            f'[▶] Instrument: {future_instrument}, Side: {side}, Size: {size} Cost: {cost}, Entry: {entry_price},'
-            f' Open: {avg_open_price} Liq: {liq_price}, BreakEven: {avg_break_price}, PNL: {recent_pnl}, '
-            f'UPNL: {unrealized_pnl}, Collateral: {collateral_used}')
-        if recent_pnl is None:
-            return
-        if self.sar_sl:
-
-            self.iter = 0
-            close_pos = False
-
-            _side, sar = self.ta_engine.get_sar(future_instrument, int(self.sar_sl))
-            # print(side,sar)
-
-            if side == 'buy':
-                if _side == 1:
-                    _side = 'long'
-                else:
-                    close_pos = True
-            else:
-                if _side == -1:
-                    _side = 'short'
-                else:
-                    close_pos = True
-
-            if close_pos:
-                if self.confirm:
-                    self.cp.red('[!!] Closing position as the sar is not in our favor!')
-                    self.stop_loss_order(market=future_instrument, side=side, size=size * -1)
-        if pnl_pct > self._take_profit and not self.auto_stop_only:
-            # confirm price via rest
-
-            # print('Recalculating with rest ticker .. ')
-            pnl, pnl_pct = self.check_pnl(side, future_instrument, size, avg_open_price, cost, takerFee,
-                                          double_check=True)
-            if pnl_pct <= self._take_profit:
-                # print('Not ok')
-                pass
-            else:
-
-                print(f'[+] Target profit level of {self._take_profit} reached! Calculating pnl')
-                if float(size) < 0.0:
-                    size = size * -1
-
-                o_size = size
-                notational_qty = (o_size * last)
-                # self.total_contacts_trade += notational_qty
-                # self.tally.increment_contracts(notational_qty)
-                new_qty = size * self.position_close_pct
-                # print('ok')
-                if float(new_qty) < float(self.future_stats[future_instrument]['min_order_size']):
-                    new_qty = size
-                self.cp.purple(f'Sending {pos_side} order of size {new_qty} , price {last}')
-                if not self.confirm:
-                    self.cp.red('[!] Not actually trading... ')
-
-                else:
-
-                    try:
-
-                        ret = self.take_profit_wrap(entry=entry_price, side=side, size=new_qty,
-                                                    order_type=self.order_type,
-                                                    market=future_instrument)
-                    except Exception as err:
-                        self.logger.error('Error with take profit wrap:', err)
-                        ret = False
-                        if re.match(r'^(.*)margin for order(.*)$',
-                                    err.__str__()):
-                            self.cp.red('[!] Not enough margin!')
-
-                        elif re.match(r'^(.*)Size too small(.*)$', err.__str__()):
-                            qty = size
-                            self.cp.red('[!] Size too small! Fail ...')
-
-                        elif re.match(r'^(.*)rigger price too(.*)$', err.__str__()):
-                            self.cp.red('[!] This stupid trigger price error!')
-                        else:
-                            self.cp.red(f'[!] Error with order: {err}')
-                    else:
-                        if ret:
-                            self.accumulated_pnl += pnl
-                            self.tally.win()
-
-                            self.cp.alert('----------------------------------------------')
-                            self.cp.alert(f'Total Session PROFITS: {self.accumulated_pnl}')
-                            self.cp.alert('----------------------------------------------')
-                            self.cp.green(
-                                f'Reached target pnl of {pnl_pct} on {future_instrument}, taking profit... PNL: {pnl}')
-                            notational_qty = (new_qty * last)
-                            # self.total_contacts_trade += notational_qty
-                            self.tally.increment_contracts(notational_qty)
-                            if self.anti_liq:
-                                self.anti_liq_transfer()
-
-                            print('[🃑] Success')
-
-                        if ret and self.reopen:
-                            # self.accumulated_pnl += pnl
-                            self.cp.yellow(f'Reopening .... {side} {new_qty}')
-                            try:
-                                ret = self.reopen_pos(market=future_instrument, side=side, qty=new_qty,
-                                                      period=self.period, info=info)
-                            except Exception as err:
-                                print(err)
-                                # if re.match(r'^(.*)margin for order(.*)$', err.__str__()):
-                                self.cp.red(f'[~] Error with order: {err.__str__()}')
-                            else:
-
-                                if ret:
-                                    notational_qty = (new_qty * last)
-                                    self.total_contacts_trade += notational_qty
-                                    self.tally.increment_contracts(notational_qty)
-                                    print('[🃑] Success')
-        else:
-            try:
-                tpnl = (self._take_profit / pnl_pct) * pnl
-            except ZeroDivisionError:
-                pass
-
-            try:
-                tsl = (self.stop_loss / pnl_pct) * pnl
-            except ZeroDivisionError:
-                pass
-
-            self.cp.yellow(
-                f'[$]PNL %: {pnl_pct}/Target %: {self._take_profit}/Target Stop: {self.stop_loss}, PNL USD: {pnl}, '
-                f'Target PNL USD: ${tpnl}, Target STOP USD: ${tsl}')
-            if pnl_pct < self.stop_loss and not self.disable_stop_loss:
-                pnl, pnl_pct = self.check_pnl(side, future_instrument, size, avg_open_price, cost, takerFee,
-                                              double_check=True)
-                if pnl_pct < self.stop_loss and not self.disable_stop_loss:
-                    if self.confirm:
-                        self.stop_loss_order(market=future_instrument, side=side, size=size * -1)
-
-                    else:
-                        self.cp.red('[!] NOT TRADING: Stop Hit.')
-                    self.accumulated_pnl -= pnl
-
-    @exit_after(30)
-    def position_parser(self, positions, account_info):
-        for pos in positions:
-
-            if float(pos['collateralUsed'] != 0.0) or float(pos['longOrderSize']) > 0 or float(
-                    pos['shortOrderSize']) < 0:
-                ret = self.parse(pos, account_info)
-            else:
-                try:
-                    for _ in self.open_positions:
-                        if pos['future'] == _:
-                            self.open_positions.pop(_)
-                except Exception as err:
-                    print(err)
-                    pass
-
-    def update_database(self):
-        added = 0
-        futures = self.api.futures()
-        current_listings = self.sql.get_list(table='listings')
-        for x in futures:
-            name = x.get('name')
-            if current_listings.__contains__(name):
-                pass
-            else:
-                self.sql.append(table='listings', value=name)
-                added += 1
-        print(f'Updated db. Added {added} entries to db.')
-
-    def start_process_(self):
-        self.logger.info(f"Starting autotrader at {time.time()}")
-        restarts = 0
-        _iter = 0
-        if self.update_db:
-            self.cp.yellow('[~] Updating futures database ... ')
-            self.update_database()
-            exit()
-        while True:
-            # print(self.long_new_listings,self.short_new_listings)
-            if self.long_new_listings == True and self.short_new_listings == True:
-                print('Checking new listings!')
-                # print(_iter)
-                if _iter % 100 == 0:
-                    if self.long_new_listings:
-                        new_side = 'buy'
-                    else:
-                        new_side = 'sell'
-                    info = self.api.info()
-                    self.check_new_listings(info=info, side=new_side)
-            for f in self.api.futures():
-
-                """{'username': 'xxxxxxxx@gmail.com', 'collateral': 4541.2686261529458, 'freeCollateral': 
-                                                13.534738011297414, 'totalAccountValue': 4545.7817261529458, 'totalPositionSize': 9535.4797, 
-                                                'initialMarginRequirement': 0.05, 'maintenanceMarginRequirement': 0.03, 'marginFraction': 
-                                                0.07802672286726425, 'openMarginFraction': 0.07527591244130713, 'liquidating': False, 'backstopProvider': 
-                                                False, 'positions': [{'future': 'BAT-PERP', 'size': 0.0, 'side': 'buy', 'netSize': 0.0, 'longOrderSize': 
-                                                0.0, 'shortOrderSize': 0.0, 'cost': 0.0, 'entryPrice': None, 'unrealizedPnl': 0.0, 'realizedPnl': 
-                                                5.59641262, 'initialMarginRequirement': 0.05, 'maintenanceMarginRequirement': 0.03, 'openSize': 0.0, 
-                                                'collateralUsed': 0.0, 'estimatedLiquidationPrice': None}, """
-
-                """{'name': 'BTT-PERP', 'underlying': 'BTT', 'description': 'BitTorrent Perpetual Futures', 
-                'type': 'perpetual', 'expiry': None, 'perpetual': True, 'expired': False, 'enabled': True, 'postOnly': 
-                False, 'priceIncrement': 5e-08, 'sizeIncrement': 1000.0, 'last': 0.0050772, 'bid': 0.00507655, 
-                'ask': 0.00508115, 'index': 0.0050384623482894655, 'mark': 0.0050785, 'imfFactor': 1e-05, 'lowerBound': 
-                0.00478655, 'upperBound': 0.00532945, 'underlyingDescription': 'BitTorrent', 'expiryDescription': 
-                'Perpetual', 'moveStart': None, 'marginPrice': 0.0050785, 'positionLimitWeight': 20.0, 
-                'group': 'perpetual', 'change1h': -0.009169837089064482, 'change24h': 0.3340075388434311, 'changeBod': 
-                0.11461053925334153, 'volumeUsd24h': 41050555.11565, 'volume': 9253264000.0} """
-                mark_price = f['mark']
-                index = f['index']
-                name = f['name']
-                volumeUsd24h = f['volumeUsd24h']
-                change1h = f['change1h']
-                change24h = f['change24h']
-                min_order_size = f['sizeIncrement']
-                self.future_stats[name] = {}
-                self.future_stats[name]['name'] = name
-                self.future_stats[name]['mark'] = mark_price
-                self.future_stats[name]['index'] = index
-                self.future_stats[name]['volumeUsd24h'] = volumeUsd24h
-                self.future_stats[name]['change1h'] = change1h
-                self.future_stats[name]['change24h'] = change24h
-                self.future_stats[name]['min_order_size'] = min_order_size
-
-
-                try:
-                    info = self.api.info()
-                    pos = self.api.positions()
-
-
-                except KeyboardInterrupt:
-                    print('[~] Caught Sigal...')
-                    exit(0)
-
-                except Exception as err:
-                    _iter = 0
-                    self.logger.error(f'Error with parse: {err}')
-
-                else:
-                    _iter += 1
-                    if _iter == 1:
-                        restarts += 1
-                        self.cp.purple('[i] Starting AutoTrader,  ...')
-                        # self.sanity_check(positions=pos)
-                    self.cp.pulse(f'[$] Account Value: {info["totalAccountValue"]} Collateral: {info["collateral"]} '
-                                  f'Free Collateral: {info["freeCollateral"]}, Contracts Traded: {self.total_contacts_trade}'
-                                  f' Restarts: {restarts}')
-                    _tally = self.tally.get()
-                    wins = _tally.get('wins')
-                    losses = _tally.get('losses')
-                    volume = _tally.get('contracts_traded')
-                    if wins != 0 or losses != 0:
-                        self.cp.white_black(f'[🃑] Wins: {wins} [🃏] Losses: {losses}, Volume: {volume}')
-                    else:
-                        self.cp.white_black(f'[🃑] Wins: - [🃏] Losses: -, Volume: {volume}')
-                    try:
-
-                        self.position_parser(positions=pos, account_info=info)
-
-                    except RestartError as fuck:
-                        self.logger.error(fuck)
-                        print(repr(f'Restart: {fuck} {_iter}'))
-                        _iter = 0
-                        # break
-                    except Exception as fuck:
-                        print(fuck)
-                        self.logger.error(f'Error with position parser: {fuck}')
-                        _iter = 0
-                        # break
-
-    def start_process(self):
-        if not self.lock.locked():
-            print('Acquiring lock in autotrader')
-            self.lock.acquire()
-        else:
-            print('Could not aquire loclk!')
-            return
-        try:
-            self.start_process_()
-        except KeyboardInterrupt:
-            print('Caught Signal!')
-            exit()
-
-    def anti_liq_transfer(self, profit):
-        qty_fraction = self._take_profit * 0.1
-        self.anti_liq_api.transfer()

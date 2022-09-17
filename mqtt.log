@@ -36100,3 +36100,22 @@ INFO:root:Init ws
 INFO:root:Starting autotrader at 1663123481.1143034
 INFO:root:Init ws
 INFO:root:Starting autotrader at 1663123627.7994115
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1663451223.3906178
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1663451446.7131484
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1663451472.982412
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1663451483.9328508
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1663451515.0330956
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1663451554.8585405
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1663451573.4982598
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1663451672.7588139
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+INFO:root:_connect called

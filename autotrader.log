@@ -71859,3 +71859,23 @@
 2022-09-13 22:44:41,114 | INFO | Starting autotrader at 1663123481.1143034
 2022-09-13 22:47:07,799 | INFO | Starting autotrader at 1663123627.7994115
 2022-09-13 22:47:07,799 | INFO | Starting autotrader at 1663123627.7994115
+2022-09-17 17:47:03,390 | INFO | Starting autotrader at 1663451223.3906178
+2022-09-17 17:47:03,390 | INFO | Starting autotrader at 1663451223.3906178
+2022-09-17 17:50:46,713 | INFO | Starting autotrader at 1663451446.7131484
+2022-09-17 17:50:46,713 | INFO | Starting autotrader at 1663451446.7131484
+2022-09-17 17:51:12,982 | INFO | Starting autotrader at 1663451472.982412
+2022-09-17 17:51:12,982 | INFO | Starting autotrader at 1663451472.982412
+2022-09-17 17:51:23,932 | INFO | Starting autotrader at 1663451483.9328508
+2022-09-17 17:51:23,932 | INFO | Starting autotrader at 1663451483.9328508
+2022-09-17 17:51:55,033 | INFO | Starting autotrader at 1663451515.0330956
+2022-09-17 17:51:55,033 | INFO | Starting autotrader at 1663451515.0330956
+2022-09-17 17:52:34,858 | INFO | Starting autotrader at 1663451554.8585405
+2022-09-17 17:52:34,858 | INFO | Starting autotrader at 1663451554.8585405
+2022-09-17 17:52:53,498 | INFO | Starting autotrader at 1663451573.4982598
+2022-09-17 17:52:53,498 | INFO | Starting autotrader at 1663451573.4982598
+2022-09-17 17:54:32,758 | INFO | Starting autotrader at 1663451672.7588139
+2022-09-17 17:54:32,758 | INFO | Starting autotrader at 1663451672.7588139
+2022-09-17 17:54:38,782 | INFO | Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+2022-09-17 17:54:38,782 | INFO | Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+2022-09-17 17:54:38,782 | INFO | _connect called
+2022-09-17 17:54:38,782 | INFO | _connect called
