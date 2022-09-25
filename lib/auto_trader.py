@@ -1,6 +1,7 @@
 import re
 import time
 
+import lib.exceptions
 # import fibber
 from lib import sql_lib, logmod
 from lib import tally
@@ -77,6 +78,7 @@ class AutoTrader:
         self.pnl_trackers = []
         self.sar_dict = {}
         self.lock = threading.Lock()
+        self.lock2 = threading.Lock()
         self.position_close_pct = position_close_pct
         self.chase_close = chase_close
         self.chase_reopen = chase_reopen
@@ -115,6 +117,8 @@ class AutoTrader:
         self.mm_long_market = mm_long_market
         self.mm_short_market = mm_short_market
         self.mm_spread = mm_spread
+        self.candle_time_tuples = {}
+        #self.lock = threading.Lock()
         if self.reopen:
             self.cp.yellow('Reopen enabled')
         if self.stop_loss > 0.0:
@@ -287,7 +291,7 @@ class AutoTrader:
 
     def stop_loss_order(self, market, side, size):
         # self.logger.info(f'Stop loss triggered for {market}, size: {size}, side: {side}')
-        a, b, l = self.api.get_ticker(market)
+        a, b, l = self.api.rest_ticker(market)
         if size < 0.0:
             size = size * -1
         # self.tally.loss()
@@ -402,25 +406,22 @@ class AutoTrader:
                 open_buy.append(o)
             if _side == 'sell':
                 open_sell.append(o)
-
-        print(f'[~] {len(open_orders)} orders on market: {market} open currently ... ')
-        # for o in open_orders:
-        #    print(f'DEBUG: {o}')
-        if not self.relist_iter.get(market):
-            self.relist_iter[market] = 0
-        if len(open_orders) and self.relist_iter[market] == self.relist_iterations:
-            self.api.cancel_orders(market=market, limit_orders=True)
-        if len(open_orders) and self.relist_iter[market] < self.relist_iterations:
-            self.relist_iter[market] += 1
-            leftover_iterations = self.relist_iterations - self.relist_iter[market]
-            self.cp.blue(f'[!] We have open orders, relisting in {leftover_iterations} iterations.  ... ')
-            relist = False
-        else:
-            relist = True
-            self.api.cancel_orders(market)
-
-        if self.relist_iter[market] == self.relist_iterations:
-            self.relist_iter[market] = 0
+        if self.close_method == 'increment':
+            if len(open_orders):
+                print(f'[~] {len(open_orders)} orders on market: {market} open currently ... ')
+                if len(open_orders):
+                    if self.candle_time_tuples.get(market):
+                        ctt = self.candle_time_tuples.get(market)
+                        # print('ctt:', ctt)
+                        p = ctt[0]
+                        c = ctt[1][0]
+                        current_c = self.candle_close(p)[1]
+                        if current_c > c:
+                            self.cp.blue(f'[+] Candle of res {p} has closed, relisting!')
+                            self.api.cancel_orders(market=market, limit_orders=True)
+                        else:
+                            self.cp.yellow(f'[-] Waiting for candle close to relist: {ctt[1][0]} seconds...')
+                            return
 
         if self.close_method == 'increment':
             # if run_now:
@@ -430,7 +431,7 @@ class AutoTrader:
             return self.take_profit(market=market, side=side, entry=entry, size=size, order_type=order_type)
 
     def re_open_limit(self, market, side, qty):
-        for _ in range(9):
+        for _ in range(3):
             bid, ask, last = self.api.get_ticker(market=market)
             if side == 'buy':  # market, qty, price=None, post=False, reduce=False, cid=None):
                 ret = self.api.buy_limit(market=market, qty=qty, price=bid, post=False, reduce=False)
@@ -449,7 +450,7 @@ class AutoTrader:
 
     def re_open_market(self, market, side, qty):
         a, b, l = self.api.get_ticker(market=market)
-        for i in range(9):
+        for i in range(3):
             if side == 'buy':  # market, qty, price=None, post=False, reduce=False, cid=None):
                 ret = self.api.buy_market(market=market, qty=qty, reduce=False, ioc=False, cid=None)
 
@@ -517,6 +518,7 @@ class AutoTrader:
                 return
             else:
                 print(f'Max is : {self.max_open_orders}')
+                self.candle_time_tuples[market] = (period, self.candle_close(period))
             min_qty = self.future_stats[market]['min_order_size']
             bid, ask, last = self.api.get_ticker(market=market)
             # print(bid, ask, last)
@@ -572,6 +574,9 @@ class AutoTrader:
             if open_sell_order_count >= (self.max_open_orders):
                 print(f'Not doing anything as max open sell orders: max{self.max_open_orders}')
                 return
+            else:
+                print(f'Max is: {self.max_open_orders}')
+                self.candle_time_tuples[market] = (period, self.candle_close(period))
             min_qty = self.future_stats[market]['min_order_size']
             bid, ask, last = self.api.get_ticker(market=market)
             # print(bid, ask, last)
@@ -786,6 +791,10 @@ class AutoTrader:
                         l_size = info['freeCollateral'] * self.new_listing_percent
                         self.api.new_order(market=listing, side=side, price=None, _type='market', size=l_size)
 
+    def candle_close(self, interval):
+        tm = divmod(time.time(), interval)
+        return tm
+
     def parse(self, pos, info):
         self.iter += 1
 
@@ -801,14 +810,6 @@ class AutoTrader:
         future_instrument = pos['future']
         if not self.open_positions.get(future_instrument):
             self.open_positions[future_instrument] = time.time()
-
-            # print('Init')
-
-        if time.time() - self.open_positions.get(future_instrument) < 2:
-            # print('Returning')
-            return
-
-        # pnl_track = profit_tracker.SessionProfits(instrument=future_instrument)
         size = 0
         if debug:
             self.cp.white_black(f'[d]: Processing {future_instrument}')
@@ -985,7 +986,7 @@ class AutoTrader:
                                                     order_type=self.order_type,
                                                     market=future_instrument)
                     except Exception as err:
-                        self.logger.error('Error with take profit wrap:', err)
+                        #self.logger.error('Error with take profit wrap:', err)
                         ret = False
                         if re.match(r'^(.*)margin for order(.*)$',
                                     err.__str__()):
@@ -1062,10 +1063,14 @@ class AutoTrader:
     @exit_after(30)
     def position_parser(self, positions, account_info):
         for pos in positions:
+            if float(pos['longOrderSize']) == 0 and float(pos['shortOrderSize']) == 0:
+                if self.candle_time_tuples.get(pos.get('future')):
+                    self.candle_time_tuples.pop(pos.get('future'))
 
             if float(pos['collateralUsed'] != 0.0) or float(pos['longOrderSize']) > 0 or float(
                     pos['shortOrderSize']) < 0:
-                ret = self.parse(pos, account_info)
+                with self.lock2:
+                    self.parse(pos, account_info)
             else:
                 try:
                     for _ in self.open_positions:
@@ -1143,7 +1148,6 @@ class AutoTrader:
                 self.future_stats[name]['change24h'] = change24h
                 self.future_stats[name]['min_order_size'] = min_order_size
 
-
                 try:
                     info = self.api.info()
                     pos = self.api.positions()
@@ -1178,7 +1182,7 @@ class AutoTrader:
 
                         self.position_parser(positions=pos, account_info=info)
 
-                    except RestartError as fuck:
+                    except lib.exceptions.RestartError as fuck:
                         self.logger.error(fuck)
                         print(repr(f'Restart: {fuck} {_iter}'))
                         _iter = 0

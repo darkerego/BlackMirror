@@ -36119,3 +36119,188 @@ INFO:root:Init ws
 INFO:root:Starting autotrader at 1663451672.7588139
 INFO:root:Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
 INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1663452258.8514214
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SOL-PERP'}
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1663468433.7485826
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+INFO:root:_connect called
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1663617763.2385588
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ADA-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CHZ-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1663618723.3202186
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CHZ-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AXS-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1663618847.7833009
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CHZ-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AXS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1663619285.6632333
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AXS-PERP'}
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LUNC-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1663619430.7168584
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1663624904.7261415
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LUNC-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1663630364.1688364
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LUNC-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664059918.1594617
+ERROR:root:Error with position parser: 'lonOrderSize'
+ERROR:root:Error with position parser: 'lonOrderSize'
+ERROR:root:Error with position parser: 'lonOrderSize'
+ERROR:root:Error with position parser: 'lonOrderSize'
+ERROR:root:Error with position parser: 'lonOrderSize'
+ERROR:root:Error with position parser: 'lonOrderSize'
+ERROR:root:Error with position parser: 'lonOrderSize'
+ERROR:root:Error with position parser: 'lonOrderSize'
+ERROR:root:Error with position parser: 'lonOrderSize'
+ERROR:root:Error with position parser: 'lonOrderSize'
+ERROR:root:Error with position parser: 'lonOrderSize'
+ERROR:root:Error with position parser: 'lonOrderSize'
+ERROR:root:Error with position parser: 'lonOrderSize'
+ERROR:root:Error with position parser: 'lonOrderSize'
+ERROR:root:Error with position parser: 'lonOrderSize'
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664059939.2434204
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'REEF-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664060491.6285625
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'REEF-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GAL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GRT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'STG-PERP'}
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664062119.9959474
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'STG-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GRT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOGE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664065189.114247
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'STG-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664065213.625599
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'STG-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664065743.7946794
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'STG-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664066054.7667449
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664069002.6523218
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664069052.8844223
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664069119.0921416
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETC-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'IMX-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'WAVES-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'NEAR-PERP'}
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CRV-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'REEF-PERP'}
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664074707.2920244
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'REEF-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664075019.1378176
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'REEF-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'STG-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664077271.1327727
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'REEF-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'STG-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GRT-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664077601.5064232
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'REEF-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GRT-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664077798.2097073
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'REEF-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GRT-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664077944.3971758
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'REEF-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GRT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SAND-PERP'}
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'EOS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LINK-PERP'}
