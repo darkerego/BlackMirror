@@ -29,11 +29,11 @@ def get_args():
                                                                                                         'situations, '
                                                                                                         'where 0.1 is 10 '
                                                                                                         'percent.')
-    gen_opts.add_argument('-lnl', '--long_new_listings', dest='long_new_listings', action='store_true',
-                          help='When a new future is added, immediately enter long.')
-    gen_opts.add_argument('-snl', '--short_new_listings', dest='short_new_listings', action='store_true',
-                          help='When a new listing is added, immediatly enter short.')
-    gen_opts.add_argument('-nlp', '--new_listing_percentage', dest='new_listing_percent', type=float, default=0.2,
+    #gen_opts.add_argument('-lnl', '--long_new_listings', dest='long_new_listings', action='store_true',
+    #                      help='When a new future is added, immediately enter long.')
+    #gen_opts.add_argument('-snl', '--short_new_listings', dest='short_new_listings', action='store_true',
+    #                      help='When a new listing is added, immediatly enter short.')
+    gen_opts.add_argument('-nlp', '--new_listing_percentage', dest='new_listing_percent', type=float, default=0.25,
                           help='Floating point percentage of equity to use on new listing orders. 1 is 100')
 
     gen_opts.add_argument('-rst', '--reset', dest='reset_db', action='store_true', help='Reset PNL and Volume stats')
@@ -102,7 +102,7 @@ def get_args():
                                                                                                     'execute a trade '
                                                                                                     'from a received '
                                                                                                     'signal.')
-    receiver_opts.add_argument('-MA', '--min_adx', dest='min_adx', type=float, default=20, help='Min mean adx to enter '
+    receiver_opts.add_argument('-ma', '--min_adx', dest='min_adx', type=float, default=20, help='Min mean adx to enter '
                                                                                                 'trade.')
     receiver_opts.add_argument('-sv', '--sar_validation', dest='sar_validation', default=[60, 300], type=int, nargs='+'
                                , help='The period(s) to validate the signal for with sar. Set to 0 to disable.')
@@ -131,8 +131,7 @@ def get_args():
                                      'at, represented'
                                      'as sa floating point number.'
                                      '0.2 wouild be 20 pcercent')
-    auto_stop_opts.add_argument('-tS', '--trailing_stops', dest='use_trailing_stop', action='store_true',
-                                help='Do not use Trailing Stops. Not sure why you would not to, but the option is here!')
+
     auto_stop_opts.add_argument('-ts', '--trailing_stop_offset', dest='ts_offset', type=float, default=0.25,
                                 help='Trailing stop offset, represented as a floating point number, percentage of pnl.')
     auto_stop_opts.add_argument('-ot', '--order_type', choices=['limit', 'market'], default='market',
@@ -141,8 +140,8 @@ def get_args():
                                 default=None,
                                 help='Method to use to reopen positions. Market just sends a limit or market order. Increment '
                                      'splits size into several smaller orders according to standard deviation')
-    auto_stop_opts.add_argument('-cm', '--close_method', dest='close_method', choices=['increment', 'market', 'limit', False],
-                                default='market', help='Method to use to close positions. Market just sends a limit '
+    auto_stop_opts.add_argument('-cm', '--close_method', dest='close_method', choices=['increment', 'market', 'limit', 'trailing', False],
+                                default='trailing', help='Method to use to close positions. Market just sends a limit '
                                                        'or market order. Increment '
                                                        'splits size into several smaller orders according to standard deviation')
     auto_stop_opts.add_argument('-ip', '--increment_period', dest='increment_period',
@@ -195,6 +194,8 @@ def get_args():
     auto_stop_opts.add_argument('-mf', '--mitigate_fees', dest='mitigate_fees', type=float, default=0.0,
                                 help='Attempt to mitigate the fees incurred from stop loss orders by moving '
                                      'stop to this value, 0 being disabled and 1 being 100pct ')
+    auto_stop_opts.add_argument('-ie', '--incremental_enter', dest='incremental_enter', action='store_true',
+                                help='Enter positions with incremental orders instead of all at once.')
     #wallet_opts = parser.add_argument_group('Wallet & Subacct Options')
     #wallet_opts.add_argument('')
     mm_opts = parser.add_argument_group('Market Maker Options')

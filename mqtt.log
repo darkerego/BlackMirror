@@ -36304,3 +36304,2120 @@ ERROR:root:Error with position parser: cannot unpack non-iterable NoneType objec
 ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
 INFO:root:Subscribing to {'channel': 'ticker', 'market': 'EOS-PERP'}
 INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LINK-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664084529.9075246
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LINK-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664084788.8701153
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LINK-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GRT-PERP'}
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664086207.265071
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GRT-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'EOS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ALGO-PERP'}
+INFO:root:Trailing stop triggered
+ERROR:root:Error with parse: An unexpected error occurred, please try again later (D1B3C3FDF5).
+ERROR:root:Error with parse: An unexpected error occurred, please try again later (ADBFD78A1A).
+ERROR:root:Error with parse: An unexpected error occurred, please try again later (16989D29AE).
+ERROR:root:Error with parse: An unexpected error occurred, please try again later (BA961E6C9E).
+ERROR:root:Error with parse: An unexpected error occurred, please try again later (BDB916F9A2).
+ERROR:root:Error with parse: An unexpected error occurred, please try again later (FF8F78B3DC).
+ERROR:root:Error with parse: An unexpected error occurred, please try again later (92E8688A53).
+ERROR:root:Error with parse: An unexpected error occurred, please try again later (BA86F8DC8F).
+ERROR:root:Error with parse: An unexpected error occurred, please try again later (E592BE4954).
+ERROR:root:Error with parse: An unexpected error occurred, please try again later (9DCD66F57C).
+ERROR:root:Error with parse: An unexpected error occurred, please try again later (FA8F9673F5).
+ERROR:root:Error with parse: An unexpected error occurred, please try again later (22374BF426).
+ERROR:root:Error with parse: An unexpected error occurred, please try again later (A4DA000722).
+ERROR:root:Error with parse: An unexpected error occurred, please try again later (7121B56DFD).
+ERROR:root:Error with parse: An unexpected error occurred, please try again later (15D0E3BB03).
+ERROR:root:Error with parse: An unexpected error occurred, please try again later (9C8C7FA159).
+ERROR:root:Error with parse: An unexpected error occurred, please try again later (C84353CCBE).
+ERROR:root:Error with parse: An unexpected error occurred, please try again later (C1FC5CC3B3).
+ERROR:root:Error with parse: An unexpected error occurred, please try again later (F5A94DE211).
+ERROR:root:Error with parse: An unexpected error occurred, please try again later (317E7DCA81).
+ERROR:root:Error with parse: An unexpected error occurred, please try again later (BEF3D6989B).
+ERROR:root:Error with parse: An unexpected error occurred, please try again later (47C789F9AB).
+ERROR:root:Error with parse: An unexpected error occurred, please try again later (4AAF023C9F).
+ERROR:root:Error with parse: An unexpected error occurred, please try again later (6A49FD2826).
+ERROR:root:Error with parse: An unexpected error occurred, please try again later (8E52173F97).
+ERROR:root:Error with parse: An unexpected error occurred, please try again later (47DE925A1E).
+ERROR:root:Error with parse: 504 Server Error: Gateway Timeout for url: https://ftx.com/api/positions?showAvgPrice=False
+ERROR:root:Error with parse: 504 Server Error: Gateway Timeout for url: https://ftx.com/api/positions?showAvgPrice=False
+ERROR:root:Error with parse: 504 Server Error: Gateway Timeout for url: https://ftx.com/api/positions?showAvgPrice=False
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'REEF-PERP'}
+INFO:root:Trailing stop triggered
+INFO:root:Trailing stop triggered
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:Trailing stop triggered
+INFO:root:Trailing stop triggered
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664139584.1708915
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'REEF-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664139639.3613143
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664139673.4163935
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664139678.5582645
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'REEF-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664139707.5270102
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'REEF-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664142694.9031966
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AAVE-PERP'}
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AAVE-0930'}
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664144641.2950745
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AAVE-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ATOM-PERP'}
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664145869.4828959
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ATOM-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MATIC-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664148186.2860096
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ATOM-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MATIC-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664148244.8960886
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ATOM-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MATIC-PERP'}
+ERROR:root:Error with position parser: cannot unpack non-iterable NoneType object
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664148913.7191527
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ATOM-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664149010.2696545
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664149048.7904027
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664149149.4209723
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ATOM-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664149209.2567713
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ATOM-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664149260.9753757
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664149278.4855626
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ATOM-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664149445.7957683
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ATOM-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'XLM-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AXS-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664151382.8197691
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664151724.5129032
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ATOM-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664151823.5232012
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ATOM-PERP'}
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664151876.631938
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ATOM-PERP'}
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664151971.2064366
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'XLM-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664151988.916393
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'XLM-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664152074.9630754
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'XLM-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664152383.2318416
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'XLM-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664156519.7446048
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'XLM-PERP'}
+INFO:root:_connect called
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664157825.5095966
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'XLM-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664158134.7574928
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664160114.178199
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664160378.0441542
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664171923.3109396
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'IOTA-PERP'}
+INFO:root:_connect called
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664172373.882877
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'IOTA-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664172745.6940336
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'IOTA-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664173290.034618
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'IOTA-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'HNT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664182692.0188823
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SRM-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DYDX-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SOL-PERP'}
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LUNC-PERP'}
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LUNA2-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'USTC-PERP'}
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'IOTA-PERP'}
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664217970.4663649
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'KLUNC-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ENS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CRV-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOT-PERP'}
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SRM-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SOL-PERP'}
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LUNC-PERP'}
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664223350.7222364
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LUNC-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOT-PERP'}
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LUNA2-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'HNT-PERP'}
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CHZ-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MKR-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664229279.2836022
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOT-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MKR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LUNC-PERP'}
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SXP-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664230883.8999114
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MKR-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LUNC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SXP-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'IOTA-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664231357.2745721
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MKR-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LUNC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'IOTA-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SXP-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664231473.602459
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MKR-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LUNC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'IOTA-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SXP-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664231884.7225509
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664231893.8473194
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DYDX-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MKR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LUNC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'IOTA-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SOL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'EOS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FTT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'OP-PERP'}
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SRM-PERP'}
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+ERROR:root:DEBUG Error calculating PNL line 647 unsupported operand type(s) for -: 'NoneType' and 'float': 
+INFO:root:Init ws
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:root:Starting autotrader at 1664234295.0181923
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'IOTA-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MKR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'OP-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DYDX-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LUNC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SRM-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SOL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'EOS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FTT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664236465.3250701
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MKR-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SRM-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FTT-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664236694.4112377
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MKR-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SRM-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FTT-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664238360.5178916
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664240168.5529509
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SRM-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LUNC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SXP-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664241764.0987813
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SRM-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ALGO-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664244380.880095
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ALGO-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664246397.1304228
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664246505.0379906
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664246529.2218301
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:root:Starting autotrader at 1664246607.3726673
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664246636.3264222
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664246709.5445201
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664246792.4303505
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:root:Starting autotrader at 1664246919.590537
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664247081.7575035
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ALGO-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SOL-PERP'}
+INFO:root:Init ws
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:root:Starting autotrader at 1664247144.086219
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664247216.3976955
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:root:Starting autotrader at 1664247301.7271607
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:root:Starting autotrader at 1664247386.8836954
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664247415.2641728
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664247556.5233028
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ALGO-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SOL-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664247578.8664577
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ALGO-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SOL-PERP'}
+ERROR:root:Error with parse: Please retry request
+ERROR:root:Error with parse: Please retry request
+ERROR:root:Error with parse: Please retry request
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BTC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ATOM-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LINK-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MATIC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BNB-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ADA-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AVAX-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOGE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BCH-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'OP-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AXS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LDO-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FIL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SUSHI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'UNI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'NEAR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'EOS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AAVE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LTC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CRV-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FTT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+INFO:root:Init ws
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:root:Starting autotrader at 1664249808.5655255
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SOL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOGE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BCH-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AXS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AAVE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BTC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FIL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SUSHI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LDO-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'OP-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ATOM-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LINK-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BNB-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'EOS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'UNI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'NEAR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FTT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MATIC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AVAX-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LTC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CRV-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ADA-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETC-PERP'}
+INFO:root:Init ws
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:root:Starting autotrader at 1664251826.6130047
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SOL-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ATOM-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MATIC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BNB-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AVAX-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'NEAR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CRV-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOGE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BCH-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'OP-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'UNI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LDO-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SUSHI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BTC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FIL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AAVE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AXS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'EOS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LINK-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FTT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ADA-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LTC-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664252816.3356755
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'NEAR-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SOL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ATOM-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LINK-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'EOS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MATIC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LDO-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BNB-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AVAX-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FTT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LTC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BCH-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'OP-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'UNI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FIL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BTC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SUSHI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AAVE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AXS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOGE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CRV-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ADA-PERP'}
+INFO:root:Init ws
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:root:Starting autotrader at 1664255979.6857486
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'NEAR-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LDO-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AXS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'EOS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SUSHI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BTC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AAVE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FIL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'UNI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SOL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LINK-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ADA-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AVAX-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FTT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LTC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BCH-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'OP-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CRV-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MATIC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BNB-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOGE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ATOM-PERP'}
+INFO:root:Init ws
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:root:Starting autotrader at 1664258140.0596282
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'NEAR-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LDO-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SOL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'EOS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BTC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MATIC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOGE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BCH-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'UNI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FIL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AXS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SUSHI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AAVE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'OP-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CRV-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ATOM-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LINK-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ADA-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LTC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AVAX-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FTT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BNB-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DYDX-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ENS-PERP'}
+ERROR:root:Error with parse: Please retry request
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+ERROR:root:Error with parse: Please retry request
+ERROR:root:Error with parse: Please retry request
+ERROR:root:Error with parse: Please retry request
+ERROR:root:Error with parse: Please retry request
+ERROR:root:Error with parse: Please retry request
+ERROR:root:Error with parse: Please retry request
+ERROR:root:Error with parse: Please retry request
+ERROR:root:Error with parse: Please retry request
+ERROR:root:Error with parse: Please retry request
+ERROR:root:Error with parse: Please retry request
+ERROR:root:Error with parse: Please retry request
+ERROR:root:Error with parse: Please retry request
+ERROR:root:Error with parse: Please retry request
+ERROR:root:Error with parse: Please retry request
+ERROR:root:Error with parse: Please retry request
+ERROR:root:Error with parse: Please retry request
+ERROR:root:Error with parse: Not logged in: Timestamp too far from current time
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CHZ-PERP'}
+INFO:root:Init ws
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:root:Starting autotrader at 1664315812.6050937
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ENS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'REEF-PERP'}
+INFO:root:Init ws
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:root:Starting autotrader at 1664322729.9610722
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GST-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ENS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SOL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664323073.1570656
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GST-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ENS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SOL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+INFO:root:Init ws
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:root:Starting autotrader at 1664323720.9627998
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LINK-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOGE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AAVE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SUSHI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SOL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AXS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'NEAR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FIL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'OP-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MATIC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BNB-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ALGO-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FTT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'UNI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ADA-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664323977.4864411
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FTT-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SOL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'OP-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AAVE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'NEAR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SUSHI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AXS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FIL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GST-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LINK-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BNB-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ALGO-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'UNI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOGE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ADA-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MATIC-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664324392.6187673
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SOL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOGE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'UNI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FTT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'OP-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FIL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'NEAR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SUSHI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AXS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AAVE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ALGO-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ADA-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LINK-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MATIC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GST-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BNB-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664324784.8537617
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOGE-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'OP-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FIL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'NEAR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SUSHI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SOL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AXS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AAVE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MATIC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BNB-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ADA-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'UNI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ALGO-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ENS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FTT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LINK-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664324972.1386154
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ALGO-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ENS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FIL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'NEAR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SUSHI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AXS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SOL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AAVE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'OP-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LINK-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FTT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'UNI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOGE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MATIC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BNB-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ADA-PERP'}
+INFO:root:Init ws
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:root:Starting autotrader at 1664325423.96427
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LINK-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ENS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ENS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BNB-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ADA-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOGE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'UNI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FTT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'OP-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AAVE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'NEAR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SUSHI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AXS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SOL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FIL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ALGO-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MATIC-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664325494.351806
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ALGO-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ENS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LINK-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FTT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'OP-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SOL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SUSHI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AXS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'NEAR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AAVE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FIL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BNB-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MATIC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ADA-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOGE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'UNI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+INFO:root:Init ws
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:root:Starting autotrader at 1664326678.6734023
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ENS-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LINK-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MATIC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BNB-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ALGO-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'UNI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOGE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'NEAR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AXS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SOL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SUSHI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AAVE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FIL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'OP-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FTT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ADA-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664326791.601276
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AAVE-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LINK-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AXS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SOL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SUSHI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'NEAR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MATIC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ALGO-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'UNI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'OP-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FIL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FTT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOGE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BNB-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ADA-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664327628.9713533
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MATIC-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LINK-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOGE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'UNI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FTT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'OP-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AAVE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'NEAR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ENS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AXS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SOL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SUSHI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FIL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BNB-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ALGO-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'APE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ADA-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:Init ws
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:root:Starting autotrader at 1664344962.7091782
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'KAVA-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'REEF-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664345141.939617
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'REEF-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'KAVA-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AVAX-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FIL-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664346708.5522935
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FIL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AVAX-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'YFII-PERP'}
+INFO:root:Init ws
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:root:Starting autotrader at 1664360981.4408922
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'YFII-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FIL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ENS-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664387334.3942668
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'YFII-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664387406.0802221
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'YFII-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SNX-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664391834.5130389
+INFO:gmqtt.mqtt.protocol:[CONNECTION MADE]
+INFO:lib.mq.async_client:[+] Connected
+INFO:lib.mq.async_client:Subscribing to /stream
+INFO:gmqtt.mqtt.package:[SEND SUB] 1 [b'/stream']
+INFO:lib.mq.async_client:Subscribing to /signals
+INFO:gmqtt.mqtt.package:[SEND SUB] 2 [b'/signals']
+INFO:lib.mq.async_client:Subscribing to /echo
+INFO:gmqtt.mqtt.package:[SEND SUB] 3 [b'/echo']
+INFO:lib.mq.async_client:Start pub from que ..
+INFO:gmqtt.mqtt.handler:[SUBACK] 1 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 2 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:gmqtt.mqtt.handler:[SUBACK] 3 (0,)
+INFO:lib.mq.async_client:SUBSCRIBED
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SNX-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BTC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LINK-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'BNB-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'RSR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOGE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ALGO-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CRV-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LTC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'UNI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'OP-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'REEF-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ENS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AAVE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FTT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'NEAR-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AXS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SOL-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MATIC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'YFII-PERP'}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   

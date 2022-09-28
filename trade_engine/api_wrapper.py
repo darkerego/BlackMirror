@@ -349,7 +349,7 @@ def debug_api(subacct=None, config_path='conf.json'):
     :return:
     """
     from utils import config_loader
-    k, s, a, = config_loader.load_config(config_path)
+    k, s, a, null = config_loader.load_config(config_path)
     if subacct:
         a = subacct
     # rest = client.FtxClient(api_key=k, api_secret=s, subaccount_name=a)

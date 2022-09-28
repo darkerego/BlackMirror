@@ -13,4 +13,5 @@ def load_config(config_path='conf.json'):
         key = f['conf']['key']
         secret = f['conf']['secret']
         subaccount = f['conf']['subaccount']
-        return key, secret, subaccount
+        long_new_listings = f['conf']['long_new_listings']
+        return key, secret, subaccount, long_new_listings

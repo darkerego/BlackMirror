@@ -12,32 +12,7 @@ cp = colorprint.NewColorPrint()
 
 import ssl
 
-from python_socks.async_.trio import Proxy
-#from conf import proxyrack
-proxy = Proxy.from_url('socks5://user:password@127.0.0.1:1080')
 
-# `connect` returns trio socket
-# so we can pass it to trio.SocketStrea
-async def sockify():
-    sock = proxy.connect(dest_host='check-host.net', dest_port=443)
-
-    stream = trio.SocketStream(sock)
-
-    stream = trio.SSLStream(
-        stream, ssl.create_default_context(),
-        server_hostname='check-host.net'
-    )
-    stream.do_handshake()
-
-    request = (
-        b'GET /ip HTTP/1.1\r\n'
-        b'Host: check-host.net\r\n'
-        b'Connection: close\r\n\r\n'
-    )
-
-    await stream.send_all(request)
-    response = await stream.receive_some(4096)
-    return response
 
 class TheSARsAreAllAligning:
     """
@@ -58,7 +33,7 @@ class TheSARsAreAllAligning:
         :return: last price
         """
         ret = requests.get(f'https://ftx.com/api/markets/{market}').json()
-        # print(ret)
+        print(ret)
         return ret['result']['price']
 
     def future_ticker(self, market):
@@ -82,7 +57,6 @@ class TheSARsAreAllAligning:
         :return:
         """
         sar = talib.SAR(high_array, low_array, acceleration=acceleration, maximum=maximum)
-        # print(sar)
         return sar
 
     def calc_sar(self, sar, symbol):
@@ -93,7 +67,7 @@ class TheSARsAreAllAligning:
         :return: tuple
         """
         ticker = (self.future_ticker(symbol))
-        #print(sar)
+        print(sar)
         sar = sar[-3]
         if self.debug:
             print(f'Sar: {sar}, Mark: {ticker}')
@@ -139,9 +113,10 @@ class TheSARsAreAllAligning:
             if wait:
                 time.sleep(60 - (time.time() % 60) + 7)
                 self.scheduled.remove(f'{symbol}_{period}')
-            # print(f'MAKING SAR API CALL, waited: {wait} ' )
+            print(f'MAKING SAR API CALL, waited: {wait} ' )
             sar = self.get(symbol, period)
-            side, ticker, sar = self.calc_sar(sar, symbol)
+            current_sar = sar[-1]
+
             self.sar_dict[f'{symbol}_{period}'] = {'updated': time.time(), 'value': sar, 'side': side}
             return side,sar
 
@@ -184,7 +159,7 @@ class TheSARsAreAllAligning:
         p_list = [60, 300, 900, 3600]
         count = len(p_list)
         for i in p_list:
-            s, sr = self.get_sar(symbol=instrument, period=i)
+            s, t, sr = self.get_sar(symbol=instrument, period=i)
             # print(sr)
             sars.append(sr)
             savg = sum(sars)/len(sars)

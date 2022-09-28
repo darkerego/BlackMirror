@@ -59,11 +59,12 @@ class Monitor:
         self.auto = conf.auto_trader
         self.sl = conf.stop_loss_pct
         self.tp = conf.take_profit_pct
-        self.ts = conf.use_trailing_stop
+        # self.ts = conf.use_trailing_stop
         self.ot = conf.order_type
         self.show_tickers = conf.show_tickers
         #self.monitor_only = conf.monitor
         self.use_strategy = conf.use_strategy
+        self.incremental_enter = conf.incremental_enter
         self.strategy = conf.strategy
         self.symbol = conf.symbol
         self.symbol_monitor = conf.symbol_monitor
@@ -172,7 +173,7 @@ class Monitor:
             self.auto_trade = AutoTrader(self.api,
                                          stop_loss=self.sl,
                                          _take_profit=self.tp,
-                                         use_ts=self.ts,
+                                         #use_ts=self.ts,
                                          ts_pct=self.offset,
                                          max_open_orders=self.max_open_orders,
                                          position_step_size=self.position_step_size,
@@ -202,7 +203,8 @@ class Monitor:
                                          mm_spread = self.mm_spread,
                                          long_new_listings = self.long_new_listings,
                                          short_new_listings= self.short_new_listings,
-                                         new_listing_percent=self.new_listing_percent)
+                                         new_listing_percent=self.new_listing_percent,
+                                         incremental_enter= self.incremental_enter)
 
     def __enter__(self):
         print('Entering monitor')

@@ -41,7 +41,7 @@ class AutoTrader:
                  min_score=0.0, check_before_reopen=False, mitigate_fees=False, confirm=False, tp_fib_enable=False,
                  tp_fib_res=300, sar_sl=0, auto_stop_only=False, mm_mode=False, mm_long_market=None,
                  mm_short_market=None, mm_spread=0.0,
-                 long_new_listings=False, short_new_listings=False, new_listing_percent=0):
+                 long_new_listings=False, short_new_listings=False, new_listing_percent=0, incremental_enter=False):
         # self.trade_logger = TradeLog()
         self.listings_checked = []
         self.long_new_listings = long_new_listings
@@ -53,6 +53,7 @@ class AutoTrader:
         self.down_markets = {}
         self.trend = 'N/A'
         self.auto_stop_only = auto_stop_only
+        self.incrmental_enter = incremental_enter
         self.show_tickers = show_tickers
         self.stop_loss = stop_loss
         self._take_profit = _take_profit
@@ -72,7 +73,7 @@ class AutoTrader:
         self.fib_api = None
         self.tally = tally
         self.sar_sl = sar_sl
-        self.ta_engine = TheSARsAreAllAligning(debug=True)
+        self.ta_engine = TheSARsAreAllAligning(debug=False)
         self.accumulated_pnl = 0
         self.position_sars = []
         self.pnl_trackers = []
@@ -336,7 +337,7 @@ class AutoTrader:
         if side == 'buy':
             opp_side = 'sell'
             trail_value = ((ask - entry) * self.trailing_stop_pct) * -1
-            if self.use_ts:
+            if self.close_method == 'trailing':
                 self.cp.white_black(f'[฿] Sending a trailing stop: {trail_value}')
                 ret = self.api_trailing_stop(market=market, side=side, qty=size, offset=self.trailing_stop_pct,
                                              entry=entry,
@@ -359,7 +360,7 @@ class AutoTrader:
         else:  # side == sell
             opp_side = 'buy'
             trail_value = (entry - bid) * self.trailing_stop_pct
-            if self.use_ts:
+            if self.close_method == 'trailing':
                 self.cp.green(f'[฿] Sending a trailing stop: {trail_value}')
                 # executor = ThreadPoolExecutor(max_workers=5)
                 # ret = executor.submit(self.trailing_stop, market=market, side=opp_side, qty=float(o_size),
@@ -412,15 +413,15 @@ class AutoTrader:
                 if len(open_orders):
                     if self.candle_time_tuples.get(market):
                         ctt = self.candle_time_tuples.get(market)
-                        # print('ctt:', ctt)
+                        print('ctt:', ctt)
                         p = ctt[0]
                         c = ctt[1][0]
-                        current_c = self.candle_close(p)[1]
-                        if current_c > c:
+                        current_c = self.candle_close(p)
+                        if current_c[0] > c:
                             self.cp.blue(f'[+] Candle of res {p} has closed, relisting!')
                             self.api.cancel_orders(market=market, limit_orders=True)
                         else:
-                            self.cp.yellow(f'[-] Waiting for candle close to relist: {ctt[1][0]} seconds...')
+                            self.cp.yellow(f'[-] Waiting for candle close to relist: {current_c[1]} seconds...')
                             return
 
         if self.close_method == 'increment':
@@ -513,7 +514,7 @@ class AutoTrader:
         buy_order_que = []
         sell_order_que = []
         if side == 'buy':
-            if open_buy_order_count >= (self.max_open_orders):
+            if open_buy_order_count >= self.max_open_orders:
                 print(f'Not doing anything as max orders: {self.max_open_orders} ..')
                 return
             else:
@@ -536,7 +537,7 @@ class AutoTrader:
                     buy_orders.append(qty)
 
             buy_orders = [x for x in buy_orders.__reversed__()]
-            # print(buy_orders)
+            print(buy_orders)
             # buy_orders.reverse()
             c = 1
             for x, i in enumerate(buy_orders):
@@ -594,7 +595,7 @@ class AutoTrader:
                     sell_orders.append(qty)
 
             sell_orders = [x for x in sell_orders.__reversed__()]
-            # print(sell_orders)
+            print(sell_orders)
             c = 1
             # sell_orders.
             for x, i in enumerate(sell_orders):
@@ -613,7 +614,7 @@ class AutoTrader:
                         status = self.api.sell_limit(market=market, price=next_order_price, qty=i,
                                                      reduce=reduce, cid=None)
                     except Exception as fuck:
-                        print(f'[!] Error:', fuck)
+                        print(f'[!] Error placing sell order: ', fuck)
                     else:
                         if status:
                             self.cp.purple(f"[฿]: {status['id']}")
@@ -727,6 +728,12 @@ class AutoTrader:
             return 0.0, 0.0
 
     def check_pnl(self, side, future_instrument, size, avg_open_price, cost, takerFee, double_check=False):
+
+        if size is None:
+            size = 0
+        if avg_open_price is None:
+            avg_open_price = 0
+        #print(side, future_instrument, size, avg_open_price, cost, takerFee, double_check)
         if side == 'buy':
 
             self.trailing_stop_pct = self.trailing_stop_pct * -1
@@ -737,8 +744,10 @@ class AutoTrader:
                 pnl, pnl_pct = self.pnl_calc(qty=(size * -1), sell=avg_open_price, buy=bid, side=side,
                                              cost=cost, future_instrument=future_instrument, fee=takerFee,
                                              double_check=double_check)
+            except ZeroDivisionError:
+                pass
             except Exception as err:
-                self.logger.error('DEBUG Error calculating PNL line 647: ', err)
+                print(err)
             else:
                 return pnl, pnl_pct
 
@@ -757,8 +766,11 @@ class AutoTrader:
                     self.cp.red(f'[🔻] Negative PNL {pnl} on position {future_instrument}')
                 else:
                     self.cp.green(f'[🔺] Positive PNL {pnl} on position {future_instrument}')
+            except ZeroDivisionError:
+                pass
             except Exception as err:
-                self.logger.error('DEBUG Error calculating PNL line 677: ', err)
+                self.logger.error('DEBUG', err)
+
                 pass
             else:
                 return pnl, pnl_pct
@@ -789,7 +801,12 @@ class AutoTrader:
 
                     if side is not None and not self.update_db:
                         l_size = info['freeCollateral'] * self.new_listing_percent
-                        self.api.new_order(market=listing, side=side, price=None, _type='market', size=l_size)
+                        a, b, l = self.api.rest_ticker(listing)
+                        qty = l_size / l
+                        try:
+                            self.api.new_order(market=listing, side=side, price=None, _type='market', size=qty)
+                        except Exception as err:
+                            self.cp.red(f'[!] Error attempting to long new listing: {err}.')
 
     def candle_close(self, interval):
         tm = divmod(time.time(), interval)
@@ -810,7 +827,6 @@ class AutoTrader:
         future_instrument = pos['future']
         if not self.open_positions.get(future_instrument):
             self.open_positions[future_instrument] = time.time()
-        size = 0
         if debug:
             self.cp.white_black(f'[d]: Processing {future_instrument}')
         # fut =
@@ -912,6 +928,8 @@ class AutoTrader:
         pnl_pct = 0
         tpnl = 0
         tsl = 0
+        if size is None:
+            size - 0.0
 
         # For future implantation
         # Are we a long or a short?
@@ -929,28 +947,50 @@ class AutoTrader:
         if recent_pnl is None:
             return
         if self.sar_sl:
+            def get_sar_val(market__):
+                cc = self.candle_close(self.sar_sl)[0]
+                __side, _sar = self.ta_engine.get_sar(market__, int(self.sar_sl))
+                self.sar_dict[market__] = (cc, (__side, _sar))
+                return __side, _sar
 
             self.iter = 0
             close_pos = False
-
-            _side, sar = self.ta_engine.get_sar(future_instrument, int(self.sar_sl))
-            # print(side,sar)
+            if not self.sar_dict.get(future_instrument):
+                _side, sar = get_sar_val(future_instrument)
+            else:
+                sar_vals = self.sar_dict.get(future_instrument)
+                _cc = sar_vals[0]
+                ccc = self.candle_close(self.sar_sl)[0]
+                if ccc > _cc:
+                    _side, sar = get_sar_val(future_instrument)
+                else:
+                    _side = sar_vals[1][0]
+                    sar = sar_vals[1][1]
 
             if side == 'buy':
                 if _side == 1:
                     _side = 'long'
                 else:
-                    close_pos = True
+                    ask, bid, last = self.api.get_ticker(future_instrument)
+                    current_stop = last - ((sar/100) * self.stop_loss)
+                    print(f'SAR: {sar}, Current stop: {current_stop}')
+                    if bid < current_stop:
+                        close_pos = True
             else:
                 if _side == -1:
                     _side = 'short'
                 else:
-                    close_pos = True
+                    ask, bid, last = self.api.get_ticker(future_instrument)
+                    current_stop = last + ((sar / 100) * self.stop_loss)
+                    print(f'SAR: {sar}, Current stop: {current_stop}')
+                    if ask > current_stop:
+                        close_pos = True
 
             if close_pos:
                 if self.confirm:
                     self.cp.red('[!!] Closing position as the sar is not in our favor!')
                     self.stop_loss_order(market=future_instrument, side=side, size=size * -1)
+                    self.api.cancel_orders(future_instrument)
         if pnl_pct > self._take_profit and not self.auto_stop_only:
             # confirm price via rest
 
@@ -1021,11 +1061,12 @@ class AutoTrader:
                         if ret and self.reopen:
                             # self.accumulated_pnl += pnl
                             self.cp.yellow(f'Reopening .... {side} {new_qty}')
+
                             try:
                                 ret = self.reopen_pos(market=future_instrument, side=side, qty=new_qty,
                                                       period=self.period, info=info)
                             except Exception as err:
-                                print(err)
+                                print('err', err)
                                 # if re.match(r'^(.*)margin for order(.*)$', err.__str__()):
                                 self.cp.red(f'[~] Error with order: {err.__str__()}')
                             else:
@@ -1077,7 +1118,7 @@ class AutoTrader:
                         if pos['future'] == _:
                             self.open_positions.pop(_)
                 except Exception as err:
-                    print(err)
+                    print('ERR', err)
                     pass
 
     def update_database(self):
@@ -1103,14 +1144,11 @@ class AutoTrader:
             exit()
         while True:
             # print(self.long_new_listings,self.short_new_listings)
-            if self.long_new_listings == True and self.short_new_listings == True:
-                print('Checking new listings!')
+            if self.long_new_listings:
+                print('[+] Checking new listings!')
                 # print(_iter)
                 if _iter % 100 == 0:
-                    if self.long_new_listings:
-                        new_side = 'buy'
-                    else:
-                        new_side = 'sell'
+                    new_side = 'buy'
                     info = self.api.info()
                     self.check_new_listings(info=info, side=new_side)
             for f in self.api.futures():
@@ -1188,9 +1226,9 @@ class AutoTrader:
                         _iter = 0
                         # break
                     except Exception as fuck:
-                        print(fuck)
-                        self.logger.error(f'Error with position parser: {fuck}')
-                        _iter = 0
+                        print('eror ',fuck)
+                    #    self.logger.error(f'Error with position parser: {fuck}')
+                    #    _iter = 0
                         # break
 
     def start_process(self):

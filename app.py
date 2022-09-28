@@ -89,9 +89,11 @@ class Bot:
 
 async def parse_and_exec(args):
     limit_price = 0
-    key, secret, subaccount = config_loader.load_config('conf.json')
+    key, secret, subaccount, lnl = config_loader.load_config('conf.json')
     bot = Bot()
     subaccount = args.subaccount
+    setattr(args, 'long_new_listings', lnl)
+    setattr(args, 'short_new_listings', False)
     api = FtxApi(key, secret, subaccount)
 
     if args.reset_db:
