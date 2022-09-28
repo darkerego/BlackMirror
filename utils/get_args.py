@@ -29,10 +29,6 @@ def get_args():
                                                                                                         'situations, '
                                                                                                         'where 0.1 is 10 '
                                                                                                         'percent.')
-    #gen_opts.add_argument('-lnl', '--long_new_listings', dest='long_new_listings', action='store_true',
-    #                      help='When a new future is added, immediately enter long.')
-    #gen_opts.add_argument('-snl', '--short_new_listings', dest='short_new_listings', action='store_true',
-    #                      help='When a new listing is added, immediatly enter short.')
     gen_opts.add_argument('-nlp', '--new_listing_percentage', dest='new_listing_percent', type=float, default=0.25,
                           help='Floating point percentage of equity to use on new listing orders. 1 is 100')
 
@@ -160,6 +156,8 @@ def get_args():
                                                                                                         'levels for stoploss.')
     smart_sl_tp_opts.add_argument('-ssl', '--sarsl', dest='sar_sl', type=float, choices=[15, 60, 180, 300, 900, 3600, 14400, 86400],
                                   help='Sar stop loss -- close position when the sar on this period flips.')
+    smart_sl_tp_opts.add_argument('--sfro', '--sarflip_reenter', action='store_true', help='Reopen position on flip '
+                                                                                           'after exiting after a sar stop loss')
     smart_sl_tp_opts.add_argument('-fp', '--fib_period', dest='tp_fib_res', type=float, default=60, choices=[15, 60, 180,
                                                                                                            300, 900,
                                                                                                            900, 3600,
@@ -198,12 +196,12 @@ def get_args():
                                 help='Enter positions with incremental orders instead of all at once.')
     #wallet_opts = parser.add_argument_group('Wallet & Subacct Options')
     #wallet_opts.add_argument('')
-    mm_opts = parser.add_argument_group('Market Maker Options')
+    """mm_opts = parser.add_argument_group('Market Maker Options')
     mm_opts.add_argument('-mmm', '--maker_maker_mode', dest='mm_mode', action='store_true', help='Enable market maker mode.')
     mm_opts.add_argument('-mmlm', '--mm_long_market', dest='mm_long_market', type=str, default='BTC-PERP', help='Long Market to run mm on')
     mm_opts.add_argument('-mmsm', '--mm_short_market', dest='mm_short_market', type=str, help='Short market to run mm on')
     mm_opts.add_argument('-mms', '--mm_spread', dest='mm_spread', type=float, default=0.01, help='Min spread to operate')
-    mm_opts.add_argument('-mmr', '--mm_ratio', dest='mm_ratio', type=float, default=0.5, help='Ratio of long and short')
+    mm_opts.add_argument('-mmr', '--mm_ratio', dest='mm_ratio', type=float, default=0.5, help='Ratio of long and short')"""
     api_opts = parser.add_argument_group('API Commands')
     api_opts.description = (
         'Options for interacting with the exchange. For creating orders, the syntax is -b/-s <order type> <quantity> '

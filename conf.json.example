@@ -1,8 +1,12 @@
 {"conf" :
-{"key": "_YOUR_FTX_KEY", 
-"secret": "YOUR_FTX_SECRET", 
-"subaccount":  null, 
-"market": "ETH-PERP", 
-"token": null, 
-"delay":  1},
-"anti_liq": false}
+  {
+    "key": "", # api key
+    "secret": ", # api secret
+    "subaccount":  null, # default subaccount
+    "anti_liq":true, # ignore for now
+    "market": "ETH-PERP", # default market which functions as a ping for the websocket, don't worry about this
+    "long_new_listings": true, # auto long new listings
+    "token": "1531870556:AAF4RkXimQJMr-_9pgTabeBozmNp5UwtEPU", # forget what this is
+    "delay":  1 # ignore
+  }
+}

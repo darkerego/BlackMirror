@@ -990,7 +990,7 @@ class AutoTrader:
                 if self.confirm:
                     self.cp.red('[!!] Closing position as the sar is not in our favor!')
                     self.stop_loss_order(market=future_instrument, side=side, size=size * -1)
-                    self.api.cancel_orders(future_instrument)
+                    # self.api.cancel_orders(future_instrument)
         if pnl_pct > self._take_profit and not self.auto_stop_only:
             # confirm price via rest
 
@@ -1007,7 +1007,7 @@ class AutoTrader:
                     size = size * -1
 
                 o_size = size
-                notational_qty = (o_size * last)
+                # notational_qty = (o_size * last)
                 # self.total_contacts_trade += notational_qty
                 # self.tally.increment_contracts(notational_qty)
                 new_qty = size * self.position_close_pct
@@ -1088,7 +1088,7 @@ class AutoTrader:
                 pass
 
             self.cp.yellow(
-                f'[$]PNL %: {pnl_pct}/Target %: {self._take_profit}/Target Stop: {self.stop_loss}, PNL USD: {pnl}, '
+                f'[$]PNL %: {pnl_pct}/Target TP Profit: {self._take_profit}/Target SL Loss: {self.stop_loss}, PNL USD: {pnl}, '
                 f'Target PNL USD: ${tpnl}, Target STOP USD: ${tsl}')
             if pnl_pct < self.stop_loss and not self.disable_stop_loss:
                 pnl, pnl_pct = self.check_pnl(side, future_instrument, size, avg_open_price, cost, takerFee,
@@ -1226,7 +1226,7 @@ class AutoTrader:
                         _iter = 0
                         # break
                     except Exception as fuck:
-                        print('eror ',fuck)
+                        print('error ',fuck)
                     #    self.logger.error(f'Error with position parser: {fuck}')
                     #    _iter = 0
                         # break
