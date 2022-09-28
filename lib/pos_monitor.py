@@ -49,8 +49,8 @@ class Monitor:
         self.executor = ThreadPoolExecutor(max_workers=25)
         self.lock = threading.Lock()
         self.lock2 = threading.Lock()
-        self.logger = lib.logmod.CustomLogger(log_file='debug2.log')
-        self.logger.setup_file_handler()
+        self.logger = lib.logmod.CustomLogger()
+        # self.logger.setup_file_handler()
         self.api = api
         self.auto_stop_only=conf.auto_stop_only
         self.update_db = conf.update_db

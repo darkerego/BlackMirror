@@ -20,8 +20,8 @@ class FtxWebsocketClient(WebsocketManager):
     def __init__(self, api_key=None, api_secret=None, subaccount_name=None) -> None:
 
         super().__init__()
-        self.logger = logmod.CustomLogger(log_file='debug3.log')
-        self.logger.setup_file_handler()
+        self.logger = logmod.CustomLogger()
+        # self.logger.setup_file_handler()
         self.logger = self.logger.get_logger()
         self.logger.info('Init ws')
         self._api_key = api_key  # TODO: Place your API key here
