@@ -38420,4 +38420,93 @@ INFO:root:Subscribing to {'channel': 'ticker', 'market': 'AXS-PERP'}
 INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SOL-PERP'}
 INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MATIC-PERP'}
 INFO:root:Subscribing to {'channel': 'ticker', 'market': 'YFII-PERP'}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   INFO:root:Init ws
+INFO:root:Starting autotrader at 1664406146.550501
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ICX-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664406223.6104245
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ICX-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664406344.2112763
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ICX-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664406536.0585651
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ICX-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'MATIC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'UNI-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664407381.9370143
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'UNI-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ICX-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CAKE-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664407997.6608746
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ICX-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CAKE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'UNI-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664417979.9692235
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664418000.3032885
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ALGO-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LRC-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FIDA-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'DOT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'C98-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'KSHIB-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664425029.5701277
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LRC-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CAKE-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SNX-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FTT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'UNI-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GALA-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'KAVA-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'HNT-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'EOS-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664433451.2557285
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LUNC-PERP'}
+ERROR:root:Error with parse: Please retry request
+ERROR:root:Error with parse: Please retry request
+ERROR:root:Error with parse: Please retry request
+ERROR:root:Error with parse: Please retry request
+ERROR:root:Error with parse: Please retry request
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664742252.155861
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ALGO-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1664744957.7142587
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ALGO-PERP'}
+INFO:root:_connect called

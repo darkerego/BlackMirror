@@ -1,6 +1,4 @@
 import argparse
-import configparser
-
 import configargparse
 
 
@@ -43,7 +41,7 @@ def get_args():
                                                                                     'database.')
     exchange_stats_opts.add_argument('-dump', '--dumpdb', action='store_true', dest='dumpdb', help='Dumb the database.')
 
-    arb_opts = parser.add_argument_group('OscillationArbitrage Engine Options')
+    """arb_opts = parser.add_argument_group('OscillationArbitrage Engine Options')
     arb_opts.add_argument('-O', '--osc_arb', dest='balance_arbitrage', action='store_true',
                           help='Run experimental balance arbitrage engine.')
     arb_opts.add_argument('-ls', '--long_symbols', dest='long_symbols', type=str, nargs='+', help='List of instruments '
@@ -56,7 +54,7 @@ def get_args():
                                                                                                 'position close')
     arb_opts.add_argument('-cr', '--chase_reopen', dest='chase_reopen', type=int, default=0, help='Use order chase '
                                                                                                   'for position '
-                                                                                                  'reopen')
+                                                                                                  'reopen')"""
     strategy_opts = parser.add_argument_group('EXPERIMENTAL Trade Strategy Options')
     strategy_opts.add_argument('-S', '--strategy', dest='use_strategy', action='store_true', default=False,
                                help='Use the TA based trade strategy engine.')

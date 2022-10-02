@@ -30,7 +30,6 @@ import logging
 import threading
 import time
 
-
 from lib.auto_trader import tally
 from lib.exceptions import RestartError
 from lib.pos_monitor import Monitor
@@ -55,22 +54,14 @@ logging.basicConfig()
 ws_signals = WebSocketSignals()
 
 
-
-
-
-
 class Bot:
     lock = threading.Lock()
     restarts = 0
 
-
-
-
-
     async def monitor(self, api, args={}):
         while True:
             print('Starting mon')
-            with Monitor(api, conf=args) as ftx:
+            with Monitor(api, args=args) as ftx:
                 try:
                     cp.navy('[🌡] Monitoring...')
                     # await ftx.receiver()
@@ -104,7 +95,7 @@ async def parse_and_exec(args):
         if args.dumpdb:
             print('Dump db .. ')
             sql = SQLLiteConnection()
-            futs  =sql.get_list('futures')
+            futs = sql.get_list('futures')
             for _ in futs:
                 print(_)
             exit()
@@ -116,11 +107,11 @@ async def parse_and_exec(args):
         if args.monitor and not args.auto_trader:
             cp.navy('[🌡] Monitoring only mode.')
 
-        if args.balance_arbitrage:
-            cp.navy('WARNING: EXPERIMENTAL !! -- Loading balance arbitrage engine...')
+        #if args.balance_arbitrage:
+        #    cp.navy('WARNING: EXPERIMENTAL !! -- Loading balance arbitrage engine...')
             # bot.monitor(key=key, secret=secret, subaccount_name=args.subaccount, args=args)
-        if args.use_strategy:
-            cp.navy(f'WARNING: EXPERIMENTAL !! -- Loading TA Strategy Trader ... Strategy: {args.strategy}')
+        #if args.use_strategy:
+        #    cp.navy(f'WARNING: EXPERIMENTAL !! -- Loading TA Strategy Trader ... Strategy: {args.strategy}')
             # bot.monitor(key=key, secret=secret, subaccount_name=args.subaccount, args=args)
 
         if args.enable_ws:
@@ -140,13 +131,12 @@ async def parse_and_exec(args):
 
         await bot.monitor(api, args=args)
 
-
     if args.show_portfolio or args.buy or args.sell or args.cancel or args.open_orders or args.configure_anti_liq \
             or args.trailing_stop_buy or args.trailing_stop_sell or args.set_leverage:
 
-        #api = bot.api_connection(key=key, secret=secret, subaccount=args.subaccount)
-        #rest = api[0]
-        #ws = api[1]
+        # api = bot.api_connection(key=key, secret=secret, subaccount=args.subaccount)
+        # rest = api[0]
+        # ws = api[1]
 
         if args.set_leverage:
             cp.yellow('Setting leverage ... ')
@@ -155,7 +145,7 @@ async def parse_and_exec(args):
             cp.yellow('[~] Configuring AntiLiq .. ')
             ret = api.info().get('freeCollateral')
             if ret > 0:
-                #anti_liq.transfer()
+                # anti_liq.transfer()
 
                 time.sleep(5)
                 try:
@@ -169,7 +159,6 @@ async def parse_and_exec(args):
                         cp.red('Ensure you have permission to transfer and create subaccounts and try again!')
                     else:
                         pass
-
 
         if args.show_portfolio:
             balances = api.parse_balances()
@@ -215,7 +204,7 @@ async def parse_and_exec(args):
                             cp.yellow(f'[-] Chasing limit order up the books ... Max Chase: {args.limit_chase} '
                                       f'Revert to market: {args.chase_failsafe}')
                             ret = api.chase_limit_order(market=o_market, oid=ret['id'], max_chase=args.limit_chase,
-                                                  failsafe_market=args.chase_failsafe)
+                                                        failsafe_market=args.chase_failsafe)
                             cp.purple(f'[~] {ret}')
         if args.sell:
             for _ in range(args.repeat_action):
@@ -244,13 +233,14 @@ async def parse_and_exec(args):
                                 print(ask, bid, last)
                                 limit_price = ask
                                 cp.yellow(f'[!] No price given, using current ask: {ask}')
-                            ret = api.sell_limit(market=o_market, qty=o_size, price=limit_price, post=post, reduce=False,
+                            ret = api.sell_limit(market=o_market, qty=o_size, price=limit_price, post=post,
+                                                 reduce=False,
                                                  cid=None)
                         if args.limit_chase > 0:
                             cp.yellow(f'[-] Chasing limit order up the books ... Max Chase: {args.limit_chase} '
                                       f'Revert to market: {args.chase_failsafe}')
                             ret = api.chase_limit_order(market=o_market, oid=ret['id'], max_chase=args.limit_chase,
-                                                  failsafe_market=args.chase_failsafe)
+                                                        failsafe_market=args.chase_failsafe)
                             cp.purple(f'[~] {ret}')
                         if ret:
                             cp.purple(f'[~] Status: {ret}')
@@ -270,11 +260,11 @@ async def main():
     if args.confirm and args.auto_trader:
         args.monitor_only = False
         for _ in range(0, 3):
-            cp.random_color(f'[⚡! TOASTER TUB DISCLAIMER: You have specified `--confirm` which means that THIS BOT WILL '
-                            f'interact with the FTX api, performing whatever actions were requested by *you*.]',  static_set='bright')
+            cp.random_color(
+                f'[⚡! TOASTER TUB DISCLAIMER: You have specified `--confirm` which means that THIS BOT WILL '
+                f'interact with the FTX api, performing whatever actions were requested by *you*.]',
+                static_set='bright')
             time.sleep(0.125)
-
-
 
     await parse_and_exec(args)
 

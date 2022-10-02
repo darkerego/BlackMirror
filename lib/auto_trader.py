@@ -32,8 +32,8 @@ class AutoTrader:
     Automatic Trade Engine. Automatically sets stop losses and take profit orders. Trailing stops are used
     unless otherwise specified.
     """
-
-    def __init__(self, api, stop_loss, _take_profit, use_ts=True, ts_pct=0.05, reopen=False, period=300, ot='limit',
+    """
+    stop_loss, _take_profit, use_ts=True, ts_pct=0.05, reopen=False, period=300, ot='limit',
                  max_open_orders=None, position_step_size=0.02, disable_stop_loss=False, show_tickers=True,
                  close_method='market', relist_iterations=100, hedge_mode=False, hedge_ratio=0.5,
                  max_collateral=0.5, position_close_pct=1, chase_close=0, chase_reopen=0, update_db=False,
@@ -41,28 +41,32 @@ class AutoTrader:
                  min_score=0.0, check_before_reopen=False, mitigate_fees=False, confirm=False, tp_fib_enable=False,
                  tp_fib_res=300, sar_sl=0, auto_stop_only=False, mm_mode=False, mm_long_market=None,
                  mm_short_market=None, mm_spread=0.0,
-                 long_new_listings=False, short_new_listings=False, new_listing_percent=0, incremental_enter=False):
+                 long_new_listings=False, short_new_listings=False, new_listing_percent=0, incremental_enter=False
+    """
+
+    def __init__(self, api, args):
         # self.trade_logger = TradeLog()
+        self.args = args
         self.listings_checked = []
-        self.long_new_listings = long_new_listings
-        self.short_new_listings = short_new_listings
-        self.new_listing_percent = new_listing_percent
+        self.long_new_listings = self.args.long_new_listings
+        self.short_new_listings = self.args.short_new_listings
+        self.new_listing_percent = self.args.new_listing_percent
         self.position_fib_levels = None
         self.cp = NewColorPrint()
         self.up_markets = {}
         self.down_markets = {}
         self.trend = 'N/A'
-        self.auto_stop_only = auto_stop_only
-        self.incrmental_enter = incremental_enter
-        self.show_tickers = show_tickers
-        self.stop_loss = stop_loss
-        self._take_profit = _take_profit
-        self.tp_fib_enable = tp_fib_enable
-        self.tp_fib_res = tp_fib_res
-        self.use_ts = use_ts
-        self.trailing_stop_pct = ts_pct
+        self.auto_stop_only = self.args.auto_stop_only
+        self.incrmental_enter = self.args.incremental_enter
+        self.show_tickers = self.args.show_tickers
+        self.stop_loss = self.args.stop_loss_pct
+        self._take_profit = self.args.take_profit_pct
+        self.tp_fib_enable = self.args.tp_fib_enable
+        self.tp_fib_res = self.args.tp_fib_res
+        #self.use_ts = self.args.use_ts
+        self.trailing_stop_pct = self.args.ts_offset
         self.api = api
-        self.confirm = confirm
+        self.confirm = self.args.confirm
         self.sql = sql_lib.SQLLiteConnection('blackmirror.sqlite')
         self.logger = logmod.CustomLogger(log_file='autotrader.log')
         self.logger.setup_file_handler()
@@ -72,7 +76,7 @@ class AutoTrader:
         self.anti_liq_api = None
         self.fib_api = None
         self.tally = tally
-        self.sar_sl = sar_sl
+        self.sar_sl = self.args.sar_sl
         self.ta_engine = TheSARsAreAllAligning(debug=False)
         self.accumulated_pnl = 0
         self.position_sars = []
@@ -80,44 +84,44 @@ class AutoTrader:
         self.sar_dict = {}
         self.lock = threading.Lock()
         self.lock2 = threading.Lock()
-        self.position_close_pct = position_close_pct
-        self.chase_close = chase_close
-        self.chase_reopen = chase_reopen
-        self.min_score = min_score
-        self.check_before_reopen = check_before_reopen
-        self.mitigate_fees = mitigate_fees
+        self.position_close_pct = self.args.position_close_pct
+        #self.chase_close = self.args.chase_close
+        #self.chase_reopen = self.args.chase_reopen
+        self.min_score = self.args.min_score
+        self.check_before_reopen = self.args.check_before_reopen
+        self.mitigate_fees = self.args.mitigate_fees
         self.total_contacts_trade = 0.0
-        self.reopen = reopen
-        self.close_method = close_method
-        self.period = period
-        self.order_type = ot
+        self.reopen = self.args.reopen_method
+        self.close_method = self.args.close_method
+        self.period = self.args.increment_period
+        self.order_type = self.args.order_type
         self.agg = FtxAggratavor()
         self.future_stats = {}
         self.alert_map = []
         self.alert_up_levels = [0.25, 2.5, 5, 10, 12.5, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100]
         self.alert_down_levels = [-0.25, -2.5, -5, -10, -12.5, -15, -20, -25, -30, -40, -50 - 60, -70, -80, -90, -100]
 
-        self.max_open_orders = max_open_orders
-        self.position_step_size = position_step_size
-        self.disable_stop_loss = disable_stop_loss
-        self.relist_iterations = relist_iterations
+        self.max_open_orders = self.args.num_open_orders
+        self.position_step_size = self.args.position_step_size
+        self.disable_stop_loss = self.args.disable_stop_loss
+        self.relist_iterations = self.args.relist_iterations
         self.iter = 0
-        self.hedge_mode = hedge_mode
-        self.hedge_ratio = hedge_ratio
-        self.anti_liq = anti_liq
-        self.max_collateral = max_collateral
+        self.hedge_mode = self.args.hedge_mode
+        self.hedge_ratio = self.args.hedge_ratio
+        self.anti_liq = self.args.anti_liq
+        self.max_collateral = self.args.max_collateral
         self.delta_weight = None
         self.start_time = time.time()
         self.balance_start = 0.0
 
         self.relist_iter = {}
-        self.update_db = update_db
+        self.update_db = self.args.update_db
         self.open_positions = {}
         self.ta_scores = scores
-        self.mm_mode = mm_mode
-        self.mm_long_market = mm_long_market
-        self.mm_short_market = mm_short_market
-        self.mm_spread = mm_spread
+        self.mm_mode = self.args.mm_mode
+        self.mm_long_market = self.args.mm_long_market
+        self.mm_short_market = self.args.mm_short_market
+        self.mm_spread = self.args.mm_spread
         self.candle_time_tuples = {}
         #self.lock = threading.Lock()
         if self.reopen:
@@ -299,6 +303,7 @@ class AutoTrader:
         if side == 'buy':
             # market sell # market, qty, reduce, ioc, cid
             self.cp.red('[!] Stop hit!')
+            self.cancel_limit_side(market, side)
             ret = self.api.sell_market(market=market, qty=size, reduce=True, ioc=False, cid=None)
 
             if ret.get('id'):
@@ -781,7 +786,7 @@ class AutoTrader:
         self.sql.append(_sql, 'orders')
 
     def check_new_listings(self, info, side=None):
-        print('Enumerating new listings .. ')
+        print('[~] Enumerating new listings .. ')
         fut = self.api.futures()
         current_listings = self.sql.get_list(table='listings')
         # print(current_listings)
@@ -801,12 +806,14 @@ class AutoTrader:
 
                     if side is not None and not self.update_db:
                         l_size = info['freeCollateral'] * self.new_listing_percent
-                        a, b, l = self.api.rest_ticker(listing)
-                        qty = l_size / l
-                        try:
-                            self.api.new_order(market=listing, side=side, price=None, _type='market', size=qty)
-                        except Exception as err:
-                            self.cp.red(f'[!] Error attempting to long new listing: {err}.')
+                        if l_size >0:
+                            a, b, l = self.api.rest_ticker(listing)
+                            qty = l_size / l
+
+                            try:
+                                self.api.new_order(market=listing, side=side, price=None, _type='market', size=qty)
+                            except Exception as err:
+                                self.cp.red(f'[!] Error attempting to long new listing: {err}.')
 
     def candle_close(self, interval):
         tm = divmod(time.time(), interval)
@@ -953,19 +960,32 @@ class AutoTrader:
                 self.sar_dict[market__] = (cc, (__side, _sar))
                 return __side, _sar
 
+            def sar_get_wrap(market__):
+                for i in range(3):
+                    try:
+                        sar_vals = self.sar_dict.get(market__)
+                    except RuntimeError:
+                        time.sleep(0.25)
+                    else:
+                        return sar_vals
+                return False
+
             self.iter = 0
             close_pos = False
             if not self.sar_dict.get(future_instrument):
                 _side, sar = get_sar_val(future_instrument)
             else:
-                sar_vals = self.sar_dict.get(future_instrument)
-                _cc = sar_vals[0]
-                ccc = self.candle_close(self.sar_sl)[0]
-                if ccc > _cc:
-                    _side, sar = get_sar_val(future_instrument)
+                sar_vals = sar_get_wrap(future_instrument)
+                if sar_vals:
+                    _cc = sar_vals[0]
+                    ccc = self.candle_close(self.sar_sl)[0]
+                    if ccc > _cc:
+                        _side, sar = get_sar_val(future_instrument)
+                    else:
+                        _side = sar_vals[1][0]
+                        sar = sar_vals[1][1]
                 else:
-                    _side = sar_vals[1][0]
-                    sar = sar_vals[1][1]
+                    self.cp.red('[!] Error: could not get sar values ..')
 
             if side == 'buy':
                 if _side == 1:
@@ -973,7 +993,7 @@ class AutoTrader:
                 else:
                     ask, bid, last = self.api.get_ticker(future_instrument)
                     current_stop = last - ((sar/100) * self.stop_loss)
-                    print(f'SAR: {sar}, Current stop: {current_stop}')
+                    self.cp.red(f'[SAR]: {sar}, Current stop: {current_stop}')
                     if bid < current_stop:
                         close_pos = True
             else:
@@ -982,7 +1002,7 @@ class AutoTrader:
                 else:
                     ask, bid, last = self.api.get_ticker(future_instrument)
                     current_stop = last + ((sar / 100) * self.stop_loss)
-                    print(f'SAR: {sar}, Current stop: {current_stop}')
+                    self.cp.red(f'[SAR]: {sar}, Current stop: {current_stop}')
                     if ask > current_stop:
                         close_pos = True
 
@@ -1006,7 +1026,7 @@ class AutoTrader:
                 if float(size) < 0.0:
                     size = size * -1
 
-                o_size = size
+                # o_size = size
                 # notational_qty = (o_size * last)
                 # self.total_contacts_trade += notational_qty
                 # self.tally.increment_contracts(notational_qty)
@@ -1236,7 +1256,7 @@ class AutoTrader:
             print('Acquiring lock in autotrader')
             self.lock.acquire()
         else:
-            print('Could not aquire loclk!')
+            print('Could not aquire lock!')
             return
         try:
             self.start_process_()

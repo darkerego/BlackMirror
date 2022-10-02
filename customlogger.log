@@ -1,0 +1,90 @@
+2022-09-28 19:02:26,517 | INFO | Init ws
+2022-09-28 19:02:26,550 | INFO | Starting autotrader at 1664406146.550501
+2022-09-28 19:02:40,586 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ICX-PERP'}
+2022-09-28 19:02:40,586 | INFO | _connect called
+2022-09-28 19:03:43,574 | INFO | Init ws
+2022-09-28 19:03:43,610 | INFO | Starting autotrader at 1664406223.6104245
+2022-09-28 19:03:56,274 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ICX-PERP'}
+2022-09-28 19:03:56,275 | INFO | _connect called
+2022-09-28 19:05:44,178 | INFO | Init ws
+2022-09-28 19:05:44,211 | INFO | Starting autotrader at 1664406344.2112763
+2022-09-28 19:06:04,159 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ICX-PERP'}
+2022-09-28 19:06:04,159 | INFO | _connect called
+2022-09-28 19:08:56,026 | INFO | Init ws
+2022-09-28 19:08:56,058 | INFO | Starting autotrader at 1664406536.0585651
+2022-09-28 19:09:12,267 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ICX-PERP'}
+2022-09-28 19:09:12,268 | INFO | _connect called
+2022-09-28 19:18:02,399 | INFO | Subscribing to {'channel': 'ticker', 'market': 'MATIC-PERP'}
+2022-09-28 19:20:32,592 | INFO | Subscribing to {'channel': 'ticker', 'market': 'UNI-PERP'}
+2022-09-28 19:23:01,904 | INFO | Init ws
+2022-09-28 19:23:01,937 | INFO | Starting autotrader at 1664407381.9370143
+2022-09-28 19:23:05,080 | INFO | Subscribing to {'channel': 'ticker', 'market': 'UNI-PERP'}
+2022-09-28 19:23:05,081 | INFO | _connect called
+2022-09-28 19:26:18,787 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ICX-PERP'}
+2022-09-28 19:30:59,932 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CAKE-PERP'}
+2022-09-28 19:33:17,628 | INFO | Init ws
+2022-09-28 19:33:17,660 | INFO | Starting autotrader at 1664407997.6608746
+2022-09-28 19:33:20,796 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ICX-PERP'}
+2022-09-28 19:33:20,796 | INFO | _connect called
+2022-09-28 19:33:24,652 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CAKE-PERP'}
+2022-09-28 19:33:26,751 | INFO | Subscribing to {'channel': 'ticker', 'market': 'UNI-PERP'}
+2022-09-28 22:19:39,933 | INFO | Init ws
+2022-09-28 22:19:39,969 | INFO | Starting autotrader at 1664417979.9692235
+2022-09-28 22:20:00,271 | INFO | Init ws
+2022-09-28 22:20:00,303 | INFO | Starting autotrader at 1664418000.3032885
+2022-09-28 22:20:09,547 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ALGO-PERP'}
+2022-09-28 22:20:09,548 | INFO | _connect called
+2022-09-28 22:20:16,217 | INFO | Subscribing to {'channel': 'ticker', 'market': 'LRC-PERP'}
+2022-09-28 22:46:11,871 | INFO | Subscribing to {'channel': 'ticker', 'market': 'FIDA-PERP'}
+2022-09-28 22:47:57,812 | INFO | Subscribing to {'channel': 'ticker', 'market': 'DOT-PERP'}
+2022-09-28 22:49:02,050 | INFO | Subscribing to {'channel': 'ticker', 'market': 'C98-PERP'}
+2022-09-28 22:54:19,451 | INFO | Subscribing to {'channel': 'ticker', 'market': 'KSHIB-PERP'}
+2022-09-29 00:17:09,537 | INFO | Init ws
+2022-09-29 00:17:09,570 | INFO | Starting autotrader at 1664425029.5701277
+2022-09-29 00:17:12,457 | INFO | Subscribing to {'channel': 'ticker', 'market': 'LRC-PERP'}
+2022-09-29 00:17:12,457 | INFO | _connect called
+2022-09-29 00:19:33,165 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CAKE-PERP'}
+2022-09-29 00:19:36,671 | INFO | Subscribing to {'channel': 'ticker', 'market': 'SNX-PERP'}
+2022-09-29 00:19:39,219 | INFO | Subscribing to {'channel': 'ticker', 'market': 'FTT-PERP'}
+2022-09-29 00:19:50,281 | INFO | Subscribing to {'channel': 'ticker', 'market': 'UNI-PERP'}
+2022-09-29 00:22:19,033 | INFO | Subscribing to {'channel': 'ticker', 'market': 'GALA-PERP'}
+2022-09-29 00:23:28,419 | INFO | Subscribing to {'channel': 'ticker', 'market': 'KAVA-PERP'}
+2022-09-29 00:25:23,326 | INFO | Subscribing to {'channel': 'ticker', 'market': 'HNT-PERP'}
+2022-09-29 00:29:56,069 | INFO | Subscribing to {'channel': 'ticker', 'market': 'EOS-PERP'}
+2022-09-29 02:27:10,882 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+2022-09-29 02:37:31,222 | INFO | Init ws
+2022-09-29 02:37:31,255 | INFO | Starting autotrader at 1664433451.2557285
+2022-09-29 02:41:59,819 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ETHW-PERP'}
+2022-09-29 02:41:59,820 | INFO | _connect called
+2022-09-29 03:42:36,062 | INFO | Subscribing to {'channel': 'ticker', 'market': 'LUNC-PERP'}
+2022-09-29 07:55:02,578 | ERROR | Error with parse: Please retry request
+2022-09-29 09:00:45,526 | ERROR | Error with parse: Please retry request
+2022-09-29 10:00:04,032 | ERROR | Error with parse: Please retry request
+2022-09-29 10:00:04,748 | ERROR | Error with parse: Please retry request
+2022-09-29 10:00:05,632 | ERROR | Error with parse: Please retry request
+2022-10-02 16:17:33,888 | INFO | Init ws
+2022-10-02 16:17:44,852 | INFO | Init ws
+2022-10-02 16:18:29,781 | INFO | Init ws
+2022-10-02 16:18:41,061 | INFO | Init ws
+2022-10-02 16:19:16,069 | INFO | Init ws
+2022-10-02 16:19:30,102 | INFO | Init ws
+2022-10-02 16:21:21,561 | INFO | Init ws
+2022-10-02 16:21:56,490 | INFO | Init ws
+2022-10-02 16:22:08,913 | INFO | Init ws
+2022-10-02 16:22:20,878 | INFO | Init ws
+2022-10-02 16:22:38,574 | INFO | Init ws
+2022-10-02 16:23:11,250 | INFO | Init ws
+2022-10-02 16:23:31,192 | INFO | Init ws
+2022-10-02 16:23:51,143 | INFO | Init ws
+2022-10-02 16:24:12,123 | INFO | Init ws
+2022-10-02 16:24:12,155 | INFO | Starting autotrader at 1664742252.155861
+2022-10-02 16:24:15,505 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ALGO-PERP'}
+2022-10-02 16:24:15,506 | INFO | _connect called
+2022-10-02 17:08:29,135 | INFO | Init ws
+2022-10-02 17:08:42,928 | INFO | Init ws
+2022-10-02 17:08:53,790 | INFO | Init ws
+2022-10-02 17:08:57,500 | INFO | Init ws
+2022-10-02 17:09:17,676 | INFO | Init ws
+2022-10-02 17:09:17,714 | INFO | Starting autotrader at 1664744957.7142587
+2022-10-02 17:09:20,673 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ALGO-PERP'}
+2022-10-02 17:09:20,673 | INFO | _connect called
