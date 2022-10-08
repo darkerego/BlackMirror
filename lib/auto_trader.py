@@ -77,6 +77,7 @@ class AutoTrader:
         self.fib_api = None
         self.tally = tally
         self.sar_sl = self.args.sar_sl
+        self.relist_period = args.relist_period
         self.ta_engine = TheSARsAreAllAligning(debug=False)
         self.accumulated_pnl = 0
         self.position_sars = []
@@ -97,6 +98,7 @@ class AutoTrader:
         self.order_type = self.args.order_type
         self.agg = FtxAggratavor()
         self.future_stats = {}
+        self.position_times = {}
         self.alert_map = []
         self.alert_up_levels = [0.25, 2.5, 5, 10, 12.5, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100]
         self.alert_down_levels = [-0.25, -2.5, -5, -10, -12.5, -15, -20, -25, -30, -40, -50 - 60, -70, -80, -90, -100]
@@ -303,7 +305,7 @@ class AutoTrader:
         if side == 'buy':
             # market sell # market, qty, reduce, ioc, cid
             self.cp.red('[!] Stop hit!')
-            self.cancel_limit_side(market, side)
+            self.cancel_limit_side(side, market)
             ret = self.api.sell_market(market=market, qty=size, reduce=True, ioc=False, cid=None)
 
             if ret.get('id'):
@@ -480,6 +482,34 @@ class AutoTrader:
                 o_side = o.get('side')
                 if o_side == side:
                     self.api.cancel_order('id')
+
+
+    def relist_orders(self, market, side, reduce=False):
+        """
+        {'id': 187482882707, 'clientId': None, 'market': 'EGLD-PERP', 'type': 'limit', 'side': 'buy', 'price': 52.33,
+        'size': 0.29, 'status': 'open', 'filledSize': 0.0, 'remainingSize': 0.29, 'reduceOnly': False,
+        'liquidation': False, 'avgFillPrice': None, 'postOnly': False, 'ioc': False, 'createdAt':
+        '2022-10-03T20:31:15.849650+00:00', 'future': 'EGLD-PERP'}
+        """
+
+        open_order_count = 0
+        current_orders_qty = 0.0
+
+        self.cp.yellow(f'[~] Calculating and relisting for market: {market}, side: {side}, reduce: {reduce} .... ')
+        open_order_count = self.api.rest_get_open_orders(market=market)
+
+        for o in open_order_count:
+            o_side = o.get('side')
+            o_reduce = o.get('reduceOnly')
+            o_market = o.get('market')
+            if o_side == side:
+                if o_market == market:
+                    if o_reduce == reduce:
+                        open_order_count += 1
+                        current_orders_qty += o.get('size')
+        self.cp.purple(f'[i] Relisting (current_buy_orders_qty) orders ...')
+        self.cancel_limit_side(side=side, market=market)
+        return self.increment_orders(market=market, side=side, qty=current_orders_qty, reduce=reduce)
 
     def increment_orders(self, market, side, qty, period, reduce=False, text=None):
         current_size = 0
@@ -799,19 +829,23 @@ class AutoTrader:
                 if self.listings_checked.__contains__(listing):
                     pass
                 else:
-                    self.sql.append(value=listing,
+                    if 'BTC-MOVE' in listing:
+                        pass
+                    else:
+                        self.sql.append(value=listing,
                                     table='listings')  # TODO: Keep track of index price data so that we can automatically
                     # trade trending assets!
+
                     self.cp.alert(f'[🎲🎲🎲] NEW LISTING DETECTED: {listing}, lets roll those fuckin\' dice! WOOT!')
 
                     if side is not None and not self.update_db:
-                        l_size = info['freeCollateral'] * self.new_listing_percent
-                        if l_size >0:
+                        l_size = float(info['freeCollateral']) * float(self.new_listing_percent)
+                        if l_size > 0:
                             a, b, l = self.api.rest_ticker(listing)
-                            qty = l_size / l
+                            qty = float(l_size) / float(l)
 
                             try:
-                                self.api.new_order(market=listing, side=side, price=None, _type='market', size=qty)
+                                self.api.buy_market(market=listing, qty=qty)
                             except Exception as err:
                                 self.cp.red(f'[!] Error attempting to long new listing: {err}.')
 
@@ -937,6 +971,9 @@ class AutoTrader:
         tsl = 0
         if size is None:
             size - 0.0
+
+
+
 
         # For future implantation
         # Are we a long or a short?

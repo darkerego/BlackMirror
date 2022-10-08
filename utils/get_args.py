@@ -145,6 +145,11 @@ def get_args():
                                      'rebuilding position using '
                                      'increment mode. See documentation.'
                                 ,default=None)
+    auto_stop_opts.add_argument('-ri', '--relist_period', dest='relist_period',
+                                choices=[15, 60, 300, 900, 3600, 14400, 86400],
+                                type=int,
+                                help='Period to relist open orders.'
+                                , default=300)
     smart_sl_tp_opts = parser.add_argument_group('Smart Stoploss/Take Profit Options')
 
     smart_sl_tp_opts.add_argument('-ftp', '--fibtp', dest='tp_fib_enable', action='store_true', help='Enable fib retrace '

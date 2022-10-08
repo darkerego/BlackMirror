@@ -88,3 +88,82 @@
 2022-10-02 17:09:17,714 | INFO | Starting autotrader at 1664744957.7142587
 2022-10-02 17:09:20,673 | INFO | Subscribing to {'channel': 'ticker', 'market': 'ALGO-PERP'}
 2022-10-02 17:09:20,673 | INFO | _connect called
+2022-10-02 17:38:48,685 | INFO | Subscribing to {'channel': 'ticker', 'market': 'LUNC-PERP'}
+2022-10-03 16:35:21,880 | INFO | Init ws
+2022-10-07 01:22:51,568 | INFO | Init ws
+2022-10-07 01:22:51,606 | INFO | Starting autotrader at 1665120171.606124
+2022-10-07 01:23:38,121 | INFO | Init ws
+2022-10-07 01:23:38,153 | INFO | Starting autotrader at 1665120218.1537566
+2022-10-07 01:41:47,565 | INFO | Init ws
+2022-10-07 01:41:47,599 | INFO | Starting autotrader at 1665121307.5997384
+2022-10-07 01:41:51,367 | INFO | Subscribing to {'channel': 'ticker', 'market': 'FTXDXY-PERP'}
+2022-10-07 01:41:51,367 | INFO | _connect called
+2022-10-07 01:41:55,897 | INFO | Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+2022-10-07 01:42:42,707 | INFO | Init ws
+2022-10-07 01:42:42,740 | INFO | Starting autotrader at 1665121362.740232
+2022-10-07 01:42:46,806 | INFO | Subscribing to {'channel': 'ticker', 'market': 'FTXDXY-PERP'}
+2022-10-07 01:42:46,806 | INFO | _connect called
+2022-10-07 01:42:50,997 | INFO | Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+2022-10-07 01:44:52,464 | INFO | Init ws
+2022-10-07 01:44:52,497 | INFO | Starting autotrader at 1665121492.4977343
+2022-10-07 01:44:56,505 | INFO | Subscribing to {'channel': 'ticker', 'market': 'FTXDXY-PERP'}
+2022-10-07 01:44:56,506 | INFO | _connect called
+2022-10-07 01:45:00,191 | INFO | Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+2022-10-07 01:46:00,230 | INFO | Init ws
+2022-10-07 01:46:00,262 | INFO | Starting autotrader at 1665121560.262607
+2022-10-07 01:46:04,145 | INFO | Subscribing to {'channel': 'ticker', 'market': 'FTXDXY-PERP'}
+2022-10-07 01:46:04,145 | INFO | _connect called
+2022-10-07 01:46:12,089 | INFO | Init ws
+2022-10-07 01:46:12,121 | INFO | Starting autotrader at 1665121572.1218488
+2022-10-07 01:46:15,833 | INFO | Subscribing to {'channel': 'ticker', 'market': 'FTXDXY-PERP'}
+2022-10-07 01:46:15,833 | INFO | _connect called
+2022-10-07 01:46:19,540 | INFO | Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+2022-10-07 01:59:16,819 | INFO | Init ws
+2022-10-07 01:59:16,851 | INFO | Starting autotrader at 1665122356.851367
+2022-10-07 01:59:19,602 | INFO | Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+2022-10-07 01:59:19,603 | INFO | _connect called
+2022-10-07 14:31:51,010 | INFO | Init ws
+2022-10-07 14:31:51,043 | INFO | Starting autotrader at 1665167511.0438023
+2022-10-07 14:32:12,828 | INFO | Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+2022-10-07 14:32:12,829 | INFO | _connect called
+2022-10-07 14:38:44,797 | INFO | Subscribing to {'channel': 'ticker', 'market': '1INCH-PERP'}
+2022-10-07 16:37:37,783 | INFO | Subscribing to {'channel': 'ticker', 'market': 'LINA-PERP'}
+2022-10-07 18:46:21,954 | INFO | Subscribing to {'channel': 'ticker', 'market': 'FTXDXY-PERP'}
+2022-10-07 19:42:53,776 | INFO | _connect called
+2022-10-07 19:42:58,791 | INFO | _connect called
+2022-10-07 19:43:03,797 | INFO | _connect called
+2022-10-07 19:43:08,804 | INFO | _connect called
+2022-10-07 19:43:13,829 | INFO | _connect called
+2022-10-07 19:43:18,837 | INFO | _connect called
+2022-10-07 19:43:23,848 | INFO | _connect called
+2022-10-07 19:44:24,774 | INFO | _connect called
+2022-10-07 19:45:26,222 | INFO | _connect called
+2022-10-07 19:46:27,517 | INFO | _connect called
+2022-10-07 19:47:28,808 | INFO | _connect called
+2022-10-07 19:48:30,092 | INFO | _connect called
+2022-10-07 19:49:31,530 | INFO | _connect called
+2022-10-07 19:50:32,811 | INFO | _connect called
+2022-10-07 19:51:34,236 | INFO | _connect called
+2022-10-07 19:52:36,170 | INFO | _connect called
+2022-10-07 19:53:36,998 | INFO | _connect called
+2022-10-07 19:54:38,285 | INFO | _connect called
+2022-10-07 19:55:39,545 | INFO | _connect called
+2022-10-07 19:56:40,830 | INFO | _connect called
+2022-10-07 19:57:42,089 | INFO | _connect called
+2022-10-07 19:58:42,510 | INFO | Subscribing to {'channel': 'ticker', 'market': 'REEF-PERP'}
+2022-10-07 20:06:46,485 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-10-07 20:20:23,560 | INFO | Init ws
+2022-10-07 20:20:23,593 | INFO | Starting autotrader at 1665188423.5933127
+2022-10-07 20:20:27,927 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-10-07 20:20:27,935 | INFO | _connect called
+2022-10-07 20:20:29,991 | INFO | Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+2022-10-07 20:20:56,683 | INFO | Init ws
+2022-10-07 20:20:56,716 | INFO | Starting autotrader at 1665188456.7166636
+2022-10-07 20:21:02,342 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-10-07 20:21:02,342 | INFO | _connect called
+2022-10-07 20:21:04,407 | INFO | Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+2022-10-07 20:21:20,487 | INFO | Init ws
+2022-10-07 20:21:20,520 | INFO | Starting autotrader at 1665188480.520215
+2022-10-07 20:21:25,495 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-10-07 20:21:25,496 | INFO | _connect called
+2022-10-07 20:21:27,551 | INFO | Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}

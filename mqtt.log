@@ -38510,3 +38510,81 @@ INFO:root:Init ws
 INFO:root:Starting autotrader at 1664744957.7142587
 INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ALGO-PERP'}
 INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LUNC-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1665120171.606124
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1665120218.1537566
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1665121307.5997384
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FTXDXY-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1665121362.740232
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FTXDXY-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1665121492.4977343
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FTXDXY-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1665121560.262607
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FTXDXY-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1665121572.1218488
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FTXDXY-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1665122356.851367
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1665167511.0438023
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': '1INCH-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LINA-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'FTXDXY-PERP'}
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'REEF-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1665188423.5933127
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1665188456.7166636
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1665188480.520215
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
