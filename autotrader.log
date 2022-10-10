@@ -76487,3 +76487,29 @@
 2022-10-07 20:21:25,496 | INFO | _connect called
 2022-10-07 20:21:27,551 | INFO | Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
 2022-10-07 20:21:27,551 | INFO | Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+2022-10-07 20:24:49,684 | INFO | Starting autotrader at 1665188689.6844814
+2022-10-07 20:24:49,684 | INFO | Starting autotrader at 1665188689.6844814
+2022-10-07 20:24:52,800 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-10-07 20:24:52,800 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-10-07 20:24:52,800 | INFO | _connect called
+2022-10-07 20:24:52,800 | INFO | _connect called
+2022-10-07 20:24:54,853 | INFO | Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+2022-10-07 20:24:54,853 | INFO | Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+2022-10-07 20:25:28,660 | INFO | Starting autotrader at 1665188728.6600544
+2022-10-07 20:25:28,660 | INFO | Starting autotrader at 1665188728.6600544
+2022-10-07 20:25:32,436 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-10-07 20:25:32,436 | INFO | Subscribing to {'channel': 'ticker', 'market': 'CEL-PERP'}
+2022-10-07 20:25:32,440 | INFO | _connect called
+2022-10-07 20:25:32,440 | INFO | _connect called
+2022-10-07 20:25:36,020 | INFO | Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+2022-10-07 20:25:36,020 | INFO | Subscribing to {'channel': 'ticker', 'market': 'GMT-PERP'}
+2022-10-07 20:33:40,708 | ERROR | Error with parse: An unexpected error occurred, please try again later (1EDCD3CD1B).
+2022-10-07 20:33:40,708 | ERROR | Error with parse: An unexpected error occurred, please try again later (1EDCD3CD1B).
+2022-10-07 20:34:47,793 | ERROR | Error with parse: An unexpected error occurred, please try again later (F44404B5C9).
+2022-10-07 20:34:47,793 | ERROR | Error with parse: An unexpected error occurred, please try again later (F44404B5C9).
+2022-10-07 20:35:27,979 | ERROR | Error with parse: An unexpected error occurred, please try again later (3C4FB4643F).
+2022-10-07 20:35:27,979 | ERROR | Error with parse: An unexpected error occurred, please try again later (3C4FB4643F).
+2022-10-07 20:35:50,553 | ERROR | Error with parse: An unexpected error occurred, please try again later (0E3D74D253).
+2022-10-07 20:35:50,553 | ERROR | Error with parse: An unexpected error occurred, please try again later (0E3D74D253).
+2022-10-07 20:35:54,983 | ERROR | Error with parse: An unexpected error occurred, please try again later (A3C8949C4E).
+2022-10-07 20:35:54,983 | ERROR | Error with parse: An unexpected error occurred, please try again later (A3C8949C4E).
