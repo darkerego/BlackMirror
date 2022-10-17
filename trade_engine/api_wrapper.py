@@ -162,7 +162,7 @@ class FtxApi:
         return self.rest.place_order(market=market, side='buy', price=price, size=qty, type='limit', reduce_only=reduce,
                                      post_only=post, client_id=cid)
 
-    def buy_market(self, market, qty, reduce, ioc, cid=None):
+    def buy_market(self, market, qty, reduce=False, ioc=False, cid=None):
         """
         Place a market buy order
         """
@@ -178,7 +178,7 @@ class FtxApi:
                                      reduce_only=reduce,
                                      post_only=post, client_id=cid)
 
-    def sell_market(self, market, qty, reduce, ioc, cid=None):
+    def sell_market(self, market, qty, reduce=False, ioc=False, cid=None):
         """
         Place a market sell order
         """
