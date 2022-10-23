@@ -12,32 +12,13 @@ cp = colorprint.NewColorPrint()
 
 import ssl
 
-from python_socks.async_.trio import Proxy
+#from python_socks.async_.trio import Proxy
 #from conf import proxyrack
-proxy = Proxy.from_url('socks5://user:password@127.0.0.1:1080')
+#proxy = Proxy.from_url('socks5://user:password@127.0.0.1:1080')
 
 # `connect` returns trio socket
 # so we can pass it to trio.SocketStrea
-async def sockify():
-    sock = proxy.connect(dest_host='check-host.net', dest_port=443)
 
-    stream = trio.SocketStream(sock)
-
-    stream = trio.SSLStream(
-        stream, ssl.create_default_context(),
-        server_hostname='check-host.net'
-    )
-    stream.do_handshake()
-
-    request = (
-        b'GET /ip HTTP/1.1\r\n'
-        b'Host: check-host.net\r\n'
-        b'Connection: close\r\n\r\n'
-    )
-
-    await stream.send_all(request)
-    response = await stream.receive_some(4096)
-    return response
 
 class TheSARsAreAllAligning:
     """
@@ -193,7 +174,7 @@ class TheSARsAreAllAligning:
             elif s == -1:
                 short += 1
         if long == count:
-            cp.green(f'[▲] {instrument} SAR LONG @ ${t}! ')
+            cp.green(f'[▲] {instrument} SAR LONG! ')
             return 'long'
         elif long == short:
             if self.debug:
@@ -204,7 +185,7 @@ class TheSARsAreAllAligning:
                 cp.yellow(f'[▲] {instrument} SAR partial long: {long}/{count}')
             return False
         elif short == count:
-            cp.red(f'[▼] {instrument} SAR SHORT @ ${t}!')
+            cp.red(f'[▼] {instrument} SAR SHORT!')
             return 'short'
         elif count > short > 0 and short > long:
             if self.debug:

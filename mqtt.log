@@ -42338,3 +42338,43 @@ INFO:root:_connect called
 INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SRM-PERP'}
 INFO:root:Subscribing to {'channel': 'ticker', 'market': 'SNX-PERP'}
 INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LINK-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1666046655.7266345
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'LDO-PERP'}
+INFO:root:_connect called
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1666562859.2324874
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'OP-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'STG-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'NEO-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1666562883.616386
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'OP-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'STG-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'NEO-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1666562961.4512563
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'OP-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'STG-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'NEO-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1666563046.3321195
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'OP-PERP'}
+INFO:root:_connect called
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'STG-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'NEO-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}
+INFO:root:Init ws
+INFO:root:Starting autotrader at 1666563135.51248
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'OP-PERP'}
+INFO:root:_connect called
+INFO:root:Trailing stop triggered
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'STG-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'NEO-PERP'}
+INFO:root:Subscribing to {'channel': 'ticker', 'market': 'ETH-PERP'}

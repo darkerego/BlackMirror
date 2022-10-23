@@ -180,7 +180,7 @@ class AutoTrader:
 
             ret = self.api.trailing_stop(market=market, side=opp_side, trail_value=trail_value, size=float(qty),
                                          reduce_only=True)
-            # print(ret)
+            #print(ret)
             return ret
 
         else:
@@ -199,7 +199,7 @@ class AutoTrader:
 
             ret = self.api.trailing_stop(market=market, side=opp_side, trail_value=trail_value, size=float(qty),
                                          reduce_only=True)
-            print(ret)
+            #print(ret)
             return ret
 
     def trailing_stop(self, market, qty, entry, side, offset=.25, ts_o_type='market'):
@@ -435,7 +435,7 @@ class AutoTrader:
             # if run_now:
 
             return self.increment_orders(market=market, side=opp_side, qty=size, period=self.period, reduce=True)
-        elif self.close_method == 'market' or self.close_method == 'limit':
+        elif self.close_method == 'market' or self.close_method == 'limit' or 'trailing':
             return self.take_profit(market=market, side=side, entry=entry, size=size, order_type=order_type)
 
     def re_open_limit(self, market, side, qty):
@@ -829,7 +829,7 @@ class AutoTrader:
                 if self.listings_checked.__contains__(listing):
                     pass
                 else:
-                    if 'BTC-MOVE' in listing:
+                    if re.findall('BTC-MOVE', listing):
                         pass
                     else:
                         self.sql.append(value=listing,
