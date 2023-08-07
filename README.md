@@ -12,6 +12,8 @@
 
 </pre>
 
+# Note: This is deprecated as FTX is no more
+
 # Fixed it! 
 <p>Note: If autotrader doesn't start, its because the db is corrupt. In that case run:
 </p>
